@@ -1,11 +1,93 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import HeroSlider from '../components/HeroSlider.astro';
+import CTAButtonsRow from '../components/CTAButtonsRow.astro';
+import TwoColumnBlock from '../components/TwoColumnBlock.astro';
+import WhyStudyMediation from '../components/WhyStudyMediation.astro';
+import ProgramsGrid from '../components/ProgramsGrid.astro';
+import AccreditationBanner from '../components/AccreditationBanner.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Datos del Hero Slider
+const heroSlides = [
+  {
+    img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    heading: "FORMANDO MEDIADORES",
+    sub: "DESDE 2005",
+    ctaText: "Conoce nuestros programas",
+    ctaLink: "/programas"
+  },
+  {
+    img: "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+    heading: "CAPACITACIÓN PROFESIONAL",
+    sub: "CON METODOLOGÍA PRÁCTICA",
+    ctaText: "Ver admisión",
+    ctaLink: "/admision"
+  },
+  {
+    img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    heading: "CERTIFICACIÓN RECONOCIDA",
+    sub: "ACREDITADOS POR SENCE E IRAM",
+    ctaText: "Contactanos",
+    ctaLink: "/contacto"
+  }
+];
+
+// Contenido de la sección Mediación
+const mediationContent = `
+<p>La <strong>mediación</strong> es un método de resolución alternativa de conflictos en el que un tercero neutral e imparcial, el mediador, facilita la comunicación entre las partes para que ellas mismas encuentren una solución mutuamente satisfactoria.</p>
+
+<p>Este proceso confidencial y voluntario se basa en el diálogo constructivo, la escucha activa y la búsqueda de intereses comunes, permitiendo que las personas involucradas mantengan el control sobre las decisiones que afectan sus vidas.</p>
+
+<p>En EMED, te formamos como mediador profesional con las <strong>competencias técnicas y habilidades emocionales</strong> necesarias para acompañar a otros en la transformación de sus conflictos en oportunidades de crecimiento.</p>
+`;
 ---
 
-<Layout>
-	<Welcome />
+<Layout 
+  title="EMED - Formando Mediadores desde 2005"
+  description="Centro de formación especializado en mediación familiar, escolar y laboral. Programas acreditados con metodología práctica y certificación reconocida."
+>
+  
+  <!-- Hero Slider -->
+  <HeroSlider 
+    slides={heroSlides}
+    autoplay={true}
+    autoplayDelay={6000}
+  />
+  
+  <!-- Mini CTAs con hero.svg background -->
+  <CTAButtonsRow 
+    useSVGBackground={true}
+    items={[
+      { label: "20+ años de experiencia", href: "/nosotros", icon: "📅" },
+      { label: "+3000 mediadores formados", href: "/programas", icon: "👥" },
+      { label: "+15% del registro único de mediadores", href: "/programas", icon: "🎓" }
+    ]}
+  />
+  
+  <!-- Sección Mediación -->
+  <section class="py-16 bg-crema relative">
+    <TwoColumnBlock 
+      image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+      imageAlt="Equipo de mediadores EMED en sesión de trabajo"
+      heading="¿Qué es la Mediación?"
+      content={mediationContent}
+      reverse={false}
+    />
+  </section>
+  
+  <!-- Sección ¿Por qué estudiar mediación? -->
+  <WhyStudyMediation 
+    showMidHeroSVG={true}
+    midHeroSVGColor1="#F7C97B"
+    midHeroSVGColor2="#EE800C"
+  />
+  
+  <!-- Sección Programas -->
+  <ProgramsGrid />
+  
+  <!-- Sección Acreditación -->
+  <AccreditationBanner 
+    mascotSrc="/src/assets/landing/emed_acreditado.png"
+  />
+
 </Layout>

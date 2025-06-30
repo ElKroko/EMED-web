@@ -1,0 +1,100 @@
+---
+export interface Props {
+  img: string;
+  heading: string;
+  sub: string;
+  ctaText?: string;
+  ctaLink?: string;
+  isActive: boolean;
+}
+
+const { 
+  img,
+  heading,
+  sub,
+  ctaText = "Conoce más",
+  ctaLink = "#",
+  isActive
+} = Astro.props;
+---
+
+<div 
+  class={`slider-slide absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${isActive ? 'opacity-100' : 'opacity-0'}`}
+>
+  <!-- Centered image container with side gradients -->
+  <div class="slider-image-container relative h-full flex items-start justify-center pt-20">
+    <div class="slider-image-wrapper relative">
+      <img 
+        src={img} 
+        alt={heading}
+        class="slider-image h-full object-cover"
+      />
+      <!-- Side gradient overlays for fade effect -->
+      <div class="slider-gradient-left absolute inset-y-0 left-0 w-24 pointer-events-none"></div>
+      <div class="slider-gradient-right absolute inset-y-0 right-0 w-24 pointer-events-none"></div>
+      
+      <!-- Content overlay centered on image -->
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="text-center text-white px-4 max-w-4xl">
+          <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 drop-shadow-2xl">
+            {heading}
+          </h1>
+          <p class="text-xl md:text-2xl lg:text-3xl font-light opacity-90 drop-shadow-lg mb-8">
+            {sub}
+          </p>
+          <a 
+            href={ctaLink}
+            class="inline-block bg-white bg-opacity-20 hover:bg-opacity-30 text-white font-semibold px-8 py-3 rounded-full backdrop-blur-sm transition-all duration-300 border border-white border-opacity-30 hover:border-opacity-50"
+          >
+            {ctaText}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .slider-image-container {
+    background: var(--color-celeste);
+  }
+  
+  .slider-image-wrapper {
+    width: 90%;
+    max-width: 1200px;
+    aspect-ratio: 21 / 9;
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+  }
+  
+  .slider-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  @media (max-width: 768px) {
+    .slider-image-wrapper {
+      width: 95%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .slider-image-wrapper {
+      width: 98%;
+    }
+  }
+  
+  .slider-gradient-left {
+    background: linear-gradient(to right, var(--color-celeste) 0%, var(--color-celeste) 30%, transparent 100%);
+  }
+  
+  .slider-gradient-right {
+    background: linear-gradient(to left, var(--color-celeste) 0%, var(--color-celeste) 30%, transparent 100%);
+  }
+  
+  .slider-slide {
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>

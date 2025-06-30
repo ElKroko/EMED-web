@@ -1,0 +1,171 @@
+---
+export interface Program {
+  title: string;
+  description: string;
+  duration: string;
+  modality: string;
+  level: string;
+  highlight?: boolean;
+  disabled?: boolean;
+}
+
+export interface Props {
+  programs?: Program[];
+  heading?: string;
+  subheading?: string;
+  className?: string;
+}
+
+const { 
+  programs = [
+    {
+      title: "Mediación Familiar",
+      description: "Especialízate en la resolución de conflictos familiares con técnicas específicas para dinámicas familiares complejas.",
+      duration: "120 horas",
+      modality: "Presencial + Online",
+      level: "Básico - Intermedio",
+      highlight: true
+    },
+    {
+      title: "Mediación Escolar",
+      description: "Aprende a mediar conflictos en el ámbito educativo, trabajando con estudiantes, padres y equipos docentes.",
+      duration: "80 horas",
+      modality: "Online",
+      level: "Básico"
+    },
+    {
+      title: "Mediación Laboral",
+      description: "Desarrolla habilidades para resolver conflictos laborales y mejorar el clima organizacional en empresas.",
+      duration: "100 horas",
+      modality: "Presencial",
+      level: "Intermedio"
+    },
+    {
+      title: "Mediación Comunitaria",
+      description: "Conviértete en un agente de paz en tu comunidad, facilitando diálogos y resolviendo disputas vecinales.",
+      duration: "90 horas",
+      modality: "Mixto",
+      level: "Básico",
+      disabled: true
+    }
+  ],
+  heading = "Nuestros Programas",
+  subheading = "Especialízate en diferentes áreas de la mediación con nuestros programas certificados",
+  className = ""
+} = Astro.props;
+---
+
+<section class={`programs-grid py-20 bg-crema ${className}`}>
+  <div class="container mx-auto px-4 relative z-10">
+    
+    <!-- Título de la sección -->
+    <div class="text-center mb-16 relative z-20">
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6">
+        {heading}
+      </h2>
+      <p class="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+        {subheading}
+      </p>
+    </div>
+
+    <!-- Grid de programas -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 relative z-20">
+      {programs.map((program) => (
+        <div class={`program-card bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 ${program.highlight ? 'ring-2 ring-celeste ring-opacity-50' : ''}`}>
+          
+          {program.highlight && (
+            <div class="inline-block bg-celeste text-white px-3 py-1 rounded-full text-sm font-semibold mb-4">
+              Más Popular
+            </div>
+          )}
+          
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">
+            {program.title}
+          </h3>
+          
+          <p class="text-gray-600 leading-relaxed mb-6">
+            {program.description}
+          </p>
+          
+          <div class="space-y-3 mb-6">
+            <div class="flex items-center text-sm text-gray-600">
+              <svg class="w-4 h-4 mr-2 text-turquesa" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span class="font-medium text-gray-800">Duración:</span> {program.duration}
+            </div>
+            
+            <div class="flex items-center text-sm text-gray-600">
+              <svg class="w-4 h-4 mr-2 text-turquesa" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              <span class="font-medium text-gray-800">Modalidad:</span> {program.modality}
+            </div>
+            
+            <div class="flex items-center text-sm text-gray-600">
+              <svg class="w-4 h-4 mr-2 text-turquesa" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+              <span class="font-medium text-gray-800">Nivel:</span> {program.level}
+            </div>
+          </div>
+          
+          {program.disabled ? (
+            <button 
+              disabled
+              class="inline-flex items-center justify-center w-full px-6 py-3 font-semibold text-gray-500 bg-gray-200 border border-gray-400 rounded-lg cursor-not-allowed"
+            >
+              Próximamente
+            </button>
+          ) : (
+            <a 
+              href="/admision"
+              class={`inline-flex items-center justify-center w-full px-6 py-3 font-semibold rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg program-link ${program.highlight ? 'bg-naranja hover:bg-amarillo' : 'bg-celeste hover:bg-turquesa'}`}
+            >
+              Más información
+              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA principal -->
+    <div class="text-center relative z-20">
+      <a 
+        href="/programas" 
+        class="inline-flex items-center px-10 py-4 bg-celeste font-semibold text-lg rounded-lg hover:bg-turquesa hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 main-cta-button"
+      >
+        Programas y Cursos
+        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .program-card {
+    position: relative;
+  }
+  
+  .program-link {
+    color: white !important;
+  }
+  
+  .program-link:hover {
+    color: white !important;
+  }
+  
+  .main-cta-button {
+    color: white !important;
+  }
+  
+  .main-cta-button:hover {
+    color: white !important;
+  }
+</style>

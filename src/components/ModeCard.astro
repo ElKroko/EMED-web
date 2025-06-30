@@ -1,0 +1,107 @@
+---
+export interface Props {
+  icon: string;
+  title: string;
+  text: string;
+  bg?: string;
+  className?: string;
+}
+
+const { 
+  icon,
+  title,
+  text,
+  bg = "var(--color-white)",
+  className = ""
+} = Astro.props;
+---
+
+<div class={`mode-card bg-white border border-gray-200 rounded-xl p-8 hover:shadow-lg hover:border-turquesa transition-all duration-300 transform hover:-translate-y-2 group ${className}`} style={`background-color: ${bg};`}>
+  
+  <!-- Icono -->
+  <div class="icon-container mb-6 flex justify-center">
+    <div class="icon-wrapper w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-turquesa group-hover:text-white transition-all duration-300">
+      <Fragment set:html={icon} />
+    </div>
+  </div>
+  
+  <!-- Título -->
+  <h3 class="mode-title text-2xl font-bold text-gray-800 mb-4 text-center group-hover:text-turquesa transition-colors duration-300">
+    {title}
+  </h3>
+  
+  <!-- Descripción -->
+  <p class="mode-description text-gray-600 leading-relaxed text-center">
+    {text}
+  </p>
+  
+</div>
+
+<style>
+  .mode-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .mode-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 166, 177, 0.05), transparent);
+    transition: left 0.6s ease;
+  }
+  
+  .mode-card:hover::before {
+    left: 100%;
+  }
+  
+  .mode-card:hover {
+    border-color: var(--color-turquesa);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-8px);
+  }
+  
+  .icon-wrapper {
+    width: 4rem;
+    height: 4rem;
+    background-color: var(--color-gray-100);
+    border-radius: 50%;
+    transition: all var(--transition-base);
+  }
+  
+  .mode-card:hover .icon-wrapper {
+    background-color: var(--color-turquesa);
+    color: var(--color-white);
+    transform: scale(1.1);
+  }
+  
+  .mode-title {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-gray-800);
+    transition: color var(--transition-base);
+  }
+  
+  .mode-card:hover .mode-title {
+    color: var(--color-turquesa);
+  }
+  
+  .mode-description {
+    color: var(--color-gray-600);
+    line-height: 1.6;
+  }
+  
+  /* Icon styles */
+  .icon-wrapper svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: currentColor;
+  }
+</style>

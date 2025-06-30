@@ -1,0 +1,36 @@
+---
+export interface Props {
+  text?: string;
+  className?: string;
+}
+
+const { 
+  text = "Por normativa del Ministerio de Educación, la modalidad presencial requiere un mínimo de asistencia del 80% para obtener la certificación. Las modalidades online mantienen flexibilidad horaria con entrega de actividades programadas.",
+  className = ""
+} = Astro.props;
+---
+
+<div class={`disclaimer-text py-6 ${className}`}>
+  <div class="container mx-auto px-4">
+    <p class="text-xs text-gray-500 text-center max-w-4xl mx-auto leading-relaxed">
+      <strong>Importante:</strong> {text}
+    </p>
+  </div>
+</div>
+
+<style>
+  .disclaimer-text {
+    background-color: transparent;
+  }
+  
+  .disclaimer-text p {
+    font-size: var(--font-size-xs);
+    color: var(--color-gray-500);
+    line-height: 1.5;
+  }
+  
+  .disclaimer-text strong {
+    color: var(--color-gray-600);
+    font-weight: var(--font-weight-semibold);
+  }
+</style>

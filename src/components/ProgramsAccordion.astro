@@ -1,0 +1,205 @@
+---
+export interface Program {
+  title: string;
+  description: string;
+  url: string;
+  duration?: string;
+  modality?: string;
+}
+
+export interface Props {
+  programs?: Program[];
+  className?: string;
+}
+
+const { 
+  programs = [
+    {
+      title: "Mediación Familiar",
+      description: "Especialízate en la resolución de conflictos familiares, separaciones, divorcios y custodia de menores. Aprende técnicas específicas para manejar la alta carga emocional de estos procesos.",
+      url: "/programas/mediacion-familiar",
+      duration: "120 horas",
+      modality: "Presencial y Online"
+    },
+    {
+      title: "Mediación Escolar",
+      description: "Desarrolla habilidades para gestionar conflictos en entornos educativos, promoviendo la convivencia pacífica y la resolución colaborativa de problemas entre estudiantes, docentes y familias.",
+      url: "/programas/mediacion-escolar",
+      duration: "80 horas",
+      modality: "Presencial"
+    },
+    {
+      title: "Mediación Laboral",
+      description: "Conviértete en experto en la resolución de conflictos laborales, negociación colectiva y mejora del clima organizacional. Herramientas prácticas para el ámbito empresarial.",
+      url: "/programas/mediacion-laboral",
+      duration: "100 horas",
+      modality: "Online y Mixta"
+    }
+  ],
+  className = ""
+} = Astro.props;
+---
+
+<section class={`programs-accordion py-20 bg-white ${className}`}>
+  <div class="container mx-auto px-4 z-20 relative h-100">
+    
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+        Programas
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Elige la especialización que mejor se adapte a tus objetivos profesionales
+      </p>
+    </div>
+
+    <div class="max-w-4xl mx-auto">
+      <div class="accordion-container space-y-4">
+        {programs.map((program, index) => (
+          <div class="accordion-item border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+            
+            <button 
+              class="accordion-header w-full px-6 py-6 text-left bg-white hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-turquesa focus:ring-inset"
+              data-accordion-target={`accordion-content-${index}`}
+              aria-expanded="false"
+            >
+              <div class="flex items-center justify-between">
+                <div class="flex-1">
+                  <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-2">
+                    {program.title}
+                  </h3>
+                  <div class="flex flex-wrap gap-4 text-sm text-gray-500">
+                    {program.duration && (
+                      <span class="flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        {program.duration}
+                      </span>
+                    )}
+                    {program.modality && (
+                      <span class="flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        {program.modality}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div class="accordion-icon ml-4 flex-shrink-0 transition-transform duration-200">
+                  <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                  </svg>
+                </div>
+              </div>
+            </button>
+
+            <div 
+              class="accordion-content hidden"
+              id={`accordion-content-${index}`}
+            >
+              <div class="px-6 pb-6 border-t border-gray-100">
+                <p class="text-gray-600 leading-relaxed mb-4 pt-4">
+                  {program.description}
+                </p>
+                <a 
+                  href={program.url}
+                  class="inline-flex items-center px-6 py-3 bg-turquesa text-white font-semibold rounded-lg hover:bg-celeste transition-colors duration-200"
+                >
+                  Más información
+                  <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  class ProgramsAccordion {
+    constructor() {
+      this.accordionHeaders = document.querySelectorAll('.accordion-header');
+      this.init();
+    }
+
+    init() {
+      this.accordionHeaders.forEach((header) => {
+        header.addEventListener('click', (e) => this.toggleAccordion(e));
+      });
+    }
+
+    toggleAccordion(e) {
+      const header = e.currentTarget;
+      const targetId = header.getAttribute('data-accordion-target');
+      const content = document.getElementById(targetId);
+      const icon = header.querySelector('.accordion-icon svg');
+      const isExpanded = header.getAttribute('aria-expanded') === 'true';
+
+      // Close all other accordions
+      this.accordionHeaders.forEach((otherHeader) => {
+        if (otherHeader !== header) {
+          const otherTargetId = otherHeader.getAttribute('data-accordion-target');
+          const otherContent = document.getElementById(otherTargetId);
+          const otherIcon = otherHeader.querySelector('.accordion-icon svg');
+          
+          otherHeader.setAttribute('aria-expanded', 'false');
+          otherContent?.classList.add('hidden');
+          otherIcon?.classList.remove('rotate-45');
+        }
+      });
+
+      // Toggle current accordion
+      if (isExpanded) {
+        header.setAttribute('aria-expanded', 'false');
+        content?.classList.add('hidden');
+        icon?.classList.remove('rotate-45');
+      } else {
+        header.setAttribute('aria-expanded', 'true');
+        content?.classList.remove('hidden');
+        icon?.classList.add('rotate-45');
+      }
+    }
+  }
+
+  // Initialize accordion when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new ProgramsAccordion();
+  });
+</script>
+
+<style>
+  .accordion-header:focus {
+    outline: 2px solid var(--color-turquesa);
+    outline-offset: -2px;
+  }
+  
+  .accordion-icon svg {
+    transition: transform var(--transition-fast);
+  }
+  
+  .accordion-icon svg.rotate-45 {
+    transform: rotate(45deg);
+  }
+  
+  .accordion-content {
+    animation: slideDown 0.3s ease-out;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      max-height: 0;
+    }
+    to {
+      opacity: 1;
+      max-height: 200px;
+    }
+  }
+</style>

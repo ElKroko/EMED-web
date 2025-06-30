@@ -1,0 +1,200 @@
+---
+export interface Props {
+  action?: string;
+  placeholder?: string;
+  buttonText?: string;
+  className?: string;
+}
+
+const { 
+  action = "/api/newsletter",
+  placeholder = "Tu correo electrónico",
+  buttonText = "Suscribirse",
+  className = ""
+} = Astro.props;
+---
+
+<div class={`newsletter-form ${className}`}>
+  <form class="newsletter-form-element" action={action} method="POST">
+    <div class="flex flex-col sm:flex-row gap-3">
+      <div class="flex-1">
+        <label for="email" class="sr-only">Correo electrónico</label>
+        <input 
+          type="email" 
+          id="email"
+          name="email"
+          required
+          placeholder={placeholder}
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-turquesa focus:border-transparent transition-all duration-200"
+        />
+      </div>
+      <button 
+        type="submit"
+        class="newsletter-submit px-6 py-3 bg-turquesa text-white font-semibold rounded-lg hover:bg-celeste transition-all duration-200 transform hover:-translate-y-1 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+      >
+        <span class="submit-text">{buttonText}</span>
+        <span class="loading-text hidden">
+          <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Enviando...
+        </span>
+      </button>
+    </div>
+    
+    <!-- Mensaje de respuesta -->
+    <div class="form-message mt-3 hidden">
+      <div class="success-message text-green-600 text-sm hidden">
+        ¡Gracias! Te has suscrito exitosamente a nuestro newsletter.
+      </div>
+      <div class="error-message text-red-600 text-sm hidden">
+        Ha ocurrido un error. Por favor, intenta nuevamente.
+      </div>
+    </div>
+    
+    <!-- Términos y privacidad -->
+    <p class="text-xs text-gray-500 mt-3">
+      Al suscribirte, aceptas recibir comunicaciones de EMED y puedes cancelar en cualquier momento. 
+      <a href="/privacidad" class="text-turquesa hover:underline">Política de privacidad</a>
+    </p>
+  </form>
+</div>
+
+<script>
+  class NewsletterForm {
+    constructor() {
+      this.form = document.querySelector('.newsletter-form-element');
+      this.submitButton = document.querySelector('.newsletter-submit');
+      this.submitText = document.querySelector('.submit-text');
+      this.loadingText = document.querySelector('.loading-text');
+      this.successMessage = document.querySelector('.success-message');
+      this.errorMessage = document.querySelector('.error-message');
+      this.formMessage = document.querySelector('.form-message');
+      
+      this.init();
+    }
+
+    init() {
+      this.form?.addEventListener('submit', (e) => this.handleSubmit(e));
+    }
+
+    async handleSubmit(e) {
+      e.preventDefault();
+      
+      if (!this.form) return;
+      
+      const formData = new FormData(this.form);
+      const email = formData.get('email');
+      
+      if (!this.isValidEmail(email)) {
+        this.showError('Por favor, ingresa un correo electrónico válido.');
+        return;
+      }
+      
+      this.setLoading(true);
+      this.hideMessages();
+      
+      try {
+        const response = await fetch(this.form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        if (response.ok) {
+          this.showSuccess();
+          this.form.reset();
+        } else {
+          throw new Error('Error en la respuesta del servidor');
+        }
+      } catch (error) {
+        console.error('Error al enviar formulario:', error);
+        this.showError('Ha ocurrido un error. Por favor, intenta nuevamente.');
+      } finally {
+        this.setLoading(false);
+      }
+    }
+
+    isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    setLoading(loading) {
+      if (!this.submitButton || !this.submitText || !this.loadingText) return;
+      
+      this.submitButton.disabled = loading;
+      
+      if (loading) {
+        this.submitText.classList.add('hidden');
+        this.loadingText.classList.remove('hidden');
+      } else {
+        this.submitText.classList.remove('hidden');
+        this.loadingText.classList.add('hidden');
+      }
+    }
+
+    showSuccess() {
+      if (!this.formMessage || !this.successMessage) return;
+      
+      this.formMessage.classList.remove('hidden');
+      this.successMessage.classList.remove('hidden');
+      this.errorMessage?.classList.add('hidden');
+    }
+
+    showError(message) {
+      if (!this.formMessage || !this.errorMessage) return;
+      
+      this.formMessage.classList.remove('hidden');
+      this.errorMessage.classList.remove('hidden');
+      this.errorMessage.textContent = message;
+      this.successMessage?.classList.add('hidden');
+    }
+
+    hideMessages() {
+      this.formMessage?.classList.add('hidden');
+      this.successMessage?.classList.add('hidden');
+      this.errorMessage?.classList.add('hidden');
+    }
+  }
+
+  // Initialize newsletter form when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new NewsletterForm();
+  });
+</script>
+
+<style>
+  .newsletter-form input:focus {
+    box-shadow: 0 0 0 3px rgba(0, 166, 177, 0.1);
+  }
+  
+  .newsletter-submit {
+    min-width: 120px;
+    transition: all var(--transition-base);
+  }
+  
+  .newsletter-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .newsletter-submit:active:not(:disabled) {
+    transform: translateY(0);
+  }
+  
+  .newsletter-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+  
+  @media (max-width: 639px) {
+    .newsletter-submit {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,176 @@
+---
+export interface CTAButton {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary';
+}
+
+export interface Props {
+  image: string;
+  imageAlt: string;
+  heading: string;
+  bullets?: string[];
+  primaryCta?: CTAButton;
+  secondaryCta?: CTAButton;
+  reverse?: boolean;
+  className?: string;
+}
+
+const { 
+  image,
+  imageAlt,
+  heading,
+  bullets = [],
+  primaryCta,
+  secondaryCta,
+  reverse = false,
+  className = ""
+} = Astro.props;
+---
+
+<section class={`two-column-intro bg-crema py-20 ${className}`}>
+  
+  <!-- Onda superior celeste -->
+  <div class="absolute top-0 left-0 w-full overflow-hidden leading-none">
+    <svg 
+      class="relative block w-full h-16 md:h-24" 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 1200 120" 
+      preserveAspectRatio="none"
+    >
+      <path 
+        d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" 
+        fill="var(--color-celeste)"
+      />
+    </svg>
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${reverse ? 'lg:flex-row-reverse' : ''}`}>
+      
+      <!-- Columna de contenido -->
+      <div class={`content-column ${reverse ? 'lg:order-2' : 'lg:order-1'}`}>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-8 leading-tight">
+          {heading}
+        </h2>
+        
+        {bullets.length > 0 && (
+          <ul class="bullets-list space-y-4 mb-8">
+            {bullets.map((bullet) => (
+              <li class="bullet-item relative pl-8 text-lg text-gray-700 leading-relaxed">
+                <span class="bullet-decoration absolute left-0 top-0 w-6 h-6 bg-turquesa rounded-full flex items-center justify-center">
+                  <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </span>
+                {bullet}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <!-- CTAs -->
+        {(primaryCta || secondaryCta) && (
+          <div class="cta-buttons flex flex-col sm:flex-row gap-4">
+            {primaryCta && (
+              <a 
+                href={primaryCta.href}
+                class="primary-cta inline-flex items-center justify-center px-8 py-4 bg-turquesa text-white font-semibold text-lg rounded-lg hover:bg-celeste transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl"
+              >
+                {primaryCta.label}
+                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            )}
+            
+            {secondaryCta && (
+              <a 
+                href={secondaryCta.href}
+                class="secondary-cta inline-flex items-center justify-center px-8 py-4 border-2 border-turquesa text-turquesa font-semibold text-lg rounded-lg hover:bg-turquesa hover:text-white transition-all duration-300"
+              >
+                {secondaryCta.label}
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+
+      <!-- Columna de imagen -->
+      <div class={`image-column ${reverse ? 'lg:order-1' : 'lg:order-2'}`}>
+        <div class="relative group">
+          <div class="image-container relative overflow-hidden rounded-2xl shadow-2xl">
+            <img 
+              src={image}
+              alt={imageAlt}
+              class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+          
+          <!-- Decorative elements -->
+          <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-amarillo rounded-full opacity-80 -z-10"></div>
+          <div class="absolute -top-4 -left-4 w-16 h-16 bg-celeste rounded-full opacity-60 -z-10"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .two-column-intro {
+    position: relative;
+    background-color: var(--color-crema);
+  }
+  
+  .bullet-item {
+    position: relative;
+    padding-left: 2rem;
+  }
+  
+  .bullet-decoration {
+    background-color: var(--color-turquesa);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .image-container {
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-2xl);
+  }
+  
+  .primary-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .secondary-cta:hover {
+    background-color: var(--color-turquesa);
+    color: var(--color-white);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1023px) {
+    .content-column {
+      order: 1 !important;
+    }
+    
+    .image-column {
+      order: 2 !important;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .cta-buttons {
+      flex-direction: column;
+    }
+    
+    .primary-cta,
+    .secondary-cta {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

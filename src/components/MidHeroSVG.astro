@@ -1,0 +1,88 @@
+---
+export interface Props {
+  color1?: string;
+  color2?: string;
+  className?: string;
+  position?: 'absolute' | 'relative';
+  zIndex?: number;
+}
+
+const { 
+  color1 = "#F7C97B",
+  color2 = "#EE800C", 
+  className = "",
+  position = "absolute",
+  zIndex = -1
+} = Astro.props;
+---
+
+<div 
+  class={`mid-hero-svg ${className}`}
+  style={`position: ${position}; z-index: ${zIndex};`}
+>
+  <svg 
+    width="100%" 
+    height="100%" 
+    viewBox="0 0 1279 986" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="xMidYMid slice"
+  >
+    <path 
+      d="M191.61 98.6598C191.61 39.2798 84.2802 50.3598 0.240234 97.6598V981.98C207.43 1007.42 412.89 895.55 461.72 888.75C461.72 690.15 880.96 958.97 880.96 669.89C880.96 466.79 869.56 434.23 694.35 434.23C492.78 434.23 191.61 573.96 191.61 98.6598Z" 
+      fill={color1}
+    />
+    <path 
+      d="M1279 0C1254.72 8.91513 1106.2 66.8835 1097.3 153.666C1087.6 248.194 1135.58 209.875 1135.58 362.472C1135.58 514.389 1008.04 434.812 694.761 434.812C593.266 441.469 360.616 549.32 361.493 601.741C362.419 657.311 252.416 897 371.236 897C1173.14 897 1279 897 1279 638.141V0Z" 
+      fill={color2}
+    />
+  </svg>
+</div>
+
+<style>
+  .mid-hero-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  
+  .mid-hero-svg svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .mid-hero-svg svg {
+      transform: scale(1.1);
+      transform-origin: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .mid-hero-svg svg {
+      transform: scale(1.2);
+    }
+  }
+  
+  /* Animación sutil opcional */
+  @media (prefers-reduced-motion: no-preference) {
+    .mid-hero-svg svg {
+      animation: floatSVG 20s ease-in-out infinite;
+    }
+  }
+  
+  @keyframes floatSVG {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-10px) scale(1.01);
+    }
+  }
+</style>

@@ -1,0 +1,97 @@
+---
+// Header component for EMED website
+---
+
+<header class="bg-turquesa shadow-sm">
+  <nav class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="/" class="flex items-center">
+          <img 
+            src="/src/assets/footer/emed_logo.svg" 
+            alt="EMED Logo" 
+            class="h-12 w-auto"
+          />
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-white hover:text-gray-200 transition duration-200">
+          Inicio
+        </a>
+        <a href="/programas" class="text-white hover:text-gray-200 transition duration-200">
+          Programas
+        </a>
+        <a href="/nosotros" class="text-white hover:text-gray-200 transition duration-200">
+          Nosotros
+        </a>
+        <a href="/admision" class="text-white hover:text-gray-200 transition duration-200">
+          Admisión
+        </a>
+        <a href="/contacto" class="text-white hover:text-gray-200 transition duration-200">
+          Contacto
+        </a>
+      </div>
+
+      <!-- CTA Button -->
+      <div class="hidden md:block">
+        <a 
+          href="/contacto" 
+          class="bg-naranja text-white px-6 py-2 rounded-lg hover:bg-amarillo transition duration-200 font-medium"
+        >
+          Consulta Gratis
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button 
+        class="md:hidden p-2 rounded-lg hover:bg-turquesa/80 transition duration-200"
+        id="mobile-menu-button"
+        aria-label="Toggle menu"
+      >
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden mt-4 pb-4 border-t border-white/20 hidden" id="mobile-menu">
+      <div class="flex flex-col space-y-3 pt-4">
+        <a href="/" class="text-white hover:text-gray-200 transition duration-200 py-2">
+          Inicio
+        </a>
+        <a href="/programas" class="text-white hover:text-gray-200 transition duration-200 py-2">
+          Programas
+        </a>
+        <a href="/nosotros" class="text-white hover:text-gray-200 transition duration-200 py-2">
+          Nosotros
+        </a>
+        <a href="/admision" class="text-white hover:text-gray-200 transition duration-200 py-2">
+          Admisión
+        </a>
+        <a href="/contacto" class="text-white hover:text-gray-200 transition duration-200 py-2">
+          Contacto
+        </a>
+        <a 
+          href="/contacto" 
+          class="bg-naranja text-white px-6 py-3 rounded-lg hover:bg-amarillo transition duration-200 font-medium text-center mt-4"
+        >
+          Consulta Gratis
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>

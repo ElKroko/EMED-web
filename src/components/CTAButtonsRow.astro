@@ -1,0 +1,103 @@
+---
+export interface CTAItem {
+  label: string;
+  href?: string;
+  icon?: string;
+}
+
+export interface Props {
+  items?: CTAItem[];
+  className?: string;
+  useSVGBackground?: boolean;
+}
+
+const { 
+  items = [
+    { label: "adquiere herramientas", href: "/programas", icon: "🛠️" },
+    { label: "contagia actitud", href: "/mediacion", icon: "✨" },
+    { label: "desarrolla técnica", href: "/admision", icon: "🎯" }
+  ],
+  className = "",
+  useSVGBackground = false
+} = Astro.props;
+---
+
+<section class={`cta-buttons-row relative overflow-hidden ${useSVGBackground ? 'bg-celeste' : 'bg-white'} ${className}`}>
+  
+  {useSVGBackground && (
+    <div class="absolute z-2" style="top: -40%; left: 0; right: 0; height: 140%;">
+      <svg 
+        width="100%" 
+        height="100%" 
+        viewBox="0 0 1279 766" 
+        fill="none" 
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid slice"
+        class="w-full"
+      >
+        <path 
+          d="M452 0C318 -0.000256064 334 0.000210975 166 0.000274991C90.43 3.01217 49.9102 0.000427132 0 0.000382043V691.102C190.09 679.148 478.93 574.9 639 625.752C886.89 704.505 921.43 672.016 1110.76 664.474C1171.07 662.07 1224 771.069 1279 765.816L1280 0.00028501C1072.5 0.00028501 568.5 0 452 0Z" 
+          fill="#6ABDCC"
+        />
+      </svg>
+    </div>
+  )}
+
+  <!-- Contenido de los CTAs -->
+  <div class="container mx-auto relative z-10 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0">
+      {items.map((item, index) => (
+        <div class="cta-item relative z-20">
+          {/* Separador entre elementos (excepto el último) */}
+          {index < items.length - 1 && (
+            <div class={`hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 w-px h-16 ${useSVGBackground ? 'bg-white bg-opacity-30' : 'bg-gray-200'}`}></div>
+          )}
+          
+          <a 
+            href={item.href || '#'}
+            class="block text-center py-8 px-6 group transition-all duration-500 ease-in-out rounded-lg hover:scale-120 transform"
+          >
+            <div class="text-center">
+              <div class={`text-4xl md:text-5xl lg:text-6xl font-bold mb-2 group-hover:text-turquesa transition-colors duration-300 ${useSVGBackground ? 'text-white' : 'text-gray-800'}`}>
+                {item.label.split(' ')[0]}
+              </div>
+              <div class={`text-sm md:text-base font-medium leading-tight ${useSVGBackground ? 'text-white text-opacity-90' : 'text-gray-600'}`}>
+                {item.label.split(' ').slice(1).join(' ')}
+              </div>
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Espaciador para mostrar la parte curva del SVG -->
+  {useSVGBackground && (
+    <div class="h-24 md:h-32 lg:h-40"></div>
+  )}
+
+</section>
+
+<style>
+  .cta-buttons-row {
+    border-top: 1px solid var(--color-gray-200);
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+  
+  .cta-item a {
+    position: relative;
+    overflow: hidden;
+    transform: scale(1);
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .cta-item a:hover {
+    transform: scale(1.2);
+  }
+  
+  @media (max-width: 767px) {
+    .cta-item:not(:last-child) {
+      border-bottom: 1px solid var(--color-gray-200);
+    }
+  }
+</style>

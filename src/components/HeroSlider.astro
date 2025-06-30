@@ -1,0 +1,215 @@
+---
+import HeroSlide from './HeroSlide.astro';
+
+export interface Slide {
+  img: string;
+  heading: string;
+  sub: string;
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+export interface Props {
+  slides: Slide[];
+  autoplay?: boolean;
+  autoplayDelay?: number;
+}
+
+const { 
+  slides, 
+  autoplay = true, 
+  autoplayDelay = 5000
+} = Astro.props;
+---
+
+<section class="relative overflow-hidden hero-slider hero-full-height">
+  <div class="slider-container relative w-full h-full z-30">
+    
+    {slides.map((slide, index) => (
+      <HeroSlide 
+        img={slide.img}
+        heading={slide.heading}
+        sub={slide.sub}
+        ctaText={slide.ctaText}
+        ctaLink={slide.ctaLink}
+        isActive={index === 0}
+      />
+    ))}
+
+    {slides.length > 1 && (
+      <>
+        <button 
+          class="slider-prev absolute z-40 bg-white bg-opacity-20 hover:bg-opacity-40 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm opacity-75 hover:opacity-100 slider-arrow-left"
+          aria-label="Slide anterior"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+
+        <button 
+          class="slider-next absolute z-40 bg-white bg-opacity-20 hover:bg-opacity-40 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm opacity-75 hover:opacity-100 slider-arrow-right"
+          aria-label="Slide siguiente"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40">
+          <div class="flex space-x-3">
+            {slides.map((_, index) => (
+              <button 
+                class={`slider-dot w-3 h-3 rounded-full bg-white transition-all duration-300 ${index === 0 ? 'bg-opacity-100' : 'bg-opacity-50 hover:bg-opacity-80'}`}
+                data-slide={index}
+                aria-label={`Ir al slide ${index + 1}`}
+              ></button>
+            ))}
+          </div>
+        </div>
+      </>
+    )}
+
+  </div>
+</section>
+
+<script define:vars={{ autoplay, autoplayDelay }}>
+  class HeroSlider {
+    constructor() {
+      this.currentSlide = 0;
+      this.slides = document.querySelectorAll('.slider-slide');
+      this.dots = document.querySelectorAll('.slider-dot');
+      this.prevButton = document.querySelector('.slider-prev');
+      this.nextButton = document.querySelector('.slider-next');
+      this.container = document.querySelector('.hero-slider');
+      this.autoPlayInterval = null;
+      this.autoplay = autoplay;
+      this.autoplayDelay = autoplayDelay;
+      
+      this.init();
+    }
+
+    init() {
+      if (this.slides.length <= 1) return;
+
+      this.container?.classList.add('group');
+      
+      this.prevButton?.addEventListener('click', () => this.prevSlide());
+      this.nextButton?.addEventListener('click', () => this.nextSlide());
+      
+      this.dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => this.goToSlide(index));
+      });
+
+      if (this.autoplay) {
+        this.startAutoPlay();
+        
+        this.container?.addEventListener('mouseenter', () => this.stopAutoPlay());
+        this.container?.addEventListener('mouseleave', () => this.startAutoPlay());
+      }
+    }
+
+    goToSlide(index) {
+      if (index === this.currentSlide) return;
+
+      this.slides[this.currentSlide]?.classList.remove('opacity-100');
+      this.slides[this.currentSlide]?.classList.add('opacity-0');
+      this.dots[this.currentSlide]?.classList.remove('bg-opacity-100');
+      this.dots[this.currentSlide]?.classList.add('bg-opacity-50');
+
+      this.currentSlide = index;
+
+      this.slides[this.currentSlide]?.classList.remove('opacity-0');
+      this.slides[this.currentSlide]?.classList.add('opacity-100');
+      this.dots[this.currentSlide]?.classList.remove('bg-opacity-50');
+      this.dots[this.currentSlide]?.classList.add('bg-opacity-100');
+    }
+
+    nextSlide() {
+      const nextIndex = (this.currentSlide + 1) % this.slides.length;
+      this.goToSlide(nextIndex);
+    }
+
+    prevSlide() {
+      const prevIndex = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+      this.goToSlide(prevIndex);
+    }
+
+    startAutoPlay() {
+      if (!this.autoplay || this.slides.length <= 1) return;
+      
+      this.autoPlayInterval = setInterval(() => {
+        this.nextSlide();
+      }, this.autoplayDelay);
+    }
+
+    stopAutoPlay() {
+      if (this.autoPlayInterval) {
+        clearInterval(this.autoPlayInterval);
+        this.autoPlayInterval = null;
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    new HeroSlider();
+  });
+</script>
+
+<style>
+  .hero-full-height {
+    height: 70vh;
+    margin-top: -80px;
+    padding-top: 0;
+  }
+  
+  @media (max-width: 1023px) {
+    .hero-full-height {
+      height: 60vh;
+      margin-top: -72px;
+      padding-top: 0;
+    }
+  }
+  
+  .slider-arrow-left {
+    left: calc((100% - 90%) / 2 - 60px);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .slider-arrow-right {
+    right: calc((100% - 90%) / 2 - 60px);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  @media (max-width: 1200px) {
+    .slider-arrow-left {
+      left: calc((100% - 90%) / 2 - 50px);
+    }
+    
+    .slider-arrow-right {
+      right: calc((100% - 90%) / 2 - 50px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .slider-arrow-left {
+      left: calc((100% - 95%) / 2 - 40px);
+    }
+    
+    .slider-arrow-right {
+      right: calc((100% - 95%) / 2 - 40px);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .slider-arrow-left {
+      left: calc((100% - 98%) / 2 - 30px);
+    }
+    
+    .slider-arrow-right {
+      right: calc((100% - 98%) / 2 - 30px);
+    }
+  }
+</style>
