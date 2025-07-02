@@ -1,5 +1,5 @@
 ---
-import NewsletterForm from './NewsletterForm.astro';
+import NewsletterForm from '../forms/NewsletterForm.astro';
 
 export interface Social {
   icon: string;
@@ -48,7 +48,7 @@ const currentYear = new Date().getFullYear();
       <div class="lg:col-span-1">
         <div class="mb-6">
           <img 
-            src="/src/assets/footer/emed_logo.svg" 
+            src="/src/assets/images/common/emed_logo_footer.svg" 
             alt="EMED Logo" 
             class="h-20 w-auto mb-4"
           />
@@ -61,17 +61,17 @@ const currentYear = new Date().getFullYear();
         <!-- Logos en 3 columnas -->
         <div class="grid grid-cols-3 gap-4 mt-4">
           <img 
-            src="/src/assets/footer/pasificando_logo.png" 
+            src="/src/assets/images/brands/pasificando_logo.png" 
             alt="Pasificando Logo" 
             class="h-10 w-28 object-contain opacity-70 hover:opacity-100 transition-opacity duration-200 filter brightness-0 invert"
           />
           <img 
-            src="/src/assets/landing/logo_sence-removebg-preview.png" 
+            src="/src/assets/images/pages/logo_sence-removebg-preview.png" 
             alt="Logo SENCE" 
             class="h-10 w-28 object-contain opacity-70 hover:opacity-100 transition-opacity duration-200"
           />
           <img 
-            src="/src/assets/landing/nch2728.png" 
+            src="/src/assets/images/pages/nch2728.png" 
             alt="Logo NCH" 
             class="h-10 w-28 object-contain opacity-70 hover:opacity-100 transition-opacity duration-200"
           />

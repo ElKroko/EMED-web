@@ -1,0 +1,391 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/forms/ContactForm.astro';
+
+// Opciones de financiamiento
+const financingOptions = [
+  {
+    title: "Financiamiento SENCE",
+    description: "Utiliza tu credencial SENCE para financiar hasta el 100% de la capacitación",
+    features: [
+      "Cobertura hasta 100% del programa",
+      "Sin costo directo para el trabajador",
+      "Proceso 100% online",
+      "Certificación válida para SENCE"
+    ],
+    icon: "🏛️",
+    buttonText: "Consultar SENCE",
+    popular: true
+  },
+  {
+    title: "Beca de Cofinanciamiento",
+    description: "Becas parciales para Mediación Familiar con apoyo estatal",
+    features: [
+      "Descuento del 30-70% en mensualidades",
+      "Proceso de postulación simplificado",
+      "Cupos limitados por ciclo",
+      "Requisitos de vulnerabilidad socioeconómica"
+    ],
+    icon: "🎓",
+    buttonText: "Postular a Beca",
+    popular: false
+  },
+  {
+    title: "Facilidades de Pago",
+    description: "Planes de pago flexibles adaptados a tu presupuesto",
+    features: [
+      "Hasta 12 cuotas sin interés",
+      "Descuentos por pago anticipado",
+      "Sin evaluación crediticia",
+      "Inicio inmediato de clases"
+    ],
+    icon: "💳",
+    buttonText: "Ver Planes",
+    popular: false
+  }
+];
+
+// Beneficios adicionales
+const benefits = [
+  {
+    title: "Proceso Simplificado",
+    description: "Te acompañamos en todo el proceso de postulación y gestión de tu financiamiento",
+    icon: "📋"
+  },
+  {
+    title: "Respuesta Rápida",
+    description: "Obtén respuesta sobre tu postulación en máximo 48 horas",
+    icon: "⚡"
+  },
+  {
+    title: "Asesoría Personalizada",
+    description: "Un asesor especializado te guiará para elegir la mejor opción",
+    icon: "👥"
+  },
+  {
+    title: "Sin Sorpresas",
+    description: "Transparencia total en costos y condiciones desde el primer contacto",
+    icon: "✅"
+  }
+];
+---
+
+<Layout 
+  title="Financiamiento - EMED | Opciones SENCE, Becas y Facilidades de Pago"
+  description="Conoce todas nuestras opciones de financiamiento: SENCE, becas de cofinanciamiento y facilidades de pago. ¡Inicia tu carrera como mediador sin limitaciones económicas!"
+>
+
+  <!-- Hero Section -->
+  <section class="hero-financing relative bg-gradient-to-br from-naranja via-amarillo to-naranja py-20">
+    <div class="container mx-auto px-4 text-center text-white">
+      
+      <!-- Badge de urgencia -->
+      <div class="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-semibold mb-6 animate-pulse">
+        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+        </svg>
+        Becas limitadas - ¡Postula ahora!
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-bold mb-6">
+        Financia tu futuro como mediador
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 opacity-90 max-w-4xl mx-auto">
+        No dejes que el presupuesto sea un obstáculo. Tenemos múltiples opciones para que inicies tu carrera profesional
+      </p>
+      
+      <!-- Estadísticas rápidas -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mt-12">
+        <div class="text-center">
+          <div class="text-3xl font-bold mb-2">95%</div>
+          <div class="text-sm opacity-90">De estudiantes con financiamiento</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold mb-2">48h</div>
+          <div class="text-sm opacity-90">Respuesta máxima</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold mb-2">0%</div>
+          <div class="text-sm opacity-90">Interés en facilidades</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Opciones de Financiamiento -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+          Elige la opción que mejor se adapte a ti
+        </h2>
+        <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+          Ofrecemos diversas alternativas de financiamiento para que puedas acceder a una educación de calidad
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {financingOptions.map((option) => (
+          <div class={`financing-card relative bg-white rounded-2xl shadow-xl p-8 border-2 transition-all duration-300 hover:shadow-2xl hover:scale-105 ${option.popular ? 'border-naranja' : 'border-gray-200'}`}>
+            
+            {option.popular && (
+              <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span class="bg-naranja text-white px-6 py-2 rounded-full text-sm font-bold">
+                  MÁS POPULAR
+                </span>
+              </div>
+            )}
+
+            <div class="text-center mb-6">
+              <div class="text-4xl mb-4">{option.icon}</div>
+              <h3 class="text-2xl font-bold text-gray-800 mb-3">{option.title}</h3>
+              <p class="text-gray-600 leading-relaxed">{option.description}</p>
+            </div>
+
+            <ul class="space-y-3 mb-8">
+              {option.features.map((feature) => (
+                <li class="flex items-start space-x-3">
+                  <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-700 text-sm">{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <button 
+              class={`w-full py-4 px-6 rounded-lg font-bold transition-all duration-200 ${option.popular ? 'bg-naranja text-white hover:bg-amarillo' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}
+              onclick={`openFinancingForm('${option.title.toLowerCase().replace(/\s+/g, '-')}')`}
+            >
+              {option.buttonText}
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Beneficios del proceso -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+          ¿Por qué elegir nuestro financiamiento?
+        </h2>
+        <p class="text-gray-600 text-lg">
+          Más allá del financiamiento, te ofrecemos un servicio integral
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {benefits.map((benefit) => (
+          <div class="text-center bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="text-3xl mb-4">{benefit.icon}</div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">{benefit.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulario de consulta -->
+  <section class="py-16 bg-gradient-to-br from-celeste to-turquesa">
+    <div class="container mx-auto px-4">
+      
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center text-white mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Solicita tu evaluación de financiamiento
+          </h2>
+          <p class="text-xl opacity-90">
+            Un asesor especializado evaluará tu situación y te recomendará la mejor opción
+          </p>
+        </div>
+
+        <ContactForm 
+          type="financiamiento"
+          title="Evaluación Gratuita de Financiamiento"
+          subtitle="Completa tus datos y te contactaremos para evaluar tu situación financiera"
+          showUrgency={true}
+          className="bg-white"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonios / Casos de éxito -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+          Casos de éxito en financiamiento
+        </h2>
+        <p class="text-gray-600 text-lg">
+          Conoce cómo otros estudiantes lograron financiar su formación
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Caso SENCE -->
+        <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8">
+          <div class="flex items-center mb-4">
+            <div class="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg mr-4">
+              M
+            </div>
+            <div>
+              <h4 class="font-bold text-gray-800">María José</h4>
+              <p class="text-gray-600 text-sm">Profesora, Santiago</p>
+            </div>
+          </div>
+          <p class="text-gray-700 italic mb-4">
+            "Gracias al financiamiento SENCE pude estudiar Mediación Escolar sin costo. El proceso fue súper fácil y rápido."
+          </p>
+          <div class="flex items-center text-sm text-blue-600 font-semibold">
+            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            100% Financiado con SENCE
+          </div>
+        </div>
+
+        <!-- Caso Beca -->
+        <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8">
+          <div class="flex items-center mb-4">
+            <div class="bg-green-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg mr-4">
+              C
+            </div>
+            <div>
+              <h4 class="font-bold text-gray-800">Carlos</h4>
+              <p class="text-gray-600 text-sm">Trabajador Social, Valparaíso</p>
+            </div>
+          </div>
+          <p class="text-gray-700 italic mb-4">
+            "La beca de cofinanciamiento me permitió estudiar Mediación Familiar pagando solo el 30%. ¡Una oportunidad increíble!"
+          </p>
+          <div class="flex items-center text-sm text-green-600 font-semibold">
+            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            70% de Descuento con Beca
+          </div>
+        </div>
+
+        <!-- Caso Facilidades -->
+        <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8">
+          <div class="flex items-center mb-4">
+            <div class="bg-purple-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg mr-4">
+              A
+            </div>
+            <div>
+              <h4 class="font-bold text-gray-800">Andrea</h4>
+              <p class="text-gray-600 text-sm">Psicóloga, Concepción</p>
+            </div>
+          </div>
+          <p class="text-gray-700 italic mb-4">
+            "Las facilidades de pago me permitieron estudiar sin afectar mi presupuesto familiar. 12 cuotas sin interés."
+          </p>
+          <div class="flex items-center text-sm text-purple-600 font-semibold">
+            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            12 Cuotas Sin Interés
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <section class="py-16 bg-gradient-to-r from-naranja to-amarillo">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto text-white">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          ¿Listo para dar el primer paso?
+        </h2>
+        <p class="text-xl mb-8 opacity-90">
+          No dejes que el financiamiento sea una barrera. Contáctanos y encuentra la solución perfecta para ti.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="https://wa.me/56912345678?text=Hola,%20quiero%20información%20sobre%20opciones%20de%20financiamiento%20para%20los%20programas%20de%20EMED"
+            target="_blank"
+            class="inline-flex items-center px-8 py-4 bg-white text-naranja font-bold rounded-xl hover:bg-gray-100 transform hover:scale-105 transition-all duration-200 shadow-xl"
+          >
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            Hablar por WhatsApp
+          </a>
+          
+          <button 
+            onclick="scrollToForm()"
+            class="inline-flex items-center px-8 py-4 bg-white/20 backdrop-blur-sm text-white font-bold rounded-xl hover:bg-white/30 transition-all duration-200 border border-white/30"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            Completar Formulario
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  // Función para abrir formulario específico por tipo de financiamiento
+  function openFinancingForm(type) {
+    // Scroll hasta el formulario
+    document.querySelector('.contact-form-container').scrollIntoView({
+      behavior: 'smooth'
+    });
+    
+    // Preseleccionar el tipo de financiamiento
+    setTimeout(() => {
+      const selectElement = document.querySelector('select[name="financiamiento_tipo"]');
+      if (selectElement) {
+        const optionValue = type.includes('sence') ? 'sence' : 
+                           type.includes('beca') ? 'beca-cofinanciamiento' :
+                           type.includes('facilidades') ? 'facilidades-pago' : '';
+        if (optionValue) {
+          selectElement.value = optionValue;
+        }
+      }
+    }, 500);
+  }
+
+  // Función para scroll suave al formulario
+  function scrollToForm() {
+    document.querySelector('.contact-form-container').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+</script>
+
+<style>
+  .hero-financing {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  }
+
+  .financing-card:hover {
+    transform: translateY(-8px);
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+
+  .animate-pulse {
+    animation: pulse 2s infinite;
+  }
+</style>

@@ -1,0 +1,1053 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ContactForm from '../../components/forms/ContactForm.astro';
+
+// Datos de todos los programas (mismo contenido que en programas.astro)
+const programas = [
+  {
+    id: 'mediacion-familiar',
+    tipo: 'Diplomado',
+    titulo: 'Mediación Familiar',
+    descripcion: 'Especialízate en la resolución de conflictos familiares con técnicas específicas para dinámicas familiares complejas y casos de alta sensibilidad emocional.',
+    descripcionDetallada: 'Este diplomado está diseñado para profesionales que deseen especializarse en la mediación de conflictos familiares. Aborda desde los fundamentos teóricos hasta la práctica supervisada, cumpliendo con todos los requisitos del Ministerio de Justicia para el registro oficial de mediadores familiares.',
+    duracion: '120 horas',
+    modalidad: 'Presencial + Online',
+    nivel: 'Básico - Intermedio',
+    precio: '$450.000',
+    precioFinanciado: '$350.000',
+    destacado: true,
+    imagen: 'https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    imagenHero: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    beneficios: [
+      'Certificación reconocida por el Ministerio de Justicia',
+      'Práticas con casos reales supervisados',
+      'Inserción en registro oficial de mediadores',
+      'Metodología actualizada según normativa vigente',
+      'Networking con profesionales del área',
+      'Material de apoyo descargable',
+      'Seguimiento post-certificación'
+    ],
+    temario: [
+      {
+        modulo: 'Módulo 1: Fundamentos de la Mediación',
+        contenido: [
+          'Historia y principios de la mediación',
+          'Marco legal chileno de mediación familiar',
+          'Ética y deontología del mediador',
+          'Tipos de conflictos familiares'
+        ]
+      },
+      {
+        modulo: 'Módulo 2: Técnicas y Herramientas',
+        contenido: [
+          'Comunicación efectiva y escucha activa',
+          'Manejo de emociones en conflicto',
+          'Técnicas de reformulación y parafraseo',
+          'Generación de opciones y alternativas'
+        ]
+      },
+      {
+        modulo: 'Módulo 3: Práctica Supervisada',
+        contenido: [
+          'Simulacros con casos reales',
+          'Retroalimentación individualizada',
+          'Video-análisis de sesiones',
+          'Autoevaluación y mejora continua'
+        ]
+      },
+      {
+        modulo: 'Módulo 4: Pasantía Obligatoria',
+        contenido: [
+          'Práctica en centros de mediación (100% presencial)',
+          'Supervisión directa de mediadores experimentados',
+          'Documentación de casos',
+          'Evaluación final práctica'
+        ]
+      }
+    ],
+    requisitos: [
+      'Título profesional universitario de al menos 8 semestres',
+      'Experiencia laboral mínima de 2 años',
+      'Entrevista personal con equipo académico',
+      'Carta de motivación',
+      'Disponibilidad para asistir a pasantía presencial'
+    ],
+    metodologia: 'Modalidad híbrida que combina clases teóricas online con talleres prácticos presenciales. La pasantía final es 100% presencial según normativa del Ministerio de Justicia.',
+    certificacion: 'Diploma de Especialización en Mediación Familiar otorgado por EMED, válido para inscripción en el Registro de Mediadores del Ministerio de Justicia.',
+    empleabilidad: [
+      'Centros de Mediación Familiar',
+      'Tribunales de Familia',
+      'Consultoría independiente',
+      'ONGs especializadas',
+      'Servicios municipales'
+    ],
+    testimonios: [
+      {
+        nombre: 'María José González',
+        profesion: 'Psicóloga',
+        testimonio: 'El diplomado me dio todas las herramientas necesarias para trabajar como mediadora familiar. La metodología práctica es excelente.',
+        rating: 5
+      },
+      {
+        nombre: 'Carlos Mendoza',
+        profesion: 'Abogado',
+        testimonio: 'Excelente formación teórica y práctica. Los docentes son profesionales con amplia experiencia en mediación.',
+        rating: 5
+      }
+    ]
+  },
+  {
+    id: 'mediacion-escolar',
+    tipo: 'Diplomado',
+    titulo: 'Mediación Escolar',
+    descripcion: 'Aprende a mediar conflictos educativos trabajando con estudiantes, padres y equipos docentes en ambientes escolares complejos.',
+    descripcionDetallada: 'Formación especializada para profesionales de la educación que buscan implementar programas de mediación escolar efectivos. Incluye herramientas específicas para el trabajo con menores y metodologías adaptadas al contexto educativo.',
+    duracion: '80 horas',
+    modalidad: '100% Online',
+    nivel: 'Básico',
+    precio: '$320.000',
+    precioFinanciado: '$250.000',
+    destacado: false,
+    imagen: 'https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
+    imagenHero: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    beneficios: [
+      'Flexibilidad horaria total',
+      'Material descargable permanente',
+      'Casos prácticos del ámbito educativo',
+      'Certificación válida para instituciones educativas',
+      'Herramientas digitales incluidas',
+      'Acceso a comunidad de práctica'
+    ],
+    temario: [
+      {
+        modulo: 'Módulo 1: Convivencia Escolar',
+        contenido: [
+          'Diagnóstico de clima escolar',
+          'Factores de conflicto en establecimientos',
+          'Prevención y resolución temprana',
+          'Normativa educacional vigente'
+        ]
+      },
+      {
+        modulo: 'Módulo 2: Mediación Entre Pares',
+        contenido: [
+          'Formación de mediadores estudiantiles',
+          'Supervisión de procesos peer-to-peer',
+          'Casos de bullying y acoso',
+          'Protocolo de derivación'
+        ]
+      },
+      {
+        modulo: 'Módulo 3: Trabajo con Familias',
+        contenido: [
+          'Mediación padres-establecimiento',
+          'Conflictos apoderado-docente',
+          'Participación familiar activa',
+          'Comunicación efectiva con familias'
+        ]
+      }
+    ],
+    requisitos: [
+      'Título en educación o afines',
+      'Experiencia en establecimientos educacionales',
+      'Conocimiento básico de convivencia escolar',
+      'Acceso a internet estable'
+    ],
+    metodologia: '100% online con clases sincrónicas semanales, material asincrónico y talleres prácticos virtuales.',
+    certificacion: 'Diploma de Especialización en Mediación Escolar, reconocido por instituciones educativas.',
+    empleabilidad: [
+      'Colegios y liceos',
+      'Departamentos de convivencia escolar',
+      'Supervisión educacional',
+      'Consultoría educativa',
+      'Proyectos gubernamentales'
+    ],
+    testimonios: [
+      {
+        nombre: 'Ana Cristina López',
+        profesion: 'Profesora Básica',
+        testimonio: 'Transformó completamente mi manera de abordar los conflictos en el aula. Muy recomendable.',
+        rating: 5
+      }
+    ]
+  },
+  {
+    id: 'mediacion-laboral',
+    tipo: 'Diplomado',
+    titulo: 'Mediación Laboral',
+    descripcion: 'Desarrolla habilidades para resolver conflictos laborales y mejorar el clima organizacional en empresas y organizaciones.',
+    descripcionDetallada: 'Programa especializado para profesionales de recursos humanos, abogados laborales y líderes organizacionales que buscan implementar sistemas efectivos de resolución de conflictos en el ámbito laboral.',
+    duracion: '100 horas',
+    modalidad: 'Presencial',
+    nivel: 'Intermedio',
+    precio: '$380.000',
+    precioFinanciado: '$290.000',
+    destacado: false,
+    imagen: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
+    imagenHero: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    beneficios: [
+      'Orientado a profesionales de RRHH',
+      'Casos empresariales reales',
+      'Networking con otros profesionales',
+      'Certificación para consultorías laborales',
+      'Metodología práctica aplicable',
+      'Herramientas de diagnóstico organizacional'
+    ],
+    temario: [
+      {
+        modulo: 'Módulo 1: Conflictos Organizacionales',
+        contenido: [
+          'Tipología de conflictos laborales',
+          'Análisis del clima organizacional',
+          'Factores desencadenantes de conflictos',
+          'Impacto en la productividad'
+        ]
+      },
+      {
+        modulo: 'Módulo 2: Mediación en Relaciones Laborales',
+        contenido: [
+          'Técnicas específicas para el ámbito laboral',
+          'Mediación supervisor-subordinado',
+          'Conflictos entre pares',
+          'Gestión de equipos en crisis'
+        ]
+      },
+      {
+        modulo: 'Módulo 3: Marco Legal Laboral',
+        contenido: [
+          'Normativa laboral chilena',
+          'Derechos y deberes en mediación',
+          'Procedimientos disciplinarios',
+          'Documentación legal de acuerdos'
+        ]
+      },
+      {
+        modulo: 'Módulo 4: Práctica Empresarial',
+        contenido: [
+          'Simulacros con casos empresariales',
+          'Role-playing supervisado',
+          'Elaboración de protocolos internos',
+          'Presentación de proyecto final'
+        ]
+      }
+    ],
+    requisitos: [
+      'Título profesional en RRHH, Psicología, Derecho o afines',
+      'Experiencia laboral mínima de 3 años',
+      'Conocimientos básicos de legislación laboral',
+      'Entrevista con coordinador académico'
+    ],
+    metodologia: 'Modalidad presencial con metodología teórico-práctica. Incluye talleres vivenciales, análisis de casos reales y simulacros empresariales.',
+    certificacion: 'Diploma de Especialización en Mediación Laboral otorgado por EMED, reconocido por empresas y organizaciones.',
+    empleabilidad: [
+      'Departamentos de Recursos Humanos',
+      'Consultorías organizacionales',
+      'Sindicatos y federaciones',
+      'Empresas de servicios laborales',
+      'Organismos públicos'
+    ],
+    testimonios: [
+      {
+        nombre: 'Roberto Hernández',
+        profesion: 'Jefe de RRHH',
+        testimonio: 'El programa me dio herramientas concretas para manejar conflictos en mi empresa. Muy práctico y aplicable.',
+        rating: 5
+      },
+      {
+        nombre: 'Patricia Silva',
+        profesion: 'Consultora Organizacional',
+        testimonio: 'Excelente formación para ampliar mis servicios de consultoría. Los docentes tienen mucha experiencia.',
+        rating: 5
+      }
+    ]
+  },
+  {
+    id: 'mediacion-comunitaria',
+    tipo: 'Diplomado',
+    titulo: 'Mediación Comunitaria',
+    descripcion: 'Conviértete en un agente de paz en tu comunidad, facilitando diálogos y resolviendo disputas vecinales y territoriales.',
+    descripcionDetallada: 'Formación especializada para líderes comunitarios, trabajadores sociales y profesionales que desean contribuir a la resolución pacífica de conflictos en sus territorios.',
+    duracion: '90 horas',
+    modalidad: 'Mixto',
+    nivel: 'Básico',
+    precio: '$340.000',
+    precioFinanciado: '$260.000',
+    destacado: false,
+    imagen: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
+    imagenHero: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    beneficios: [
+      'Aplicación inmediata en tu comunidad',
+      'Trabajo con organizaciones sociales',
+      'Metodologías participativas',
+      'Impacto social directo y medible',
+      'Red de mediadores comunitarios',
+      'Certificación para proyectos sociales'
+    ],
+    temario: [
+      {
+        modulo: 'Módulo 1: Conflictos Territoriales',
+        contenido: [
+          'Diagnóstico comunitario participativo',
+          'Tipos de conflictos vecinales',
+          'Dinámicas de poder en la comunidad',
+          'Factores socioculturales'
+        ]
+      },
+      {
+        modulo: 'Módulo 2: Técnicas de Mediación Comunitaria',
+        contenido: [
+          'Facilitación de diálogos grupales',
+          'Mediación intercultural',
+          'Manejo de emociones colectivas',
+          'Construcción de consensos'
+        ]
+      },
+      {
+        modulo: 'Módulo 3: Participación Ciudadana',
+        contenido: [
+          'Metodologías participativas',
+          'Organización comunitaria',
+          'Liderazgo colaborativo',
+          'Redes de apoyo territorial'
+        ]
+      },
+      {
+        modulo: 'Módulo 4: Proyecto Comunitario',
+        contenido: [
+          'Diseño de intervención comunitaria',
+          'Implementación supervisada',
+          'Evaluación de impacto',
+          'Sistematización de experiencias'
+        ]
+      }
+    ],
+    requisitos: [
+      'Experiencia en trabajo comunitario o social',
+      'Liderazgo en organizaciones territoriales',
+      'Compromiso con el desarrollo comunitario',
+      'Residencia en la región de implementación'
+    ],
+    metodologia: 'Modalidad mixta con sesiones presenciales en terreno y módulos online. Incluye práctica supervisada en la propia comunidad del participante.',
+    certificacion: 'Diploma de Especialización en Mediación Comunitaria, reconocido por organizaciones sociales y municipios.',
+    empleabilidad: [
+      'Organizaciones comunitarias',
+      'Municipalidades y gobiernos locales',
+      'ONGs de desarrollo social',
+      'Programas gubernamentales',
+      'Consultorías en participación ciudadana'
+    ],
+    testimonios: [
+      {
+        nombre: 'Carmen Rodríguez',
+        profesion: 'Dirigenta Vecinal',
+        testimonio: 'Transformó la manera de resolver conflictos en nuestro barrio. Ahora tenemos más herramientas para el diálogo.',
+        rating: 5
+      },
+      {
+        nombre: 'Miguel Torres',
+        profesion: 'Trabajador Social',
+        testimonio: 'Excelente complemento para mi trabajo social. Las técnicas son muy efectivas en contextos comunitarios.',
+        rating: 5
+      }
+    ]
+  },
+  {
+    id: 'comunicacion-efectiva',
+    tipo: 'Curso',
+    titulo: 'Comunicación Efectiva en Conflictos',
+    descripcion: 'Curso intensivo para desarrollar habilidades de comunicación asertiva y escucha activa en situaciones de tensión.',
+    descripcionDetallada: 'Curso práctico e intensivo diseñado para profesionales que necesitan mejorar sus habilidades comunicacionales en contextos de conflicto y tensión.',
+    duracion: '24 horas',
+    modalidad: 'Online',
+    nivel: 'Básico',
+    precio: '$120.000',
+    precioFinanciado: '$90.000',
+    destacado: false,
+    imagen: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
+    imagenHero: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    beneficios: [
+      'Aplicable a cualquier área profesional',
+      'Técnicas inmediatamente útiles',
+      'Duración intensiva y práctica',
+      'Complemento perfecto para diplomados',
+      'Flexibilidad horaria total',
+      'Material descargable permanente'
+    ],
+    temario: [
+      {
+        modulo: 'Módulo 1: Fundamentos de Comunicación',
+        contenido: [
+          'Principios de comunicación asertiva',
+          'Barreras comunicacionales comunes',
+          'El rol de las emociones en la comunicación',
+          'Comunicación verbal y no verbal'
+        ]
+      },
+      {
+        modulo: 'Módulo 2: Escucha Activa',
+        contenido: [
+          'Técnicas de escucha empática',
+          'Parafraseo y reformulación',
+          'Preguntas abiertas y cerradas',
+          'Manejo del silencio'
+        ]
+      },
+      {
+        modulo: 'Módulo 3: Comunicación en Crisis',
+        contenido: [
+          'Manejo de conversaciones difíciles',
+          'Técnicas de desescalada',
+          'Comunicación bajo presión',
+          'Negociación básica'
+        ]
+      }
+    ],
+    requisitos: [
+      'Sin requisitos previos específicos',
+      'Interés en mejorar habilidades comunicacionales',
+      'Acceso a internet estable para clases online',
+      'Disponibilidad para ejercicios prácticos'
+    ],
+    metodologia: '100% online con clases sincrónicas interactivas, ejercicios prácticos y retroalimentación personalizada.',
+    certificacion: 'Certificado de Participación en Comunicación Efectiva en Conflictos.',
+    empleabilidad: [
+      'Todas las áreas profesionales',
+      'Atención al cliente',
+      'Gestión de equipos',
+      'Ventas y negociación',
+      'Servicio público'
+    ],
+    testimonios: [
+      {
+        nombre: 'Andrea Martínez',
+        profesion: 'Ejecutiva Comercial',
+        testimonio: 'Curso muy práctico. Las técnicas las he aplicado inmediatamente en mi trabajo con excelentes resultados.',
+        rating: 5
+      },
+      {
+        nombre: 'Jorge Morales',
+        profesion: 'Supervisor de Producción',
+        testimonio: 'Me ayudó mucho a manejar mejor los conflictos con mi equipo. Recomendado para cualquier líder.',
+        rating: 4
+      }
+    ]
+  },
+  {
+    id: 'negociacion-avanzada',
+    tipo: 'Curso',
+    titulo: 'Técnicas de Negociación Avanzada',
+    descripcion: 'Perfecciona tus habilidades de negociación con estrategias avanzadas aplicables en mediación y resolución de conflictos.',
+    descripcionDetallada: 'Curso avanzado para profesionales que buscan perfeccionar sus habilidades de negociación utilizando técnicas sofisticadas y estrategias ganar-ganar.',
+    duracion: '32 horas',
+    modalidad: 'Presencial',
+    nivel: 'Avanzado',
+    precio: '$180.000',
+    precioFinanciado: '$140.000',
+    destacado: false,
+    imagen: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
+    imagenHero: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+    beneficios: [
+      'Estrategias de negociación ganar-ganar',
+      'Casos complejos y multiculturales',
+      'Técnicas de persuasión ética',
+      'Aplicable en mediación comercial',
+      'Práctica intensiva presencial',
+      'Networking con negociadores expertos'
+    ],
+    temario: [
+      {
+        modulo: 'Módulo 1: Psicología de la Negociación',
+        contenido: [
+          'Perfiles de negociadores',
+          'Sesgos cognitivos en negociación',
+          'Manejo de presión y estrés',
+          'Inteligencia emocional aplicada'
+        ]
+      },
+      {
+        modulo: 'Módulo 2: Estrategias Avanzadas',
+        contenido: [
+          'Negociación distributiva vs integrativa',
+          'Creación de valor en negociaciones',
+          'Manejo de múltiples partes',
+          'Técnicas de persuasión ética'
+        ]
+      },
+      {
+        modulo: 'Módulo 3: Negociación Intercultural',
+        contenido: [
+          'Diferencias culturales en negociación',
+          'Protocolo y etiqueta internacional',
+          'Comunicación no verbal intercultural',
+          'Adaptación de estrategias'
+        ]
+      },
+      {
+        modulo: 'Módulo 4: Simulacros Avanzados',
+        contenido: [
+          'Casos empresariales complejos',
+          'Negociaciones multiparte',
+          'Situaciones de alta tensión',
+          'Evaluación y retroalimentación'
+        ]
+      }
+    ],
+    requisitos: [
+      'Experiencia previa en negociación',
+      'Título profesional o técnico',
+      'Curso básico de mediación (recomendado)',
+      'Compromiso con asistencia presencial'
+    ],
+    metodologia: '100% presencial con metodología experiencial intensiva. Incluye simulacros, role-playing y análisis de video.',
+    certificacion: 'Certificado de Especialización en Técnicas de Negociación Avanzada.',
+    empleabilidad: [
+      'Mediación comercial',
+      'Consultoría empresarial',
+      'Ventas corporativas',
+      'Relaciones internacionales',
+      'Gestión de contratos'
+    ],
+    testimonios: [
+      {
+        nombre: 'Carlos Espinoza',
+        profesion: 'Gerente Comercial',
+        testimonio: 'Las técnicas aprendidas mejoraron significativamente mis resultados en negociaciones comerciales complejas.',
+        rating: 5
+      },
+      {
+        nombre: 'Mónica Herrera',
+        profesion: 'Mediadora Comercial',
+        testimonio: 'Curso excelente para llevar la mediación al siguiente nivel. Muy recomendado para profesionales experimentados.',
+        rating: 5
+      }
+    ]
+  }
+];
+
+// Obtener el programa específico basado en el ID de la URL
+export async function getStaticPaths() {
+  // Aquí defines todos los IDs de programas que tendrás
+  const programIds = [
+    'mediacion-familiar',
+    'mediacion-escolar', 
+    'mediacion-laboral',
+    'mediacion-comunitaria',
+    'comunicacion-efectiva',
+    'negociacion-avanzada'
+  ];
+  
+  return programIds.map(id => ({
+    params: { id }
+  }));
+}
+
+const { id } = Astro.params;
+const programa = programas.find(p => p.id === id);
+
+// Si no se encuentra el programa, redirigir a 404
+if (!programa) {
+  return new Response(null, { status: 404 });
+}
+---
+
+<Layout 
+  title={`${programa.titulo} - EMED | ${programa.tipo}`}
+  description={programa.descripcion}
+>
+  <div class="bg-crema min-h-screen">
+  
+    <!-- Hero del Programa -->
+    <section class="hero-programa relative overflow-hidden">
+      <!-- Imagen de fondo -->
+      <div class="absolute inset-0">
+        <img 
+          src={programa.imagenHero || programa.imagen}
+          alt={programa.titulo}
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 py-32 relative z-10">
+        <div class="max-w-4xl">
+          <!-- Breadcrumb -->
+          <nav class="mb-8">
+            <ol class="flex text-white/80 text-sm">
+              <li><a href="/" class="hover:text-white">Inicio</a></li>
+              <li class="mx-2">/</li>
+              <li><a href="/programas" class="hover:text-white">Programas</a></li>
+              <li class="mx-2">/</li>
+              <li class="text-white">{programa.titulo}</li>
+            </ol>
+          </nav>
+          
+          <!-- Badges -->
+          <div class="flex gap-3 mb-6">
+            <span class={`inline-block px-4 py-2 rounded-full text-sm font-bold text-white ${programa.tipo === 'Diplomado' ? 'bg-celeste' : 'bg-turquesa'}`}>
+              {programa.tipo}
+            </span>
+            <span class="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium">
+              {programa.modalidad}
+            </span>
+            {programa.destacado && (
+              <span class="inline-block bg-gradient-to-r from-naranja to-amarillo text-white px-4 py-2 rounded-full text-sm font-bold">
+                ⭐ MÁS POPULAR
+              </span>
+            )}
+          </div>
+          
+          <!-- Título y descripción -->
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            {programa.titulo}
+          </h1>
+          
+          <p class="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
+            {programa.descripcionDetallada || programa.descripcion}
+          </p>
+          
+          <!-- Detalles rápidos -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white">{programa.duracion}</div>
+              <div class="text-white/80 text-sm">Duración</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white">{programa.nivel}</div>
+              <div class="text-white/80 text-sm">Nivel</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white">{programa.precio}</div>
+              <div class="text-white/80 text-sm">Inversión</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-celeste">{programa.precioFinanciado || 'Consultar'}</div>
+              <div class="text-white/80 text-sm">Con SENCE</div>
+            </div>
+          </div>
+          
+          <!-- CTAs optimizados -->
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button 
+              onclick="scrollToContactForm()"
+              class={`inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 font-bold text-base md:text-lg rounded-xl transition-all duration-200 shadow-xl ${programa.destacado ? 'bg-naranja hover:bg-amarillo' : 'bg-celeste hover:bg-turquesa'} text-white transform hover:scale-105`}
+            >
+              <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.014 8.014 0 01-4.244-1.206L3 21l2.206-5.756A8.014 8.014 0 013 12a8 8 0 018-8c4.418 0 8 3.582 8 8z"></path>
+              </svg>
+              Hablar con un Asesor
+            </button>
+            <a 
+              href={`https://wa.me/56912345678?text=Hola,%20quiero%20información%20sobre%20${encodeURIComponent(programa.titulo)}%20de%20EMED`}
+              target="_blank"
+              class="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-green-500 text-white font-bold text-base md:text-lg rounded-xl hover:bg-green-600 transition-all duration-200 shadow-xl transform hover:scale-105"
+            >
+              <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
+              WhatsApp Directo
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Forma orgánica inferior -->
+      <div class="absolute bottom-0 left-0 right-0 h-24">
+        <svg viewBox="0 0 1200 120" class="w-full h-full" preserveAspectRatio="none">
+          <path d="M0,120 C300,80 500,60 600,80 C700,100 900,60 1200,80 L1200,120 Z" fill="#FEF7E8"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Contenido del Programa -->
+    <section class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+          
+          <!-- Contenido Principal -->
+          <div class="lg:col-span-2 space-y-12">
+            
+            <!-- Temario -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+              <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                <svg class="w-8 h-8 text-celeste mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                </svg>
+                Plan de Estudios
+              </h2>
+              
+              <div class="space-y-6">
+                {programa.temario.map((modulo, index) => (
+                  <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button 
+                      class="modulo-toggle w-full p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between"
+                      data-target={`modulo-${index}`}
+                    >
+                      <span class="font-semibold text-gray-800">{modulo.modulo}</span>
+                      <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                      </svg>
+                    </button>
+                    <div class="modulo-content hidden p-4 bg-white" id={`modulo-${index}`}>
+                      <ul class="space-y-2">
+                        {modulo.contenido.map((item) => (
+                          <li class="flex items-start">
+                            <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-600">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <!-- Metodología -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+              <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                <svg class="w-8 h-8 text-turquesa mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                </svg>
+                Metodología
+              </h2>
+              
+              <p class="text-gray-600 leading-relaxed text-lg">
+                {programa.metodologia}
+              </p>
+            </div>
+            
+            <!-- Testimonios -->
+            {programa.testimonios && programa.testimonios.length > 0 && (
+              <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                  <svg class="w-8 h-8 text-naranja mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+                  </svg>
+                  Testimonios
+                </h2>
+                
+                <div class="space-y-6">
+                  {programa.testimonios.map((testimonio) => (
+                    <div class="bg-gray-50 rounded-xl p-6">
+                      <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-celeste rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                          {testimonio.nombre.charAt(0)}
+                        </div>
+                        <div>
+                          <h4 class="font-semibold text-gray-800">{testimonio.nombre}</h4>
+                          <p class="text-gray-600 text-sm">{testimonio.profesion}</p>
+                        </div>
+                        <div class="ml-auto flex">
+                          {[...Array(testimonio.rating)].map(() => (
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                            </svg>
+                          ))}
+                        </div>
+                      </div>
+                      <p class="text-gray-700 italic">"{testimonio.testimonio}"</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+          </div>
+          
+          <!-- Sidebar -->
+          <div class="space-y-8">
+            
+            <!-- Información del Programa -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg sticky top-8">
+              <h3 class="text-xl font-bold text-gray-800 mb-6">Información del Programa</h3>
+              
+              <div class="space-y-4">
+                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                  <span class="text-gray-600">Duración:</span>
+                  <span class="font-semibold text-gray-800">{programa.duracion}</span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                  <span class="text-gray-600">Modalidad:</span>
+                  <span class="font-semibold text-gray-800">{programa.modalidad}</span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                  <span class="text-gray-600">Nivel:</span>
+                  <span class="font-semibold text-gray-800">{programa.nivel}</span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                  <span class="text-gray-600">Inversión:</span>
+                  <span class="font-bold text-lg text-gray-800">{programa.precio}</span>
+                </div>
+                {programa.precioFinanciado && (
+                  <div class="flex justify-between items-center py-2">
+                    <span class="text-gray-600">Con SENCE:</span>
+                    <span class="font-bold text-lg text-celeste">{programa.precioFinanciado}</span>
+                  </div>
+                )}
+              </div>
+              
+              <div class="mt-6 space-y-3">
+                <button 
+                  onclick="scrollToContactForm()"
+                  class={`inline-flex items-center justify-center w-full px-4 py-3 md:px-6 md:py-4 font-bold text-sm md:text-base rounded-lg transition-all duration-300 text-white ${programa.destacado ? 'bg-naranja hover:bg-amarillo' : 'bg-celeste hover:bg-turquesa'}`}
+                >
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.014 8.014 0 01-4.244-1.206L3 21l2.206-5.756A8.014 8.014 0 013 12a8 8 0 018-8c4.418 0 8 3.582 8 8z"></path>
+                  </svg>
+                  Consultar con Asesor
+                </button>
+                <a 
+                  href="/financiamiento"
+                  class="inline-flex items-center justify-center w-full px-4 py-3 md:px-6 md:py-4 border-2 border-gray-300 text-gray-700 font-semibold text-sm md:text-base rounded-lg hover:border-celeste hover:text-celeste transition-all duration-300"
+                >
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                  </svg>
+                  Ver Financiamiento
+                </a>
+              </div>
+              
+              <!-- Urgency element para programas destacados -->
+              {programa.destacado && (
+                <div class="mt-4 bg-gradient-to-r from-naranja/10 to-amarillo/10 border border-naranja/30 rounded-lg p-4">
+                  <div class="flex items-center mb-2">
+                    <svg class="w-5 h-5 text-naranja mr-2 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-naranja font-semibold text-sm">¡Últimas plazas!</span>
+                  </div>
+                  <p class="text-gray-600 text-sm">Este es nuestro programa más solicitado. Quedan pocas vacantes para el próximo ciclo.</p>
+                </div>
+              )}
+            </div>
+            
+            <!-- Beneficios -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg">
+              <h3 class="text-xl font-bold text-gray-800 mb-6">Beneficios</h3>
+              
+              <div class="space-y-3">
+                {programa.beneficios.map((beneficio) => (
+                  <div class="flex items-start">
+                    <svg class="w-5 h-5 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span class="text-gray-600 text-sm">{beneficio}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <!-- Requisitos -->
+            {programa.requisitos && (
+              <div class="bg-white rounded-2xl p-6 shadow-lg">
+                <h3 class="text-xl font-bold text-gray-800 mb-6">Requisitos</h3>
+                
+                <div class="space-y-3">
+                  {programa.requisitos.map((requisito) => (
+                    <div class="flex items-start">
+                      <svg class="w-5 h-5 text-turquesa mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span class="text-gray-600 text-sm">{requisito}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
+          
+          <!-- Estudiantes formados -->
+          <div class="bg-white rounded-2xl p-8 shadow-lg">
+            <div class="text-3xl font-bold text-celeste mb-2">3,000+</div>
+            <div class="text-gray-600">Mediadores Certificados</div>
+          </div>
+          
+          <!-- Satisfacción -->
+          <div class="bg-white rounded-2xl p-8 shadow-lg">
+            <div class="text-3xl font-bold text-turquesa mb-2">98%</div>
+            <div class="text-gray-600">Satisfacción de Estudiantes</div>
+          </div>
+          
+          <!-- Experiencia -->
+          <div class="bg-white rounded-2xl p-8 shadow-lg">
+            <div class="text-3xl font-bold text-naranja mb-2">20+</div>
+            <div class="text-gray-600">Años de Experiencia</div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulario Contextual -->
+    <section id="contact-form" class="py-16 bg-gradient-to-br from-celeste to-turquesa">
+      <div class="container mx-auto px-4">
+        
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center text-white mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              ¿Listo para especializarte en {programa.titulo}?
+            </h2>
+            <p class="text-xl opacity-90">
+              Un asesor académico te contactará para resolver todas tus dudas y ayudarte con el proceso de inscripción
+            </p>
+          </div>
+
+          <ContactForm 
+            type="programa"
+            program={programa.titulo}
+            source={`programa-${programa.id}`}
+            title={`Consulta sobre ${programa.titulo}`}
+            subtitle="Completa tus datos y un asesor especializado te contactará en las próximas 2 horas"
+            showUrgency={programa.destacado}
+            className="bg-white"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Programas Relacionados -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            Otros Programas que te Pueden Interesar
+          </h2>
+          <p class="text-lg text-gray-600">
+            Amplía tu formación con nuestros otros programas especializados
+          </p>
+        </div>
+        
+        <div class="text-center">
+          <a 
+            href="/programas"
+            class="inline-flex items-center px-8 py-4 bg-celeste text-white font-bold text-lg rounded-xl hover:bg-turquesa transform hover:scale-105 transition-all duration-200 shadow-lg"
+          >
+            Ver Todos los Programas
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>
+
+<style>
+  .hero-programa {
+    min-height: 70vh;
+  }
+  
+  /* Estilos para acordeones del temario */
+  .modulo-toggle[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+  
+  /* Forzar colores correctos en botones y links-botones */
+  a[class*="bg-celeste"],
+  a[class*="bg-naranja"],
+  a[class*="bg-turquesa"],
+  a[class*="bg-green"],
+  button[class*="bg-celeste"],
+  button[class*="bg-naranja"],
+  button[class*="bg-turquesa"] {
+    color: white !important;
+    text-decoration: none !important;
+  }
+  
+  a[class*="bg-celeste"]:hover,
+  a[class*="bg-naranja"]:hover,
+  a[class*="bg-turquesa"]:hover,
+  a[class*="bg-green"]:hover,
+  button[class*="bg-celeste"]:hover,
+  button[class*="bg-naranja"]:hover,
+  button[class*="bg-turquesa"]:hover {
+    color: white !important;
+    text-decoration: none !important;
+  }
+
+  /* Links que actúan como botones secundarios */
+  a[class*="border-gray"],
+  a[class*="border-celeste"],
+  a[class*="border-white"] {
+    text-decoration: none !important;
+  }
+
+  a[class*="border-gray"]:hover,
+  a[class*="border-celeste"]:hover,
+  a[class*="border-white"]:hover {
+    text-decoration: none !important;
+  }
+</style>
+
+<script>
+  // Funcionalidad de acordeón para el temario
+  class TemarioAccordion {
+    constructor() {
+      this.toggles = document.querySelectorAll('.modulo-toggle');
+      this.init();
+    }
+
+    init() {
+      this.toggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+          const target = e.currentTarget.dataset.target;
+          const content = document.getElementById(target);
+          const icon = e.currentTarget.querySelector('svg');
+          
+          if (content.classList.contains('hidden')) {
+            // Cerrar otros acordeones
+            this.closeAll();
+            
+            // Abrir el actual
+            content.classList.remove('hidden');
+            icon.style.transform = 'rotate(180deg)';
+            e.currentTarget.setAttribute('aria-expanded', 'true');
+          } else {
+            // Cerrar el actual
+            content.classList.add('hidden');
+            icon.style.transform = 'rotate(0deg)';
+            e.currentTarget.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    }
+
+    closeAll() {
+      this.toggles.forEach(toggle => {
+        const target = toggle.dataset.target;
+        const content = document.getElementById(target);
+        const icon = toggle.querySelector('svg');
+        
+        content.classList.add('hidden');
+        icon.style.transform = 'rotate(0deg)';
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    }
+  }
+
+  // Función para scroll suave al formulario
+  function scrollToContactForm() {
+    document.getElementById('contact-form').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+
+  // Inicializar cuando DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    new TemarioAccordion();
+  });
+</script>

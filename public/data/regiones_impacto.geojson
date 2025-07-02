@@ -1,0 +1,597 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "REGION": "Arica y Parinacota",
+        "alumnos_emed": 45,
+        "mediadores_totales": 120,
+        "impacto_pct": 12.5,
+        "region_nombre": "Arica y Parinacota"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -70.5,
+              -17.5
+            ],
+            [
+              -69.0,
+              -17.5
+            ],
+            [
+              -69.0,
+              -18.5
+            ],
+            [
+              -70.5,
+              -18.5
+            ],
+            [
+              -70.5,
+              -17.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "REGION": "Tarapacá",
+        "alumnos_emed": 38,
+        "mediadores_totales": 95,
+        "impacto_pct": 13.2,
+        "region_nombre": "Tarapacá"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -70.5,
+              -19.5
+            ],
+            [
+              -68.5,
+              -19.5
+            ],
+            [
+              -68.5,
+              -21.5
+            ],
+            [
+              -70.5,
+              -21.5
+            ],
+            [
+              -70.5,
+              -19.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "REGION": "Antofagasta",
+        "alumnos_emed": 67,
+        "mediadores_totales": 180,
+        "impacto_pct": 11.8,
+        "region_nombre": "Antofagasta"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -70.5,
+              -21.5
+            ],
+            [
+              -67.5,
+              -21.5
+            ],
+            [
+              -67.5,
+              -26.0
+            ],
+            [
+              -70.5,
+              -26.0
+            ],
+            [
+              -70.5,
+              -21.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "REGION": "Atacama",
+        "alumnos_emed": 29,
+        "mediadores_totales": 85,
+        "impacto_pct": 12.1,
+        "region_nombre": "Atacama"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.0,
+              -26.0
+            ],
+            [
+              -69.0,
+              -26.0
+            ],
+            [
+              -69.0,
+              -29.5
+            ],
+            [
+              -71.0,
+              -29.5
+            ],
+            [
+              -71.0,
+              -26.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "REGION": "Coquimbo",
+        "alumnos_emed": 58,
+        "mediadores_totales": 145,
+        "impacto_pct": 13.7,
+        "region_nombre": "Coquimbo"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.5,
+              -29.5
+            ],
+            [
+              -70.0,
+              -29.5
+            ],
+            [
+              -70.0,
+              -32.5
+            ],
+            [
+              -71.5,
+              -32.5
+            ],
+            [
+              -71.5,
+              -29.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "REGION": "Valparaíso",
+        "alumnos_emed": 156,
+        "mediadores_totales": 380,
+        "impacto_pct": 14.2,
+        "region_nombre": "Valparaíso"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -72.0,
+              -32.0
+            ],
+            [
+              -70.5,
+              -32.0
+            ],
+            [
+              -70.5,
+              -33.5
+            ],
+            [
+              -72.0,
+              -33.5
+            ],
+            [
+              -72.0,
+              -32.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "REGION": "Metropolitana",
+        "alumnos_emed": 890,
+        "mediadores_totales": 2100,
+        "impacto_pct": 15.5,
+        "region_nombre": "Metropolitana"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.5,
+              -33.0
+            ],
+            [
+              -70.0,
+              -33.0
+            ],
+            [
+              -70.0,
+              -34.5
+            ],
+            [
+              -71.5,
+              -34.5
+            ],
+            [
+              -71.5,
+              -33.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "REGION": "O'Higgins",
+        "alumnos_emed": 89,
+        "mediadores_totales": 220,
+        "impacto_pct": 13.8,
+        "region_nombre": "O'Higgins"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -72.0,
+              -34.0
+            ],
+            [
+              -70.5,
+              -34.0
+            ],
+            [
+              -70.5,
+              -35.5
+            ],
+            [
+              -72.0,
+              -35.5
+            ],
+            [
+              -72.0,
+              -34.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "REGION": "Maule",
+        "alumnos_emed": 78,
+        "mediadores_totales": 195,
+        "impacto_pct": 12.9,
+        "region_nombre": "Maule"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -72.5,
+              -35.0
+            ],
+            [
+              -71.0,
+              -35.0
+            ],
+            [
+              -71.0,
+              -36.5
+            ],
+            [
+              -72.5,
+              -36.5
+            ],
+            [
+              -72.5,
+              -35.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "REGION": "Ñuble",
+        "alumnos_emed": 34,
+        "mediadores_totales": 90,
+        "impacto_pct": 12.4,
+        "region_nombre": "Ñuble"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -72.5,
+              -36.0
+            ],
+            [
+              -71.5,
+              -36.0
+            ],
+            [
+              -71.5,
+              -37.0
+            ],
+            [
+              -72.5,
+              -37.0
+            ],
+            [
+              -72.5,
+              -36.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "REGION": "Biobío",
+        "alumnos_emed": 142,
+        "mediadores_totales": 350,
+        "impacto_pct": 14.1,
+        "region_nombre": "Biobío"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.0,
+              -36.5
+            ],
+            [
+              -71.5,
+              -36.5
+            ],
+            [
+              -71.5,
+              -38.5
+            ],
+            [
+              -74.0,
+              -38.5
+            ],
+            [
+              -74.0,
+              -36.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "REGION": "Araucanía",
+        "alumnos_emed": 67,
+        "mediadores_totales": 175,
+        "impacto_pct": 11.9,
+        "region_nombre": "Araucanía"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.5,
+              -38.0
+            ],
+            [
+              -71.0,
+              -38.0
+            ],
+            [
+              -71.0,
+              -39.5
+            ],
+            [
+              -73.5,
+              -39.5
+            ],
+            [
+              -73.5,
+              -38.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "REGION": "Los Ríos",
+        "alumnos_emed": 28,
+        "mediadores_totales": 75,
+        "impacto_pct": 12.6,
+        "region_nombre": "Los Ríos"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.0,
+              -39.0
+            ],
+            [
+              -71.5,
+              -39.0
+            ],
+            [
+              -71.5,
+              -40.5
+            ],
+            [
+              -74.0,
+              -40.5
+            ],
+            [
+              -74.0,
+              -39.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "REGION": "Los Lagos",
+        "alumnos_emed": 89,
+        "mediadores_totales": 210,
+        "impacto_pct": 13.4,
+        "region_nombre": "Los Lagos"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.5,
+              -40.0
+            ],
+            [
+              -71.0,
+              -40.0
+            ],
+            [
+              -71.0,
+              -44.0
+            ],
+            [
+              -74.5,
+              -44.0
+            ],
+            [
+              -74.5,
+              -40.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "REGION": "Aysén",
+        "alumnos_emed": 12,
+        "mediadores_totales": 35,
+        "impacto_pct": 11.2,
+        "region_nombre": "Aysén"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -75.0,
+              -44.0
+            ],
+            [
+              -71.0,
+              -44.0
+            ],
+            [
+              -71.0,
+              -49.0
+            ],
+            [
+              -75.0,
+              -49.0
+            ],
+            [
+              -75.0,
+              -44.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "REGION": "Magallanes",
+        "alumnos_emed": 23,
+        "mediadores_totales": 60,
+        "impacto_pct": 12.8,
+        "region_nombre": "Magallanes"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -75.0,
+              -49.0
+            ],
+            [
+              -66.0,
+              -49.0
+            ],
+            [
+              -66.0,
+              -56.0
+            ],
+            [
+              -75.0,
+              -56.0
+            ],
+            [
+              -75.0,
+              -49.0
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

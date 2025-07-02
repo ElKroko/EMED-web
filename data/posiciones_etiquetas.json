@@ -1,0 +1,76 @@
+{
+  "colores_emed": {
+    "celeste": "#7EC5D6",
+    "turquesa": "#5DADE2", 
+    "naranja": "#F5821F",
+    "amarillo": "#FDB813",
+    "verde": "#28A745",
+    "gris": "#6C757D"
+  },
+  "posiciones_etiquetas": {
+    "Arica y Parinacota": {
+      "offsetX": -15,
+      "offsetY": -25
+    },
+    "Tarapacá": {
+      "offsetX": 20,
+      "offsetY": -15
+    },
+    "Antofagasta": {
+      "offsetX": 25,
+      "offsetY": 10
+    },
+    "Atacama": {
+      "offsetX": -20,
+      "offsetY": 15
+    },
+    "Coquimbo": {
+      "offsetX": -25,
+      "offsetY": -10
+    },
+    "Valparaíso": {
+      "offsetX": -30,
+      "offsetY": 10
+    },
+    "Metropolitana": {
+      "offsetX": 10,
+      "offsetY": -20
+    },
+    "O'Higgins": {
+      "offsetX": 15,
+      "offsetY": 15
+    },
+    "Maule": {
+      "offsetX": -25,
+      "offsetY": -10
+    },
+    "Ñuble": {
+      "offsetX": 20,
+      "offsetY": -15
+    },
+    "Biobío": {
+      "offsetX": 20,
+      "offsetY": 5
+    },
+    "Araucanía": {
+      "offsetX": -20,
+      "offsetY": 10
+    },
+    "Los Ríos": {
+      "offsetX": -30,
+      "offsetY": -5
+    },
+    "Los Lagos": {
+      "offsetX": 25,
+      "offsetY": -15
+    },
+    "Aysén": {
+      "offsetX": 30,
+      "offsetY": 0
+    },
+    "Magallanes": {
+      "offsetX": -25,
+      "offsetY": 20
+    }
+  }
+}

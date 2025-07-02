@@ -1,0 +1,536 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/forms/ContactForm.astro';
+
+// Beneficios para empresas
+const enterpriseBenefits = [
+  {
+    title: "Mejora el Clima Laboral",
+    description: "Reduce conflictos internos y mejora la comunicación entre equipos",
+    icon: "🤝",
+    stat: "85% reducción en conflictos laborales"
+  },
+  {
+    title: "Ahorro en Costos Legales",
+    description: "Evita costosos procesos judiciales con mediación preventiva",
+    icon: "💰",
+    stat: "Hasta 70% ahorro en costos legales"
+  },
+  {
+    title: "Mayor Productividad",
+    description: "Equipos más cohesionados y enfocados en objetivos comunes",
+    icon: "📈",
+    stat: "40% mejora en productividad de equipos"
+  },
+  {
+    title: "Retención de Talento",
+    description: "Colaboradores más satisfechos y comprometidos",
+    icon: "👥",
+    stat: "60% mejora en retención de personal"
+  }
+];
+
+// Programas corporativos
+const corporatePrograms = [
+  {
+    title: "Mediación Laboral Corporativa",
+    duration: "40 horas",
+    modality: "Presencial / Virtual",
+    participants: "10-25 personas",
+    description: "Formación especializada en resolución de conflictos laborales, negociación y comunicación asertiva para líderes y equipos de RRHH.",
+    includes: [
+      "Manual de mediación corporativa",
+      "Casos prácticos del sector",
+      "Certificación reconocida",
+      "3 meses de seguimiento post-capacitación"
+    ],
+    ideal: "Gerentes, jefes de RRHH, líderes de equipos",
+    price: "Desde $350.000 por persona"
+  },
+  {
+    title: "Comunicación y Resolución de Conflictos",
+    duration: "24 horas",
+    modality: "Presencial / Virtual / Mixta",
+    participants: "15-30 personas",
+    description: "Taller intensivo para mejorar habilidades de comunicación y manejo de conflictos en equipos de trabajo.",
+    includes: [
+      "Kit de herramientas de comunicación",
+      "Dinámicas grupales",
+      "Plan de acción personalizado",
+      "Evaluación pre y post capacitación"
+    ],
+    ideal: "Equipos de trabajo, supervisores",
+    price: "Desde $180.000 por persona"
+  },
+  {
+    title: "Programa Ejecutivo en Negociación",
+    duration: "16 horas",
+    modality: "Presencial intensivo",
+    participants: "8-15 personas",
+    description: "Programa exclusivo para altos ejecutivos enfocado en técnicas avanzadas de negociación y resolución estratégica de conflictos.",
+    includes: [
+      "Simulaciones de alta complejidad",
+      "Coaching personalizado",
+      "Networking con otros ejecutivos",
+      "Certificación ejecutiva"
+    ],
+    ideal: "Directores, gerentes generales, C-level",
+    price: "Desde $750.000 por persona"
+  }
+];
+
+// Testimonios de empresas
+const testimonials = [
+  {
+    company: "Banco Central",
+    industry: "Servicios Financieros",
+    participants: "45 colaboradores",
+    quote: "La capacitación en mediación laboral transformó la manera en que resolvemos conflictos internos. Hemos visto una mejora significativa en el clima laboral.",
+    name: "María González",
+    position: "Directora de RRHH",
+    logo: "🏦"
+  },
+  {
+    company: "Clínica Las Condes",
+    industry: "Salud",
+    participants: "60 colaboradores",
+    quote: "Los programas de EMED nos ayudaron a mejorar la comunicación entre equipos médicos y administrativos. Excelente inversión en nuestro capital humano.",
+    name: "Dr. Roberto Silva",
+    position: "Director Médico",
+    logo: "🏥"
+  },
+  {
+    company: "Colegio San Patricio",
+    industry: "Educación",
+    participants: "30 docentes",
+    quote: "La formación en mediación escolar ha sido fundamental para crear un ambiente más armónico entre estudiantes, profesores y apoderados.",
+    name: "Patricia Morales",
+    position: "Directora Académica",
+    logo: "🎓"
+  }
+];
+
+// Industrias que atendemos
+const industries = [
+  { name: "Servicios Financieros", icon: "🏦", clients: "15+ empresas" },
+  { name: "Salud y Farmacéuticas", icon: "🏥", clients: "25+ organizaciones" },
+  { name: "Educación", icon: "🎓", clients: "40+ instituciones" },
+  { name: "Retail y Consumo", icon: "🛍️", clients: "20+ empresas" },
+  { name: "Tecnología", icon: "💻", clients: "12+ startups" },
+  { name: "Manufactura", icon: "🏭", clients: "18+ industrias" },
+  { name: "Sector Público", icon: "🏛️", clients: "30+ entidades" },
+  { name: "ONGs y Fundaciones", icon: "🤲", clients: "35+ organizaciones" }
+];
+---
+
+<Layout 
+  title="Capacitación Empresarial - EMED | Programas Corporativos de Mediación"
+  description="Transforma tu organización con nuestros programas corporativos de mediación y resolución de conflictos. Mejora el clima laboral, reduce costos y aumenta la productividad."
+>
+
+  <!-- Hero Section -->
+  <section class="hero-enterprise relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 py-20 text-white overflow-hidden">
+    
+    <!-- Background pattern -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      
+      <!-- Badge corporativo -->
+      <div class="text-center mb-8">
+        <span class="inline-flex items-center px-6 py-3 bg-celeste/20 backdrop-blur-sm rounded-full text-celeste text-sm font-semibold">
+          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          Programas Corporativos Certificados
+        </span>
+      </div>
+
+      <div class="text-center max-w-5xl mx-auto">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+          Transforma tu organización con
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-celeste to-turquesa">
+            mediación profesional
+          </span>
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 opacity-90">
+          Programas de capacitación corporativa diseñados para reducir conflictos, mejorar la comunicación y potenciar el clima laboral de tu empresa
+        </p>
+        
+        <!-- CTAs principales -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <a 
+            href="#corporate-programs"
+            class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-celeste to-turquesa text-white font-bold rounded-xl hover:from-turquesa hover:to-celeste transform hover:scale-105 transition-all duration-200 shadow-xl"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+            </svg>
+            Ver Programas Corporativos
+          </a>
+          
+          <a 
+            href="#contact-form"
+            class="inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-bold rounded-xl hover:bg-white/20 transition-all duration-200 border border-white/30"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.014 8.014 0 01-4.244-1.206L3 21l2.206-5.756A8.014 8.014 0 013 12a8 8 0 018-8c4.418 0 8 3.582 8 8z"></path>
+            </svg>
+            Solicitar Propuesta
+          </a>
+        </div>
+
+        <!-- Estadísticas corporativas -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold mb-2 text-celeste">150+</div>
+            <div class="text-sm opacity-80">Empresas capacitadas</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold mb-2 text-celeste">5,000+</div>
+            <div class="text-sm opacity-80">Colaboradores formados</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold mb-2 text-celeste">95%</div>
+            <div class="text-sm opacity-80">Satisfacción empresarial</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold mb-2 text-celeste">8</div>
+            <div class="text-sm opacity-80">Industrias atendidas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beneficios para empresas -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+          ¿Por qué las empresas eligen EMED?
+        </h2>
+        <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+          Nuestros programas corporativos generan resultados medibles en clima laboral, productividad y reducción de costos
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {enterpriseBenefits.map((benefit) => (
+          <div class="text-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:scale-105">
+            <div class="text-4xl mb-4">{benefit.icon}</div>
+            <h3 class="text-xl font-bold text-gray-800 mb-3">{benefit.title}</h3>
+            <p class="text-gray-600 mb-4 leading-relaxed">{benefit.description}</p>
+            <div class="bg-celeste/10 text-celeste px-4 py-2 rounded-full text-sm font-semibold">
+              {benefit.stat}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Programas corporativos -->
+  <section id="corporate-programs" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+          Programas Corporativos Disponibles
+        </h2>
+        <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+          Capacitaciones diseñadas específicamente para las necesidades de tu organización
+        </p>
+      </div>
+
+      <div class="space-y-8">
+        {corporatePrograms.map((program, index) => (
+          <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
+            
+            <!-- Contenido del programa -->
+            <div class={`space-y-6 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
+              <div>
+                <div class="flex items-center space-x-4 mb-4">
+                  <span class="bg-celeste text-white px-4 py-2 rounded-full text-sm font-semibold">
+                    {program.duration}
+                  </span>
+                  <span class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm font-semibold">
+                    {program.participants}
+                  </span>
+                </div>
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+                  {program.title}
+                </h3>
+                <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                  {program.description}
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 class="font-semibold text-gray-800 mb-3">✅ Incluye:</h4>
+                  <ul class="space-y-2">
+                    {program.includes.map((item) => (
+                      <li class="flex items-start space-x-2">
+                        <svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600 text-sm">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div>
+                  <h4 class="font-semibold text-gray-800 mb-3">👥 Ideal para:</h4>
+                  <p class="text-gray-600 text-sm mb-4">{program.ideal}</p>
+                  
+                  <h4 class="font-semibold text-gray-800 mb-2">💰 Inversión:</h4>
+                  <p class="text-celeste font-bold text-lg">{program.price}</p>
+                  <p class="text-gray-500 text-xs">*Descuentos por volumen disponibles</p>
+                </div>
+              </div>
+
+              <div class="flex flex-col sm:flex-row gap-3">
+                <button 
+                  onclick={`requestQuote('${program.title}')`}
+                  class="flex-1 bg-celeste text-white font-semibold py-3 px-6 rounded-lg hover:bg-turquesa transition-colors duration-200"
+                >
+                  Solicitar Cotización
+                </button>
+                <button 
+                  onclick={`downloadBrochure('${program.title}')`}
+                  class="flex-1 bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors duration-200"
+                >
+                  Descargar Brochure
+                </button>
+              </div>
+            </div>
+
+            <!-- Imagen/Gráfico del programa -->
+            <div class={`${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
+              <div class="bg-gradient-to-br from-celeste to-turquesa rounded-2xl p-8 text-white text-center h-96 flex items-center justify-center">
+                <div>
+                  <div class="text-6xl mb-4">
+                    {index === 0 ? '🤝' : index === 1 ? '💬' : '🎯'}
+                  </div>
+                  <h4 class="text-2xl font-bold mb-2">{program.title}</h4>
+                  <p class="opacity-90">{program.modality}</p>
+                  <div class="mt-6 bg-white/20 backdrop-blur-sm rounded-lg p-4">
+                    <p class="text-sm font-semibold">Modalidad: {program.modality}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+          Lo que dicen nuestros clientes corporativos
+        </h2>
+        <p class="text-gray-600 text-lg">
+          Empresas líderes confían en EMED para capacitar a sus equipos
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {testimonials.map((testimonial) => (
+          <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 hover:shadow-xl transition-shadow duration-300">
+            
+            <!-- Header de la empresa -->
+            <div class="flex items-center mb-6">
+              <div class="text-3xl mr-4">{testimonial.logo}</div>
+              <div>
+                <h4 class="font-bold text-gray-800">{testimonial.company}</h4>
+                <p class="text-gray-600 text-sm">{testimonial.industry}</p>
+                <p class="text-celeste text-sm font-semibold">{testimonial.participants}</p>
+              </div>
+            </div>
+
+            <!-- Testimonial -->
+            <blockquote class="text-gray-700 italic mb-6 leading-relaxed">
+              "{testimonial.quote}"
+            </blockquote>
+
+            <!-- Autor -->
+            <div class="border-t border-gray-200 pt-4">
+              <p class="font-semibold text-gray-800">{testimonial.name}</p>
+              <p class="text-gray-600 text-sm">{testimonial.position}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Industrias -->
+  <section class="py-16 bg-gray-900 text-white">
+    <div class="container mx-auto px-4">
+      
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          Sectores que Confiaron en Nosotros
+        </h2>
+        <p class="text-gray-300 text-lg">
+          Experiencia comprobada en diversas industrias
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {industries.map((industry) => (
+          <div class="text-center bg-white/5 backdrop-blur-sm rounded-xl p-6 hover:bg-white/10 transition-all duration-200">
+            <div class="text-3xl mb-3">{industry.icon}</div>
+            <h4 class="font-semibold mb-2">{industry.name}</h4>
+            <p class="text-celeste text-sm">{industry.clients}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulario de contacto empresarial -->
+  <section id="contact-form" class="py-16 bg-gradient-to-br from-celeste to-turquesa">
+    <div class="container mx-auto px-4">
+      
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center text-white mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Solicita una propuesta personalizada
+          </h2>
+          <p class="text-xl opacity-90">
+            Cuéntanos sobre tu organización y diseñaremos un programa a tu medida
+          </p>
+        </div>
+
+        <ContactForm 
+          type="empresa"
+          title="Propuesta Corporativa Personalizada"
+          subtitle="Completa tus datos y un consultor especializado te contactará para diseñar una solución a medida"
+          showUrgency={false}
+          className="bg-white"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA final con garantía -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+          ¿Listo para transformar tu organización?
+        </h2>
+        <p class="text-gray-600 text-lg mb-8">
+          Únete a más de 150 empresas que ya han mejorado su clima laboral con nuestros programas
+        </p>
+
+        <!-- Garantía -->
+        <div class="bg-gradient-to-r from-green-50 to-green-100 border border-green-200 rounded-2xl p-8 mb-8">
+          <div class="flex items-center justify-center mb-4">
+            <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-green-800 mb-2">Garantía de Satisfacción 100%</h3>
+          <p class="text-green-700">
+            Si no estás satisfecho con los resultados de la capacitación, te devolvemos tu inversión completa.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="https://wa.me/56912345678?text=Hola,%20quiero%20información%20sobre%20programas%20corporativos%20de%20EMED"
+            target="_blank"
+            class="inline-flex items-center px-8 py-4 bg-green-500 text-white font-bold rounded-xl hover:bg-green-600 transform hover:scale-105 transition-all duration-200 shadow-xl"
+          >
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            Conversar por WhatsApp
+          </a>
+          
+          <button 
+            onclick="scrollToForm()"
+            class="inline-flex items-center px-8 py-4 bg-celeste text-white font-bold rounded-xl hover:bg-turquesa transition-all duration-200"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            Solicitar Propuesta
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  // Función para solicitar cotización específica
+  function requestQuote(programName) {
+    // Scroll hasta el formulario
+    document.querySelector('.contact-form-container').scrollIntoView({
+      behavior: 'smooth'
+    });
+    
+    // Prellenar el mensaje con el programa específico
+    setTimeout(() => {
+      const messageTextarea = document.querySelector('textarea[name="mensaje"]');
+      if (messageTextarea) {
+        messageTextarea.value = `Estoy interesado en solicitar una cotización para el programa "${programName}". Por favor contáctenme para coordinar una reunión.`;
+      }
+    }, 500);
+  }
+
+  // Función para descargar brochure (placeholder)
+  function downloadBrochure(programName) {
+    // En un caso real, esto descargaría un PDF
+    alert(`El brochure de "${programName}" será enviado a tu email una vez completes el formulario de contacto.`);
+    
+    // Scroll al formulario
+    document.querySelector('.contact-form-container').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+
+  // Función para scroll suave
+  function scrollToForm() {
+    document.querySelector('.contact-form-container').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+</script>
+
+<style>
+  .hero-enterprise {
+    background-image: 
+      linear-gradient(45deg, rgba(126, 197, 214, 0.1) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(126, 197, 214, 0.1) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, rgba(126, 197, 214, 0.1) 75%),
+      linear-gradient(-45deg, transparent 75%, rgba(126, 197, 214, 0.1) 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Hover effects para las cards */
+  .hover\:scale-105:hover {
+    transform: scale(1.05);
+  }
+</style>

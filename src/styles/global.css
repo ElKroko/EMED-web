@@ -52,3 +52,41 @@ img {
   height: auto;
   display: block;
 }
+
+/* Botones con fondo de color deben tener texto blanco y sin decoración */
+a[class*="bg-celeste"],
+a[class*="bg-turquesa"], 
+a[class*="bg-naranja"],
+a[class*="bg-amarillo"],
+a[class*="bg-green"],
+button[class*="bg-celeste"],
+button[class*="bg-turquesa"],
+button[class*="bg-naranja"],
+button[class*="bg-amarillo"],
+button[class*="bg-green"] {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+a[class*="bg-celeste"]:hover,
+a[class*="bg-turquesa"]:hover,
+a[class*="bg-naranja"]:hover,
+a[class*="bg-amarillo"]:hover,
+a[class*="bg-green"]:hover,
+button[class*="bg-celeste"]:hover,
+button[class*="bg-turquesa"]:hover,
+button[class*="bg-naranja"]:hover,
+button[class*="bg-amarillo"]:hover,
+button[class*="bg-green"]:hover {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+/* Links que actúan como botones secundarios */
+a[class*="border-"][class*="rounded"] {
+  text-decoration: none !important;
+}
+
+a[class*="border-"][class*="rounded"]:hover {
+  text-decoration: none !important;
+}

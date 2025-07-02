@@ -1,11 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import HeroSlider from '../components/HeroSlider.astro';
-import CTAButtonsRow from '../components/CTAButtonsRow.astro';
-import TwoColumnBlock from '../components/TwoColumnBlock.astro';
-import WhyStudyMediation from '../components/WhyStudyMediation.astro';
-import ProgramsGrid from '../components/ProgramsGrid.astro';
-import AccreditationBanner from '../components/AccreditationBanner.astro';
+import HeroSlider from '../components/sections/HeroSlider.astro';
+import CTAButtonsRow from '../components/ui/CTAButtonsRow.astro';
+import TwoColumnBlock from '../components/sections/TwoColumnBlock.astro';
+import WhyStudyMediation from '../components/sections/WhyStudyMediation.astro';
+import ProgramsGrid from '../components/sections/ProgramsGrid.astro';
+import AccreditationBanner from '../components/sections/AccreditationBanner.astro';
+import MapaChileGeoJSON from '../components/MapaChileGeoJSON.tsx';
 
 // Datos del Hero Slider
 const heroSlides = [
@@ -85,9 +86,46 @@ const mediationContent = `
   <!-- Sección Programas -->
   <ProgramsGrid />
   
+  <!-- Sección Mapa de Impacto -->
+  <section class="py-16 bg-gradient-to-br from-celeste/10 to-turquesa/10">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">
+          Nuestro Impacto Nacional
+        </h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Con presencia en las 16 regiones de Chile, EMED ha formado más de 1,800 mediadores profesionales, 
+          representando el 15.5% del registro nacional de mediadores en la Región Metropolitana.
+        </p>
+      </div>
+      
+      <MapaChileGeoJSON 
+        client:only="react"
+        title=""
+        height="500px"
+        className="max-w-5xl mx-auto mb-8"
+      />
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div class="text-center bg-white p-6 rounded-lg shadow-sm">
+          <div class="text-3xl font-bold text-celeste mb-2">1,844</div>
+          <div class="text-gray-600 font-medium">Alumnos Formados</div>
+        </div>
+        <div class="text-center bg-white p-6 rounded-lg shadow-sm">
+          <div class="text-3xl font-bold text-turquesa mb-2">4,485</div>
+          <div class="text-gray-600 font-medium">Mediadores Totales</div>
+        </div>
+        <div class="text-center bg-white p-6 rounded-lg shadow-sm">
+          <div class="text-3xl font-bold text-naranja mb-2">16</div>
+          <div class="text-gray-600 font-medium">Regiones con Presencia</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Sección Acreditación -->
   <AccreditationBanner 
-    mascotSrc="/src/assets/landing/emed_acreditado.png"
+    mascotSrc="/src/assets/images/pages/emed_acreditado.png"
   />
 
 </Layout>

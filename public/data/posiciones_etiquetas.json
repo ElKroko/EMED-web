@@ -1,0 +1,101 @@
+{
+  "posiciones": {
+    "Región de Arica y Parinacota": {
+      "offsetX": 100,
+      "offsetY": 0,
+      "align": "left"
+    },
+    "Región de Tarapacá": {
+      "offsetX": 100,
+      "offsetY": -15,
+      "align": "left"
+    },
+    "Región de Antofagasta": {
+      "offsetX": 100,
+      "offsetY": -30,
+      "align": "left"
+    },
+    "Región de Atacama": {
+      "offsetX": 100,
+      "offsetY": -45,
+      "align": "left"
+    },
+    "Región de Coquimbo": {
+      "offsetX": 100,
+      "offsetY": -60,
+      "align": "left"
+    },
+    "Región de Valparaíso": {
+      "offsetX": 100,
+      "offsetY": -75,
+      "align": "left"
+    },
+    "Región Metropolitana de Santiago": {
+      "offsetX": 100,
+      "offsetY": -85,
+      "align": "left"
+    },
+    "Región del Libertador Bernardo OHiggins": {
+      "offsetX": 100,
+      "offsetY": -100,
+      "align": "left"
+    },
+    "Región del Maule": {
+      "offsetX": 100,
+      "offsetY": -115,
+      "align": "left"
+    },
+    "Región de Ñuble": {
+      "offsetX": 100,
+      "offsetY": -125,
+      "align": "left"
+    },
+    "Región del Bío-Bío": {
+      "offsetX": 100,
+      "offsetY": -140,
+      "align": "left"
+    },
+    "Región de La Araucanía": {
+      "offsetX": 100,
+      "offsetY": -155,
+      "align": "left"
+    },
+    "Región de Los Ríos": {
+      "offsetX": 100,
+      "offsetY": -165,
+      "align": "left"
+    },
+    "Región de Los Lagos": {
+      "offsetX": 100,
+      "offsetY": -180,
+      "align": "left"
+    },
+    "Región de Aysén del Gral.Ibañez del Campo": {
+      "offsetX": 100,
+      "offsetY": -195,
+      "align": "left"
+    },
+    "Región de Magallanes y Antártica Chilena": {
+      "offsetX": 100,
+      "offsetY": -210,
+      "align": "left"
+    }
+  },
+  "config_global": {
+    "offset_base": 100,
+    "separacion_vertical": 15,
+    "align_default": "left",
+    "estilo_linea": {
+      "color": "#2c3e50",
+      "grosor": 2,
+      "opacidad": 0.8
+    }
+  },
+  "colores_emed": {
+    "azul": "#317796",
+    "naranja": "#ff7514",
+    "texto": "#2c3e50",
+    "fondo_etiqueta": "#ffffff",
+    "borde_etiqueta": "#2c3e50"
+  }
+}

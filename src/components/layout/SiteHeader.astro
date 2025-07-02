@@ -18,7 +18,7 @@ const {
     { label: 'NOSOTROS', href: '/nosotros' },
     { label: 'CONTACTO', href: '/contacto' }
   ],
-  logoSrc = '/src/assets/footer/emed_logo.svg'
+  logoSrc = '/src/assets/images/common/emed_logo.svg'
 } = Astro.props;
 ---
 
@@ -70,8 +70,7 @@ const {
         {links.map((link) => (
           <a 
             href={link.href}
-            class="block px-4 py-3 font-bold text-base tracking-wide hover:bg-white hover:bg-opacity-10 transition-colors duration-200 rounded-md drop-shadow-sm"
-            style="color: var(--color-white);"
+            class="mobile-nav-link block px-4 py-3 font-bold text-base tracking-wide transition-all duration-200 rounded-md mx-2"
           >
             {link.label}
           </a>
@@ -194,6 +193,25 @@ const {
 
   .mobile-menu {
     animation: slideDown 0.3s ease-out;
+    background-color: var(--color-celeste);
+  }
+
+  .mobile-nav-link {
+    color: white;
+    text-decoration: none;
+  }
+
+  .mobile-nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white !important;
+    text-decoration: none;
+    transform: translateX(4px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .mobile-nav-link:active {
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: translateX(2px);
   }
 
   @keyframes slideDown {

@@ -1,0 +1,131 @@
+{
+  "resumen_nacional": {
+    "total_regiones": 16,
+    "total_alumnos_emed": 863,
+    "total_estudiantes_formacion": 0,
+    "total_mediadores": 6210,
+    "impacto_promedio": 13.83,
+    "impacto_maximo": 14.46
+  },
+  "detalle_catastro": {
+    "exalumnos_count": 691,
+    "estudiantes_formacion_count": 172,
+    "total_registros": 863
+  },
+  "columnas_disponibles": [
+    "objectid",
+    "cir_sena",
+    "codregion",
+    "area_km",
+    "st_area_sh",
+    "st_length_",
+    "Region",
+    "geometry",
+    "total_mediadores_registrados",
+    "alumnos_emed_estimados",
+    "estudiantes_formacion",
+    "total_emed",
+    "impacto_emed_pct",
+    "impacto_total_pct"
+  ],
+  "fecha_generacion": "2025-07-01T20:27:20.462135",
+  "version": "1.0",
+  "por_region": [
+    {
+      "region": "Región de Arica y Parinacota",
+      "alumnos": 21,
+      "mediadores": 150,
+      "impacto_pct": 14.0
+    },
+    {
+      "region": "Región de Tarapacá",
+      "alumnos": 28,
+      "mediadores": 205,
+      "impacto_pct": 13.66
+    },
+    {
+      "region": "Región de Antofagasta",
+      "alumnos": 30,
+      "mediadores": 217,
+      "impacto_pct": 13.82
+    },
+    {
+      "region": "Región de Magallanes y Antártica Chilena",
+      "alumnos": 12,
+      "mediadores": 83,
+      "impacto_pct": 14.46
+    },
+    {
+      "region": "Región de Aysén del Gral.Ibañez del Campo",
+      "alumnos": 3,
+      "mediadores": 25,
+      "impacto_pct": 12.0
+    },
+    {
+      "region": "Región de Atacama",
+      "alumnos": 13,
+      "mediadores": 93,
+      "impacto_pct": 13.98
+    },
+    {
+      "region": "Región de Coquimbo",
+      "alumnos": 36,
+      "mediadores": 259,
+      "impacto_pct": 13.9
+    },
+    {
+      "region": "Región de Valparaíso",
+      "alumnos": 98,
+      "mediadores": 702,
+      "impacto_pct": 13.96
+    },
+    {
+      "region": "Región Metropolitana de Santiago",
+      "alumnos": 380,
+      "mediadores": 2734,
+      "impacto_pct": 13.9
+    },
+    {
+      "region": "Región de Los Lagos",
+      "alumnos": 39,
+      "mediadores": 281,
+      "impacto_pct": 13.88
+    },
+    {
+      "region": "Región de Los Ríos",
+      "alumnos": 16,
+      "mediadores": 116,
+      "impacto_pct": 13.79
+    },
+    {
+      "region": "Región de La Araucanía",
+      "alumnos": 42,
+      "mediadores": 303,
+      "impacto_pct": 13.86
+    },
+    {
+      "region": "Región del Bío-Bío",
+      "alumnos": 55,
+      "mediadores": 394,
+      "impacto_pct": 13.96
+    },
+    {
+      "region": "Región de Ñuble",
+      "alumnos": 13,
+      "mediadores": 90,
+      "impacto_pct": 14.44
+    },
+    {
+      "region": "Región del Maule",
+      "alumnos": 37,
+      "mediadores": 268,
+      "impacto_pct": 13.81
+    },
+    {
+      "region": "Región del Libertador Bernardo OHiggins",
+      "alumnos": 40,
+      "mediadores": 290,
+      "impacto_pct": 13.79
+    }
+  ]
+}

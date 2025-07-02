@@ -1,0 +1,277 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Array de fotos para rotar entre los miembros del equipo
+const fotos = [
+  "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80", 
+  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+];
+
+// Función para obtener foto basada en índice
+const getFoto = (index) => fotos[index % fotos.length];
+---
+
+<Layout 
+  title="Nosotros - EMED | Quienes Somos"
+  description="Conoce nuestro equipo de profesionales especializados en mediación, nuestra misión, visión y docentes nacionales e internacionales."
+>
+  <div class="bg-crema min-h-screen">
+  
+    <!-- Hero: Quienes Somos -->
+    <section class="hero-nosotros relative overflow-hidden py-24">
+      <!-- SVG de fondo celeste -->
+      <div class="absolute inset-0">
+        <svg viewBox="0 0 1200 800" class="w-full h-full" preserveAspectRatio="none">
+          <path d="M0,0 L1200,0 L1200,650 C1000,620 800,660 600,640 C400,620 200,660 0,650 Z" fill="#7EC5D6"/>
+        </svg>
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          
+          <!-- Contenido de texto -->
+          <div class="text-white">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
+              Quienes Somos
+            </h1>
+            
+            <div class="space-y-6 text-lg md:text-xl leading-relaxed">
+              <p>
+                Somos EMED uno de los centros capacitadores en mediación más relevantes de Chile; 
+                que cuenta con una trayectoria y experiencia de más de 15 años.
+              </p>
+              
+              <p>
+                Nuestro equipo está integrado por profesionales, académicos y expertos 
+                reconocidos en diferentes áreas de la mediación familiar, escolar, comunitaria, 
+                penal y comercial.
+              </p>
+              
+              <p>
+                <strong>Misión y propósito es la parte del gajo más importante.</strong><br>
+                <strong>Hacer de nosotros más armónicos y conectados</strong>
+              </p>
+            </div>
+          </div>
+          
+          <!-- Imagen del equipo -->
+          <div class="relative">
+            <div class="bg-white rounded-2xl p-4 shadow-2xl transform -rotate-2 hover:rotate-0 transition-transform duration-300">
+              <img 
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                alt="Equipo EMED"
+                class="w-full h-64 md:h-80 object-cover rounded-xl"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Forma orgánica inferior -->
+      <div class="absolute bottom-0 left-0 right-0 h-24">
+        <svg viewBox="0 0 1200 120" class="w-full h-full" preserveAspectRatio="none">
+          <path d="M0,120 C300,80 500,60 600,80 C700,100 900,60 1200,80 L1200,120 Z" fill="#FDB813"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Sección: Misión y Visión -->
+    <section class="mision-vision-section relative overflow-hidden py-20 z-10">
+      <!-- SVG de fondo amarillo -->
+      <div class="absolute inset-0 -z-10">
+        <svg viewBox="0 0 1200 800" class="w-full h-full" preserveAspectRatio="none">
+          <path d="M0,0 L1200,0 L1200,650 C1000,620 800,660 600,640 C400,620 200,660 0,650 Z" fill="#FDB813"/>
+        </svg>
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          
+          <!-- Misión -->
+          <div class="mision-card bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+              MISIÓN
+            </h2>
+            
+            <p class="text-gray-600 text-sm leading-relaxed text-center">
+              Nuestro modelo es ofrecer atención en
+              mediación dentro de los estándares
+              profesionales que amerita cualquier
+              conflicto de los elementos de las
+              comunicación estructural para la
+              resolución de sus dificultades mediante
+              la facilitación de las comunicaciones.
+            </p>
+          </div>
+          
+          <!-- Visión -->
+          <div class="vision-card bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+              VISIÓN
+            </h2>
+            
+            <p class="text-gray-600 text-sm leading-relaxed text-center">
+              Buscar, comprometernos en mediación, y
+              capacitar profesionales que tengan las
+              competencias técnicas requeridas en las
+              diferentes áreas especializadas para
+              brindar un servicio especializado tanto
+              en Chile y los diferentes países de
+              América Latina que requieren nuestro
+              servicio pedagógico profesional.
+            </p>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Forma orgánica inferior -->
+      <div class="absolute bottom-0 left-0 right-0 h-24">
+        <svg viewBox="0 0 1200 120" class="w-full h-full" preserveAspectRatio="none">
+          <path d="M0,120 C300,80 500,60 600,80 C700,100 900,60 1200,80 L1200,120 Z" fill="#FEF7E8"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Sección: Equipos -->
+    <section class="equipos-section relative overflow-hidden py-20">
+      <!-- Formas orgánicas de fondo -->
+      <div class="absolute inset-0">
+        <svg viewBox="0 0 1200 2000" class="w-full h-full" preserveAspectRatio="none">
+          <!-- Forma verde clara -->
+          <circle cx="150" cy="300" r="180" fill="#B8E6B8" opacity="0.6"/>
+          <!-- Forma naranja -->
+          <ellipse cx="900" cy="600" rx="200" ry="150" fill="#F5821F" opacity="0.7"/>
+          <!-- Forma amarilla -->
+          <path d="M400,1000 C500,950 600,1050 700,1000 C800,950 900,1050 1000,1000 L1000,1200 C900,1250 800,1150 700,1200 C600,1250 500,1150 400,1200 Z" fill="#FDB813" opacity="0.6"/>
+          <!-- Forma verde en la parte inferior -->
+          <ellipse cx="300" cy="1600" rx="250" ry="180" fill="#B8E6B8" opacity="0.8"/>
+        </svg>
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        
+        <!-- Equipo Principal -->
+        <div class="mb-20">
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-4xl mx-auto">
+            {[...Array(5)].map((_, index) => (
+              <div class="team-member text-center">
+                <div class="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden shadow-lg">
+                  <img 
+                    src={getFoto(index)}
+                    alt="Miembro del equipo"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <h4 class="text-sm font-semibold text-gray-800">Nombre Apellido</h4>
+              </div>
+            ))}
+          </div>
+          
+          <!-- Coordinadores -->
+          <div class="grid grid-cols-2 gap-8 max-w-xs mx-auto mt-16">
+            {[...Array(2)].map((_, index) => (
+              <div class="team-member text-center">
+                <div class="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden shadow-lg">
+                  <img 
+                    src={getFoto(index + 5)}
+                    alt="Coordinador"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <h4 class="text-sm font-semibold text-gray-800">Nombre Coordinador</h4>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <!-- Docentes -->
+        <div class="mb-20">
+          <div class="bg-white rounded-3xl p-8 shadow-xl max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
+              Docentes
+            </h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              {[...Array(7)].map((_, index) => (
+                <div class="team-member text-center">
+                  <div class="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden shadow-lg">
+                    <img 
+                      src={getFoto(index + 7)}
+                      alt="Docente"
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h4 class="text-sm font-semibold text-gray-800">Nombre Apellido</h4>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        
+        <!-- Docentes Internacionales -->
+        <div class="mb-20">
+          <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
+            Docentes Internacionales
+          </h2>
+          
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-4xl mx-auto">
+            {[...Array(5)].map((_, index) => (
+              <div class="team-member text-center">
+                <div class="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden shadow-lg">
+                  <img 
+                    src={getFoto(index + 14)}
+                    alt="Docente Internacional"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <h4 class="text-sm font-semibold text-gray-800">Nombre Apellido</h4>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+  </div>
+</Layout>
+
+<style>
+  .hero-nosotros {
+    min-height: 70vh;
+  }
+  
+  .mision-vision-section {
+    min-height: 50vh;
+  }
+  
+  .equipos-section {
+    min-height: 120vh;
+  }
+  
+  .mision-card,
+  .vision-card {
+    transition: all 0.3s ease;
+  }
+  
+  .mision-card:hover,
+  .vision-card:hover {
+    transform: translateY(-8px);
+  }
+  
+  .team-member {
+    transition: all 0.3s ease;
+  }
+  
+  .team-member:hover {
+    transform: translateY(-4px);
+  }
+  
+  .team-member:hover .w-20 {
+    transform: scale(1.1);
+  }
+</style>

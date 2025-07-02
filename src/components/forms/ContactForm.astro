@@ -1,0 +1,478 @@
+---
+export interface Props {
+  type?: 'general' | 'programa' | 'admision' | 'financiamiento' | 'empresa';
+  program?: string;
+  source?: string;
+  title?: string;
+  subtitle?: string;
+  showUrgency?: boolean;
+  className?: string;
+}
+
+const {
+  type = 'general',
+  program = '',
+  source = 'contacto-general',
+  title = '¿Tienes alguna consulta?',
+  subtitle = 'Habla con uno de nuestros asesores académicos',
+  showUrgency = false,
+  className = ''
+} = Astro.props;
+
+// Personalizar mensajes según el tipo
+const getFormConfig = (type: string, program: string) => {
+  switch (type) {
+    case 'programa':
+      return {
+        title: `Consulta sobre ${program}`,
+        subtitle: 'Un asesor académico te contactará para resolver todas tus dudas',
+        buttonText: 'Solicitar Información',
+        urgencyText: '¡Últimas vacantes disponibles!'
+      };
+    case 'financiamiento':
+      return {
+        title: 'Solicita Información sobre Financiamiento',
+        subtitle: 'Te ayudamos con opciones SENCE, becas y facilidades de pago',
+        buttonText: 'Consultar Financiamiento',
+        urgencyText: 'Becas limitadas - ¡Consulta ahora!'
+      };
+    case 'empresa':
+      return {
+        title: 'Capacitación para tu Organización',
+        subtitle: 'Programas corporativos diseñados para equipos y empresas',
+        buttonText: 'Solicitar Propuesta',
+        urgencyText: 'Descuentos especiales para grupos'
+      };
+    case 'admision':
+      return {
+        title: 'Inicia tu Proceso de Admisión',
+        subtitle: 'Te guiamos paso a paso en tu inscripción',
+        buttonText: 'Comenzar Admisión',
+        urgencyText: 'Proceso de admisión abierto'
+      };
+    default:
+      return {
+        title: 'Contáctanos',
+        subtitle: 'Resuelve todas tus dudas con nuestros asesores',
+        buttonText: 'Enviar Consulta',
+        urgencyText: 'Respuesta en menos de 2 horas'
+      };
+  }
+};
+
+const config = getFormConfig(type, program);
+const formTitle = title || config.title;
+const formSubtitle = subtitle || config.subtitle;
+---
+
+<div class={`contact-form-container bg-white rounded-2xl shadow-xl p-8 ${className}`}>
+  
+  <!-- Header del formulario -->
+  <div class="text-center mb-8">
+    {showUrgency && (
+      <div class="inline-flex items-center px-4 py-2 bg-naranja/10 text-naranja rounded-full text-sm font-medium mb-4 animate-pulse">
+        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+        </svg>
+        {config.urgencyText}
+      </div>
+    )}
+    
+    <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-3">
+      {formTitle}
+    </h3>
+    <p class="text-gray-600 text-lg">
+      {formSubtitle}
+    </p>
+  </div>
+
+  <!-- Formulario -->
+  <form class="contact-form space-y-6" data-type={type} data-program={program} data-source={source}>
+    
+    <!-- Campos ocultos para tracking -->
+    <input type="hidden" name="form_type" value={type} />
+    <input type="hidden" name="program" value={program} />
+    <input type="hidden" name="source" value={source} />
+    <input type="hidden" name="timestamp" value="" />
+    
+    <!-- Información Personal -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label for="nombre" class="block text-sm font-semibold text-gray-700 mb-2">
+          Nombre completo *
+        </label>
+        <input 
+          type="text" 
+          id="nombre" 
+          name="nombre" 
+          required
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+          placeholder="Tu nombre completo"
+        />
+      </div>
+      
+      <div>
+        <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+          Email *
+        </label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          required
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+          placeholder="tu@email.com"
+        />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label for="telefono" class="block text-sm font-semibold text-gray-700 mb-2">
+          Teléfono *
+        </label>
+        <input 
+          type="tel" 
+          id="telefono" 
+          name="telefono" 
+          required
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+          placeholder="+56 9 1234 5678"
+        />
+      </div>
+      
+      <!-- Campo específico según el tipo -->
+      {type === 'empresa' ? (
+        <div>
+          <label for="empresa" class="block text-sm font-semibold text-gray-700 mb-2">
+            Nombre de la empresa *
+          </label>
+          <input 
+            type="text" 
+            id="empresa" 
+            name="empresa" 
+            required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+            placeholder="Nombre de tu organización"
+          />
+        </div>
+      ) : (
+        <div>
+          <label for="ciudad" class="block text-sm font-semibold text-gray-700 mb-2">
+            Ciudad
+          </label>
+          <input 
+            type="text" 
+            id="ciudad" 
+            name="ciudad"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+            placeholder="Tu ciudad"
+          />
+        </div>
+      )}
+    </div>
+
+    <!-- Selección específica según tipo -->
+    {type === 'general' && (
+      <div>
+        <label for="interes" class="block text-sm font-semibold text-gray-700 mb-2">
+          ¿Qué te interesa? *
+        </label>
+        <select 
+          id="interes" 
+          name="interes" 
+          required
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+        >
+          <option value="">Selecciona tu interés</option>
+          <option value="mediacion-familiar">Mediación Familiar</option>
+          <option value="mediacion-escolar">Mediación Escolar</option>
+          <option value="mediacion-laboral">Mediación Laboral</option>
+          <option value="cursos-especializacion">Cursos de Especialización</option>
+          <option value="informacion-general">Información General</option>
+        </select>
+      </div>
+    )}
+
+    {type === 'financiamiento' && (
+      <div>
+        <label for="financiamiento_tipo" class="block text-sm font-semibold text-gray-700 mb-2">
+          Tipo de financiamiento de interés *
+        </label>
+        <select 
+          id="financiamiento_tipo" 
+          name="financiamiento_tipo" 
+          required
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+        >
+          <option value="">Selecciona una opción</option>
+          <option value="sence">Financiamiento SENCE</option>
+          <option value="beca-cofinanciamiento">Beca de Cofinanciamiento</option>
+          <option value="facilidades-pago">Facilidades de Pago</option>
+          <option value="financiamiento-empresa">Financiamiento Empresarial</option>
+        </select>
+      </div>
+    )}
+
+    {type === 'empresa' && (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="num_participantes" class="block text-sm font-semibold text-gray-700 mb-2">
+            Número de participantes *
+          </label>
+          <select 
+            id="num_participantes" 
+            name="num_participantes" 
+            required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+          >
+            <option value="">Selecciona</option>
+            <option value="1-5">1-5 personas</option>
+            <option value="6-15">6-15 personas</option>
+            <option value="16-30">16-30 personas</option>
+            <option value="30+">Más de 30 personas</option>
+          </select>
+        </div>
+        
+        <div>
+          <label for="sector" class="block text-sm font-semibold text-gray-700 mb-2">
+            Sector de la empresa
+          </label>
+          <input 
+            type="text" 
+            id="sector" 
+            name="sector"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+            placeholder="Ej: Salud, Educación, etc."
+          />
+        </div>
+      </div>
+    )}
+
+    <!-- Mensaje -->
+    <div>
+      <label for="mensaje" class="block text-sm font-semibold text-gray-700 mb-2">
+        {type === 'programa' ? 'Preguntas específicas sobre el programa' : 'Mensaje'}
+      </label>
+      <textarea 
+        id="mensaje" 
+        name="mensaje" 
+        rows="4"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200 resize-none"
+        placeholder={type === 'programa' ? `Cuéntanos qué te gustaría saber sobre ${program}` : 'Cuéntanos cómo podemos ayudarte'}
+      ></textarea>
+    </div>
+
+    <!-- Preferencia de contacto -->
+    <div>
+      <label class="block text-sm font-semibold text-gray-700 mb-3">
+        ¿Cómo prefieres que te contactemos?
+      </label>
+      <div class="flex flex-wrap gap-4">
+        <label class="flex items-center">
+          <input type="checkbox" name="contacto_preferencia[]" value="whatsapp" class="mr-2 text-celeste focus:ring-celeste" />
+          <span class="text-sm text-gray-700">WhatsApp</span>
+        </label>
+        <label class="flex items-center">
+          <input type="checkbox" name="contacto_preferencia[]" value="llamada" class="mr-2 text-celeste focus:ring-celeste" />
+          <span class="text-sm text-gray-700">Llamada telefónica</span>
+        </label>
+        <label class="flex items-center">
+          <input type="checkbox" name="contacto_preferencia[]" value="email" class="mr-2 text-celeste focus:ring-celeste" />
+          <span class="text-sm text-gray-700">Email</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Horario preferido -->
+    <div>
+      <label for="horario_preferido" class="block text-sm font-semibold text-gray-700 mb-2">
+        Horario preferido para ser contactado
+      </label>
+      <select 
+        id="horario_preferido" 
+        name="horario_preferido"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+      >
+        <option value="">Sin preferencia</option>
+        <option value="mañana">Mañana (9:00 - 12:00)</option>
+        <option value="tarde">Tarde (14:00 - 18:00)</option>
+        <option value="noche">Noche (18:00 - 21:00)</option>
+      </select>
+    </div>
+
+    <!-- Términos y condiciones -->
+    <div class="flex items-start space-x-3">
+      <input 
+        type="checkbox" 
+        id="terminos" 
+        name="terminos" 
+        required
+        class="mt-1 text-celeste focus:ring-celeste"
+      />
+      <label for="terminos" class="text-sm text-gray-600 leading-relaxed">
+        Acepto que EMED me contacte para brindarme información sobre sus programas y acepto la 
+        <a href="/politica-privacidad" class="text-celeste hover:underline">Política de Privacidad</a>
+      </label>
+    </div>
+
+    <!-- Botón de envío -->
+    <button 
+      type="submit" 
+      class="w-full bg-gradient-to-r from-celeste to-turquesa text-white font-bold py-3 px-6 md:py-4 md:px-8 text-base md:text-lg rounded-lg hover:from-turquesa hover:to-celeste transform hover:scale-[1.02] transition-all duration-200 shadow-lg hover:shadow-xl"
+    >
+      <div class="flex items-center justify-center">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.014 8.014 0 01-4.244-1.206L3 21l2.206-5.756A8.014 8.014 0 013 12a8 8 0 018-8c4.418 0 8 3.582 8 8z"></path>
+        </svg>
+        {config.buttonText}
+      </div>
+    </button>
+
+    <!-- Mensaje de envío exitoso -->
+    <div class="form-success hidden bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+      <div class="flex items-center justify-center mb-2">
+        <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+      <h4 class="text-green-800 font-semibold mb-1">¡Consulta enviada exitosamente!</h4>
+      <p class="text-green-700 text-sm">Un asesor académico te contactará en las próximas 2 horas.</p>
+    </div>
+
+  </form>
+
+  <!-- WhatsApp directo -->
+  <div class="mt-8 pt-6 border-t border-gray-200">
+    <div class="text-center">
+      <p class="text-gray-600 text-sm mb-4">¿Prefieres hablar ahora?</p>
+      <a 
+        href="https://wa.me/56912345678?text=Hola,%20tengo%20una%20consulta%20sobre%20los%20programas%20de%20EMED"
+        target="_blank"
+        class="inline-flex items-center px-4 py-3 md:px-6 md:py-4 bg-green-500 text-white font-semibold text-sm md:text-base rounded-lg hover:bg-green-600 transition-all duration-200 transform hover:scale-105 shadow-lg"
+      >
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        Escribir por WhatsApp
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  class ContactFormHandler {
+    constructor() {
+      this.forms = document.querySelectorAll('.contact-form');
+      this.init();
+    }
+
+    init() {
+      this.forms.forEach(form => {
+        // Agregar timestamp cuando se carga el formulario
+        const timestampField = form.querySelector('input[name="timestamp"]');
+        if (timestampField) {
+          timestampField.value = new Date().toISOString();
+        }
+
+        // Manejar envío del formulario
+        form.addEventListener('submit', (e) => this.handleSubmit(e));
+      });
+    }
+
+    async handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const submitButton = form.querySelector('button[type="submit"]');
+      const successMessage = form.parentElement.querySelector('.form-success');
+
+      // Deshabilitar botón
+      submitButton.disabled = true;
+      submitButton.innerHTML = 'Enviando...';
+
+      try {
+        // Aquí iría la lógica para enviar a tu backend/CRM
+        // Por ahora simulamos el envío
+        await this.simulateSubmit(formData);
+
+        // Mostrar mensaje de éxito
+        form.style.display = 'none';
+        successMessage.classList.remove('hidden');
+
+        // Opcional: Redirigir a WhatsApp después de 3 segundos
+        setTimeout(() => {
+          const program = formData.get('program');
+          const nombre = formData.get('nombre');
+          const message = `Hola, soy ${nombre}. Acabo de enviar una consulta sobre ${program || 'los programas de EMED'} y me gustaría recibir más información.`;
+          const whatsappUrl = `https://wa.me/56912345678?text=${encodeURIComponent(message)}`;
+          window.open(whatsappUrl, '_blank');
+        }, 3000);
+
+      } catch (error) {
+        console.error('Error enviando formulario:', error);
+        alert('Hubo un error al enviar tu consulta. Por favor intenta nuevamente.');
+        
+        // Rehabilitar botón
+        submitButton.disabled = false;
+        submitButton.innerHTML = form.dataset.originalButtonText || 'Enviar Consulta';
+      }
+    }
+
+    async simulateSubmit(formData) {
+      // Simular llamada API
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          console.log('Datos del formulario:', Object.fromEntries(formData));
+          resolve();
+        }, 1000);
+      });
+    }
+  }
+
+  // Inicializar cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    new ContactFormHandler();
+  });
+</script>
+
+<style>
+  .contact-form-container {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  }
+
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus {
+    box-shadow: 0 0 0 3px rgba(126, 197, 214, 0.1);
+  }
+
+  .contact-form button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+
+  /* Forzar colores correctos en botones */
+  .contact-form-container a[class*="bg-"],
+  .contact-form-container button[class*="bg-"] {
+    color: white !important;
+    text-decoration: none !important;
+  }
+
+  .contact-form-container a[class*="bg-"]:hover,
+  .contact-form-container button[class*="bg-"]:hover {
+    color: white !important;
+    text-decoration: none !important;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+
+  .animate-pulse {
+    animation: pulse 2s infinite;
+  }
+</style>
