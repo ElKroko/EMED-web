@@ -27,17 +27,17 @@ const MapaChileGeoJSON: React.FC<Props> = ({
 
         // Configuración del SVG para formato vertical
         const svg = d3.select(svgRef.current);
-        const width = 600;
-        const heightNum = 800; // Altura para Chile completo
+        const width = 600; // Ancho reducido para formato vertical
+        const heightNum = 800; // Altura aumentada para formato vertical
         
         svg.attr("width", width).attr("height", heightNum);
         svg.selectAll("*").remove();
 
-        // Proyección para Chile completo centrado
+        // Proyección para Chile completo en formato vertical
         const projection = d3.geoMercator()
-          .center([-71, -38]) // Centrado para incluir todo Chile
-          .scale(1800) // Ajustado para el nuevo contenedor
-          .translate([width / 2, heightNum / 2]); // Centrado en el SVG
+          .center([-71, -35]) // Centrado ligeramente más al norte
+          .scale(1800) // Escala aumentada para mostrar todo Chile
+          .translate([width / 2, heightNum / 2]) // Centrado en el SVG
 
         const path = d3.geoPath().projection(projection);
 
@@ -176,10 +176,10 @@ const MapaChileGeoJSON: React.FC<Props> = ({
             return shortName.length > 12 ? shortName.substring(0, 10) + "..." : shortName;
           });
 
-        // Crear leyenda en la esquina superior derecha
+        // Crear leyenda en la esquina superior derecha (ajustada para formato vertical)
         const legend = svg.append("g")
           .attr("class", "legend")
-          .attr("transform", "translate(380, 30)");
+          .attr("transform", "translate(400, 30)");
 
         const legendData = [
           { label: "Muy Alto", range: "15%+", color: "#F5821F" },
@@ -271,10 +271,10 @@ const MapaChileGeoJSON: React.FC<Props> = ({
 
   return (
     <div className={`w-full bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl shadow-lg overflow-hidden ${className}`}>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
+      <div className="flex flex-col lg:flex-row gap-8 p-8">
         
-        {/* Columna Izquierda - Información */}
-        <div className="flex flex-col justify-center space-y-6">
+        {/* Columna Izquierda - Información y Estadísticas */}
+        <div className="flex-1 flex flex-col gap-8">
           <div>
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               Nuestro Impacto Nacional
@@ -286,28 +286,28 @@ const MapaChileGeoJSON: React.FC<Props> = ({
           </div>
           
           {/* Estadísticas */}
-          <div className="grid grid-cols-1 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+            <div className="bg-white p-6 rounded-lg shadow-sm text-center">
               <div className="text-3xl font-bold text-celeste mb-2">1,844</div>
               <div className="text-gray-600 font-medium">Alumnos Formados</div>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm">
+            <div className="bg-white p-6 rounded-lg shadow-sm text-center">
               <div className="text-3xl font-bold text-turquesa mb-2">4,485</div>
               <div className="text-gray-600 font-medium">Mediadores Totales</div>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm">
+            <div className="bg-white p-6 rounded-lg shadow-sm text-center">
               <div className="text-3xl font-bold text-naranja mb-2">16</div>
               <div className="text-gray-600 font-medium">Regiones con Presencia</div>
             </div>
           </div>
         </div>
 
-        {/* Columna Derecha - Mapa */}
-        <div className="flex items-center justify-center">
+        {/* Columna Derecha - Mapa Vertical */}
+        <div className="flex-1 flex items-center justify-center">
           <svg
             ref={svgRef}
-            className="w-full max-w-md"
-            style={{ height: "600px" }}
+            className="w-full max-w-lg"
+            style={{ height: "700px" }}
             viewBox="0 0 600 800"
             preserveAspectRatio="xMidYMid meet"
           />
