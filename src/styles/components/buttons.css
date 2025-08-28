@@ -1,0 +1,155 @@
+/* ==========================================================================
+   Buttons - EMED Web
+   ========================================================================== */
+
+/* Base button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-6);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+/* Size variations */
+.btn--sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+}
+
+.btn--lg {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--font-size-lg);
+}
+
+.btn--xl {
+  padding: var(--space-4) var(--space-10);
+  font-size: var(--font-size-xl);
+}
+
+/* Color variations */
+.btn--primary {
+  background-color: var(--color-celeste);
+  color: white;
+}
+
+.btn--primary:hover {
+  background-color: var(--color-turquesa);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn--secondary {
+  background-color: var(--color-naranja);
+  color: white;
+}
+
+.btn--secondary:hover {
+  background-color: var(--color-amarillo);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: var(--color-turquesa);
+  border: 2px solid var(--color-turquesa);
+}
+
+.btn--outline:hover {
+  background-color: var(--color-turquesa);
+  color: white;
+}
+
+.btn--ghost {
+  background-color: transparent;
+  color: var(--color-gray-600);
+}
+
+.btn--ghost:hover {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-800);
+}
+
+.btn--white {
+  background-color: white;
+  color: var(--color-gray-800);
+}
+
+.btn--white:hover {
+  background-color: var(--color-gray-100);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Full width */
+.btn--full {
+  width: 100%;
+}
+
+/* Button with icon */
+.btn__icon {
+  margin-right: var(--space-2);
+  width: 1rem;
+  height: 1rem;
+}
+
+.btn__icon--right {
+  margin-right: 0;
+  margin-left: var(--space-2);
+}
+
+/* Disabled state */
+.btn:disabled,
+.btn--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn:disabled:hover,
+.btn--disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Button group */
+.btn-group {
+  display: inline-flex;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.btn-group .btn {
+  border-radius: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-group .btn:first-child {
+  border-top-left-radius: var(--radius-lg);
+  border-bottom-left-radius: var(--radius-lg);
+}
+
+.btn-group .btn:last-child {
+  border-top-right-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+  border-right: none;
+}
+
+/* Button text overrides for colored backgrounds */
+.btn--primary,
+.btn--secondary {
+  color: white;
+}
+
+.btn--primary:hover,
+.btn--secondary:hover {
+  color: white;
+}

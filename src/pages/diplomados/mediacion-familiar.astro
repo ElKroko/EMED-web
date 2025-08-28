@@ -1,0 +1,970 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ContactForm from '../../components/forms/ContactForm.astro';
+import { getEmedProducts } from '../../lib/wp';
+
+// Obtener datos del diplomado desde WooCommerce
+let diplomadoWC = null;
+try {
+  const productos = await getEmedProducts({ per_page: 50 });
+  diplomadoWC = productos.find(p => p.slug === 'mediacion-familiar' && p.tipo === 'Diplomado');
+} catch (error) {
+  console.error('Error al cargar diplomado desde WooCommerce:', error);
+}
+
+// Datos que se obtienen de WooCommerce (si está disponible)
+const titulo = diplomadoWC?.name || 'Diplomado en Mediación Familiar';
+const descripcionCorta = diplomadoWC?.short_description || 'Especialízate en la resolución de conflictos familiares con técnicas específicas para dinámicas familiares complejas y casos de alta sensibilidad emocional.';
+const duracion = diplomadoWC?.duracion || '120 horas';
+const modalidad = diplomadoWC?.modalidad || 'Presencial + Online';
+// Función para formatear precios (misma lógica que en diplomados.astro)
+const formatearPrecio = (precio) => {
+  if (!precio || precio === '0' || precio === 0) return null;
+  let numero = typeof precio === 'string' ? parseFloat(precio.replace(/[^\d.-]/g, '')) : precio;
+  if (isNaN(numero)) return null;
+  
+  // Si el número es menor a 1000, probablemente está en miles (ej: 550 = $550.000)
+  if (numero < 1000 && numero > 0) {
+    numero = numero * 1000;
+  }
+  
+  return `$${numero.toLocaleString('es-CL')}`;
+};
+
+// Procesar precios correctamente (priorizar sale_price si existe)
+const precioRegular = formatearPrecio(diplomadoWC?.regular_price || diplomadoWC?.price);
+const precioOferta = formatearPrecio(diplomadoWC?.sale_price);
+const precio = precioOferta || precioRegular || '$450.000';
+const beneficios = diplomadoWC?.beneficios || [];
+const temario = diplomadoWC?.temario || [];
+const requisitos = diplomadoWC?.requisitos || [];
+const metodologia = diplomadoWC?.metodologia || [];
+const certificacion = diplomadoWC?.certificacion || [];
+const empleabilidad = diplomadoWC?.empleabilidad || [];
+const brochure = diplomadoWC?.brochure || null;
+---
+
+<Layout 
+  title={`${titulo} - EMED | Certificación Ministerio de Justicia`}
+  description={descripcionCorta}
+>
+  <div class="bg-crema min-h-screen">
+  
+    <!-- Hero del Programa -->
+    <section class="hero-programa relative overflow-hidden">
+      <!-- Imagen de fondo -->
+      <div class="absolute inset-0">
+        <img 
+          src="https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+          alt="Diplomado en Mediación Familiar"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 py-32 relative z-10">
+        <div class="max-w-4xl">
+          <!-- Breadcrumb -->
+          <nav class="mb-8">
+            <ol class="flex text-white/80 text-sm">
+              <li><a href="/" class="hover:text-white">Inicio</a></li>
+              <li class="mx-2">/</li>
+              <li><a href="/diplomados" class="hover:text-white">Diplomados</a></li>
+              <li class="mx-2">/</li>
+              <li class="text-white">Mediación Familiar</li>
+            </ol>
+          </nav>
+          
+          <!-- Badges -->
+          <div class="flex gap-3 mb-6">
+            <span class="inline-block px-4 py-2 rounded-full text-sm font-bold text-white bg-celeste">
+              Diplomado
+            </span>
+            <span class="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium">
+              Presencial + Online
+            </span>
+            <span class="inline-block bg-gradient-to-r from-naranja to-amarillo text-white px-4 py-2 rounded-full text-sm font-bold">
+              ⭐ MÁS POPULAR
+            </span>
+            <span class="inline-block bg-green-600 text-white px-4 py-2 rounded-full text-sm font-bold">
+              ✓ MINSAL
+            </span>
+          </div>
+          
+          <!-- Título y descripción -->
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            {titulo}
+          </h1>
+          
+          <p class="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
+            {descripcionCorta} <strong>Certificación oficial del Ministerio de Justicia</strong>.
+          </p>
+          
+          <!-- Detalles rápidos -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white">{duracion}</div>
+              <div class="text-white/80 text-sm">Duración</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white">{modalidad}</div>
+              <div class="text-white/80 text-sm">Modalidad</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-celeste">{precio}</div>
+              <div class="text-white/80 text-sm">Inversión</div>
+            </div>
+          </div>
+          
+          <!-- CTAs optimizados -->
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button 
+              onclick="scrollToContactForm()"
+              class="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 font-bold text-base md:text-lg rounded-xl transition-all duration-200 shadow-xl bg-naranja hover:bg-amarillo text-white transform hover:scale-105"
+            >
+              <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.014 8.014 0 01-4.244-1.206L3 21l2.206-5.756A8.014 8.014 0 013 12a8 8 0 018-8c4.418 0 8 3.582 8 8z"></path>
+              </svg>
+              Hablar con un Asesor
+            </button>
+            <a 
+              href="https://wa.me/56912345678?text=Hola,%20quiero%20información%20sobre%20el%20Diplomado%20en%20Mediación%20Familiar%20de%20EMED"
+              target="_blank"
+              class="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-green-500 text-white font-bold text-base md:text-lg rounded-xl hover:bg-green-600 transition-all duration-200 shadow-xl transform hover:scale-105"
+            >
+              <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
+              WhatsApp Directo
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Forma orgánica inferior -->
+      <div class="absolute bottom-0 left-0 right-0 h-24">
+        <svg viewBox="0 0 1200 120" class="w-full h-full" preserveAspectRatio="none">
+          <path d="M0,120 C300,80 500,60 600,80 C700,100 900,60 1200,80 L1200,120 Z" fill="#FEF7E8"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Sección Brochure -->
+    {brochure && (
+      <section class="py-16 bg-gradient-to-r from-celeste/10 to-turquesa/10">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto text-center">
+            <div class="bg-white rounded-2xl shadow-xl p-8 border-2 border-celeste/20">
+              <div class="mb-6">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-celeste to-turquesa rounded-full mb-4">
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-3">
+                  Descarga el Brochure Completo
+                </h3>
+                <p class="text-gray-600 text-lg mb-6">
+                  Obtén toda la información detallada del diplomado, incluyendo programa completo, fechas, horarios y más.
+                </p>
+              </div>
+              
+              <a 
+                href={brochure.url}
+                download={brochure.filename || 'brochure-mediacion-familiar.pdf'}
+                class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-celeste to-turquesa text-white font-bold text-lg rounded-xl hover:from-turquesa hover:to-celeste transition-all duration-300 shadow-lg transform hover:-translate-y-1 hover:shadow-xl"
+              >
+                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Descargar Brochure PDF
+                {brochure.filesize && (
+                  <span class="ml-2 text-sm opacity-90">
+                    ({Math.round(brochure.filesize / 1024 / 1024 * 10) / 10} MB)
+                  </span>
+                )}
+              </a>
+              
+              <div class="mt-4 text-sm text-gray-500">
+                📄 {brochure.title || 'Información completa del programa'}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Contenido del Programa -->
+    <section class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+          
+          <!-- Contenido Principal -->
+          <div class="lg:col-span-2 space-y-12">
+            
+            <!-- Descripción detallada -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+              <h2 class="text-3xl font-bold text-gray-800 mb-6">¿Por qué elegir nuestro Diplomado?</h2>
+              
+              <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                Este diplomado está diseñado para profesionales que deseen especializarse en la mediación de conflictos familiares. Aborda desde los fundamentos teóricos hasta la práctica supervisada, <strong>cumpliendo con todos los requisitos del Ministerio de Justicia</strong> para el registro oficial de mediadores familiares.
+              </p>
+
+              <div class="bg-gradient-to-r from-celeste/10 to-turquesa/10 border border-celeste/30 rounded-lg p-6 mb-6">
+                <h3 class="font-bold text-gray-800 mb-3 flex items-center">
+                  <svg class="w-6 h-6 text-celeste mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  Certificación Oficial
+                </h3>
+                <p class="text-gray-700">
+                  Al completar exitosamente el diplomado, podrás inscribirte en el <strong>Registro de Mediadores Familiares del Ministerio de Justicia</strong>, habilitándote para ejercer profesionalmente la mediación familiar en Chile.
+                </p>
+              </div>
+
+              <h3 class="text-xl font-bold text-gray-800 mb-4">Lo que te diferenciará:</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600">Metodología basada en casos reales del sistema judicial chileno</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600">Docentes mediadores activos con años de experiencia práctica</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600">Pasantía obligatoria en centros de mediación familiar reconocidos</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600">Seguimiento post-certificación para inserción laboral efectiva</span>
+                </li>
+              </ul>
+            </div>
+            
+            <!-- Temario -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+              <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                <svg class="w-8 h-8 text-celeste mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                </svg>
+                Plan de Estudios
+              </h2>
+              
+              <div class="space-y-6">
+                
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                  <button 
+                    class="modulo-toggle w-full p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between"
+                    data-target="modulo-1"
+                  >
+                    <span class="font-semibold text-gray-800">Módulo 1: Fundamentos de la Mediación Familiar (30 horas)</span>
+                    <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+                  <div class="modulo-content hidden p-4 bg-white" id="modulo-1">
+                    <ul class="space-y-2">
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Historia y evolución de la mediación familiar en Chile</span>
+                      </li>
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Marco legal: Ley N° 19.968 de Tribunales de Familia</span>
+                      </li>
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Principios fundamentales: voluntariedad, confidencialidad, imparcialidad</span>
+                      </li>
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Ética y deontología del mediador familiar</span>
+                      </li>
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Tipología de conflictos familiares y dinámicas sistémicas</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                  <button 
+                    class="modulo-toggle w-full p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between"
+                    data-target="modulo-2"
+                  >
+                    <span class="font-semibold text-gray-800">Módulo 2: Técnicas y Herramientas Especializadas (35 horas)</span>
+                    <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+                  <div class="modulo-content hidden p-4 bg-white" id="modulo-2">
+                    <ul class="space-y-2">
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Comunicación efectiva en contextos de alta conflictividad emocional</span>
+                      </li>
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Escucha activa y manejo de emociones en crisis familiar</span>
+                      </li>
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Técnicas de reformulación y parafraseo específicas para familia</span>
+                      </li>
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Generación de opciones en casos de cuidado personal y relación directa</span>
+                      </li>
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Mediación con menores de edad: consideraciones especiales</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                  <button 
+                    class="modulo-toggle w-full p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between"
+                    data-target="modulo-3"
+                  >
+                    <span class="font-semibold text-gray-800">Módulo 3: Práctica Supervisada (30 horas)</span>
+                    <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+                  <div class="modulo-content hidden p-4 bg-white" id="modulo-3">
+                    <ul class="space-y-2">
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Simulacros con casos reales de divorcio y separación</span>
+                      </li>
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Role-playing en casos de régimen de visitas y alimentos</span>
+                      </li>
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Video-análisis de sesiones con retroalimentación individualizada</span>
+                      </li>
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Supervisión clínica con mediadores expertos certificados</span>
+                      </li>
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Autoevaluación y desarrollo de estilo propio de mediación</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                  <button 
+                    class="modulo-toggle w-full p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between"
+                    data-target="modulo-4"
+                  >
+                    <span class="font-semibold text-gray-800">Módulo 4: Pasantía Obligatoria (25 horas presenciales)</span>
+                    <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+                  <div class="modulo-content hidden p-4 bg-white" id="modulo-4">
+                    <ul class="space-y-2">
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Práctica real en centros de mediación familiar acreditados</span>
+                      </li>
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Supervisión directa de mediadores con registro vigente</span>
+                      </li>
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Documentación y seguimiento de casos según protocolos oficiales</span>
+                      </li>
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Evaluación final práctica con casos reales</span>
+                      </li>
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-600">Informe de pasantía para postulación al registro</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Metodología -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+              <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                <svg class="w-8 h-8 text-turquesa mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                </svg>
+                Metodología
+              </h2>
+              
+              <p class="text-gray-600 leading-relaxed text-lg mb-6">
+                Modalidad híbrida que combina <strong>clases teóricas online</strong> con <strong>talleres prácticos presenciales</strong>. La pasantía final es 100% presencial según normativa del Ministerio de Justicia.
+              </p>
+
+              <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-gradient-to-br from-celeste/10 to-celeste/5 border border-celeste/20 rounded-lg p-4">
+                  <h3 class="font-bold text-gray-800 mb-2 flex items-center">
+                    <svg class="w-5 h-5 text-celeste mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    Modalidad Online (70 horas)
+                  </h3>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li>• Clases sincrónicas semanales</li>
+                    <li>• Plataforma LMS avanzada</li>
+                    <li>• Material descargable</li>
+                    <li>• Foros de discusión</li>
+                  </ul>
+                </div>
+                <div class="bg-gradient-to-br from-turquesa/10 to-turquesa/5 border border-turquesa/20 rounded-lg p-4">
+                  <h3 class="font-bold text-gray-800 mb-2 flex items-center">
+                    <svg class="w-5 h-5 text-turquesa mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    Modalidad Presencial (50 horas)
+                  </h3>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li>• Talleres prácticos intensivos</li>
+                    <li>• Simulacros con actores</li>
+                    <li>• Pasantía obligatoria</li>
+                    <li>• Networking profesional</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Testimonios -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+              <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                <svg class="w-8 h-8 text-naranja mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+                </svg>
+                Lo que dicen nuestros egresados
+              </h2>
+              
+              <div class="space-y-6">
+                <div class="bg-gray-50 rounded-xl p-6">
+                  <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-celeste rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                      MJ
+                    </div>
+                    <div>
+                      <h4 class="font-semibold text-gray-800">María José González</h4>
+                      <p class="text-gray-600 text-sm">Psicóloga • Mediadora Familiar Registrada</p>
+                    </div>
+                    <div class="ml-auto flex">
+                      {[...Array(5)].map(() => (
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                      ))}
+                    </div>
+                  </div>
+                  <p class="text-gray-700 italic">"El diplomado me dio todas las herramientas necesarias para trabajar como mediadora familiar. La metodología práctica es excelente y la pasantía me permitió ganar confianza antes del registro oficial. Hoy trabajo en el centro de mediación de mi comuna."</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6">
+                  <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-celeste rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                      CM
+                    </div>
+                    <div>
+                      <h4 class="font-semibold text-gray-800">Carlos Mendoza</h4>
+                      <p class="text-gray-600 text-sm">Abogado • Centro de Mediación Familiar Las Condes</p>
+                    </div>
+                    <div class="ml-auto flex">
+                      {[...Array(5)].map(() => (
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                      ))}
+                    </div>
+                  </div>
+                  <p class="text-gray-700 italic">"Excelente formación teórica y práctica. Los docentes son profesionales con amplia experiencia en mediación familiar real. El enfoque en casos chilenos y la legislación nacional fue fundamental para mi éxito profesional."</p>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+          <!-- Sidebar -->
+          <div class="space-y-8">
+            
+            <!-- Información del Programa -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg">
+              <h3 class="text-xl font-bold text-gray-800 mb-6">Información del Programa</h3>
+              
+              <div class="space-y-4">
+                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                  <span class="text-gray-600">Duración:</span>
+                  <span class="font-semibold text-gray-800">{duracion}</span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                  <span class="text-gray-600">Modalidad:</span>
+                  <span class="font-semibold text-gray-800">{modalidad}</span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                  <span class="text-gray-600">Nivel:</span>
+                  <span class="font-semibold text-gray-800">Intermedio</span>
+                </div>
+                <div class="flex justify-between items-center py-2">
+                  <span class="text-gray-600">Inversión:</span>
+                  <span class="font-bold text-lg text-celeste">{precio}</span>
+                </div>
+              </div>
+              
+              <div class="mt-6 space-y-3">
+                <button 
+                  onclick="scrollToContactForm()"
+                  class="inline-flex items-center justify-center w-full px-4 py-3 md:px-6 md:py-4 font-bold text-sm md:text-base rounded-lg transition-all duration-300 text-white bg-naranja hover:bg-amarillo"
+                >
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.014 8.014 0 01-4.244-1.206L3 21l2.206-5.756A8.014 8.014 0 013 12a8 8 0 018-8c4.418 0 8 3.582 8 8z"></path>
+                  </svg>
+                  Consultar con Asesor
+                </button>
+                <a 
+                  href="/financiamiento"
+                  class="inline-flex items-center justify-center w-full px-4 py-3 md:px-6 md:py-4 border-2 border-gray-300 text-gray-700 font-semibold text-sm md:text-base rounded-lg hover:border-celeste hover:text-celeste transition-all duration-300"
+                >
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                  </svg>
+                  Ver Financiamiento
+                </a>
+              </div>
+              
+              <!-- Urgency element -->
+              <div class="mt-4 bg-gradient-to-r from-naranja/10 to-amarillo/10 border border-naranja/30 rounded-lg p-4">
+                <div class="flex items-center mb-2">
+                  <svg class="w-5 h-5 text-naranja mr-2 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-naranja font-semibold text-sm">¡Últimas plazas!</span>
+                </div>
+                <p class="text-gray-600 text-sm">Este es nuestro programa más solicitado. Quedan pocas vacantes para el próximo ciclo.</p>
+              </div>
+            </div>
+            
+            <!-- Beneficios -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg">
+              <h3 class="text-xl font-bold text-gray-800 mb-6">Beneficios Exclusivos</h3>
+              
+              <div class="space-y-3">
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600 text-sm">Certificación reconocida por el Ministerio de Justicia</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600 text-sm">Práticas con casos reales supervisados</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600 text-sm">Inserción en registro oficial de mediadores</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600 text-sm">Metodología actualizada según normativa vigente</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600 text-sm">Networking con profesionales del área</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600 text-sm">Material de apoyo descargable</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600 text-sm">Seguimiento post-certificación</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Requisitos -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg">
+              <h3 class="text-xl font-bold text-gray-800 mb-6">Requisitos de Ingreso</h3>
+              
+              <div class="space-y-3">
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-turquesa mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <span class="text-gray-600 text-sm">Título profesional universitario de al menos 8 semestres</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-turquesa mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <span class="text-gray-600 text-sm">Experiencia laboral mínima de 2 años</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-turquesa mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <span class="text-gray-600 text-sm">Entrevista personal con equipo académico</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-turquesa mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <span class="text-gray-600 text-sm">Carta de motivación</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-turquesa mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <span class="text-gray-600 text-sm">Disponibilidad para asistir a pasantía presencial</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Certificación -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg">
+              <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                <svg class="w-6 h-6 text-amarillo mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2m0 0l4-4m-6 2a9 9 0 110 18 9 9 0 010-18z"></path>
+                </svg>
+                Certificación
+              </h3>
+              <p class="text-gray-600 leading-relaxed text-sm">
+                <strong>Diploma de Especialización en Mediación Familiar</strong> otorgado por EMED, válido para inscripción en el Registro de Mediadores del Ministerio de Justicia de Chile.
+              </p>
+            </div>
+
+            <!-- Empleabilidad -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg">
+              <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                <svg class="w-6 h-6 text-verde mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6z"></path>
+                </svg>
+                Campo Laboral
+              </h3>
+              
+              <div class="space-y-3">
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-verde mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600 text-sm">Centros de Mediación Familiar</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-verde mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600 text-sm">Tribunales de Familia</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-verde mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600 text-sm">Consultoría independiente</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-verde mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600 text-sm">ONGs especializadas</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-verde mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-gray-600 text-sm">Servicios municipales</span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
+          
+          <!-- Estudiantes formados -->
+          <div class="bg-white rounded-2xl p-8 shadow-lg">
+            <div class="text-3xl font-bold text-celeste mb-2">1,200+</div>
+            <div class="text-gray-600">Mediadores Familiares Certificados</div>
+          </div>
+          
+          <!-- Satisfacción -->
+          <div class="bg-white rounded-2xl p-8 shadow-lg">
+            <div class="text-3xl font-bold text-turquesa mb-2">95%</div>
+            <div class="text-gray-600">Tasa de Inserción Laboral</div>
+          </div>
+          
+          <!-- Experiencia -->
+          <div class="bg-white rounded-2xl p-8 shadow-lg">
+            <div class="text-3xl font-bold text-naranja mb-2">15+</div>
+            <div class="text-gray-600">Años Formando Mediadores</div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulario Contextual -->
+    <section id="contact-form" class="py-16 bg-gradient-to-br from-celeste to-turquesa">
+      <div class="container mx-auto px-4">
+        
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center text-white mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              ¿Listo para especializarte en Mediación Familiar?
+            </h2>
+            <p class="text-xl opacity-90">
+              Un asesor académico te contactará para resolver todas tus dudas sobre el proceso de registro en el Ministerio de Justicia
+            </p>
+          </div>
+
+          <ContactForm 
+            type="diplomado"
+            program={titulo}
+            source="mediacion-familiar"
+            title="Consulta sobre Mediación Familiar"
+            subtitle="Completa tus datos y un asesor especializado te contactará en las próximas 2 horas"
+            showUrgency={true}
+            className="bg-white"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Programas Relacionados -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            Otros Diplomados que te Pueden Interesar
+          </h2>
+          <p class="text-lg text-gray-600">
+            Amplía tu formación en mediación con nuestros otros diplomados especializados
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <a href="/diplomados/mediacion-escolar" class="group block bg-gray-50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
+            <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-celeste">Mediación Escolar</h3>
+            <p class="text-gray-600 mb-4">Especialízate en la resolución de conflictos en ambientes educativos</p>
+            <span class="inline-flex items-center text-celeste font-semibold">
+              Ver más información
+              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </span>
+          </a>
+          
+          <a href="/diplomados/mediacion-laboral" class="group block bg-gray-50 rounded-2xl p-6 hover:shadow-lg transition-all duration-200">
+            <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-celeste">Mediación Laboral</h3>
+            <p class="text-gray-600 mb-4">Resuelve conflictos organizacionales y mejora el clima laboral</p>
+            <span class="inline-flex items-center text-celeste font-semibold">
+              Ver más información
+              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </span>
+          </a>
+        </div>
+        
+        <div class="text-center mt-8">
+          <a 
+            href="/diplomados"
+            class="inline-flex items-center px-8 py-4 bg-celeste text-white font-bold text-lg rounded-xl hover:bg-turquesa transform hover:scale-105 transition-all duration-200 shadow-lg"
+          >
+            Ver Todos los Diplomados
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>
+
+<style>
+  .hero-programa {
+    min-height: 70vh;
+  }
+  
+  /* Estilos para acordeones del temario */
+  .modulo-toggle[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+  
+  /* Forzar colores correctos en botones y links-botones */
+  a[class*="bg-celeste"],
+  a[class*="bg-naranja"],
+  a[class*="bg-turquesa"],
+  a[class*="bg-green"],
+  button[class*="bg-celeste"],
+  button[class*="bg-naranja"],
+  button[class*="bg-turquesa"] {
+    color: white !important;
+    text-decoration: none !important;
+  }
+  
+  a[class*="bg-celeste"]:hover,
+  a[class*="bg-naranja"]:hover,
+  a[class*="bg-turquesa"]:hover,
+  a[class*="bg-green"]:hover,
+  button[class*="bg-celeste"]:hover,
+  button[class*="bg-naranja"]:hover,
+  button[class*="bg-turquesa"]:hover {
+    color: white !important;
+    text-decoration: none !important;
+  }
+
+  /* Links que actúan como botones secundarios */
+  a[class*="border-gray"],
+  a[class*="border-celeste"],
+  a[class*="border-white"] {
+    text-decoration: none !important;
+  }
+
+  a[class*="border-gray"]:hover,
+  a[class*="border-celeste"]:hover,
+  a[class*="border-white"]:hover {
+    text-decoration: none !important;
+  }
+</style>
+
+<script>
+  // Funcionalidad de acordeón para el temario
+  class TemarioAccordion {
+    constructor() {
+      this.toggles = document.querySelectorAll('.modulo-toggle');
+      this.init();
+    }
+
+    init() {
+      this.toggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+          const target = e.currentTarget.dataset.target;
+          const content = document.getElementById(target);
+          const icon = e.currentTarget.querySelector('svg');
+          
+          if (content.classList.contains('hidden')) {
+            // Cerrar otros acordeones
+            this.closeAll();
+            
+            // Abrir el actual
+            content.classList.remove('hidden');
+            icon.style.transform = 'rotate(180deg)';
+            e.currentTarget.setAttribute('aria-expanded', 'true');
+          } else {
+            // Cerrar el actual
+            content.classList.add('hidden');
+            icon.style.transform = 'rotate(0deg)';
+            e.currentTarget.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    }
+
+    closeAll() {
+      this.toggles.forEach(toggle => {
+        const target = toggle.dataset.target;
+        const content = document.getElementById(target);
+        const icon = toggle.querySelector('svg');
+        
+        content.classList.add('hidden');
+        icon.style.transform = 'rotate(0deg)';
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    }
+  }
+
+  // Función para scroll suave al formulario
+  function scrollToContactForm() {
+    document.getElementById('contact-form').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+
+  // Inicializar cuando DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    new TemarioAccordion();
+  });
+</script>

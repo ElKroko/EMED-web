@@ -1,5 +1,13 @@
+/* ==========================================================================
+   EMED Web - Main Styles
+   ========================================================================== */
+
 @import "tailwindcss";
 @import "./theme.css";
+
+/* ==========================================================================
+   Base Styles - Restored
+   ========================================================================== */
 
 html {
   font-family: var(--font-family-primary);
@@ -21,10 +29,6 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-weight: var(--font-weight-semibold);
   line-height: 1.2;
-  margin: 0;
-}
-
-p {
   margin: 0;
 }
 
@@ -52,6 +56,10 @@ img {
   height: auto;
   display: block;
 }
+
+/* ==========================================================================
+   Utility Classes - Complementary to Tailwind
+   ========================================================================== */
 
 /* Botones con fondo de color deben tener texto blanco y sin decoración */
 a[class*="bg-celeste"],

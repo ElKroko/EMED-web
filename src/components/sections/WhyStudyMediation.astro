@@ -60,7 +60,7 @@ const lifestyleImage = "https://images.unsplash.com/photo-1552664730-d307ca88497
     
     <!-- Título de la sección -->
     <div class="text-center mb-16 relative z-20">
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6">
+      <h2 class="text-center text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6">
         ¿Por qué estudiar mediación?
       </h2>
       <p class="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
@@ -69,15 +69,15 @@ const lifestyleImage = "https://images.unsplash.com/photo-1552664730-d307ca88497
     </div>
 
     <!-- Grid de contenido -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start relative z-20">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch relative z-20">
       
       <!-- Imagen lifestyle (2/3 del grid en desktop) -->
       <div class="lg:col-span-1 order-2 lg:order-1 relative z-20">
-        <div class="relative group">
+        <div class="relative group h-full">
           <img 
             src={lifestyleImage}
             alt="Profesionales en sesión de mediación"
-            class="w-full h-auto rounded-lg shadow-xl group-hover:shadow-2xl transition-shadow duration-300"
+            class="w-full h-full min-h-96 lg:min-h-full object-cover rounded-lg shadow-xl group-hover:shadow-2xl transition-shadow duration-300"
             loading="lazy"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

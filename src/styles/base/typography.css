@@ -1,0 +1,93 @@
+/* ==========================================================================
+   Typography - EMED Web
+   ========================================================================== */
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  color: var(--color-gray-800);
+}
+
+h1 { font-size: var(--font-size-4xl); }
+h2 { font-size: var(--font-size-3xl); }
+h3 { font-size: var(--font-size-2xl); }
+h4 { font-size: var(--font-size-xl); }
+h5 { font-size: var(--font-size-lg); }
+h6 { font-size: var(--font-size-base); }
+
+/* Responsive headings */
+@media (min-width: 768px) {
+  h1 { font-size: var(--font-size-5xl); }
+  h2 { font-size: var(--font-size-4xl); }
+  h3 { font-size: var(--font-size-3xl); }
+}
+
+@media (min-width: 1024px) {
+  h1 { font-size: var(--font-size-6xl); }
+  h2 { font-size: var(--font-size-5xl); }
+}
+
+/* Paragraphs */
+p {
+  line-height: 1.6;
+  color: var(--color-gray-600);
+}
+
+/* Links */
+a {
+  color: var(--color-turquesa);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-celeste);
+}
+
+/* Strong and emphasis */
+strong {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-turquesa);
+}
+
+em {
+  font-style: italic;
+}
+
+/* Lists */
+ol, ul {
+  padding-left: var(--space-6);
+}
+
+li {
+  margin-bottom: var(--space-2);
+}
+
+/* Code */
+code {
+  font-family: 'Monaco', 'Consolas', monospace;
+  font-size: 0.9em;
+  background-color: var(--color-gray-100);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-base);
+}
+
+/* Lead text */
+.text-lead {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-gray-600);
+  line-height: 1.7;
+}
+
+/* Small text */
+.text-small {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-500);
+}
+
+/* Muted text */
+.text-muted {
+  color: var(--color-gray-500);
+}

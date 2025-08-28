@@ -1,0 +1,210 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getEmedProducts } from '../lib/wp';
+
+// Obtener solo cursos de WooCommerce
+let cursos = [];
+try {
+  const productos = await getEmedProducts({ per_page: 50, orderby: 'menu_order', order: 'asc' });
+  cursos = productos.filter(producto => producto.tipo === 'Curso');
+} catch (error) {
+  console.error('Error al cargar cursos:', error);
+  cursos = [];
+}
+---
+
+<Layout 
+  title="Cursos - EMED | Formación Complementaria en Mediación"
+  description="Explora nuestros cursos especializados y talleres prácticos para complementar tu formación en mediación. Modalidades flexibles y certificación profesional."
+>
+  <div class="bg-gray-50 min-h-screen">
+  
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden py-20">
+      <!-- Imagen de fondo -->
+      <div class="absolute inset-0">
+        <img 
+          src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+          alt="Cursos de Mediación"
+          class="w-full h-full object-cover"
+        />
+        <!-- Overlay gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-turquesa/80 to-verde/80"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center text-white">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            Cursos Complementarios
+          </h1>
+          <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
+            Cursos especializados y talleres prácticos para complementar tu formación en mediación
+          </p>
+          <div class="flex justify-center space-x-4">
+            <span class="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium">
+              {cursos.length} Cursos Disponibles
+            </span>
+            <span class="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium">
+              Modalidad Flexible
+            </span>
+            <span class="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium">
+              Certificación Incluida
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cursos Grid -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        
+        {cursos.length > 0 ? (
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {cursos.map((curso) => (
+              <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                
+                <!-- Imagen -->
+                <div class="relative h-48 overflow-hidden">
+                  <img 
+                    src={curso.images && curso.images.length > 0 ? curso.images[0].src : '/images/default-curso.jpg'}
+                    alt={curso.name}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div class="absolute top-4 left-4">
+                    <span class="inline-block px-3 py-1 rounded-full text-sm font-bold text-white bg-turquesa">
+                      {curso.tipo}
+                    </span>
+                  </div>
+                  <div class="absolute top-4 right-4">
+                    <span class="inline-block bg-black/70 text-white px-3 py-1 rounded-full text-sm font-medium">
+                      {curso.modalidad}
+                    </span>
+                  </div>
+                </div>
+                
+                <!-- Contenido -->
+                <div class="p-6">
+                  <h3 class="text-xl font-bold text-gray-800 mb-3">
+                    {curso.name}
+                  </h3>
+                  
+                  <div class="text-gray-600 text-sm leading-relaxed mb-4" set:html={curso.short_description || curso.description?.substring(0, 120) + '...'}>
+                  </div>
+                  
+                  <!-- Detalles -->
+                  <div class="space-y-2 mb-6">
+                    <div class="flex items-center text-sm text-gray-600">
+                      <svg class="w-4 h-4 mr-2 text-celeste" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span class="font-medium">Duración:</span> {curso.duracion}
+                    </div>
+                    
+                    <div class="flex items-center text-sm text-gray-600">
+                      <svg class="w-4 h-4 mr-2 text-turquesa" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                      </svg>
+                      <span class="font-medium">Modalidad:</span> {curso.modalidad}
+                    </div>
+                    
+                    <div class="flex items-center text-sm">
+                      <svg class="w-4 h-4 mr-2 text-naranja" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                      </svg>
+                      <span class="font-bold text-gray-800">{curso.precio_formateado || `$${parseInt(curso.price).toLocaleString('es-CL')}`}</span>
+                    </div>
+                  </div>
+                  
+                  <!-- Botones -->
+                  <div class="space-y-3">
+                    <a 
+                      href={`/programas/${curso.slug}`}
+                      class="inline-flex items-center justify-center w-full px-6 py-3 font-bold rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg bg-turquesa hover:bg-celeste text-white"
+                    >
+                      Ver Detalles
+                      <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </a>
+                    
+                    <a 
+                      href="/contacto"
+                      class="inline-flex items-center justify-center w-full px-6 py-3 border-2 border-turquesa text-turquesa font-bold rounded-lg transition-all duration-300 hover:bg-turquesa hover:text-white"
+                    >
+                      Consulta Gratis
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <!-- Estado vacío -->
+          <div class="text-center py-16">
+            <div class="bg-white border border-gray-200 rounded-2xl p-12 shadow-xl max-w-md mx-auto">
+              <svg class="w-20 h-20 mx-auto text-gray-400 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              <h3 class="text-2xl font-bold text-gray-800 mb-4">Cursos en Preparación</h3>
+              <p class="text-gray-600 mb-8 leading-relaxed">
+                Estamos preparando nuevos cursos especializados que estarán disponibles próximamente. 
+                Mientras tanto, te invitamos a explorar nuestros diplomados.
+              </p>
+              <div class="space-y-4">
+                <a 
+                  href="/diplomados"
+                  class="inline-flex items-center px-8 py-4 bg-turquesa text-white font-bold rounded-lg hover:bg-celeste transition-all duration-200 shadow-lg"
+                >
+                  Ver Diplomados
+                  <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+                <div>
+                  <a 
+                    href="/contacto"
+                    class="inline-flex items-center px-6 py-3 border-2 border-turquesa text-turquesa font-semibold rounded-lg hover:bg-turquesa hover:text-white transition-colors"
+                  >
+                    Notificarme cuando estén listos
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <!-- CTA Section -->
+        {cursos.length > 0 && (
+          <div class="mt-20 text-center">
+            <div class="bg-gradient-to-r from-turquesa/10 to-verde/10 rounded-2xl p-8">
+              <h3 class="text-2xl font-bold text-gray-800 mb-4">¿Necesitas una formación más completa?</h3>
+              <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+                Si buscas una especialización profunda y certificación oficial, nuestros diplomados ofrecen 
+                un programa completo con práctica supervisada.
+              </p>
+              <div class="space-x-4">
+                <a 
+                  href="/diplomados"
+                  class="inline-flex items-center px-8 py-4 bg-turquesa text-white font-bold text-lg rounded-xl hover:bg-celeste transform hover:scale-105 transition-all duration-200 shadow-lg"
+                >
+                  Ver Diplomados
+                  <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                  </svg>
+                </a>
+                <a 
+                  href="/contacto"
+                  class="inline-flex items-center px-8 py-4 border-2 border-turquesa text-turquesa font-bold text-lg rounded-xl hover:bg-turquesa hover:text-white transition-all duration-200"
+                >
+                  Consulta Personalizada
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  </div>
+</Layout>

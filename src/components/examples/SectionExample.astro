@@ -1,0 +1,79 @@
+---
+// Ejemplo de uso de las nuevas clases CSS refactorizadas
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  size?: 'sm' | 'md' | 'lg';
+  background?: 'white' | 'crema' | 'gradient';
+}
+
+const { 
+  title = "Ejemplo de Sección",
+  subtitle = "Este es un subtítulo de ejemplo usando las nuevas clases CSS refactorizadas",
+  size = 'md',
+  background = 'white'
+} = Astro.props;
+
+const sectionClasses = [
+  'section',
+  size === 'sm' ? 'section--sm' : '',
+  size === 'lg' ? 'section--lg' : '',
+  background === 'crema' ? 'section--bg-crema' : '',
+  background === 'gradient' ? 'section--bg-gradient' : ''
+].filter(Boolean).join(' ');
+---
+
+<section class={sectionClasses}>
+  <div class="container mx-auto px-4">
+    
+    <!-- Usando las nuevas clases de header de sección -->
+    <div class="section__header">
+      <h2 class="section__title">
+        {title}
+      </h2>
+      <p class="section__subtitle">
+        {subtitle}
+      </p>
+    </div>
+
+    <!-- Contenido de ejemplo -->
+    <div class="content-center">
+      
+      <!-- Ejemplo de botones con las nuevas clases -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <a href="#" class="btn btn--primary">
+          Botón Primario
+        </a>
+        <a href="#" class="btn btn--secondary">
+          Botón Secundario
+        </a>
+        <a href="#" class="btn btn--outline">
+          Botón Outline
+        </a>
+      </div>
+
+      <!-- Ejemplo de contenido centrado -->
+      <div class="content-center--narrow">
+        <p class="text-lead mb-6">
+          Este es un ejemplo de texto lead usando las nuevas clases de tipografía refactorizadas.
+        </p>
+        
+        <p class="mb-4">
+          Las nuevas clases CSS proporcionan consistencia y eliminan la necesidad de usar <strong>!important</strong> 
+          en los estilos, mejorando la mantenibilidad del código.
+        </p>
+        
+        <p class="text-small text-muted">
+          Texto pequeño con color muted.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Estilos específicos del componente (si es necesario) */
+  /* Ya no necesitamos !important gracias a la refactorización */
+</style>

@@ -1,0 +1,320 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getEmedProducts } from '../lib/wp';
+import MidHeroSVG from '../components/sections/MidHeroSVG.astro';
+
+// Función para limpiar HTML de las descripciones
+const limpiarHTML = (htmlString) => {
+  if (!htmlString) return '';
+  return htmlString
+    .replace(/<[^>]*>/g, '') // Eliminar todas las etiquetas HTML
+    .replace(/&nbsp;/g, ' ') // Reemplazar &nbsp; con espacios
+    .replace(/&amp;/g, '&') // Reemplazar &amp; con &
+    .replace(/&lt;/g, '<') // Reemplazar &lt; con <
+    .replace(/&gt;/g, '>') // Reemplazar &gt; con >
+    .trim();
+};
+
+// Función para formatear precios
+const formatearPrecio = (precio) => {
+  if (!precio || precio === '0' || precio === 0) return null;
+  let numero = typeof precio === 'string' ? parseFloat(precio.replace(/[^\d.-]/g, '')) : precio;
+  if (isNaN(numero)) return null;
+  
+  // Si el número es menor a 1000, probablemente está en miles (ej: 550 = $550.000)
+  if (numero < 1000 && numero > 0) {
+    numero = numero * 1000;
+  }
+  
+  return `$${numero.toLocaleString('es-CL')}`;
+};
+
+// Obtener solo diplomados de WooCommerce
+let diplomados = [];
+try {
+  const productos = await getEmedProducts({ per_page: 50, orderby: 'menu_order', order: 'asc' });
+  diplomados = productos.filter(producto => producto.tipo === 'Diplomado');
+  console.log(`Cargados ${diplomados.length} diplomados desde WooCommerce.`);
+  // mostrar los nombres de los diplomados y su url
+  console.log('Diplomados cargados:', diplomados.map(d => `${d.name} (${d.slug})`).join(', '));
+} catch (error) {
+  console.error('Error al cargar diplomados:', error);
+  diplomados = [];
+}
+
+// Mapear productos WooCommerce a formato con páginas especializadas de Astro
+const mapearDiplomado = (producto) => {
+  // Mapear slugs problemáticos
+  const slugMapping = {
+    'diplomado-en-mediacion-familiar': 'mediacion-familiar',
+    'mediacion-familiar': 'mediacion-familiar',
+    'mediacion-escolar': 'mediacion-escolar', 
+    'mediacion-laboral': 'mediacion-laboral'
+  };
+  
+  const slugCorregido = slugMapping[producto.slug] || producto.slug;
+  const urlEspecializada = `/diplomados/${slugCorregido}`;
+  
+  // Determinar badges basados en el slug corregido (solo mantener "MÁS POPULAR" para mediación familiar)
+  let badges = [];
+  if (slugCorregido === 'mediacion-familiar') {
+    badges = ['MÁS POPULAR'];
+  }
+
+  // Imágenes específicas para cada diplomado
+  const imagenesEspecificas = {
+    'mediacion-familiar': 'https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+    'mediacion-escolar': 'https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+    'mediacion-laboral': 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+  };
+
+  // Procesar precios correctamente
+  const precioRegular = formatearPrecio(producto.regular_price || producto.price);
+  const precioOferta = formatearPrecio(producto.sale_price);
+  
+  return {
+    id: slugCorregido,
+    titulo: producto.name,
+    descripcion: limpiarHTML(producto.short_description),
+    duracion: producto.duracion,
+    modalidad: producto.modalidad,
+    precio: precioOferta || precioRegular || 'Precio por consultar',
+    destacado: producto.featured || producto.destacado,
+    imagen: producto.images && producto.images.length > 0 ? producto.images[0].src : imagenesEspecificas[slugCorregido],
+    badges: badges,
+    url: urlEspecializada,
+    beneficios: producto.beneficios || []
+  };
+};
+
+// Procesar diplomados de WooCommerce y ordenarlos correctamente
+let diplomadosFinales = [];
+if (diplomados.length > 0) {
+  const diplomadosMapeados = diplomados.map(mapearDiplomado);
+  
+  // Orden correcto: familiar > escolar > laboral
+  const ordenCorrecto = ['mediacion-familiar', 'mediacion-escolar', 'mediacion-laboral'];
+  
+  diplomadosFinales = ordenCorrecto
+    .map(slug => diplomadosMapeados.find(d => d.id === slug))
+    .filter(d => d !== undefined);
+  
+  // Agregar cualquier diplomado adicional que no esté en el orden predefinido
+  const diplomadosAdicionales = diplomadosMapeados.filter(d => !ordenCorrecto.includes(d.id));
+  diplomadosFinales = [...diplomadosFinales, ...diplomadosAdicionales];
+}
+---
+
+<Layout 
+  title="Diplomados - EMED | Especializaciones en Mediación"
+  description="Descubre nuestros diplomados especializados en mediación. Programas con certificación oficial, metodología práctica y reconocimiento profesional."
+>
+  <div class="bg-crema min-h-screen">
+  
+    <!-- Hero Section -->
+    <section class="relative py-24 bg-crema overflow-hidden">
+      <!-- Formas orgánicas de fondo -->
+      <div class="absolute z-0" style="top: -30%; left: 0; right: 0; height: 160%; overflow: visible;">
+        <MidHeroSVG 
+          color1="#F7C97B"
+          color2="#EE800C"
+          className="mid-hero-svg-bg"
+          zIndex={1}
+        />
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6">
+            Diplomados Especializados
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Programas de alta especialización con certificación oficial y reconocimiento profesional
+          </p>
+          <div class="flex justify-center flex-wrap gap-4">
+            <span class="inline-block bg-white/90 text-gray-800 px-4 py-2 rounded-full text-sm font-medium shadow-sm">
+              {diplomadosFinales.length} Especialidades Disponibles
+            </span>
+            <span class="inline-block bg-white/90 text-gray-800 px-4 py-2 rounded-full text-sm font-medium shadow-sm">
+              Certificación Oficial
+            </span>
+            <span class="inline-block bg-white/90 text-gray-800 px-4 py-2 rounded-full text-sm font-medium shadow-sm">
+              Modalidades Flexibles
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Diplomados Grid -->
+    <section class="py-20 bg-crema relative">
+      <div class="container mx-auto px-4">
+        
+        <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
+          {diplomadosFinales.map((diplomado) => (
+            <div class={`diplomado-card bg-white border border-gray-200 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 ${diplomado.destacado ? 'ring-2 ring-naranja ring-opacity-50 shadow-2xl' : ''}`}>
+              
+              {diplomado.destacado && (
+                <div class="bg-gradient-to-r from-naranja to-amarillo text-white px-4 py-2 text-sm font-bold text-center">
+                  ⭐ MÁS POPULAR
+                </div>
+              )}
+              
+              <!-- Imagen -->
+              <div class="relative h-48 overflow-hidden">
+                <img 
+                  src={diplomado.imagen || (diplomado.images && diplomado.images.length > 0 ? diplomado.images[0].src : '/images/default-diplomado.jpg')}
+                  alt={diplomado.titulo || diplomado.name}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div class="absolute top-4 right-4 space-x-1">
+                  {(diplomado.badges || []).map((badge) => (
+                    <span class="inline-block px-2 py-1 rounded-full text-xs font-bold text-white bg-naranja">
+                      ⭐ {badge}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              
+              <!-- Contenido -->
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-3">
+                  {diplomado.titulo || diplomado.name}
+                </h3>
+                
+                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                  {diplomado.descripcion || diplomado.short_description}
+                </p>
+                
+                <!-- Detalles -->
+                <div class="space-y-2 mb-6">
+                  <div class="flex items-center text-sm text-gray-600">
+                    <svg class="w-4 h-4 mr-2 text-celeste" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span class="font-medium">Duración: </span>{diplomado.duracion}
+                  </div>
+                  
+                  <div class="flex items-center text-sm text-gray-600">
+                    <svg class="w-4 h-4 mr-2 text-turquesa" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    <span class="font-medium">Modalidad: </span>{diplomado.modalidad}
+                  </div>
+                  
+                  <div class="flex items-center text-sm">
+                    <svg class="w-4 h-4 mr-2 text-naranja" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                    </svg>
+                    <div>
+                      <span class="font-bold text-gray-800">{diplomado.precio || diplomado.precio_formateado}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Beneficios destacados -->
+                <div class="border-t pt-4 mb-6">
+                  {(diplomado.beneficios || []).slice(0, 3).map((beneficio) => (
+                    <div class="text-xs text-gray-600 mb-1 flex items-center">
+                      <svg class="w-3 h-3 mr-2 text-verde" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                      </svg>
+                      {beneficio}
+                    </div>
+                  ))}
+                </div>
+                
+                <!-- Botones -->
+                <div class="space-y-3">
+                  <a 
+                    href={diplomado.url || `/diplomados/${diplomado.slug || diplomado.id}`}
+                    class={`inline-flex items-center justify-center w-full px-6 py-3 font-bold rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg text-white ${diplomado.destacado ? 'bg-naranja hover:bg-amarillo' : 'bg-celeste hover:bg-turquesa'}`}
+                  >
+                    Ver Detalles Completos
+                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
+                  
+                  <a 
+                    href="/contacto"
+                    class="inline-flex items-center justify-center w-full px-6 py-3 border-2 border-celeste text-celeste font-bold rounded-lg transition-all duration-300 hover:bg-celeste hover:text-white"
+                  >
+                    Consulta Gratis
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- CTA Section -->
+        <div class="text-center">
+          <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">¿No sabes cuál elegir?</h3>
+            <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+              Nuestros asesores académicos te ayudarán a elegir el diplomado perfecto según tu experiencia y objetivos profesionales.
+            </p>
+            <div class="space-x-4">
+              <a 
+                href="/contacto"
+                class="inline-flex items-center px-8 py-4 bg-celeste text-white font-bold text-lg rounded-xl hover:bg-turquesa transform hover:scale-105 transition-all duration-200 shadow-lg"
+              >
+                Recibe Asesoría Gratuita
+                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.007 8.007 0 01-7-4 8 8 0 017-4c4.418 0 8-3.582 8-8z"></path>
+                </svg>
+              </a>
+              <a 
+                href="/cursos"
+                class="inline-flex items-center px-8 py-4 border-2 border-turquesa text-turquesa font-bold text-lg rounded-xl hover:bg-turquesa hover:text-white transition-all duration-200"
+              >
+                Ver Cursos Complementarios
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  /* Uniformizar altura de tarjetas de diplomados */
+  .diplomado-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 600px;
+  }
+
+  .diplomado-card .p-6 {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.5rem;
+  }
+
+  .diplomado-card .space-y-3 {
+    margin-top: auto;
+  }
+
+  /* Asegurar que las descripciones tengan altura mínima */
+  .diplomado-card p {
+    min-height: 60px;
+    line-height: 1.5;
+  }
+
+  /* Asegurar que las imágenes tengan la misma altura */
+  .diplomado-card .relative.h-48 {
+    height: 12rem;
+    flex-shrink: 0;
+  }
+
+  .diplomado-card .relative.h-48 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

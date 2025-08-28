@@ -1,9 +1,19 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ContactForm from '../../components/forms/ContactForm.astro';
+import { getEmedProducts, getEmedProductBySlug } from '../../lib/wp';
 
-// Datos de todos los programas (mismo contenido que en programas.astro)
-const programas = [
+// Obtener productos de WooCommerce dinámicamente
+let programas = [];
+try {
+  programas = await getEmedProducts({ per_page: 100 });
+} catch (error) {
+  console.error('Error al cargar productos:', error);
+  programas = [];
+}
+
+// Datos de fallback para desarrollo (en caso de que WooCommerce no esté disponible)
+const programasFallback = [
   {
     id: 'mediacion-familiar',
     tipo: 'Diplomado',
@@ -250,7 +260,7 @@ const programas = [
       {
         nombre: 'Roberto Hernández',
         profesion: 'Jefe de RRHH',
-        testimonio: 'El programa me dio herramientas concretas para manejar conflictos en mi empresa. Muy práctico y aplicable.',
+        testimonio: 'El programaDisplay me dio herramientas concretas para manejar conflictos en mi empresa. Muy práctico y aplicable.',
         rating: 5
       },
       {
@@ -524,35 +534,131 @@ const programas = [
   }
 ];
 
-// Obtener el programa específico basado en el ID de la URL
+// Generar rutas dinámicas basadas en productos de WooCommerce
 export async function getStaticPaths() {
-  // Aquí defines todos los IDs de programas que tendrás
-  const programIds = [
-    'mediacion-familiar',
-    'mediacion-escolar', 
-    'mediacion-laboral',
-    'mediacion-comunitaria',
-    'comunicacion-efectiva',
-    'negociacion-avanzada'
-  ];
-  
-  return programIds.map(id => ({
-    params: { id }
-  }));
+  try {
+    // Obtener todos los productos de WooCommerce
+    const productos = await getEmedProducts({ per_page: 100 });
+    
+    // Generar paths usando los slugs de WooCommerce
+    return productos.map(producto => ({
+      params: { id: producto.slug }
+    }));
+  } catch (error) {
+    console.error('Error generando rutas estáticas:', error);
+    // Fallback con IDs estáticos
+    const programIds = [
+      'mediacion-familiar',
+      'mediacion-escolar', 
+      'mediacion-laboral',
+      'mediacion-comunitaria',
+      'comunicacion-efectiva',
+      'negociacion-avanzada'
+    ];
+    
+    return programIds.map(id => ({
+      params: { id }
+    }));
+  }
 }
 
 const { id } = Astro.params;
-const programa = programas.find(p => p.id === id);
+
+// Buscar el producto por slug en WooCommerce
+let programa = null;
+try {
+  programa = await getEmedProductBySlug(id);
+} catch (error) {
+  console.error('Error al buscar producto por slug:', error);
+}
+
+// Si no se encuentra en WooCommerce, buscar en fallback
+if (!programa && programasFallback.length > 0) {
+  programa = programasFallback.find(p => p.id === id);
+}
 
 // Si no se encuentra el programa, redirigir a 404
 if (!programa) {
   return new Response(null, { status: 404 });
 }
+
+// Mapear campos de WooCommerce a formato del template
+const programaDisplay = {
+  // Datos básicos
+  id: programa.slug || programa.id,
+  tipo: programa.tipo || 'Curso',
+  titulo: programa.name || programa.titulo,
+  descripcion: programa.short_description || programa.descripcion,
+  descripcionDetallada: programa.description || programa.descripcionDetallada || programa.short_description,
+  duracion: programa.duracion || '40 horas',
+  modalidad: programa.modalidad || 'Online',
+  nivel: 'Básico',
+  precio: programa.precio_formateado || programa.price || '$150.000',
+  precioFinanciado: null,
+  destacado: programa.destacado || programa.featured || false,
+  
+  // Imágenes - Prioridad: WooCommerce > imagen placeholder genérica
+  imagen: programa.images?.[0]?.src || '/images/default-programa.jpg',
+  imagenHero: programa.images?.[0]?.src || '/images/default-programa-hero.jpg',
+  
+  // Arrays (usar datos de WooCommerce si existen, sino usar fallbacks básicos)
+  beneficios: programa.beneficios || [
+    'Certificación reconocida',
+    'Metodología práctica',
+    'Material descargable',
+    'Acceso a comunidad de profesionales'
+  ],
+  temario: programa.temario || [
+    {
+      modulo: 'Módulo 1: Fundamentos',
+      contenido: [
+        'Introducción al tema',
+        'Conceptos básicos',
+        'Teoría fundamental',
+        'Casos prácticos'
+      ]
+    },
+    {
+      modulo: 'Módulo 2: Aplicación Práctica',
+      contenido: [
+        'Ejercicios prácticos',
+        'Simulacros',
+        'Evaluación',
+        'Proyecto final'
+      ]
+    }
+  ],
+  ubicacion: programa.ubicacion,
+  requisitos: programa.requisitos || [
+    'Sin requisitos previos específicos',
+    'Interés en el tema',
+    'Acceso a internet para modalidad online'
+  ],
+  metodologia: Array.isArray(programa.metodologia) && programa.metodologia.length > 0 
+    ? programa.metodologia.join(' ') 
+    : programa.metodologia || 'Metodología teórico-práctica con enfoque en aplicación real de conceptos.',
+  certificacion: Array.isArray(programa.certificacion) && programa.certificacion.length > 0 
+    ? programa.certificacion.join(' ') 
+    : programa.certificacion || 'Certificado de participación otorgado por EMED.',
+  empleabilidad: programa.empleabilidad || [
+    'Diversas áreas profesionales',
+    'Consultoría independiente',
+    'Organizaciones públicas y privadas'
+  ],
+  testimonios: [
+    {
+      nombre: 'Estudiante EMED',
+      profesion: 'Profesional',
+      testimonio: 'Excelente formación con metodología práctica y aplicable.',
+      rating: 5
+    }
+  ]
+};
 ---
 
 <Layout 
-  title={`${programa.titulo} - EMED | ${programa.tipo}`}
-  description={programa.descripcion}
+  title={`${programaDisplay.titulo} - EMED | ${programaDisplay.tipo}`}
+  description={programaDisplay.descripcion}
 >
   <div class="bg-crema min-h-screen">
   
@@ -561,8 +667,8 @@ if (!programa) {
       <!-- Imagen de fondo -->
       <div class="absolute inset-0">
         <img 
-          src={programa.imagenHero || programa.imagen}
-          alt={programa.titulo}
+          src={programaDisplay.imagenHero || programaDisplay.imagen}
+          alt={programaDisplay.titulo}
           class="w-full h-full object-cover"
         />
         <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
@@ -577,19 +683,19 @@ if (!programa) {
               <li class="mx-2">/</li>
               <li><a href="/programas" class="hover:text-white">Programas</a></li>
               <li class="mx-2">/</li>
-              <li class="text-white">{programa.titulo}</li>
+              <li class="text-white">{programaDisplay.titulo}</li>
             </ol>
           </nav>
           
           <!-- Badges -->
           <div class="flex gap-3 mb-6">
-            <span class={`inline-block px-4 py-2 rounded-full text-sm font-bold text-white ${programa.tipo === 'Diplomado' ? 'bg-celeste' : 'bg-turquesa'}`}>
-              {programa.tipo}
+            <span class={`inline-block px-4 py-2 rounded-full text-sm font-bold text-white ${programaDisplay.tipo === 'Diplomado' ? 'bg-celeste' : 'bg-turquesa'}`}>
+              {programaDisplay.tipo}
             </span>
             <span class="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium">
-              {programa.modalidad}
+              {programaDisplay.modalidad}
             </span>
-            {programa.destacado && (
+            {programaDisplay.destacado && (
               <span class="inline-block bg-gradient-to-r from-naranja to-amarillo text-white px-4 py-2 rounded-full text-sm font-bold">
                 ⭐ MÁS POPULAR
               </span>
@@ -598,29 +704,29 @@ if (!programa) {
           
           <!-- Título y descripción -->
           <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-            {programa.titulo}
+            {programaDisplay.titulo}
           </h1>
           
           <p class="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
-            {programa.descripcionDetallada || programa.descripcion}
+            {programaDisplay.descripcionDetallada || programaDisplay.descripcion}
           </p>
           
           <!-- Detalles rápidos -->
           <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
             <div class="text-center">
-              <div class="text-2xl font-bold text-white">{programa.duracion}</div>
+              <div class="text-2xl font-bold text-white">{programaDisplay.duracion}</div>
               <div class="text-white/80 text-sm">Duración</div>
             </div>
             <div class="text-center">
-              <div class="text-2xl font-bold text-white">{programa.nivel}</div>
+              <div class="text-2xl font-bold text-white">{programaDisplay.nivel}</div>
               <div class="text-white/80 text-sm">Nivel</div>
             </div>
             <div class="text-center">
-              <div class="text-2xl font-bold text-white">{programa.precio}</div>
+              <div class="text-2xl font-bold text-white">{programaDisplay.precio}</div>
               <div class="text-white/80 text-sm">Inversión</div>
             </div>
             <div class="text-center">
-              <div class="text-2xl font-bold text-celeste">{programa.precioFinanciado || 'Consultar'}</div>
+              <div class="text-2xl font-bold text-celeste">{programaDisplay.precioFinanciado || 'Consultar'}</div>
               <div class="text-white/80 text-sm">Con SENCE</div>
             </div>
           </div>
@@ -629,7 +735,7 @@ if (!programa) {
           <div class="flex flex-col sm:flex-row gap-4">
             <button 
               onclick="scrollToContactForm()"
-              class={`inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 font-bold text-base md:text-lg rounded-xl transition-all duration-200 shadow-xl ${programa.destacado ? 'bg-naranja hover:bg-amarillo' : 'bg-celeste hover:bg-turquesa'} text-white transform hover:scale-105`}
+              class={`inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 font-bold text-base md:text-lg rounded-xl transition-all duration-200 shadow-xl ${programaDisplay.destacado ? 'bg-naranja hover:bg-amarillo' : 'bg-celeste hover:bg-turquesa'} text-white transform hover:scale-105`}
             >
               <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.014 8.014 0 01-4.244-1.206L3 21l2.206-5.756A8.014 8.014 0 013 12a8 8 0 018-8c4.418 0 8 3.582 8 8z"></path>
@@ -637,7 +743,7 @@ if (!programa) {
               Hablar con un Asesor
             </button>
             <a 
-              href={`https://wa.me/56912345678?text=Hola,%20quiero%20información%20sobre%20${encodeURIComponent(programa.titulo)}%20de%20EMED`}
+              href={`https://wa.me/56912345678?text=Hola,%20quiero%20información%20sobre%20${encodeURIComponent(programaDisplay.titulo)}%20de%20EMED`}
               target="_blank"
               class="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-green-500 text-white font-bold text-base md:text-lg rounded-xl hover:bg-green-600 transition-all duration-200 shadow-xl transform hover:scale-105"
             >
@@ -676,7 +782,7 @@ if (!programa) {
               </h2>
               
               <div class="space-y-6">
-                {programa.temario.map((modulo, index) => (
+                {programaDisplay.temario.map((modulo, index) => (
                   <div class="border border-gray-200 rounded-lg overflow-hidden">
                     <button 
                       class="modulo-toggle w-full p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between"
@@ -714,12 +820,12 @@ if (!programa) {
               </h2>
               
               <p class="text-gray-600 leading-relaxed text-lg">
-                {programa.metodologia}
+                {programaDisplay.metodologia}
               </p>
             </div>
             
             <!-- Testimonios -->
-            {programa.testimonios && programa.testimonios.length > 0 && (
+            {programaDisplay.testimonios && programaDisplay.testimonios.length > 0 && (
               <div class="bg-white rounded-2xl p-8 shadow-lg">
                 <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
                   <svg class="w-8 h-8 text-naranja mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -729,7 +835,7 @@ if (!programa) {
                 </h2>
                 
                 <div class="space-y-6">
-                  {programa.testimonios.map((testimonio) => (
+                  {programaDisplay.testimonios.map((testimonio) => (
                     <div class="bg-gray-50 rounded-xl p-6">
                       <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-celeste rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
@@ -766,24 +872,24 @@ if (!programa) {
               <div class="space-y-4">
                 <div class="flex justify-between items-center py-2 border-b border-gray-200">
                   <span class="text-gray-600">Duración:</span>
-                  <span class="font-semibold text-gray-800">{programa.duracion}</span>
+                  <span class="font-semibold text-gray-800">{programaDisplay.duracion}</span>
                 </div>
                 <div class="flex justify-between items-center py-2 border-b border-gray-200">
                   <span class="text-gray-600">Modalidad:</span>
-                  <span class="font-semibold text-gray-800">{programa.modalidad}</span>
+                  <span class="font-semibold text-gray-800">{programaDisplay.modalidad}</span>
                 </div>
                 <div class="flex justify-between items-center py-2 border-b border-gray-200">
                   <span class="text-gray-600">Nivel:</span>
-                  <span class="font-semibold text-gray-800">{programa.nivel}</span>
+                  <span class="font-semibold text-gray-800">{programaDisplay.nivel}</span>
                 </div>
                 <div class="flex justify-between items-center py-2 border-b border-gray-200">
                   <span class="text-gray-600">Inversión:</span>
-                  <span class="font-bold text-lg text-gray-800">{programa.precio}</span>
+                  <span class="font-bold text-lg text-gray-800">{programaDisplay.precio}</span>
                 </div>
-                {programa.precioFinanciado && (
+                {programaDisplay.precioFinanciado && (
                   <div class="flex justify-between items-center py-2">
                     <span class="text-gray-600">Con SENCE:</span>
-                    <span class="font-bold text-lg text-celeste">{programa.precioFinanciado}</span>
+                    <span class="font-bold text-lg text-celeste">{programaDisplay.precioFinanciado}</span>
                   </div>
                 )}
               </div>
@@ -791,7 +897,7 @@ if (!programa) {
               <div class="mt-6 space-y-3">
                 <button 
                   onclick="scrollToContactForm()"
-                  class={`inline-flex items-center justify-center w-full px-4 py-3 md:px-6 md:py-4 font-bold text-sm md:text-base rounded-lg transition-all duration-300 text-white ${programa.destacado ? 'bg-naranja hover:bg-amarillo' : 'bg-celeste hover:bg-turquesa'}`}
+                  class={`inline-flex items-center justify-center w-full px-4 py-3 md:px-6 md:py-4 font-bold text-sm md:text-base rounded-lg transition-all duration-300 text-white ${programaDisplay.destacado ? 'bg-naranja hover:bg-amarillo' : 'bg-celeste hover:bg-turquesa'}`}
                 >
                   <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.014 8.014 0 01-4.244-1.206L3 21l2.206-5.756A8.014 8.014 0 013 12a8 8 0 018-8c4.418 0 8 3.582 8 8z"></path>
@@ -810,7 +916,7 @@ if (!programa) {
               </div>
               
               <!-- Urgency element para programas destacados -->
-              {programa.destacado && (
+              {programaDisplay.destacado && (
                 <div class="mt-4 bg-gradient-to-r from-naranja/10 to-amarillo/10 border border-naranja/30 rounded-lg p-4">
                   <div class="flex items-center mb-2">
                     <svg class="w-5 h-5 text-naranja mr-2 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
@@ -818,7 +924,7 @@ if (!programa) {
                     </svg>
                     <span class="text-naranja font-semibold text-sm">¡Últimas plazas!</span>
                   </div>
-                  <p class="text-gray-600 text-sm">Este es nuestro programa más solicitado. Quedan pocas vacantes para el próximo ciclo.</p>
+                  <p class="text-gray-600 text-sm">Este es nuestro programaDisplay más solicitado. Quedan pocas vacantes para el próximo ciclo.</p>
                 </div>
               )}
             </div>
@@ -828,7 +934,7 @@ if (!programa) {
               <h3 class="text-xl font-bold text-gray-800 mb-6">Beneficios</h3>
               
               <div class="space-y-3">
-                {programa.beneficios.map((beneficio) => (
+                {programaDisplay.beneficios.map((beneficio) => (
                   <div class="flex items-start">
                     <svg class="w-5 h-5 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -840,17 +946,55 @@ if (!programa) {
             </div>
             
             <!-- Requisitos -->
-            {programa.requisitos && (
+            {programaDisplay.requisitos && (
               <div class="bg-white rounded-2xl p-6 shadow-lg">
                 <h3 class="text-xl font-bold text-gray-800 mb-6">Requisitos</h3>
                 
                 <div class="space-y-3">
-                  {programa.requisitos.map((requisito) => (
+                  {programaDisplay.requisitos.map((requisito) => (
                     <div class="flex items-start">
                       <svg class="w-5 h-5 text-turquesa mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                       </svg>
                       <span class="text-gray-600 text-sm">{requisito}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <!-- Certificación -->
+            {programaDisplay.certificacion && (
+              <div class="bg-white rounded-2xl p-6 shadow-lg">
+                <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                  <svg class="w-6 h-6 text-amarillo mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2m0 0l4-4m-6 2a9 9 0 110 18 9 9 0 010-18z"></path>
+                  </svg>
+                  Certificación
+                </h3>
+                <p class="text-gray-600 leading-relaxed text-sm">
+                  {programaDisplay.certificacion}
+                </p>
+              </div>
+            )}
+
+            <!-- Empleabilidad -->
+            {programaDisplay.empleabilidad && programaDisplay.empleabilidad.length > 0 && (
+              <div class="bg-white rounded-2xl p-6 shadow-lg">
+                <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                  <svg class="w-6 h-6 text-verde mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6z"></path>
+                  </svg>
+                  Oportunidades Laborales
+                </h3>
+                
+                <div class="space-y-3">
+                  {programaDisplay.empleabilidad.map((oportunidad) => (
+                    <div class="flex items-start">
+                      <svg class="w-5 h-5 text-verde mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                      <span class="text-gray-600 text-sm">{oportunidad}</span>
                     </div>
                   ))}
                 </div>
@@ -897,7 +1041,7 @@ if (!programa) {
         <div class="max-w-4xl mx-auto">
           <div class="text-center text-white mb-12">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">
-              ¿Listo para especializarte en {programa.titulo}?
+              ¿Listo para especializarte en {programaDisplay.titulo}?
             </h2>
             <p class="text-xl opacity-90">
               Un asesor académico te contactará para resolver todas tus dudas y ayudarte con el proceso de inscripción
@@ -905,12 +1049,12 @@ if (!programa) {
           </div>
 
           <ContactForm 
-            type="programa"
-            program={programa.titulo}
-            source={`programa-${programa.id}`}
-            title={`Consulta sobre ${programa.titulo}`}
+            type="programaDisplay"
+            program={programaDisplay.titulo}
+            source={`programaDisplay-${programaDisplay.id}`}
+            title={`Consulta sobre ${programaDisplay.titulo}`}
             subtitle="Completa tus datos y un asesor especializado te contactará en las próximas 2 horas"
-            showUrgency={programa.destacado}
+            showUrgency={programaDisplay.destacado}
             className="bg-white"
           />
         </div>

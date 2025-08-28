@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Sections - EMED Web
+   ========================================================================== */
+
+/* Base section */
+.section {
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
+}
+
+.section--lg {
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-20);
+}
+
+.section--sm {
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-12);
+}
+
+/* Section header */
+.section__header {
+  text-align: center;
+  margin-bottom: var(--space-16);
+}
+
+.section__title {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-black);
+  margin-bottom: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .section__title {
+    font-size: var(--font-size-5xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section__title {
+    font-size: var(--font-size-6xl);
+  }
+}
+
+.section__subtitle {
+  font-size: var(--font-size-xl);
+  color: var(--color-gray-700);
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .section__subtitle {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+/* Content containers */
+.content-center {
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.content-center--wide {
+  max-width: 64rem;
+}
+
+.content-center--narrow {
+  max-width: 32rem;
+}
+
+.content-center--full {
+  max-width: 80rem;
+}
+
+/* Background variations */
+.section--bg-crema {
+  background-color: var(--color-crema);
+}
+
+.section--bg-gradient {
+  background: var(--gradient-naranja-amarillo);
+  color: white;
+}
+
+.section--bg-gradient .section__title,
+.section--bg-gradient .section__subtitle {
+  color: white;
+}
+
+/* Section with relative positioning for overlays */
+.section--relative {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Section spacing utilities */
+.section--no-bottom {
+  padding-bottom: 0;
+}
+
+.section--no-top {
+  padding-top: 0;
+}
