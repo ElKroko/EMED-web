@@ -109,45 +109,56 @@ if (diplomados.length > 0) {
   title="Diplomados - EMED | Especializaciones en Mediación"
   description="Descubre nuestros diplomados especializados en mediación. Programas con certificación oficial, metodología práctica y reconocimiento profesional."
 >
-  <div class="bg-crema min-h-screen">
-  
-    <!-- Hero Section -->
-    <section class="relative py-24 bg-crema overflow-hidden">
-      <!-- Formas orgánicas de fondo -->
-      <div class="absolute z-0" style="top: -30%; left: 0; right: 0; height: 160%; overflow: visible;">
-        <MidHeroSVG 
-          color1="#F7C97B"
-          color2="#EE800C"
-          className="mid-hero-svg-bg"
-          zIndex={1}
-        />
-      </div>
-      
-      <div class="container mx-auto px-4 relative z-10">
-        <div class="text-center">
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6">
-            Diplomados Especializados
-          </h1>
-          <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Programas de alta especialización con certificación oficial y reconocimiento profesional
-          </p>
-          <div class="flex justify-center flex-wrap gap-4">
-            <span class="inline-block bg-white/90 text-gray-800 px-4 py-2 rounded-full text-sm font-medium shadow-sm">
-              {diplomadosFinales.length} Especialidades Disponibles
-            </span>
-            <span class="inline-block bg-white/90 text-gray-800 px-4 py-2 rounded-full text-sm font-medium shadow-sm">
-              Certificación Oficial
-            </span>
-            <span class="inline-block bg-white/90 text-gray-800 px-4 py-2 rounded-full text-sm font-medium shadow-sm">
-              Modalidades Flexibles
-            </span>
-          </div>
+  <!-- Hero Section con fondo de imagen -->
+  <section class="relative py-24 overflow-hidden">
+    <!-- Imagen de fondo -->
+    <div class="absolute inset-0">
+      <img 
+        src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80"
+        alt="Diplomados en Mediación"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          Diplomados Especializados
+        </h1>
+        <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+          Programas de alta especialización con certificación oficial y reconocimiento profesional
+        </p>
+        <div class="flex justify-center flex-wrap gap-4">
+          <span class="inline-block bg-white/90 text-gray-800 px-4 py-2 rounded-full text-sm font-medium shadow-sm">
+            {diplomadosFinales.length} Especialidades Disponibles
+          </span>
+          <span class="inline-block bg-white/90 text-gray-800 px-4 py-2 rounded-full text-sm font-medium shadow-sm">
+            Certificación Oficial
+          </span>
+          <span class="inline-block bg-white/90 text-gray-800 px-4 py-2 rounded-full text-sm font-medium shadow-sm">
+            Modalidades Flexibles
+          </span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
+
+  <!-- Resto de la página con fondo unificado y formas orgánicas -->
+  <div class="relative min-h-screen bg-crema">
+    
+    <!-- Fondo orgánico SVG -->
+    <div class="absolute inset-0 z-0">
+      <MidHeroSVG 
+        color1="var(--color-amarillo)"
+        color2="var(--color-naranja)"
+        className="w-full h-full"
+        zIndex={1}
+      />
+    </div>
 
     <!-- Diplomados Grid -->
-    <section class="py-20 bg-crema relative">
+    <section class="py-20 relative z-10">
       <div class="container mx-auto px-4">
         
         <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
@@ -249,29 +260,298 @@ if (diplomados.length > 0) {
           ))}
         </div>
 
-        <!-- CTA Section -->
-        <div class="text-center">
-          <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">¿No sabes cuál elegir?</h3>
-            <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Nuestros asesores académicos te ayudarán a elegir el diplomado perfecto según tu experiencia y objetivos profesionales.
+      </div>
+    </section>
+
+    <!-- Sección Por qué EMED -->
+    <section class="py-20 relative z-10">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            ¿Por qué elegir EMED?
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Más de 20 años formando mediadores profesionales con excelencia y reconocimiento
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="text-center group">
+            <div class="w-16 h-16 mx-auto mb-4 bg-celeste rounded-full flex items-center justify-center text-white text-2xl group-hover:bg-turquesa transition-colors duration-300">
+              🎓
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">+3000 Graduados</h3>
+            <p class="text-gray-600">Mediadores formados exitosamente en nuestros programas</p>
+          </div>
+
+          <div class="text-center group">
+            <div class="w-16 h-16 mx-auto mb-4 bg-naranja rounded-full flex items-center justify-center text-white text-2xl group-hover:bg-amarillo transition-colors duration-300">
+              ⭐
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">20+ Años</h3>
+            <p class="text-gray-600">De experiencia y liderazgo en formación de mediadores</p>
+          </div>
+
+          <div class="text-center group">
+            <div class="w-16 h-16 mx-auto mb-4 bg-turquesa rounded-full flex items-center justify-center text-white text-2xl group-hover:bg-celeste transition-colors duration-300">
+              📋
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Acreditación Oficial</h3>
+            <p class="text-gray-600">Programas certificados y reconocidos institucionalmente</p>
+          </div>
+
+          <div class="text-center group">
+            <div class="w-16 h-16 mx-auto mb-4 bg-amarillo rounded-full flex items-center justify-center text-white text-2xl group-hover:bg-naranja transition-colors duration-300">
+              🤝
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Metodología Práctica</h3>
+            <p class="text-gray-600">Aprendizaje basado en casos reales y experiencias</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Testimonios -->
+    <section class="py-20 relative z-10">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            Lo que dicen nuestros graduados
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Testimonios reales de mediadores que transformaron su carrera profesional con EMED
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center mb-6">
+              <img src="https://images.unsplash.com/photo-1494790108755-2616b612b829?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="María González" class="w-12 h-12 rounded-full mr-4 object-cover" />
+              <div>
+                <h4 class="font-bold text-gray-800">María González</h4>
+                <p class="text-sm text-gray-600">Mediadora Familiar Certificada</p>
+              </div>
+            </div>
+            <p class="text-gray-700 leading-relaxed mb-4">
+              "El diplomado de Mediación Familiar cambió completamente mi perspectiva profesional. Los docentes son excepcionales y la metodología práctica me preparó para casos reales."
             </p>
-            <div class="space-x-4">
-              <a 
-                href="/contacto"
-                class="inline-flex items-center px-8 py-4 bg-celeste text-white font-bold text-lg rounded-xl hover:bg-turquesa transform hover:scale-105 transition-all duration-200 shadow-lg"
-              >
-                Recibe Asesoría Gratuita
-                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.007 8.007 0 01-7-4 8 8 0 017-4c4.418 0 8-3.582 8-8z"></path>
+            <div class="flex text-amarillo">
+              ⭐⭐⭐⭐⭐
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center mb-6">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Carlos Mendoza" class="w-12 h-12 rounded-full mr-4 object-cover" />
+              <div>
+                <h4 class="font-bold text-gray-800">Carlos Mendoza</h4>
+                <p class="text-sm text-gray-600">Mediador Laboral</p>
+              </div>
+            </div>
+            <p class="text-gray-700 leading-relaxed mb-4">
+              "EMED me brindó las herramientas necesarias para especializarme en mediación laboral. Hoy trabajo en una importante empresa resolviendo conflictos internos."
+            </p>
+            <div class="flex text-amarillo">
+              ⭐⭐⭐⭐⭐
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center mb-6">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Ana Rodríguez" class="w-12 h-12 rounded-full mr-4 object-cover" />
+              <div>
+                <h4 class="font-bold text-gray-800">Ana Rodríguez</h4>
+                <p class="text-sm text-gray-600">Mediadora Escolar</p>
+              </div>
+            </div>
+            <p class="text-gray-700 leading-relaxed mb-4">
+              "La formación en mediación escolar me permitió implementar programas de convivencia en mi colegio. Los resultados han sido extraordinarios."
+            </p>
+            <div class="flex text-amarillo">
+              ⭐⭐⭐⭐⭐
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Garantías y Beneficios -->
+    <section class="py-20 relative z-10">
+      <div class="container mx-auto px-4">
+        <div class="bg-white rounded-2xl p-8 md:p-12 shadow-xl border border-gray-100">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+              Tu inversión está protegida
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+              Estudia con total tranquilidad respaldado por nuestras garantías y beneficios exclusivos
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="text-center group">
+              <div class="w-20 h-20 mx-auto mb-6 bg-verde rounded-full flex items-center justify-center text-white text-3xl group-hover:scale-110 transition-transform duration-300">
+                🛡️
+              </div>
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Certificación Garantizada</h3>
+              <p class="text-gray-600 leading-relaxed">Si cumples con los requisitos académicos, garantizamos tu certificación oficial</p>
+            </div>
+
+            <div class="text-center group">
+              <div class="w-20 h-20 mx-auto mb-6 bg-celeste rounded-full flex items-center justify-center text-white text-3xl group-hover:scale-110 transition-transform duration-300">
+                🎯
+              </div>
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Apoyo Post-Graduación</h3>
+              <p class="text-gray-600 leading-relaxed">Asesoría continua y networking con graduados para potenciar tu carrera</p>
+            </div>
+
+            <div class="text-center group">
+              <div class="w-20 h-20 mx-auto mb-6 bg-naranja rounded-full flex items-center justify-center text-white text-3xl group-hover:scale-110 transition-transform duration-300">
+                📚
+              </div>
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Material Actualizado</h3>
+              <p class="text-gray-600 leading-relaxed">Contenidos constantemente actualizados según normativas vigentes</p>
+            </div>
+
+            <div class="text-center group md:col-span-2 lg:col-span-1">
+              <div class="w-20 h-20 mx-auto mb-6 bg-turquesa rounded-full flex items-center justify-center text-white text-3xl group-hover:scale-110 transition-transform duration-300">
+                💰
+              </div>
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Facilidades de Pago</h3>
+              <p class="text-gray-600 leading-relaxed">Planes de financiamiento flexibles adaptados a tu situación</p>
+            </div>
+
+            <div class="text-center group md:col-span-2 lg:col-span-2">
+              <div class="w-20 h-20 mx-auto mb-6 bg-amarillo rounded-full flex items-center justify-center text-white text-3xl group-hover:scale-110 transition-transform duration-300">
+                🏆
+              </div>
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Excelencia Académica</h3>
+              <p class="text-gray-600 leading-relaxed">Docentes con amplia experiencia práctica y reconocimiento en el área de mediación</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección FAQs -->
+    <section class="py-20 relative z-10">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            Preguntas Frecuentes
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Resolvemos las dudas más comunes sobre nuestros diplomados
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto space-y-6">
+          <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <div class="p-6 cursor-pointer hover:bg-gray-50 transition-colors duration-200">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold text-gray-800">¿Qué requisitos necesito para inscribirme?</h3>
+                <span class="text-celeste text-2xl">+</span>
+              </div>
+              <div class="mt-4 text-gray-600 leading-relaxed">
+                Solo necesitas ser profesional universitario o tener experiencia relevante en el área. No es necesaria experiencia previa en mediación.
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <div class="p-6 cursor-pointer hover:bg-gray-50 transition-colors duration-200">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold text-gray-800">¿Los diplomados tienen validez oficial?</h3>
+                <span class="text-celeste text-2xl">+</span>
+              </div>
+              <div class="mt-4 text-gray-600 leading-relaxed">
+                Sí, todos nuestros diplomados cuentan con certificación oficial y reconocimiento institucional. Están acreditados por las entidades correspondientes.
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <div class="p-6 cursor-pointer hover:bg-gray-50 transition-colors duration-200">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold text-gray-800">¿Puedo trabajar como mediador al graduarme?</h3>
+                <span class="text-celeste text-2xl">+</span>
+              </div>
+              <div class="mt-4 text-gray-600 leading-relaxed">
+                Absolutamente. Nuestros graduados pueden ejercer como mediadores certificados y muchos han establecido sus propias prácticas profesionales.
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <div class="p-6 cursor-pointer hover:bg-gray-50 transition-colors duration-200">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold text-gray-800">¿Ofrecen modalidad online?</h3>
+                <span class="text-celeste text-2xl">+</span>
+              </div>
+              <div class="mt-4 text-gray-600 leading-relaxed">
+                Sí, tenemos modalidades presencial, online y mixta para adaptarnos a tu disponibilidad y preferencias de aprendizaje.
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <div class="p-6 cursor-pointer hover:bg-gray-50 transition-colors duration-200">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold text-gray-800">¿Qué opciones de financiamiento tienen?</h3>
+                <span class="text-celeste text-2xl">+</span>
+              </div>
+              <div class="mt-4 text-gray-600 leading-relaxed">
+                Ofrecemos múltiples opciones: pago al contado con descuento, cuotas sin interés, y planes de financiamiento adaptados a tu situación.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Final Section -->
+    <section class="py-20 relative z-10">
+      <div class="container mx-auto px-4">
+        <div class="bg-white rounded-2xl p-8 md:p-12 shadow-xl border border-gray-100 text-center">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+            ¿Listo para transformar tu carrera profesional?
+          </h2>
+          <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Nuestros asesores académicos te ayudarán a elegir el diplomado perfecto según tu experiencia y objetivos profesionales. Recibe orientación personalizada sin compromiso.
+          </p>
+          <div class="flex justify-center">
+            <a 
+              href="/contacto"
+              class="inline-flex items-center justify-center px-12 py-5 bg-gradient-to-r from-celeste to-turquesa text-white font-bold text-xl rounded-xl hover:from-turquesa hover:to-celeste transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              <svg class="mr-3 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.007 8.007 0 01-7-4 8 8 0 017-4c4.418 0 8-3.582 8-8z"></path>
+              </svg>
+              Hablar con un Asesor Académico
+            </a>
+          </div>
+          
+          <!-- Elementos de confianza adicionales -->
+          <div class="mt-8 pt-8 border-t border-gray-200">
+            <div class="flex flex-wrap justify-center items-center gap-6 text-sm text-gray-500">
+              <div class="flex items-center">
+                <svg class="w-4 h-4 mr-2 text-verde" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                 </svg>
-              </a>
-              <a 
-                href="/cursos"
-                class="inline-flex items-center px-8 py-4 border-2 border-turquesa text-turquesa font-bold text-lg rounded-xl hover:bg-turquesa hover:text-white transition-all duration-200"
-              >
-                Ver Cursos Complementarios
-              </a>
+                Asesoría 100% Gratuita
+              </div>
+              <div class="flex items-center">
+                <svg class="w-4 h-4 mr-2 text-verde" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                Sin Compromiso
+              </div>
+              <div class="flex items-center">
+                <svg class="w-4 h-4 mr-2 text-verde" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                Respuesta en 24 horas
+              </div>
             </div>
           </div>
         </div>

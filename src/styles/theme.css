@@ -5,6 +5,7 @@
   --color-naranja: #F5821F;
   --color-amarillo: #FDB813;
   --color-beige: #FFF7E7;
+  --color-verde: #22C55E;
   
   /* Colores adicionales para Admisión */
   --color-amarillo-banner: #F7D659;
@@ -122,6 +123,7 @@
 .bg-naranja { background-color: var(--color-naranja); }
 .bg-amarillo { background-color: var(--color-amarillo); }
 .bg-beige { background-color: var(--color-beige); }
+.bg-verde { background-color: var(--color-verde); }
 
 .bg-gradient-naranja-amarillo { background: var(--gradient-naranja-amarillo); }
 .bg-gradient-marino-beige { background: var(--gradient-marino-beige); }

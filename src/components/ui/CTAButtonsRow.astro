@@ -22,7 +22,7 @@ const {
 } = Astro.props;
 ---
 
-<section class={`cta-buttons-row relative overflow-hidden ${useSVGBackground ? 'bg-celeste' : 'bg-white'} ${className}`}>
+<section class={`cta-buttons-row relative overflow-hidden ${useSVGBackground ? 'bg-celeste' : 'bg-celeste'} ${className}`}>
   
   {useSVGBackground && (
     <div class="absolute z-2" style="top: -40%; left: 0; right: 0; height: 140%;">
@@ -50,7 +50,7 @@ const {
         <div class="cta-item relative z-20">
           {/* Separador entre elementos (excepto el último) */}
           {index < items.length - 1 && (
-            <div class={`hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 w-px h-16 ${useSVGBackground ? 'bg-white bg-opacity-30' : 'bg-gray-200'}`}></div>
+            <div class={`hidden md:block absolute right-0 top-1/2 transform -translate-y-1/2 w-px h-16 ${useSVGBackground ? 'bg-white bg-opacity-30' : 'bg-white bg-opacity-30'}`}></div>
           )}
           
           <a 
@@ -58,10 +58,10 @@ const {
             class="block text-center py-8 px-6 group transition-all duration-500 ease-in-out rounded-lg hover:scale-120 transform"
           >
             <div class="text-center">
-              <div class={`text-4xl md:text-5xl lg:text-6xl font-bold mb-2 group-hover:text-turquesa transition-colors duration-300 ${useSVGBackground ? 'text-white' : 'text-gray-800'}`}>
+              <div class={`text-4xl md:text-5xl lg:text-6xl font-bold mb-2 group-hover:text-turquesa transition-colors duration-300 ${useSVGBackground ? 'text-white' : 'text-white'}`}>
                 {item.label.split(' ')[0]}
               </div>
-              <div class={`text-sm md:text-base font-medium leading-tight ${useSVGBackground ? 'text-white text-opacity-90' : 'text-gray-600'}`}>
+              <div class={`text-sm md:text-base font-medium leading-tight ${useSVGBackground ? 'text-white text-opacity-90' : 'text-white text-opacity-90'}`}>
                 {item.label.split(' ').slice(1).join(' ')}
               </div>
             </div>
