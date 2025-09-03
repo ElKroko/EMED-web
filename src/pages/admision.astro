@@ -48,61 +48,90 @@ const programRows = [
   title="Admisión - EMED | Proceso de Inscripción y Modalidades"
   description="Conoce nuestro proceso de admisión, modalidades de estudio y opciones de financiamiento. Fórmate como mediador profesional con EMED."
 >
+  <!-- Contenedor principal uniforme -->
   <div class="bg-crema min-h-screen">
   
-  <!-- Hero más pequeño con SVG extendido -->
-  <section class="hero-admision relative z-20">
-    <!-- SVG de fondo que se extiende hacia abajo -->
-    <div class="absolute top-0 left-0 w-full h-[150vh] -z-10">
-      <img 
-        src="/src/assets/images/pages/heroadmision.svg" 
-        alt="" 
-        class="w-full h-full object-cover object-top"
-      />
-    </div>
-    
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="flex justify-end items-center h-full min-h-[30vh]">
-        <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold text-white mr-8 md:mr-16">
-          Admisión
-        </h1>
+    <!-- Hero más pequeño con SVG extendido -->
+    <section class="hero-admision relative z-20">
+      <!-- SVG de fondo que se extiende hacia abajo -->
+      <div class="absolute top-0 left-0 w-full h-[150vh] -z-10">
+        <img 
+          src="/src/assets/images/pages/heroadmision.svg" 
+          alt="" 
+          class="w-full h-full object-cover object-top"
+        />
       </div>
-    </div>
-  </section>
-  
-  <!-- Sección Fórmate con nosotros -->
-  <section class="bg-transparent relative z-30">
-    <div class="mx-auto max-w-6xl rounded-2xl p-8 -mt-12 my-10">
-      <TwoColumnBlock 
-        image="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-        imageAlt="Graduados EMED celebrando"
-        heading="fórmate con nosotros"
-        content={formateContent}
-        reverse={false}
-      />
       
-      <!-- Botones CTA -->
-      <div class="container mx-auto px-4 mt-12">
-        <div class="flex justify-center gap-6">
-          <a 
-            href="/programas" 
-            class="inline-flex items-center px-8 py-3 bg-celeste text-white font-semibold rounded-full hover:bg-turquesa transition-colors duration-200"
-          >
-            Programas
-          </a>
-          <a 
-            href="/contacto" 
-            class="inline-flex items-center px-8 py-3 bg-naranja text-white font-semibold rounded-full hover:bg-amarillo transition-colors duration-200"
-          >
-            Inscríbete aquí
-          </a>
+      <!-- Contenedor principal con márgenes consistentes -->
+      <div class="main-container max-w-[1200px] mx-auto px-6 md:px-12 relative z-10">
+        <div class="flex justify-end items-center h-full min-h-[30vh]">
+          <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold text-white">
+            Admisión
+          </h1>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+    
+    <!-- Sección Fórmate con nosotros -->
+    <section class="section-spacing bg-transparent relative z-30 py-20">
+      <div class="main-container max-w-[1200px] mx-auto px-6 md:px-12">
+        
+        <!-- Título alineado a la izquierda -->
+        <div class="section-header mb-10">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-10">
+            Fórmate con nosotros
+          </h2>
+        </div>
+        
+        <!-- Contenido del bloque -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          <!-- Texto -->
+          <div class="content-text">
+            <div class="space-y-6 text-lg leading-relaxed">
+              <p>Te acompañamos durante <strong>nuestras modalidades para garantizar las mejores prácticas</strong> de formación académica y profesional.</p>
+              <p><strong>Nuestros métodos de excelencia</strong> son la garantía de calidad en todos los programas académicos.</p>
+              <p><strong>Certificaciones y convenios disponibles</strong> para potenciar tu desarrollo profesional continuo.</p>
+            </div>
+          </div>
+          
+          <!-- Imagen alineada -->
+          <div class="content-image">
+            <div class="relative">
+              <img 
+                src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                alt="Graduados EMED celebrando"
+                class="w-full h-64 md:h-80 object-cover rounded-2xl shadow-lg"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- Botones CTA centrados -->
+        <div class="text-center mt-20">
+          <div class="flex justify-center gap-6">
+            <a 
+              href="/programas" 
+              class="inline-flex items-center px-8 py-3 bg-celeste text-white font-semibold rounded-full hover:bg-turquesa transition-colors duration-200"
+            >
+              Programas
+            </a>
+            <a 
+              href="/contacto" 
+              class="inline-flex items-center px-8 py-3 bg-naranja text-white font-semibold rounded-full hover:bg-amarillo transition-colors duration-200"
+            >
+              Inscríbete aquí
+            </a>
+          </div>
+        </div>
+        
+      </div>
+    </section>
   
   <!-- Sección Financiamiento con formas orgánicas -->
-  <section class="financing-section relative bg-crema overflow-hidden">
+  <section class="financing-section relative bg-crema overflow-hidden py-20">
     <!-- Formas orgánicas de fondo -->
     <div class="absolute inset-0 w-full">
       <svg viewBox="0 0 1200 800" class="w-full h-full" preserveAspectRatio="none">
@@ -113,16 +142,17 @@ const programRows = [
       </svg>
     </div>
     
-    <div class="container mx-auto px-4 pt-25 relative z-10">
+    <!-- Contenedor principal con márgenes consistentes -->
+    <div class="main-container max-w-[1200px] mx-auto px-6 md:px-12 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         
         <!-- Contenido de financiamiento -->
         <div>
-          <h2 class="text-4xl md:text-5xl font-bold text-black mb-8">
+          <h2 class="text-4xl md:text-5xl font-bold text-black mb-10">
             Todos nuestros programas cuentan con alternativas de financiamiento
           </h2>
           
-          <div class="space-y-6 mb-8">
+          <div class="space-y-6 mb-20">
             <div>
               <h3 class="text-xl font-bold text-white mb-2">
                 Mediación Familiar: Becas de Cofinanciamiento por ciclo
@@ -165,13 +195,12 @@ const programRows = [
       />
     </div>
     
-    <div class="container mx-auto px-4 relative z-10">
+    <!-- Contenedor principal con márgenes consistentes -->
+    <div class="main-container max-w-[1200px] mx-auto px-6 md:px-12 relative z-10">
       
-      <!-- Contenido con fondo blanco -->
-      <div class="mx-auto max-w-6xl rounded-2xl p-8">
-      
-      <div class="text-center mb-16">
-        <p class="text-lg text-gray-700 mb-4">Conoce la modalidad que desarrollamos para ti</p>
+      <!-- Título centrado -->
+      <div class="text-center mb-20">
+        <p class="text-lg text-gray-700 mb-10">Conoce la modalidad que desarrollamos para ti</p>
         <h2 class="text-4xl md:text-5xl font-bold text-black">
           Modalidad de Estudio
         </h2>
@@ -220,17 +249,17 @@ const programRows = [
         </div>
         
       </div>
-      </div>
     </div>
   </section>
   
   <!-- Tabla de Programas vs Modalidades -->
   <section class="programs-table-section bg-transparent relative z-30 py-20">
-    <div class="container mx-auto px-4">
+    <!-- Contenedor principal con márgenes consistentes -->
+    <div class="main-container max-w-[1200px] mx-auto px-6 md:px-12">
       
       <!-- Título mejorado -->
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-black mb-6">
+      <div class="text-center mb-20">
+        <h2 class="text-3xl md:text-4xl font-bold text-black mb-10">
           Modalidades Disponibles por Programa
         </h2>
         <p class="text-lg text-gray-700 mx-auto">
@@ -241,11 +270,11 @@ const programRows = [
       
       <!-- Tabla mejorada -->
       <div class="overflow-x-auto">
-        <div class="bg-white rounded-2xl shadow-2xl border-2 border-gray-200 overflow-hidden max-w-5xl mx-auto">
+        <div class="bg-white rounded-2xl shadow-2xl border-2 border-gray-200 overflow-hidden">
           <div class="bg-gradient-to-r from-celeste to-turquesa p-6">
-            <h3 class="text-xl font-bold text-center">Comparativa de Modalidades</h3>
+            <h3 class="text-xl font-bold text-center text-white">Comparativa de Modalidades</h3>
           </div>
-          <div class="bg-amber-100 border-l-4 border-amber-500 p-4 max-w-4xl mx-auto rounded-r-lg mb-5">
+          <div class="bg-amber-100 border-l-4 border-amber-500 p-4 mx-6 rounded-r-lg mb-5">
           <p class="text-sm text-amber-800">
             <strong>Importante:</strong> <br>
             Por normativa del Ministerio de Justicia, la pasantía del Diplomado de Mediación Familiar debe efectuarse 100% Presencial.
@@ -340,8 +369,9 @@ const programRows = [
 
   <!-- CTA Final - Contactar Asesor -->
   <section class="final-cta-section relative py-20 bg-transparent z-30">
-    <div class="container mx-auto px-4">
-      <div class="bg-white rounded-3xl shadow-2xl overflow-hidden w-[80vw] mx-auto mb-8">
+    <!-- Contenedor principal con márgenes consistentes -->
+    <div class="main-container max-w-[1200px] mx-auto px-6 md:px-12">
+      <div class="bg-white rounded-3xl shadow-2xl overflow-hidden mb-8">
         <div class="bg-gradient-to-r from-celeste via-turquesa to-celeste rounded-3xl shadow-2xl overflow-hidden">
         <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
           

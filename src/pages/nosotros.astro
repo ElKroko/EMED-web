@@ -79,7 +79,7 @@ const getFoto = (index) => fotos[index % fotos.length];
     </section>
 
     <!-- Sección: Misión y Visión -->
-    <section class="mision-vision-section relative overflow-hidden py-20 z-10">
+    <section class="mision-vision-section relative overflow-hidden py-32 z-10">
       <!-- SVG de fondo amarillo -->
       <div class="absolute inset-0 -z-10">
         <svg viewBox="0 0 1200 800" class="w-full h-full" preserveAspectRatio="none">
@@ -88,41 +88,82 @@ const getFoto = (index) => fotos[index % fotos.length];
       </div>
       
       <div class="container mx-auto px-4 relative z-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="max-w-5xl mx-auto text-center">
           
-          <!-- Misión -->
-          <div class="mision-card bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
-              MISIÓN
+          <!-- Título introductorio -->
+          <div class="mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-8 leading-tight">
+              Nuestro Propósito
             </h2>
-            
-            <p class="text-gray-600 text-sm leading-relaxed text-center">
-              Nuestro modelo es ofrecer atención en
-              mediación dentro de los estándares
-              profesionales que amerita cualquier
-              conflicto de los elementos de las
-              comunicación estructural para la
-              resolución de sus dificultades mediante
-              la facilitación de las comunicaciones.
+            <p class="text-xl md:text-2xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
+              La mediación es más que una técnica, es una filosofía de vida que nos permite construir puentes donde antes había divisiones.
             </p>
+          </div>
+
+          <!-- Misión -->
+          <div class="mb-20">
+            <div class="flex items-center justify-center mb-8">
+              <div class="w-16 h-1 bg-gray-400"></div>
+              <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mx-6">
+                NUESTRA MISIÓN
+              </h3>
+              <div class="w-16 h-1 bg-gray-400"></div>
+            </div>
+            
+            <div class="bg-white/90 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-gray-200 shadow-2xl">
+              <p class="text-xl md:text-2xl text-gray-800 leading-relaxed font-medium">
+                <span class="text-2xl md:text-3xl font-bold text-amarillo">"</span>
+                Ofrecer atención en mediación con los más altos estándares profesionales, 
+                facilitando la comunicación estructural para la resolución de conflictos 
+                a través del diálogo constructivo y la comprensión mutua.
+                <span class="text-2xl md:text-3xl font-bold text-amarillo">"</span>
+              </p>
+              
+              <div class="mt-8 pt-6 border-t border-gray-200">
+                <p class="text-lg text-gray-600 leading-relaxed">
+                  Creemos que cada conflicto es una oportunidad de crecimiento, 
+                  y nuestro compromiso es acompañar a las personas en este proceso 
+                  de transformación personal y social.
+                </p>
+              </div>
+            </div>
           </div>
           
           <!-- Visión -->
-          <div class="vision-card bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
-              VISIÓN
-            </h2>
+          <div>
+            <div class="flex items-center justify-center mb-8">
+              <div class="w-16 h-1 bg-gray-400"></div>
+              <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mx-6">
+                NUESTRA VISIÓN
+              </h3>
+              <div class="w-16 h-1 bg-gray-400"></div>
+            </div>
             
-            <p class="text-gray-600 text-sm leading-relaxed text-center">
-              Buscar, comprometernos en mediación, y
-              capacitar profesionales que tengan las
-              competencias técnicas requeridas en las
-              diferentes áreas especializadas para
-              brindar un servicio especializado tanto
-              en Chile y los diferentes países de
-              América Latina que requieren nuestro
-              servicio pedagógico profesional.
-            </p>
+            <div class="bg-white/90 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-gray-200 shadow-2xl">
+              <p class="text-xl md:text-2xl text-gray-800 leading-relaxed font-medium">
+                <span class="text-2xl md:text-3xl font-bold text-amarillo">"</span>
+                Ser el centro de formación en mediación más reconocido de América Latina, 
+                capacitando profesionales con las competencias técnicas y humanas necesarias 
+                para brindar servicios de mediación especializados y de excelencia.
+                <span class="text-2xl md:text-3xl font-bold text-amarillo">"</span>
+              </p>
+              
+              <div class="mt-8 pt-6 border-t border-gray-200">
+                <p class="text-lg text-gray-600 leading-relaxed">
+                  Aspiramos a expandir la cultura de paz y diálogo en Chile y toda América Latina, 
+                  formando mediadores que transformen conflictos en oportunidades de entendimiento.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Elementos decorativos -->
+          <div class="mt-16 flex justify-center space-x-8">
+            <div class="w-3 h-3 bg-gray-400 rounded-full"></div>
+            <div class="w-3 h-3 bg-gray-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-gray-600 rounded-full"></div>
+            <div class="w-3 h-3 bg-gray-500 rounded-full"></div>
+            <div class="w-3 h-3 bg-gray-400 rounded-full"></div>
           </div>
           
         </div>
@@ -136,102 +177,152 @@ const getFoto = (index) => fotos[index % fotos.length];
       </div>
     </section>
 
-    <!-- Sección: Equipos -->
-    <section class="equipos-section relative overflow-hidden py-20">
-      <!-- Formas orgánicas de fondo -->
-      <div class="absolute inset-0">
-        <svg viewBox="0 0 1200 2000" class="w-full h-full" preserveAspectRatio="none">
-          <!-- Forma verde clara -->
-          <circle cx="150" cy="300" r="180" fill="#B8E6B8" opacity="0.6"/>
-          <!-- Forma naranja -->
-          <ellipse cx="900" cy="600" rx="200" ry="150" fill="#F5821F" opacity="0.7"/>
-          <!-- Forma amarilla -->
-          <path d="M400,1000 C500,950 600,1050 700,1000 C800,950 900,1050 1000,1000 L1000,1200 C900,1250 800,1150 700,1200 C600,1250 500,1150 400,1200 Z" fill="#FDB813" opacity="0.6"/>
-          <!-- Forma verde en la parte inferior -->
-          <ellipse cx="300" cy="1600" rx="250" ry="180" fill="#B8E6B8" opacity="0.8"/>
+    <!-- Sección: Nuestro Equipo -->
+    <section class="equipos-section relative py-20 bg-white">
+      
+      <!-- Línea divisoria ondulada -->
+      <div class="absolute top-0 left-0 right-0 h-24">
+        <svg viewBox="0 0 1200 120" class="w-full h-full" preserveAspectRatio="none">
+          <path d="M0,0 C300,40 500,20 600,40 C700,60 900,20 1200,40 L1200,0 Z" fill="#FEF7E8"/>
         </svg>
       </div>
       
-      <div class="container mx-auto px-4 relative z-10">
+      <div class="container mx-auto px-4 pt-16">
         
-        <!-- Equipo Principal -->
+        <!-- Título principal -->
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            Nuestro Equipo Profesional
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Profesionales especializados con amplia experiencia en mediación y formación académica de excelencia
+          </p>
+        </div>
+
+        <!-- Equipo Directivo -->
         <div class="mb-20">
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-4xl mx-auto">
-            {[...Array(5)].map((_, index) => (
-              <div class="team-member text-center">
-                <div class="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden shadow-lg">
-                  <img 
-                    src={getFoto(index)}
-                    alt="Miembro del equipo"
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-                <h4 class="text-sm font-semibold text-gray-800">Nombre Apellido</h4>
-              </div>
-            ))}
+          <div class="flex items-center justify-center mb-12">
+            <div class="w-16 h-1 bg-celeste"></div>
+            <h3 class="text-2xl md:text-3xl font-bold text-celeste mx-6">
+              Equipo Directivo
+            </h3>
+            <div class="w-16 h-1 bg-celeste"></div>
           </div>
           
-          <!-- Coordinadores -->
-          <div class="grid grid-cols-2 gap-8 max-w-xs mx-auto mt-16">
-            {[...Array(2)].map((_, index) => (
-              <div class="team-member text-center">
-                <div class="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden shadow-lg">
-                  <img 
-                    src={getFoto(index + 5)}
-                    alt="Coordinador"
-                    class="w-full h-full object-cover"
-                  />
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {[...Array(4)].map((_, index) => (
+              <div class="team-card bg-white border border-gray-100 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+                <div class="text-center">
+                  <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-300">
+                    <img 
+                      src={getFoto(index)}
+                      alt="Director"
+                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                  <h4 class="text-lg font-bold text-gray-800 mb-1">Dr. María González</h4>
+                  <p class="text-sm font-medium text-celeste mb-3">Directora Académica</p>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    Especialista en Mediación Familiar con 15+ años de experiencia docente
+                  </p>
                 </div>
-                <h4 class="text-sm font-semibold text-gray-800">Nombre Coordinador</h4>
               </div>
             ))}
           </div>
         </div>
         
-        <!-- Docentes -->
+        <!-- Docentes Nacionales -->
         <div class="mb-20">
-          <div class="bg-white rounded-3xl p-8 shadow-xl max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
-              Docentes
-            </h2>
-            
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-              {[...Array(7)].map((_, index) => (
-                <div class="team-member text-center">
-                  <div class="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden shadow-lg">
+          <div class="flex items-center justify-center mb-12">
+            <div class="w-16 h-1 bg-turquesa"></div>
+            <h3 class="text-2xl md:text-3xl font-bold text-turquesa mx-6">
+              Docentes Nacionales
+            </h3>
+            <div class="w-16 h-1 bg-turquesa"></div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {[...Array(7)].map((_, index) => (
+              <div class="team-card bg-white border border-gray-100 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+                <div class="text-center">
+                  <div class="w-16 h-16 mx-auto mb-4 rounded-full overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-300">
                     <img 
-                      src={getFoto(index + 7)}
+                      src={getFoto(index + 4)}
                       alt="Docente"
-                      class="w-full h-full object-cover"
+                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
-                  <h4 class="text-sm font-semibold text-gray-800">Nombre Apellido</h4>
+                  <h4 class="text-base font-bold text-gray-800 mb-1">Ps. Carlos Mendoza</h4>
+                  <p class="text-sm font-medium text-turquesa mb-3">Mediación Escolar</p>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    Psicólogo especializado en resolución de conflictos educativos
+                  </p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
         
         <!-- Docentes Internacionales -->
         <div class="mb-20">
-          <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
-            Docentes Internacionales
-          </h2>
+          <div class="flex items-center justify-center mb-12">
+            <div class="w-16 h-1 bg-naranja"></div>
+            <h3 class="text-2xl md:text-3xl font-bold text-naranja mx-6">
+              Docentes Internacionales
+            </h3>
+            <div class="w-16 h-1 bg-naranja"></div>
+          </div>
           
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-4xl mx-auto">
-            {[...Array(5)].map((_, index) => (
-              <div class="team-member text-center">
-                <div class="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden shadow-lg">
-                  <img 
-                    src={getFoto(index + 14)}
-                    alt="Docente Internacional"
-                    class="w-full h-full object-cover"
-                  />
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {[...Array(3)].map((_, index) => (
+              <div class="team-card bg-white border border-gray-100 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+                <div class="text-center">
+                  <div class="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-300">
+                    <img 
+                      src={getFoto(index + 11)}
+                      alt="Docente Internacional"
+                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                  <h4 class="text-xl font-bold text-gray-800 mb-2">Dr. Ana Rodríguez</h4>
+                  <p class="text-sm font-medium text-naranja mb-2">Universidad de Buenos Aires</p>
+                  <p class="text-sm font-medium text-gray-500 mb-4">Mediación Comunitaria</p>
+                  <p class="text-sm text-gray-600 leading-relaxed">
+                    Doctora en Psicología Social con especialización en mediación comunitaria. Autora de 5 publicaciones internacionales sobre resolución de conflictos.
+                  </p>
+                  
+                  <div class="mt-4 pt-4 border-t border-gray-100">
+                    <a href="#" class="inline-flex items-center text-xs text-naranja hover:text-amarillo transition-colors duration-200">
+                      <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5z" clip-rule="evenodd"></path>
+                        <path fill-rule="evenodd" d="M7.414 15.414a2 2 0 01-2.828-2.828l3-3a2 2 0 012.828 0 1 1 0 001.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5z" clip-rule="evenodd"></path>
+                      </svg>
+                      Ver perfil completo
+                    </a>
+                  </div>
                 </div>
-                <h4 class="text-sm font-semibold text-gray-800">Nombre Apellido</h4>
               </div>
             ))}
           </div>
+        </div>
+
+        <!-- CTA de contacto -->
+        <div class="text-center bg-gradient-to-r from-celeste/10 to-turquesa/10 rounded-2xl p-8 border border-celeste/20">
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">
+            ¿Quieres conocer más sobre nuestro equipo?
+          </h3>
+          <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+            Nuestros profesionales están disponibles para resolver tus consultas sobre nuestros programas de formación
+          </p>
+          <a 
+            href="/contacto"
+            class="inline-flex items-center px-8 py-4 bg-celeste text-white font-bold text-lg rounded-xl hover:bg-turquesa transform hover:scale-105 transition-all duration-200 shadow-lg"
+          >
+            Contactar con Nuestro Equipo
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.007 8.007 0 01-7-4 8 8 0 017-4c4.418 0 8-3.582 8-8z"></path>
+            </svg>
+          </a>
         </div>
         
       </div>
@@ -246,32 +337,88 @@ const getFoto = (index) => fotos[index % fotos.length];
   }
   
   .mision-vision-section {
-    min-height: 50vh;
+    min-height: 100vh;
   }
   
   .equipos-section {
-    min-height: 120vh;
+    min-height: auto;
   }
   
-  .mision-card,
-  .vision-card {
-    transition: all 0.3s ease;
+  /* Efectos de cristal para las cajas de misión y visión */
+  .mision-vision-section .bg-white\/10 {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
   }
   
-  .mision-card:hover,
-  .vision-card:hover {
+  /* Animaciones suaves para elementos decorativos */
+  .mision-vision-section .rounded-full {
+    animation: pulse-subtle 3s ease-in-out infinite;
+  }
+  
+  .mision-vision-section .rounded-full:nth-child(2) {
+    animation-delay: 0.6s;
+  }
+  
+  .mision-vision-section .rounded-full:nth-child(3) {
+    animation-delay: 1.2s;
+  }
+  
+  .mision-vision-section .rounded-full:nth-child(4) {
+    animation-delay: 1.8s;
+  }
+  
+  .mision-vision-section .rounded-full:nth-child(5) {
+    animation-delay: 2.4s;
+  }
+  
+  @keyframes pulse-subtle {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+  }
+  
+  /* Estilos para tarjetas del equipo */
+  .team-card {
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  .team-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(126, 197, 214, 0.1), transparent);
+    transition: left 0.5s;
+  }
+  
+  .team-card:hover::before {
+    left: 100%;
+  }
+  
+  .team-card:hover {
+    border-color: var(--color-celeste);
     transform: translateY(-8px);
   }
   
-  .team-member {
-    transition: all 0.3s ease;
-  }
-  
-  .team-member:hover {
-    transform: translateY(-4px);
-  }
-  
-  .team-member:hover .w-20 {
+  .team-card .group:hover img {
     transform: scale(1.1);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .team-card {
+      transform: none !important;
+    }
+    
+    .team-card:hover {
+      transform: translateY(-4px) !important;
+    }
   }
 </style>
