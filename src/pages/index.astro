@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import HeroSlider from '../components/sections/HeroSlider.astro';
 import CTAButtonsRow from '../components/ui/CTAButtonsRow.astro';
-import TwoColumnBlock from '../components/sections/TwoColumnBlock.astro';
+import TwoColumnBlockWithVideo from '../components/sections/TwoColumnBlockWithVideo.astro';
 import WhyStudyMediation from '../components/sections/WhyStudyMediation.astro';
 import ProgramsGrid from '../components/sections/ProgramsGrid.astro';
 import AccreditationBanner from '../components/sections/AccreditationBanner.astro';
@@ -65,14 +65,14 @@ const mediationContent = `
     ]}
   />
   
-  <!-- Sección Mediación -->
+  <!-- Sección Mediación con Video -->
   <section class="py-16 bg-crema relative">
-    <TwoColumnBlock 
-      image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-      imageAlt="Equipo de mediadores EMED en sesión de trabajo"
+    <TwoColumnBlockWithVideo 
+      videoId="REEMPLAZA_CON_ID_DEL_VIDEO"
       heading="¿Qué es la Mediación?"
       content={mediationContent}
       reverse={false}
+      youtubeChannelUrl="https://youtube.com/@emediacion"
     />
   </section>
   
@@ -87,13 +87,15 @@ const mediationContent = `
   <ProgramsGrid />
   
   <!-- Sección Mapa de Impacto -->
-  <section class="py-16 bg-crema">
+  <section class="py-20 bg-crema">
+    <div class="container mx-auto px-4">
       <MapaChileGeoJSON 
         client:only="react"
         title=""
-        height="500px"
-        className="max-w-5xl mx-auto mb-8"
+        height="800px"
+        className="w-full max-w-7xl mx-auto"
       />
+    </div>
   </section>
   <!-- Sección Acreditación -->
   <AccreditationBanner 

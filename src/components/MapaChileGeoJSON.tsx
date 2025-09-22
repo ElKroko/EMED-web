@@ -8,7 +8,7 @@ interface Props {
 
 const MapaChileGeoJSON: React.FC<Props> = ({ 
   className = "",
-  height = "600px",
+  height = "700px",
   title = ""
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
@@ -28,15 +28,15 @@ const MapaChileGeoJSON: React.FC<Props> = ({
         // Configuración del SVG para formato vertical
         const svg = d3.select(svgRef.current);
         const width = 600; // Ancho reducido para formato vertical
-        const heightNum = 800; // Altura aumentada para formato vertical
+        const heightNum = 1000; // Altura aumentada para formato vertical
         
         svg.attr("width", width).attr("height", heightNum);
         svg.selectAll("*").remove();
 
         // Proyección para Chile completo en formato vertical
         const projection = d3.geoMercator()
-          .center([-71, -35]) // Centrado ligeramente más al norte
-          .scale(1800) // Escala aumentada para mostrar todo Chile
+          .center([-71, -40]) // Centrado ligeramente más al norte
+          .scale(1100) // Escala aumentada para mostrar todo Chile
           .translate([width / 2, heightNum / 2]) // Centrado en el SVG
 
         const path = d3.geoPath().projection(projection);
@@ -68,31 +68,11 @@ const MapaChileGeoJSON: React.FC<Props> = ({
           .style("backdrop-filter", "blur(10px)")
           .style("border", "1px solid rgba(255,255,255,0.1)");
 
-        // Crear gradientes
-        const defs = svg.append("defs");
-        
-        // Gradiente para el océano
-        const oceanGradient = defs.append("radialGradient")
-          .attr("id", "oceanGradient")
-          .attr("cx", "50%")
-          .attr("cy", "50%")
-          .attr("r", "50%");
-
-        oceanGradient.append("stop")
-          .attr("offset", "0%")
-          .attr("stop-color", "#e3f2fd")
-          .attr("stop-opacity", 1);
-
-        oceanGradient.append("stop")
-          .attr("offset", "100%")
-          .attr("stop-color", "#b3e5fc")
-          .attr("stop-opacity", 1);
-
-        // Fondo océano
+        // Fondo simple sin gradiente
         svg.append("rect")
           .attr("width", width)
           .attr("height", heightNum)
-          .attr("fill", "url(#oceanGradient)");
+          .attr("fill", "#edfbff");
 
         // Dibujar regiones
         const regions = svg.selectAll(".region")
@@ -102,8 +82,8 @@ const MapaChileGeoJSON: React.FC<Props> = ({
           .attr("class", "region")
           .attr("d", path as any)
           .attr("fill", (d: any) => getColor(d.properties.impacto_emed_pct || 0))
-          .attr("stroke", "#ffffff")
-          .attr("stroke-width", 1.5)
+          .attr("stroke", "#ffffffff")
+          .attr("stroke-width", 1)
           .style("cursor", "pointer")
           .style("transition", "all 0.3s ease")
           .on("mouseover", function(event, d: any) {
@@ -126,7 +106,7 @@ const MapaChileGeoJSON: React.FC<Props> = ({
                     <strong style="color: #ecf0f1;">${props.alumnos_emed_estimados?.toLocaleString() || 'N/A'}</strong>
                   </div>
                   <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="color: #bdc3c7;">Mediadores totales:</span>
+                    <span style="color: #bdc3c7;">Mediadores inscritos:</span>
                     <strong style="color: #ecf0f1;">${props.total_mediadores_registrados?.toLocaleString() || 'N/A'}</strong>
                   </div>
                   <div style="margin-top: 8px; padding: 8px; background: linear-gradient(45deg, rgba(245, 130, 31, 0.2), rgba(126, 197, 214, 0.2)); border-radius: 6px; border: 1px solid rgba(245, 130, 31, 0.3);">
@@ -179,10 +159,9 @@ const MapaChileGeoJSON: React.FC<Props> = ({
         // Crear leyenda en la esquina superior derecha (ajustada para formato vertical)
         const legend = svg.append("g")
           .attr("class", "legend")
-          .attr("transform", "translate(400, 30)");
+          .attr("transform", "translate(420, 50)");
 
         const legendData = [
-          { label: "Muy Alto", range: "15%+", color: "#F5821F" },
           { label: "Alto", range: "14-15%", color: "#FDB813" },
           { label: "Medio-Alto", range: "13-14%", color: "#7EC5D6" },
           { label: "Medio", range: "12-13%", color: "#5DADE2" },
@@ -192,22 +171,22 @@ const MapaChileGeoJSON: React.FC<Props> = ({
 
         // Fondo de la leyenda
         legend.append("rect")
-          .attr("x", -15)
-          .attr("y", -25)
-          .attr("width", 170)
-          .attr("height", legendData.length * 22 + 35)
+          .attr("x", -20)
+          .attr("y", -30)
+          .attr("width", 200)
+          .attr("height", legendData.length * 28 + 45)
           .attr("fill", "rgba(255, 255, 255, 0.95)")
           .attr("stroke", "#e1e8ed")
           .attr("stroke-width", 1)
-          .attr("rx", 8)
+          .attr("rx", 10)
           .style("filter", "drop-shadow(0 2px 8px rgba(0,0,0,0.1))");
 
         // Título de la leyenda
         legend.append("text")
-          .attr("x", 65)
-          .attr("y", -8)
+          .attr("x", 80)
+          .attr("y", -10)
           .attr("text-anchor", "middle")
-          .style("font-size", "12px")
+          .style("font-size", "16px")
           .style("font-weight", "600")
           .style("fill", "#2c3e50")
           .text("Nivel de Impacto");
@@ -218,30 +197,30 @@ const MapaChileGeoJSON: React.FC<Props> = ({
           .enter()
           .append("g")
           .attr("class", "legend-item")
-          .attr("transform", (d, i) => `translate(0, ${i * 22 + 8})`);
+          .attr("transform", (d, i) => `translate(0, ${i * 28 + 12})`);
 
         legendItems.append("circle")
-          .attr("cx", 8)
-          .attr("cy", 6)
-          .attr("r", 5)
+          .attr("cx", 12)
+          .attr("cy", 8)
+          .attr("r", 7)
           .attr("fill", d => d.color)
           .attr("stroke", "#fff")
-          .attr("stroke-width", 1);
+          .attr("stroke-width", 1.5);
 
         legendItems.append("text")
-          .attr("x", 20)
-          .attr("y", 6)
+          .attr("x", 26)
+          .attr("y", 8)
           .attr("dominant-baseline", "middle")
-          .style("font-size", "10px")
+          .style("font-size", "13px")
           .style("font-weight", "500")
           .style("fill", "#374151")
           .text(d => d.label);
 
         legendItems.append("text")
-          .attr("x", 20)
-          .attr("y", 16)
+          .attr("x", 26)
+          .attr("y", 20)
           .attr("dominant-baseline", "middle")
-          .style("font-size", "8px")
+          .style("font-size", "11px")
           .style("fill", "#6b7280")
           .text(d => d.range);
 
@@ -270,11 +249,12 @@ const MapaChileGeoJSON: React.FC<Props> = ({
   }, [height]);
 
   return (
-    <div className={`w-full bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl shadow-lg overflow-hidden ${className}`}>
-      <div className="flex flex-col lg:flex-row gap-8 p-8">
+    <div className={`w-full overflow-visible ${className} min-h-[700px]`}>
+    <div className={`w-full bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl shadow-lg overflow-visible`}>
+      <div className="flex flex-col lg:flex-row gap-8 p-8 ">
         
         {/* Columna Izquierda - Información y Estadísticas */}
-        <div className="flex-1 flex flex-col gap-8">
+        <div className="flex-1 flex flex-col gap-8 justify-center">
           <div>
             <h2 className="text-3xl font-bold text-gray-800 mb-4">
               Nuestro Impacto Nacional
@@ -293,27 +273,31 @@ const MapaChileGeoJSON: React.FC<Props> = ({
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm text-center">
               <div className="text-3xl font-bold text-turquesa mb-2">4,485</div>
-              <div className="text-gray-600 font-medium">Mediadores Totales</div>
+              <div className="text-gray-600 font-medium">Mediadores Inscritos</div>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm text-center">
               <div className="text-3xl font-bold text-naranja mb-2">16</div>
               <div className="text-gray-600 font-medium">Regiones con Presencia</div>
             </div>
+            <div>
+              <p className='text-sm text-gray-500 italic'>* Datos actualizados a julio 2025</p>
+            </div>
           </div>
         </div>
 
         {/* Columna Derecha - Mapa Vertical */}
-        <div className="flex-1 flex items-center justify-center">
+        <div className="flex-1 flex items-center justify-center ">
           <svg
             ref={svgRef}
-            className="w-full max-w-lg"
-            style={{ height: "700px" }}
-            viewBox="0 0 600 800"
+            className="w-full max-w-md h-full"
+            style={{ minHeight: "700px", maxHeight: "1200px" }}
+            viewBox="0 100 600 800"
             preserveAspectRatio="xMidYMid meet"
           />
         </div>
         
       </div>
+    </div>
     </div>
   );
 };

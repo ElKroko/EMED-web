@@ -1,0 +1,54 @@
+---
+export interface Props {
+  videoId: string;
+  title?: string;
+  description?: string;
+  backgroundColor?: string;
+}
+
+const { 
+  videoId, 
+  title = "Conoce más sobre EMED",
+  description,
+  backgroundColor = "bg-white"
+} = Astro.props;
+---
+
+<section class={`py-16 ${backgroundColor}`}>
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      
+      <!-- Título de la sección -->
+      {title && (
+        <h2 class="text-3xl md:text-4xl font-bold text-azul-oscuro mb-4">
+          {title}
+        </h2>
+      )}
+      
+      <!-- Descripción opcional -->
+      {description && (
+        <p class="text-lg text-gray-700 mb-8">
+          {description}
+        </p>
+      )}
+      
+      <!-- Container del video -->
+      <div class="flex justify-center">
+        <div class="relative w-full max-w-sm mx-auto">
+          <!-- Aspect ratio container para formato vertical 9:16 -->
+          <div class="relative w-full" style="aspect-ratio: 9/16;">
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&showinfo=0`}
+              title="Video de YouTube EMED"
+              class="absolute inset-0 w-full h-full rounded-lg shadow-lg"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>

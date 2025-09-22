@@ -41,11 +41,11 @@ const formatearPrecio = (precio) => {
   return `$${numero.toLocaleString('es-CL')}`;
 };
 
-// Obtener todos los productos (diplomados y cursos) de WooCommerce
+// Obtener solo los diplomados de WooCommerce
 let productos = [];
 try {
   const todosLosProductos = await getEmedProducts({ per_page: 50, orderby: 'menu_order', order: 'asc' });
-  productos = todosLosProductos.filter(producto => producto.tipo === 'Diplomado' || producto.tipo === 'Curso');
+  productos = todosLosProductos.filter(producto => producto.tipo === 'Diplomado');
 } catch (error) {
   console.error('Error al cargar productos para el home:', error);
 }
@@ -158,26 +158,15 @@ const programas = productos.slice(0, maxItems).map(producto => {
 
     <!-- CTA principal -->
     <div class="text-center relative z-20">
-      <div class="space-x-4">
-        <a 
-          href="/diplomados" 
-          class="inline-flex items-center px-8 py-4 bg-naranja font-semibold text-lg rounded-lg hover:bg-amarillo hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 main-cta-button"
-        >
-          Ver Todos los Diplomados
-          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </a>
-        <a 
-          href="/cursos" 
-          class="secondary-cta-button inline-flex items-center px-8 py-4 border-2 border-celeste text-celeste font-semibold text-lg rounded-lg hover:bg-celeste hover:text-white hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-        >
-          Explorar Cursos
-          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </a>
-      </div>
+      <a 
+        href="/diplomados" 
+        class="inline-flex items-center px-8 py-4 bg-naranja font-semibold text-lg rounded-lg hover:bg-amarillo hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 main-cta-button"
+      >
+        Ver Todos los Diplomados
+        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
     </div>
 
   </div>

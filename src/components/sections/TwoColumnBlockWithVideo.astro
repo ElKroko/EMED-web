@@ -1,0 +1,106 @@
+---
+export interface Props {
+  videoId: string;
+  heading: string;
+  content: string;
+  reverse?: boolean;
+  className?: string;
+  youtubeChannelUrl?: string;
+}
+
+const { 
+  videoId,
+  heading,
+  content,
+  reverse = false,
+  className = "",
+  youtubeChannelUrl = "https://youtube.com/@EMED"
+} = Astro.props;
+---
+
+<div class={`two-column-block ${className}`}>
+  <div class="container mx-auto px-4 py-16">
+    <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${reverse ? 'lg:flex-row-reverse' : ''}`}>
+      
+      <!-- Columna de contenido -->
+      <div class={`content-column ${reverse ? 'lg:order-2' : 'lg:order-1'} z-10`}>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6 leading-tight">
+          {heading}
+        </h2>
+        <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed mb-8">
+          <Fragment set:html={content} />
+        </div>
+        
+        <!-- Botón CTA -->
+        <a 
+          href={youtubeChannelUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-naranja text-white px-6 py-3 rounded-lg font-semibold hover:bg-naranja/90 transition-colors duration-300 shadow-md hover:shadow-lg"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+          Conoce más en nuestro canal de YouTube
+        </a>
+      </div>
+
+      <!-- Columna de video -->
+      <div class={`video-column ${reverse ? 'lg:order-1' : 'lg:order-2'} z-10`}>
+        <div class="relative group flex justify-center">
+          <!-- Container del video con aspect ratio vertical -->
+          <div class="w-full max-w-sm">
+            <div class="relative w-full" style="aspect-ratio: 9/16;">
+              <iframe
+                src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&showinfo=0`}
+                title="Video de YouTube EMED"
+                class="absolute inset-0 w-full h-full rounded-lg shadow-lg group-hover:shadow-xl transition-shadow duration-300"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  
+  .content-column h2 {
+    color: var(--color-gray-800);
+    font-weight: var(--font-weight-bold);
+  }
+  
+  .content-column .prose {
+    color: var(--color-gray-600);
+    line-height: 1.8;
+  }
+  
+  .content-column .prose p {
+    margin-bottom: 1.5rem;
+  }
+  
+  .content-column .prose strong {
+    color: var(--color-turquesa);
+    font-weight: var(--font-weight-semibold);
+  }
+  
+  .video-column iframe {
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  @media (max-width: 1023px) {
+    .content-column {
+      order: 1 !important;
+    }
+    
+    .video-column {
+      order: 2 !important;
+    }
+  }
+</style>
