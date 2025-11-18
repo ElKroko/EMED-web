@@ -53,83 +53,69 @@ const cursos = getCursos();
       <div class="container mx-auto px-4">
         
         {cursos.length > 0 ? (
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
             {cursos.map((curso) => (
-              <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                
+              <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+
                 <!-- Imagen -->
-                <div class="relative h-48 overflow-hidden">
+                <div class="relative h-40 overflow-hidden">
                   <img
                     src={curso.imagen}
                     alt={curso.nombre}
                     class="w-full h-full object-cover"
                     loading="lazy"
                   />
-                  <div class="absolute top-4 left-4">
-                    <span class="inline-block px-3 py-1 rounded-full text-sm font-bold text-white bg-turquesa">
+                  <div class="absolute top-2 left-2">
+                    <span class="inline-block px-2 py-1 rounded-full text-xs font-bold text-white bg-turquesa">
                       {curso.tipo}
-                    </span>
-                  </div>
-                  <div class="absolute top-4 right-4">
-                    <span class="inline-block bg-black/70 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      {curso.modalidad}
                     </span>
                   </div>
                 </div>
 
                 <!-- Contenido -->
-                <div class="p-6">
-                  <h3 class="text-xl font-bold text-gray-800 mb-3">
+                <div class="p-4">
+                  <h3 class="text-lg font-bold text-gray-800 mb-2">
                     {curso.nombre}
                   </h3>
 
-                  <div class="text-gray-600 text-sm leading-relaxed mb-4">
+                  <p class="text-gray-600 text-sm leading-relaxed mb-3 line-clamp-2">
                     {curso.descripcion_corta}
-                  </div>
+                  </p>
 
                   <!-- Detalles -->
-                  <div class="space-y-2 mb-6">
-                    <div class="flex items-center text-sm text-gray-600">
-                      <svg class="w-4 h-4 mr-2 text-celeste" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="space-y-1 mb-3">
+                    <div class="flex items-center text-xs text-gray-600">
+                      <svg class="w-3 h-3 mr-1 text-celeste" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                       </svg>
-                      <span class="font-medium">Duración:</span> {curso.duracion}
+                      <span>{curso.duracion}</span>
                     </div>
 
-                    <div class="flex items-center text-sm text-gray-600">
-                      <svg class="w-4 h-4 mr-2 text-turquesa" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="flex items-center text-xs text-gray-600">
+                      <svg class="w-3 h-3 mr-1 text-turquesa" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                       </svg>
-                      <span class="font-medium">Modalidad:</span> {curso.modalidad}
+                      <span>{curso.modalidad}</span>
                     </div>
 
-                    <div class="flex items-center text-sm">
-                      <svg class="w-4 h-4 mr-2 text-naranja" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="flex items-center text-xs">
+                      <svg class="w-3 h-3 mr-1 text-naranja" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
                       </svg>
                       <span class="font-bold text-gray-800">{curso.precio_formateado}</span>
                     </div>
                   </div>
-                  
-                  <!-- Botones -->
-                  <div class="space-y-3">
-                    <a 
-                      href={`/programas/${curso.slug}`}
-                      class="inline-flex items-center justify-center w-full px-6 py-3 font-bold rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg bg-turquesa hover:bg-celeste text-white"
-                    >
-                      Ver Detalles
-                      <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                      </svg>
-                    </a>
-                    
-                    <a 
-                      href="/contacto"
-                      class="inline-flex items-center justify-center w-full px-6 py-3 border-2 border-turquesa text-turquesa font-bold rounded-lg transition-all duration-300 hover:bg-turquesa hover:text-white"
-                    >
-                      Consulta Gratis
-                    </a>
-                  </div>
+
+                  <!-- Botón -->
+                  <a
+                    href={`/programas/${curso.slug}`}
+                    class="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-bold rounded-lg transition-all duration-300 bg-turquesa hover:bg-celeste text-white"
+                  >
+                    Ver Detalles
+                    <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </a>
                 </div>
               </div>
             ))}
