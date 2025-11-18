@@ -1,5 +1,5 @@
 ---
-import { getEmedProducts } from '../../lib/wp';
+import { getDiplomados } from '../../lib/productos';
 
 export interface Props {
   heading?: string;
@@ -8,69 +8,32 @@ export interface Props {
   maxItems?: number;
 }
 
-const { 
+const {
   heading = "Nuestros Programas",
   subheading = "Especialízate en diferentes áreas de la mediación con nuestros programas certificados",
   className = "",
   maxItems = 6
 } = Astro.props;
 
-// Función para limpiar HTML de las descripciones
-const limpiarHTML = (htmlString) => {
-  if (!htmlString) return '';
-  return htmlString
-    .replace(/<[^>]*>/g, '') // Eliminar todas las etiquetas HTML
-    .replace(/&nbsp;/g, ' ') // Reemplazar &nbsp; con espacios
-    .replace(/&amp;/g, '&') // Reemplazar &amp; con &
-    .replace(/&lt;/g, '<') // Reemplazar &lt; con <
-    .replace(/&gt;/g, '>') // Reemplazar &gt; con >
-    .trim();
-};
-
-// Función para formatear precios
-const formatearPrecio = (precio) => {
-  if (!precio || precio === '0' || precio === 0) return null;
-  let numero = typeof precio === 'string' ? parseFloat(precio.replace(/[^\d.-]/g, '')) : precio;
-  if (isNaN(numero)) return null;
-  
-  // Si el número es menor a 1000, probablemente está en miles (ej: 550 = $550.000)
-  if (numero < 1000 && numero > 0) {
-    numero = numero * 1000;
-  }
-  
-  return `$${numero.toLocaleString('es-CL')}`;
-};
-
-// Obtener solo los diplomados de WooCommerce
-let productos = [];
-try {
-  const todosLosProductos = await getEmedProducts({ per_page: 50, orderby: 'menu_order', order: 'asc' });
-  productos = todosLosProductos.filter(producto => producto.tipo === 'Diplomado');
-} catch (error) {
-  console.error('Error al cargar productos para el home:', error);
-}
+// Obtener diplomados desde datos estáticos
+const productos = getDiplomados();
 
 // Mapear productos a formato del componente
 const programas = productos.slice(0, maxItems).map(producto => {
-  // Procesar precios correctamente
-  const precioRegular = formatearPrecio(producto.regular_price || producto.price);
-  const precioOferta = formatearPrecio(producto.sale_price);
-  const precio = precioOferta || precioRegular;
-  
-  // Determinar si es destacado (mediación familiar o si es featured)
-  const esDestacado = producto.slug.includes('mediacion-familiar') || producto.featured || producto.destacado;
-  
+  // Determinar si es destacado (mediación familiar)
+  const esDestacado = producto.slug.includes('mediacion-familiar') || producto.destacado;
+
   // Determinar URL según el tipo
   const urlBase = producto.tipo === 'Diplomado' ? '/diplomados' : '/cursos';
   const url = `${urlBase}/${producto.slug}`;
-  
+
   return {
-    title: producto.name,
-    description: limpiarHTML(producto.short_description) || 'Programa especializado en técnicas de mediación.',
+    title: producto.nombre,
+    description: producto.descripcion_corta || 'Programa especializado en técnicas de mediación.',
     duration: producto.duracion || 'Por definir',
     modality: producto.modalidad || 'Por definir',
     tipo: producto.tipo,
-    price: precio,
+    price: producto.precio_formateado,
     highlight: esDestacado,
     url: url
   };

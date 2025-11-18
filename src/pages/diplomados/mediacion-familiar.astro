@@ -1,40 +1,17 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ContactForm from '../../components/forms/ContactForm.astro';
-import { getEmedProducts } from '../../lib/wp';
+import { getProductoPorSlug } from '../../lib/productos';
 
-// Obtener datos del diplomado desde WooCommerce
-let diplomadoWC = null;
-try {
-  const productos = await getEmedProducts({ per_page: 50 });
-  diplomadoWC = productos.find(p => p.slug === 'mediacion-familiar' && p.tipo === 'Diplomado');
-} catch (error) {
-  console.error('Error al cargar diplomado desde WooCommerce:', error);
-}
+// Obtener datos del diplomado desde datos estáticos
+const diplomadoWC = getProductoPorSlug('mediacion-familiar');
 
-// Datos que se obtienen de WooCommerce (si está disponible)
-const titulo = diplomadoWC?.name || 'Diplomado en Mediación Familiar';
-const descripcionCorta = diplomadoWC?.short_description || 'Especialízate en la resolución de conflictos familiares con técnicas específicas para dinámicas familiares complejas y casos de alta sensibilidad emocional.';
+// Datos del diplomado
+const titulo = diplomadoWC?.nombre || 'Diplomado en Mediación Familiar';
+const descripcionCorta = diplomadoWC?.descripcion_corta || 'Especialízate en la resolución de conflictos familiares con técnicas específicas para dinámicas familiares complejas y casos de alta sensibilidad emocional.';
 const duracion = diplomadoWC?.duracion || '120 horas';
 const modalidad = diplomadoWC?.modalidad || 'Presencial + Online';
-// Función para formatear precios (misma lógica que en diplomados.astro)
-const formatearPrecio = (precio) => {
-  if (!precio || precio === '0' || precio === 0) return null;
-  let numero = typeof precio === 'string' ? parseFloat(precio.replace(/[^\d.-]/g, '')) : precio;
-  if (isNaN(numero)) return null;
-  
-  // Si el número es menor a 1000, probablemente está en miles (ej: 550 = $550.000)
-  if (numero < 1000 && numero > 0) {
-    numero = numero * 1000;
-  }
-  
-  return `$${numero.toLocaleString('es-CL')}`;
-};
-
-// Procesar precios correctamente (priorizar sale_price si existe)
-const precioRegular = formatearPrecio(diplomadoWC?.regular_price || diplomadoWC?.price);
-const precioOferta = formatearPrecio(diplomadoWC?.sale_price);
-const precio = precioOferta || precioRegular || '$450.000';
+const precio = diplomadoWC?.precio_formateado || '$450.000';
 const beneficios = diplomadoWC?.beneficios || [];
 const temario = diplomadoWC?.temario || [];
 const requisitos = diplomadoWC?.requisitos || [];

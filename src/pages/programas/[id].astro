@@ -1,18 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ContactForm from '../../components/forms/ContactForm.astro';
-import { getEmedProducts, getEmedProductBySlug } from '../../lib/wp';
+import { getTodosLosProductos, getProductoPorSlug } from '../../lib/productos';
 
-// Obtener productos de WooCommerce dinámicamente
-let programas = [];
-try {
-  programas = await getEmedProducts({ per_page: 100 });
-} catch (error) {
-  console.error('Error al cargar productos:', error);
-  programas = [];
-}
-
-// Datos de fallback para desarrollo (en caso de que WooCommerce no esté disponible)
+// Datos de fallback para retrocompat (ahora son los datos principales)
 const programasFallback = [
   {
     id: 'mediacion-familiar',
@@ -534,47 +525,49 @@ const programasFallback = [
   }
 ];
 
-// Generar rutas dinámicas basadas en productos de WooCommerce
+// Generar rutas dinámicas basadas en productos estáticos
 export async function getStaticPaths() {
-  try {
-    // Obtener todos los productos de WooCommerce
-    const productos = await getEmedProducts({ per_page: 100 });
-    
-    // Generar paths usando los slugs de WooCommerce
-    return productos.map(producto => ({
-      params: { id: producto.slug }
-    }));
-  } catch (error) {
-    console.error('Error generando rutas estáticas:', error);
-    // Fallback con IDs estáticos
-    const programIds = [
-      'mediacion-familiar',
-      'mediacion-escolar', 
-      'mediacion-laboral',
-      'mediacion-comunitaria',
-      'comunicacion-efectiva',
-      'negociacion-avanzada'
-    ];
-    
-    return programIds.map(id => ({
-      params: { id }
-    }));
-  }
+  const productos = getTodosLosProductos();
+
+  // Generar paths usando los slugs
+  return productos.map(producto => ({
+    params: { id: producto.slug }
+  }));
 }
 
 const { id } = Astro.params;
 
-// Buscar el producto por slug en WooCommerce
-let programa = null;
-try {
-  programa = await getEmedProductBySlug(id);
-} catch (error) {
-  console.error('Error al buscar producto por slug:', error);
-}
+// Buscar el producto por slug
+let programa = getProductoPorSlug(id);
 
-// Si no se encuentra en WooCommerce, buscar en fallback
+// Si no se encuentra en datos JSON, buscar en fallback
 if (!programa && programasFallback.length > 0) {
   programa = programasFallback.find(p => p.id === id);
+  // Convertir formato de fallback al formato esperado
+  if (programa) {
+    programa = {
+      nombre: programa.titulo,
+      slug: programa.id,
+      tipo: programa.tipo,
+      descripcion: programa.descripcion,
+      descripcion_corta: programa.descripcionDetallada || programa.descripcion,
+      duracion: programa.duracion,
+      modalidad: programa.modalidad,
+      precio: programa.precio ? parseInt(programa.precio.replace(/[^\d]/g, '')) : 0,
+      precio_formateado: programa.precio,
+      destacado: programa.destacado,
+      imagen: programa.imagen,
+      imagenHero: programa.imagenHero,
+      galeria: [programa.imagen, programa.imagenHero].filter(Boolean),
+      beneficios: programa.beneficios || [],
+      temario: programa.temario || [],
+      requisitos: programa.requisitos || [],
+      metodologia: Array.isArray(programa.metodologia) ? programa.metodologia : [programa.metodologia],
+      certificacion: Array.isArray(programa.certificacion) ? programa.certificacion : [programa.certificacion],
+      empleabilidad: programa.empleabilidad || [],
+      testimonios: programa.testimonios || []
+    };
+  }
 }
 
 // Si no se encuentra el programa, redirigir a 404
@@ -582,77 +575,38 @@ if (!programa) {
   return new Response(null, { status: 404 });
 }
 
-// Mapear campos de WooCommerce a formato del template
+// Mapear datos para el template
 const programaDisplay = {
   // Datos básicos
-  id: programa.slug || programa.id,
+  id: programa.slug,
   tipo: programa.tipo || 'Curso',
-  titulo: programa.name || programa.titulo,
-  descripcion: programa.short_description || programa.descripcion,
-  descripcionDetallada: programa.description || programa.descripcionDetallada || programa.short_description,
+  titulo: programa.nombre,
+  descripcion: programa.descripcion_corta,
+  descripcionDetallada: programa.descripcionDetallada || programa.descripcion,
   duracion: programa.duracion || '40 horas',
   modalidad: programa.modalidad || 'Online',
-  nivel: 'Básico',
-  precio: programa.precio_formateado || programa.price || '$150.000',
-  precioFinanciado: null,
-  destacado: programa.destacado || programa.featured || false,
-  
-  // Imágenes - Prioridad: WooCommerce > imagen placeholder genérica
-  imagen: programa.images?.[0]?.src || '/images/default-programa.jpg',
-  imagenHero: programa.images?.[0]?.src || '/images/default-programa-hero.jpg',
-  
-  // Arrays (usar datos de WooCommerce si existen, sino usar fallbacks básicos)
-  beneficios: programa.beneficios || [
-    'Certificación reconocida',
-    'Metodología práctica',
-    'Material descargable',
-    'Acceso a comunidad de profesionales'
-  ],
-  temario: programa.temario || [
-    {
-      modulo: 'Módulo 1: Fundamentos',
-      contenido: [
-        'Introducción al tema',
-        'Conceptos básicos',
-        'Teoría fundamental',
-        'Casos prácticos'
-      ]
-    },
-    {
-      modulo: 'Módulo 2: Aplicación Práctica',
-      contenido: [
-        'Ejercicios prácticos',
-        'Simulacros',
-        'Evaluación',
-        'Proyecto final'
-      ]
-    }
-  ],
-  ubicacion: programa.ubicacion,
-  requisitos: programa.requisitos || [
-    'Sin requisitos previos específicos',
-    'Interés en el tema',
-    'Acceso a internet para modalidad online'
-  ],
-  metodologia: Array.isArray(programa.metodologia) && programa.metodologia.length > 0 
-    ? programa.metodologia.join(' ') 
+  nivel: programa.nivel || 'Básico',
+  precio: programa.precio_formateado,
+  precioFinanciado: programa.precioFinanciado || null,
+  destacado: programa.destacado || false,
+
+  // Imágenes
+  imagen: programa.imagen,
+  imagenHero: programa.imagenHero || programa.imagen,
+
+  // Arrays
+  beneficios: programa.beneficios || [],
+  temario: programa.temario || [],
+  ubicacion: programa.ubicacion || '',
+  requisitos: programa.requisitos || [],
+  metodologia: Array.isArray(programa.metodologia)
+    ? programa.metodologia.join(' ')
     : programa.metodologia || 'Metodología teórico-práctica con enfoque en aplicación real de conceptos.',
-  certificacion: Array.isArray(programa.certificacion) && programa.certificacion.length > 0 
-    ? programa.certificacion.join(' ') 
+  certificacion: Array.isArray(programa.certificacion)
+    ? programa.certificacion.join(' ')
     : programa.certificacion || 'Certificado de participación otorgado por EMED.',
-  empleabilidad: programa.empleabilidad || [
-    'Diversas áreas profesionales',
-    'Consultoría independiente',
-    'Organizaciones públicas y privadas'
-  ],
-  testimonios: [
-    {
-      nombre: 'Estudiante EMED',
-      profesion: 'Profesional',
-      testimonio: 'Excelente formación con metodología práctica y aplicable.',
-      rating: 5
-    }
-  ]
+  empleabilidad: programa.empleabilidad || [],
+  testimonios: programa.testimonios || []
 };
 ---
 

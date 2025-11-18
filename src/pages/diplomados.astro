@@ -1,108 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getEmedProducts } from '../lib/wp';
+import { getDiplomados } from '../lib/productos';
 import MidHeroSVG from '../components/sections/MidHeroSVG.astro';
 
-// Función para limpiar HTML de las descripciones
-const limpiarHTML = (htmlString) => {
-  if (!htmlString) return '';
-  return htmlString
-    .replace(/<[^>]*>/g, '') // Eliminar todas las etiquetas HTML
-    .replace(/&nbsp;/g, ' ') // Reemplazar &nbsp; con espacios
-    .replace(/&amp;/g, '&') // Reemplazar &amp; con &
-    .replace(/&lt;/g, '<') // Reemplazar &lt; con <
-    .replace(/&gt;/g, '>') // Reemplazar &gt; con >
-    .trim();
-};
+// Obtener diplomados desde datos estáticos
+const diplomadosRaw = getDiplomados();
 
-// Función para formatear precios
-const formatearPrecio = (precio) => {
-  if (!precio || precio === '0' || precio === 0) return null;
-  let numero = typeof precio === 'string' ? parseFloat(precio.replace(/[^\d.-]/g, '')) : precio;
-  if (isNaN(numero)) return null;
-  
-  // Si el número es menor a 1000, probablemente está en miles (ej: 550 = $550.000)
-  if (numero < 1000 && numero > 0) {
-    numero = numero * 1000;
-  }
-  
-  return `$${numero.toLocaleString('es-CL')}`;
-};
-
-// Obtener solo diplomados de WooCommerce
-let diplomados = [];
-try {
-  const productos = await getEmedProducts({ per_page: 50, orderby: 'menu_order', order: 'asc' });
-  diplomados = productos.filter(producto => producto.tipo === 'Diplomado');
-  console.log(`Cargados ${diplomados.length} diplomados desde WooCommerce.`);
-  // mostrar los nombres de los diplomados y su url
-  console.log('Diplomados cargados:', diplomados.map(d => `${d.name} (${d.slug})`).join(', '));
-} catch (error) {
-  console.error('Error al cargar diplomados:', error);
-  diplomados = [];
-}
-
-// Mapear productos WooCommerce a formato con páginas especializadas de Astro
-const mapearDiplomado = (producto) => {
-  // Mapear slugs problemáticos
-  const slugMapping = {
-    'diplomado-en-mediacion-familiar': 'mediacion-familiar',
-    'mediacion-familiar': 'mediacion-familiar',
-    'mediacion-escolar': 'mediacion-escolar', 
-    'mediacion-laboral': 'mediacion-laboral'
-  };
-  
-  const slugCorregido = slugMapping[producto.slug] || producto.slug;
-  const urlEspecializada = `/diplomados/${slugCorregido}`;
-  
-  // Determinar badges basados en el slug corregido (solo mantener "MÁS POPULAR" para mediación familiar)
+// Mapear a formato para la UI
+const diplomadosFinales = diplomadosRaw.map(producto => {
+  // Determinar badges
   let badges = [];
-  if (slugCorregido === 'mediacion-familiar') {
+  if (producto.slug === 'mediacion-familiar') {
     badges = ['MÁS POPULAR'];
   }
 
-  // Imágenes específicas para cada diplomado
-  const imagenesEspecificas = {
-    'mediacion-familiar': 'https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-    'mediacion-escolar': 'https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-    'mediacion-laboral': 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
-  };
-
-  // Procesar precios correctamente
-  const precioRegular = formatearPrecio(producto.regular_price || producto.price);
-  const precioOferta = formatearPrecio(producto.sale_price);
-  
   return {
-    id: slugCorregido,
-    titulo: producto.name,
-    descripcion: limpiarHTML(producto.short_description),
+    id: producto.slug,
+    titulo: producto.nombre,
+    descripcion: producto.descripcion_corta,
     duracion: producto.duracion,
     modalidad: producto.modalidad,
-    precio: precioOferta || precioRegular || 'Precio por consultar',
-    destacado: producto.featured || producto.destacado,
-    imagen: producto.images && producto.images.length > 0 ? producto.images[0].src : imagenesEspecificas[slugCorregido],
+    precio: producto.precio_formateado,
+    destacado: producto.destacado,
+    imagen: producto.imagen,
     badges: badges,
-    url: urlEspecializada,
+    url: `/diplomados/${producto.slug}`,
     beneficios: producto.beneficios || []
   };
-};
-
-// Procesar diplomados de WooCommerce y ordenarlos correctamente
-let diplomadosFinales = [];
-if (diplomados.length > 0) {
-  const diplomadosMapeados = diplomados.map(mapearDiplomado);
-  
-  // Orden correcto: familiar > escolar > laboral
-  const ordenCorrecto = ['mediacion-familiar', 'mediacion-escolar', 'mediacion-laboral'];
-  
-  diplomadosFinales = ordenCorrecto
-    .map(slug => diplomadosMapeados.find(d => d.id === slug))
-    .filter(d => d !== undefined);
-  
-  // Agregar cualquier diplomado adicional que no esté en el orden predefinido
-  const diplomadosAdicionales = diplomadosMapeados.filter(d => !ordenCorrecto.includes(d.id));
-  diplomadosFinales = [...diplomadosFinales, ...diplomadosAdicionales];
-}
+});
 ---
 
 <Layout 

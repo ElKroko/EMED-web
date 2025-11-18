@@ -1,16 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getEmedProducts } from '../lib/wp';
+import { getCursos } from '../lib/productos';
 
-// Obtener solo cursos de WooCommerce
-let cursos = [];
-try {
-  const productos = await getEmedProducts({ per_page: 50, orderby: 'menu_order', order: 'asc' });
-  cursos = productos.filter(producto => producto.tipo === 'Curso');
-} catch (error) {
-  console.error('Error al cargar cursos:', error);
-  cursos = [];
-}
+// Obtener todos los cursos desde datos estáticos
+const cursos = getCursos();
 ---
 
 <Layout 
@@ -66,9 +59,9 @@ try {
                 
                 <!-- Imagen -->
                 <div class="relative h-48 overflow-hidden">
-                  <img 
-                    src={curso.images && curso.images.length > 0 ? curso.images[0].src : '/images/default-curso.jpg'}
-                    alt={curso.name}
+                  <img
+                    src={curso.imagen}
+                    alt={curso.nombre}
                     class="w-full h-full object-cover"
                     loading="lazy"
                   />
@@ -83,16 +76,17 @@ try {
                     </span>
                   </div>
                 </div>
-                
+
                 <!-- Contenido -->
                 <div class="p-6">
                   <h3 class="text-xl font-bold text-gray-800 mb-3">
-                    {curso.name}
+                    {curso.nombre}
                   </h3>
-                  
-                  <div class="text-gray-600 text-sm leading-relaxed mb-4" set:html={curso.short_description || curso.description?.substring(0, 120) + '...'}>
+
+                  <div class="text-gray-600 text-sm leading-relaxed mb-4">
+                    {curso.descripcion_corta}
                   </div>
-                  
+
                   <!-- Detalles -->
                   <div class="space-y-2 mb-6">
                     <div class="flex items-center text-sm text-gray-600">
@@ -101,19 +95,19 @@ try {
                       </svg>
                       <span class="font-medium">Duración:</span> {curso.duracion}
                     </div>
-                    
+
                     <div class="flex items-center text-sm text-gray-600">
                       <svg class="w-4 h-4 mr-2 text-turquesa" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                       </svg>
                       <span class="font-medium">Modalidad:</span> {curso.modalidad}
                     </div>
-                    
+
                     <div class="flex items-center text-sm">
                       <svg class="w-4 h-4 mr-2 text-naranja" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
                       </svg>
-                      <span class="font-bold text-gray-800">{curso.precio_formateado || `$${parseInt(curso.price).toLocaleString('es-CL')}`}</span>
+                      <span class="font-bold text-gray-800">{curso.precio_formateado}</span>
                     </div>
                   </div>
                   

@@ -1,0 +1,421 @@
+[
+  {
+    "id": "mediacion-familiar",
+    "nombre": "Mediación Familiar",
+    "slug": "mediacion-familiar",
+    "tipo": "Diplomado",
+    "descripcion": "Especialízate en la resolución de conflictos familiares con técnicas específicas para dinámicas familiares complejas y casos de alta sensibilidad emocional.",
+    "descripcion_corta": "Especialízate en la resolución de conflictos familiares con técnicas específicas para dinámicas familiares complejas y casos de alta sensibilidad emocional.",
+    "descripcionDetallada": "Este diplomado está diseñado para profesionales que deseen especializarse en la mediación de conflictos familiares. Aborda desde los fundamentos teóricos hasta la práctica supervisada, cumpliendo con todos los requisitos del Ministerio de Justicia para el registro oficial de mediadores familiares.",
+    "duracion": "120 horas",
+    "modalidad": "Presencial + Online",
+    "nivel": "Básico - Intermedio",
+    "precio": 450000,
+    "precio_regular": 450000,
+    "precio_formateado": "$450.000",
+    "precioFinanciado": "$350.000",
+    "destacado": true,
+    "imagen": "https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "imagenHero": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "galeria": [
+      "https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+    ],
+    "beneficios": [
+      "Certificación reconocida por el Ministerio de Justicia",
+      "Prácticas con casos reales supervisados",
+      "Inserción en registro oficial de mediadores",
+      "Metodología actualizada según normativa vigente",
+      "Networking con profesionales del área",
+      "Material de apoyo descargable",
+      "Seguimiento post-certificación"
+    ],
+    "temario": [
+      {
+        "modulo": "Módulo 1: Fundamentos de la Mediación",
+        "contenido": [
+          "Historia y principios de la mediación",
+          "Marco legal chileno de mediación familiar",
+          "Ética y deontología del mediador",
+          "Tipos de conflictos familiares"
+        ]
+      },
+      {
+        "modulo": "Módulo 2: Técnicas y Herramientas",
+        "contenido": [
+          "Comunicación efectiva y escucha activa",
+          "Manejo de emociones en conflicto",
+          "Técnicas de reformulación y parafraseo",
+          "Generación de opciones y alternativas"
+        ]
+      },
+      {
+        "modulo": "Módulo 3: Práctica Supervisada",
+        "contenido": [
+          "Simulacros con casos reales",
+          "Retroalimentación individualizada",
+          "Video-análisis de sesiones",
+          "Autoevaluación y mejora continua"
+        ]
+      },
+      {
+        "modulo": "Módulo 4: Pasantía Obligatoria",
+        "contenido": [
+          "Práctica en centros de mediación (100% presencial)",
+          "Supervisión directa de mediadores experimentados",
+          "Documentación de casos",
+          "Evaluación final práctica"
+        ]
+      }
+    ],
+    "requisitos": [
+      "Título profesional universitario de al menos 8 semestres",
+      "Experiencia laboral mínima de 2 años",
+      "Entrevista personal con equipo académico",
+      "Carta de motivación",
+      "Disponibilidad para asistir a pasantía presencial"
+    ],
+    "metodologia": [
+      "Modalidad híbrida que combina clases teóricas online con talleres prácticos presenciales",
+      "La pasantía final es 100% presencial según normativa del Ministerio de Justicia"
+    ],
+    "certificacion": [
+      "Diploma de Especialización en Mediación Familiar otorgado por EMED",
+      "Válido para inscripción en el Registro de Mediadores del Ministerio de Justicia"
+    ],
+    "empleabilidad": [
+      "Centros de Mediación Familiar",
+      "Tribunales de Familia",
+      "Consultoría independiente",
+      "ONGs especializadas",
+      "Servicios municipales"
+    ],
+    "ubicacion": "Santiago Centro",
+    "en_stock": true,
+    "categorias": ["Mediación", "Familia"],
+    "etiquetas": ["Certificación", "Ministerio de Justicia", "Mediación Familiar"],
+    "testimonios": [
+      {
+        "nombre": "María José González",
+        "profesion": "Psicóloga",
+        "testimonio": "El diplomado me dio todas las herramientas necesarias para trabajar como mediadora familiar. La metodología práctica es excelente.",
+        "rating": 5
+      },
+      {
+        "nombre": "Carlos Mendoza",
+        "profesion": "Abogado",
+        "testimonio": "Excelente formación teórica y práctica. Los docentes son profesionales con amplia experiencia en mediación.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "mediacion-escolar",
+    "nombre": "Mediación Escolar",
+    "slug": "mediacion-escolar",
+    "tipo": "Diplomado",
+    "descripcion": "Aprende a mediar conflictos educativos trabajando con estudiantes, padres y equipos docentes en ambientes escolares complejos.",
+    "descripcion_corta": "Aprende a mediar conflictos educativos trabajando con estudiantes, padres y equipos docentes en ambientes escolares complejos.",
+    "descripcionDetallada": "Formación especializada para profesionales de la educación que buscan implementar programas de mediación escolar efectivos. Incluye herramientas específicas para el trabajo con menores y metodologías adaptadas al contexto educativo.",
+    "duracion": "80 horas",
+    "modalidad": "100% Online",
+    "nivel": "Básico",
+    "precio": 320000,
+    "precio_regular": 320000,
+    "precio_formateado": "$320.000",
+    "precioFinanciado": "$250.000",
+    "destacado": false,
+    "imagen": "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+    "imagenHero": "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "galeria": [
+      "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+      "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+    ],
+    "beneficios": [
+      "Flexibilidad horaria total",
+      "Material descargable permanente",
+      "Casos prácticos del ámbito educativo",
+      "Certificación válida para instituciones educativas",
+      "Herramientas digitales incluidas",
+      "Acceso a comunidad de práctica"
+    ],
+    "temario": [
+      {
+        "modulo": "Módulo 1: Convivencia Escolar",
+        "contenido": [
+          "Diagnóstico de clima escolar",
+          "Factores de conflicto en establecimientos",
+          "Prevención y resolución temprana",
+          "Normativa educacional vigente"
+        ]
+      },
+      {
+        "modulo": "Módulo 2: Mediación Entre Pares",
+        "contenido": [
+          "Formación de mediadores estudiantiles",
+          "Supervisión de procesos peer-to-peer",
+          "Casos de bullying y acoso",
+          "Protocolo de derivación"
+        ]
+      },
+      {
+        "modulo": "Módulo 3: Trabajo con Familias",
+        "contenido": [
+          "Mediación padres-establecimiento",
+          "Conflictos apoderado-docente",
+          "Participación familiar activa",
+          "Comunicación efectiva con familias"
+        ]
+      }
+    ],
+    "requisitos": [
+      "Título en educación o afines",
+      "Experiencia en establecimientos educacionales",
+      "Conocimiento básico de convivencia escolar",
+      "Acceso a internet estable"
+    ],
+    "metodologia": [
+      "100% online con clases sincrónicas semanales",
+      "Material asincrónico y talleres prácticos virtuales"
+    ],
+    "certificacion": [
+      "Diploma de Especialización en Mediación Escolar",
+      "Reconocido por instituciones educativas"
+    ],
+    "empleabilidad": [
+      "Colegios y liceos",
+      "Departamentos de convivencia escolar",
+      "Supervisión educacional",
+      "Consultoría educativa",
+      "Proyectos gubernamentales"
+    ],
+    "ubicacion": "Online",
+    "en_stock": true,
+    "categorias": ["Mediación", "Educación"],
+    "etiquetas": ["Online", "Convivencia Escolar", "Mediación"],
+    "testimonios": [
+      {
+        "nombre": "Ana Cristina López",
+        "profesion": "Profesora Básica",
+        "testimonio": "Transformó completamente mi manera de abordar los conflictos en el aula. Muy recomendable.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "mediacion-laboral",
+    "nombre": "Mediación Laboral",
+    "slug": "mediacion-laboral",
+    "tipo": "Diplomado",
+    "descripcion": "Desarrolla habilidades para resolver conflictos laborales y mejorar el clima organizacional en empresas y organizaciones.",
+    "descripcion_corta": "Desarrolla habilidades para resolver conflictos laborales y mejorar el clima organizacional en empresas y organizaciones.",
+    "descripcionDetallada": "Programa especializado para profesionales de recursos humanos, abogados laborales y líderes organizacionales que buscan implementar sistemas efectivos de resolución de conflictos en el ámbito laboral.",
+    "duracion": "100 horas",
+    "modalidad": "Presencial",
+    "nivel": "Intermedio",
+    "precio": 380000,
+    "precio_regular": 380000,
+    "precio_formateado": "$380.000",
+    "precioFinanciado": "$290.000",
+    "destacado": false,
+    "imagen": "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+    "imagenHero": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "galeria": [
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+    ],
+    "beneficios": [
+      "Orientado a profesionales de RRHH",
+      "Casos empresariales reales",
+      "Networking con otros profesionales",
+      "Certificación para consultorías laborales",
+      "Metodología práctica aplicable",
+      "Herramientas de diagnóstico organizacional"
+    ],
+    "temario": [
+      {
+        "modulo": "Módulo 1: Conflictos Organizacionales",
+        "contenido": [
+          "Tipología de conflictos laborales",
+          "Análisis del clima organizacional",
+          "Factores desencadenantes de conflictos",
+          "Impacto en la productividad"
+        ]
+      },
+      {
+        "modulo": "Módulo 2: Mediación en Relaciones Laborales",
+        "contenido": [
+          "Técnicas específicas para el ámbito laboral",
+          "Mediación supervisor-subordinado",
+          "Conflictos entre pares",
+          "Gestión de equipos en crisis"
+        ]
+      },
+      {
+        "modulo": "Módulo 3: Marco Legal Laboral",
+        "contenido": [
+          "Normativa laboral chilena",
+          "Derechos y deberes en mediación",
+          "Procedimientos disciplinarios",
+          "Documentación legal de acuerdos"
+        ]
+      },
+      {
+        "modulo": "Módulo 4: Práctica Empresarial",
+        "contenido": [
+          "Simulacros con casos empresariales",
+          "Role-playing supervisado",
+          "Elaboración de protocolos internos",
+          "Presentación de proyecto final"
+        ]
+      }
+    ],
+    "requisitos": [
+      "Título profesional en RRHH, Psicología, Derecho o afines",
+      "Experiencia laboral mínima de 3 años",
+      "Conocimientos básicos de legislación laboral",
+      "Entrevista con coordinador académico"
+    ],
+    "metodologia": [
+      "Modalidad presencial con metodología teórico-práctica",
+      "Incluye talleres vivenciales, análisis de casos reales y simulacros empresariales"
+    ],
+    "certificacion": [
+      "Diploma de Especialización en Mediación Laboral otorgado por EMED",
+      "Reconocido por empresas y organizaciones"
+    ],
+    "empleabilidad": [
+      "Departamentos de Recursos Humanos",
+      "Consultorías organizacionales",
+      "Sindicatos y federaciones",
+      "Empresas de servicios laborales",
+      "Organismos públicos"
+    ],
+    "ubicacion": "Santiago Centro",
+    "en_stock": true,
+    "categorias": ["Mediación", "Laboral", "RRHH"],
+    "etiquetas": ["Presencial", "Recursos Humanos", "Conflictos Laborales"],
+    "testimonios": [
+      {
+        "nombre": "Roberto Hernández",
+        "profesion": "Jefe de RRHH",
+        "testimonio": "El programa me dio herramientas concretas para manejar conflictos en mi empresa. Muy práctico y aplicable.",
+        "rating": 5
+      },
+      {
+        "nombre": "Patricia Silva",
+        "profesion": "Consultora Organizacional",
+        "testimonio": "Excelente formación para ampliar mis servicios de consultoría. Los docentes tienen mucha experiencia.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": "mediacion-comunitaria",
+    "nombre": "Mediación Comunitaria",
+    "slug": "mediacion-comunitaria",
+    "tipo": "Diplomado",
+    "descripcion": "Conviértete en un agente de paz en tu comunidad, facilitando diálogos y resolviendo disputas vecinales y territoriales.",
+    "descripcion_corta": "Conviértete en un agente de paz en tu comunidad, facilitando diálogos y resolviendo disputas vecinales y territoriales.",
+    "descripcionDetallada": "Formación especializada para líderes comunitarios, trabajadores sociales y profesionales que desean contribuir a la resolución pacífica de conflictos en sus territorios.",
+    "duracion": "90 horas",
+    "modalidad": "Mixto",
+    "nivel": "Básico",
+    "precio": 340000,
+    "precio_regular": 340000,
+    "precio_formateado": "$340.000",
+    "precioFinanciado": "$260.000",
+    "destacado": false,
+    "imagen": "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+    "imagenHero": "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "galeria": [
+      "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+      "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+    ],
+    "beneficios": [
+      "Aplicación inmediata en tu comunidad",
+      "Trabajo con organizaciones sociales",
+      "Metodologías participativas",
+      "Impacto social directo y medible",
+      "Red de mediadores comunitarios",
+      "Certificación para proyectos sociales"
+    ],
+    "temario": [
+      {
+        "modulo": "Módulo 1: Conflictos Territoriales",
+        "contenido": [
+          "Diagnóstico comunitario participativo",
+          "Tipos de conflictos vecinales",
+          "Dinámicas de poder en la comunidad",
+          "Factores socioculturales"
+        ]
+      },
+      {
+        "modulo": "Módulo 2: Técnicas de Mediación Comunitaria",
+        "contenido": [
+          "Facilitación de diálogos grupales",
+          "Mediación intercultural",
+          "Manejo de emociones colectivas",
+          "Construcción de consensos"
+        ]
+      },
+      {
+        "modulo": "Módulo 3: Participación Ciudadana",
+        "contenido": [
+          "Metodologías participativas",
+          "Organización comunitaria",
+          "Liderazgo colaborativo",
+          "Redes de apoyo territorial"
+        ]
+      },
+      {
+        "modulo": "Módulo 4: Proyecto Comunitario",
+        "contenido": [
+          "Diseño de intervención comunitaria",
+          "Implementación supervisada",
+          "Evaluación de impacto",
+          "Sistematización de experiencias"
+        ]
+      }
+    ],
+    "requisitos": [
+      "Experiencia en trabajo comunitario o social",
+      "Liderazgo en organizaciones territoriales",
+      "Compromiso con el desarrollo comunitario",
+      "Residencia en la región de implementación"
+    ],
+    "metodologia": [
+      "Modalidad mixta con sesiones presenciales en terreno y módulos online",
+      "Incluye práctica supervisada en la propia comunidad del participante"
+    ],
+    "certificacion": [
+      "Diploma de Especialización en Mediación Comunitaria",
+      "Reconocido por organizaciones sociales y municipios"
+    ],
+    "empleabilidad": [
+      "Organizaciones comunitarias",
+      "Municipalidades y gobiernos locales",
+      "ONGs de desarrollo social",
+      "Programas gubernamentales",
+      "Consultorías en participación ciudadana"
+    ],
+    "ubicacion": "Modalidad Mixta",
+    "en_stock": true,
+    "categorias": ["Mediación", "Comunitaria", "Social"],
+    "etiquetas": ["Comunidad", "Participación Ciudadana", "Mediación"],
+    "testimonios": [
+      {
+        "nombre": "Carmen Rodríguez",
+        "profesion": "Dirigenta Vecinal",
+        "testimonio": "Transformó la manera de resolver conflictos en nuestro barrio. Ahora tenemos más herramientas para el diálogo.",
+        "rating": 5
+      },
+      {
+        "nombre": "Miguel Torres",
+        "profesion": "Trabajador Social",
+        "testimonio": "Excelente complemento para mi trabajo social. Las técnicas son muy efectivas en contextos comunitarios.",
+        "rating": 5
+      }
+    ]
+  }
+]
