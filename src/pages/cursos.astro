@@ -55,7 +55,7 @@ const cursos = getCursos();
         {cursos.length > 0 ? (
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
             {cursos.map((curso) => (
-              <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+              <div class={`bg-white border border-gray-200 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 relative ${curso.destacado ? 'ring-2 ring-naranja' : ''}`}>
 
                 <!-- Imagen -->
                 <div class="relative h-40 overflow-hidden">
@@ -65,11 +65,12 @@ const cursos = getCursos();
                     class="w-full h-full object-cover"
                     loading="lazy"
                   />
-                  <div class="absolute top-2 left-2">
-                    <span class="inline-block px-2 py-1 rounded-full text-xs font-bold text-white bg-turquesa">
-                      {curso.tipo}
-                    </span>
-                  </div>
+
+                  {curso.destacado && (
+                    <div class="absolute top-2 right-2">
+                      <span class="text-4xl drop-shadow-lg">⭐</span>
+                    </div>
+                  )}
                 </div>
 
                 <!-- Contenido -->

@@ -88,13 +88,7 @@ const diplomadosFinales = diplomadosRaw.map(producto => {
         
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-12">
           {diplomadosFinales.map((diplomado) => (
-            <div class={`diplomado-card bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 ${diplomado.destacado ? 'ring-2 ring-naranja' : ''}`}>
-
-              {diplomado.destacado && (
-                <div class="bg-gradient-to-r from-naranja to-amarillo text-white px-3 py-1 text-xs font-bold text-center">
-                  ⭐ MÁS POPULAR
-                </div>
-              )}
+            <div class={`diplomado-card bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 relative ${diplomado.destacado ? 'ring-2 ring-naranja' : ''}`}>
 
               <!-- Imagen -->
               <div class="relative h-40 overflow-hidden">
@@ -104,6 +98,12 @@ const diplomadosFinales = diplomadosRaw.map(producto => {
                   class="w-full h-full object-cover"
                   loading="lazy"
                 />
+
+                {diplomado.destacado && (
+                  <div class="absolute top-2 right-2">
+                    <span class="text-4xl drop-shadow-lg">⭐</span>
+                  </div>
+                )}
               </div>
 
               <!-- Contenido -->
