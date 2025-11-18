@@ -249,7 +249,7 @@ const MapaChileGeoJSON: React.FC<Props> = ({
   }, [height]);
 
   return (
-    <div className={`w-full overflow-visible ${className} min-h-[700px]`}>
+    <div className={`w-full overflow-visible ${className}`}>
     <div className={`w-full bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl shadow-lg overflow-visible`}>
       <div className="flex flex-col lg:flex-row gap-8 p-8 ">
         
