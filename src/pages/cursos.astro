@@ -6,50 +6,53 @@ import { getCursos } from '../lib/productos';
 const cursos = getCursos();
 ---
 
-<Layout 
+<Layout
   title="Cursos - EMED | Formación Complementaria en Mediación"
   description="Explora nuestros cursos especializados y talleres prácticos para complementar tu formación en mediación. Modalidades flexibles y certificación profesional."
 >
-  <div class="bg-gray-50 min-h-screen">
-  
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden py-20">
-      <!-- Imagen de fondo -->
+  <div class="bg-crema min-h-screen">
+
+    <!-- Hero Section con SVG celeste -->
+    <section class="hero-cursos relative overflow-hidden py-24">
+      <!-- SVG de fondo celeste -->
       <div class="absolute inset-0">
-        <img 
-          src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-          alt="Cursos de Mediación"
-          class="w-full h-full object-cover"
-        />
-        <!-- Overlay gradient -->
-        <div class="absolute inset-0 bg-gradient-to-br from-turquesa/80 to-verde/80"></div>
+        <svg viewBox="0 0 1200 800" class="w-full h-full" preserveAspectRatio="none">
+          <path d="M0,0 L1200,0 L1200,650 C1000,620 800,660 600,640 C400,620 200,660 0,650 Z" fill="#7EC5D6"/>
+        </svg>
       </div>
-      
+
       <div class="container mx-auto px-4 relative z-10">
         <div class="text-center text-white">
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             Cursos Complementarios
           </h1>
-          <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
             Cursos especializados y talleres prácticos para complementar tu formación en mediación
           </p>
-          <div class="flex justify-center space-x-4">
-            <span class="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium">
+          <div class="flex justify-center flex-wrap gap-4">
+            <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium border border-white/30">
               {cursos.length} Cursos Disponibles
             </span>
-            <span class="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium">
+            <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium border border-white/30">
               Modalidad Flexible
             </span>
-            <span class="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium">
+            <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium border border-white/30">
               Certificación Incluida
             </span>
           </div>
         </div>
       </div>
+
+      <!-- Forma orgánica inferior -->
+      <div class="absolute bottom-0 left-0 right-0 h-24">
+        <svg viewBox="0 0 1200 120" class="w-full h-full" preserveAspectRatio="none">
+          <path d="M0,120 C300,80 500,60 600,80 C700,100 900,60 1200,80 L1200,120 Z" fill="#FEF3E2"/>
+        </svg>
+      </div>
     </section>
 
     <!-- Cursos Grid -->
-    <section class="py-20 bg-white">
+    <section class="py-20 bg-transparent">
       <div class="container mx-auto px-4">
         
         {cursos.length > 0 ? (
