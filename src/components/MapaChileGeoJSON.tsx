@@ -260,8 +260,9 @@ const MapaChileGeoJSON: React.FC<Props> = ({
               Nuestro Impacto Nacional
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Con presencia en las 16 regiones de Chile, EMED ha formado más de 1,800 mediadores profesionales, 
-              representando el 15.5% del registro nacional de mediadores en la Región Metropolitana.
+            En 20 años hemos formado a más de 4.000 mediadores familiares. 
+            Hoy, más de 1.800 de nuestros mediadores están vigentes en el Registro Nacional, presentes en las 16 regiones de Chile. 
+            En la Región Metropolitana, nuestros egresados representan el 15,5% del Registro Único de Mediadores.
             </p>
           </div>
           

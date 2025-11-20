@@ -38,14 +38,12 @@ const getFoto = (index) => fotos[index % fotos.length];
             
             <div class="space-y-6 text-lg md:text-xl leading-relaxed">
               <p>
-                Somos EMED uno de los centros capacitadores en mediación más relevantes de Chile; 
-                que cuenta con una trayectoria y experiencia de más de 15 años.
+                En EMED – Centro de Estudios de Mediación llevamos más de 20 años formando mediadores 
+                y acompañando a organizaciones y personas a transformar conflictos en acuerdos sostenibles.
               </p>
               
               <p>
-                Nuestro equipo está integrado por profesionales, académicos y expertos 
-                reconocidos en diferentes áreas de la mediación familiar, escolar, comunitaria, 
-                penal y comercial.
+                Creemos en una mediación viva: práctica, humana y con impacto real en familias, escuelas, equipos de trabajo y comunidades.
               </p>
               
               <p>
@@ -78,6 +76,64 @@ const getFoto = (index) => fotos[index % fotos.length];
       </div>
     </section>
 
+    <!-- Sección: Promesa de Valor -->
+    <section class="promesa-valor-section relative py-20 bg-crema">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-gradient-to-br from-celeste/10 via-turquesa/5 to-naranja/10 rounded-3xl p-8 md:p-12 border-2 border-celeste/30 shadow-xl">
+            <div class="flex items-start space-x-4 mb-6">
+              <div class="flex-shrink-0">
+                <svg class="w-12 h-12 text-celeste" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+                  Promesa de Valor
+                </h2>
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+                  <strong class="text-celeste">Formación práctica</strong>, <strong class="text-turquesa">acompañamiento cercano</strong> y <strong class="text-naranja">certificaciones reconocidas</strong> que elevan tu empleabilidad y tu impacto social.
+                </p>
+              </div>
+            </div>
+
+            <!-- Beneficios clave -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+              <div class="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-celeste/20">
+                <div class="flex items-center space-x-2 mb-2">
+                  <svg class="w-5 h-5 text-celeste flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                  </svg>
+                  <h3 class="font-bold text-gray-800">Formación Práctica</h3>
+                </div>
+                <p class="text-sm text-gray-600">Metodología activa con casos reales</p>
+              </div>
+
+              <div class="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-turquesa/20">
+                <div class="flex items-center space-x-2 mb-2">
+                  <svg class="w-5 h-5 text-turquesa flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                  </svg>
+                  <h3 class="font-bold text-gray-800">Acompañamiento</h3>
+                </div>
+                <p class="text-sm text-gray-600">Soporte personalizado durante tu formación</p>
+              </div>
+
+              <div class="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-naranja/20">
+                <div class="flex items-center space-x-2 mb-2">
+                  <svg class="w-5 h-5 text-naranja flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <h3 class="font-bold text-gray-800">Certificación</h3>
+                </div>
+                <p class="text-sm text-gray-600">Acreditación SENCE e IRAM reconocida</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Sección: Misión y Visión -->
     <section class="mision-vision-section relative overflow-hidden py-32 z-10">
       <!-- SVG de fondo amarillo -->
@@ -96,7 +152,8 @@ const getFoto = (index) => fotos[index % fotos.length];
               Nuestro Propósito
             </h2>
             <p class="text-xl md:text-2xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-              La mediación es más que una técnica, es una filosofía de vida que nos permite construir puentes donde antes había divisiones.
+              Promover una convivencia más justa y colaborativa, desarrollando competencias socioemocionales 
+              y técnicas de mediación que mejoren la vida de las personas y la cultura de las instituciones.
             </p>
           </div>
 
@@ -113,9 +170,10 @@ const getFoto = (index) => fotos[index % fotos.length];
             <div class="bg-white/90 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-gray-200 shadow-2xl">
               <p class="text-xl md:text-2xl text-gray-800 leading-relaxed font-medium">
                 <span class="text-2xl md:text-3xl font-bold text-amarillo">"</span>
-                Ofrecer atención en mediación con los más altos estándares profesionales, 
-                facilitando la comunicación estructural para la resolución de conflictos 
-                a través del diálogo constructivo y la comprensión mutua.
+                Formar mediadores y equipos con competencias técnicas y socioemocionales, 
+                mediante metodologías activas y práctica real, para intervenir con solvencia 
+                en familia, escuela, trabajo y comunidad.
+
                 <span class="text-2xl md:text-3xl font-bold text-amarillo">"</span>
               </p>
               
@@ -142,9 +200,7 @@ const getFoto = (index) => fotos[index % fotos.length];
             <div class="bg-white/90 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-gray-200 shadow-2xl">
               <p class="text-xl md:text-2xl text-gray-800 leading-relaxed font-medium">
                 <span class="text-2xl md:text-3xl font-bold text-amarillo">"</span>
-                Ser el centro de formación en mediación más reconocido de América Latina, 
-                capacitando profesionales con las competencias técnicas y humanas necesarias 
-                para brindar servicios de mediación especializados y de excelencia.
+                Una cultura de diálogo en Chile y LATAM donde cada conflicto se gestiona con cuidado, justicia y colaboración.
                 <span class="text-2xl md:text-3xl font-bold text-amarillo">"</span>
               </p>
               

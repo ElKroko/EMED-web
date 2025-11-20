@@ -1,4 +1,8 @@
 ---
+import nch2728Logo from '../../assets/images/pages/nch2728.png';
+import ipchileLogo from '../../assets/images/brands/IPCHILE.png';
+import emedAcreditado from '../../assets/images/pages/emed_acreditado.png';
+
 export interface Badge {
   name: string;
   src: string;
@@ -10,16 +14,20 @@ export interface Props {
   sub?: string;
   description?: string;
   mascotSrc?: string;
+  nch2728LogoSrc?: string;
+  ipchileLogoSrc?: string;
   className?: string;
   sub_description?: string;
 }
 
-const { 
+const {
   heading = "Te capacitamos con acreditación",
   sub = "Sistema de Gestión de Calidad",
-  description = "Emed a través de su OTEC EcoWorking Capacitaciones SpA cumple con la norma chilena NCh2728 de gestión de la calidad en eduacación para comercializar, diseñar, planificar y ejecutar servicios de capacitación.",
+  description = "EMED, a través de su OTEC EcoWorking Capacitaciones SpA, cumple la <strong>norma chilena NCh2728 de gestión de calidad en educación</strong> para comercializar, diseñar, planificar y ejecutar capacitaciones. Además, el <strong>Diplomado en Mediación Familiar</strong> cuenta con <strong>certificación de IPCHILE</strong>, institución de educación superior reconocida por el Estado, dando cumplimiento a la <strong>Circular 3511-2025 del Ministerio de Justicia</strong>.",
   sub_description = "*Certificada hasta diciembre 2028",
-  mascotSrc = "/mascot-emed.svg",
+  mascotSrc = emedAcreditado.src,
+  nch2728LogoSrc = nch2728Logo.src,
+  ipchileLogoSrc = ipchileLogo.src,
   className = ""
 } = Astro.props;
 ---
@@ -41,8 +49,7 @@ const {
         </h3>
         
         <!-- Párrafo descripción -->
-        <p class="text-base md:text-lg text-gray-700 mb-8 leading-relaxed max-w-lg py-2">
-          {description}
+        <p class="text-base md:text-lg text-gray-700 mb-8 leading-relaxed max-w-lg py-2" set:html={description}>
         </p>
         
         <!-- Sub descripción -->
@@ -51,20 +58,48 @@ const {
         </p>
       </div>
 
-      <!-- Mascota/Isotipo - 40% -->
-      <div class="col-span-2 flex justify-center">
-        <div class="mascot-container relative">
-          {mascotSrc && (
+      <!-- Mascota y Logos de Certificación - 40% -->
+      <div class="col-span-2 flex flex-col items-center justify-center space-y-8">
+
+        <!-- Mascota -->
+        {mascotSrc && (
+          <div class="mascot-container relative">
             <div class="relative group">
-              <img 
+              <img
                 src={mascotSrc}
-                alt="Mascota EMED"
-                class="w-64 h-64 md:w-80 md:h-80 object-contain group-hover:scale-105 transition-transform duration-300"
+                alt="EMED Acreditado"
+                class="w-48 h-48 md:w-56 md:h-56 object-contain group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
               />
             </div>
-          )}
+          </div>
+        )}
+
+        <!-- Logos de Certificación -->
+        <div class="grid grid-cols-2 gap-8 w-full max-w-md">
+
+          <!-- Logo NCh2728 -->
+          <div class="logo-container flex items-center justify-center p-6 transition-all duration-300">
+            <img
+              src={nch2728LogoSrc}
+              alt="Certificación NCh2728 Sistema de Gestión de Calidad en Educación"
+              class="w-full h-auto max-h-32 object-contain group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Logo IPCHILE -->
+          <div class="logo-container flex items-center justify-center p-6 transition-all duration-300">
+            <img
+              src={ipchileLogoSrc}
+              alt="IPCHILE - Instituto Profesional de Chile"
+              class="w-full h-auto max-h-32 object-contain group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
+
         </div>
+
       </div>
 
     </div>
@@ -76,19 +111,23 @@ const {
   .accreditation-banner {
     position: relative;
   }
-  
+
   .logo-container {
-    transition: all var(--transition-base);
+    animation: float 6s ease-in-out infinite;
   }
-  
-  .logo-container:hover {
-    transform: scale(1.05);
+
+  .logo-container:nth-child(1) {
+    animation-delay: 0.5s;
   }
-  
+
+  .logo-container:nth-child(2) {
+    animation-delay: 1s;
+  }
+
   .mascot-container {
     animation: float 6s ease-in-out infinite;
   }
-  
+
   @keyframes float {
     0%, 100% {
       transform: translateY(0px);

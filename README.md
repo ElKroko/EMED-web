@@ -70,6 +70,7 @@ Definir credenciales WordPress/WooCommerce en `.env`.
 | `npm run preview` | Sirve el build generado |
 | `npm run astro` | Acceso directo a la CLI de Astro |
 | `./deploy.sh` | Ejecuta build y genera paquete `.tar.gz` en `deploys/` |
+| `npm run deploy:zip` | Build + ZIP listo para subir y descomprimir en el hosting |
 
 ## Estructura del proyecto
 ```
