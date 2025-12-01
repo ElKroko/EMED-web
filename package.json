@@ -4,10 +4,12 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/copy-assets.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy:zip": "node scripts/deploy-zip.mjs"
+    "deploy:zip": "node scripts/deploy-zip.mjs",
+    "prepare:assets": "node scripts/copy-assets.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",

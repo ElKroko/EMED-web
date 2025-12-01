@@ -36,6 +36,7 @@
   
   /* Tipografía */
   --font-family-primary: 'Inter Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-family-headings: 'Ubuntu', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --font-weight-normal: 400;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
