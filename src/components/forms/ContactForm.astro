@@ -32,7 +32,7 @@ const getFormConfig = (type: string, program: string) => {
     case 'financiamiento':
       return {
         title: 'Solicita Información sobre Financiamiento',
-        subtitle: 'Te ayudamos con opciones SENCE, becas y facilidades de pago',
+        subtitle: 'Te ayudamos con opciones empresariales, becas y facilidades de pago',
         buttonText: 'Consultar Financiamiento',
         urgencyText: 'Becas limitadas - ¡Consulta ahora!'
       };
@@ -206,10 +206,9 @@ const formSubtitle = subtitle || config.subtitle;
           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
         >
           <option value="">Selecciona una opción</option>
-          <option value="sence">Financiamiento SENCE</option>
+          <option value="financiamiento-empresa">Financiamiento Empresarial</option>
           <option value="beca-cofinanciamiento">Beca de Cofinanciamiento</option>
           <option value="facilidades-pago">Facilidades de Pago</option>
-          <option value="financiamiento-empresa">Financiamiento Empresarial</option>
         </select>
       </div>
     )}
@@ -297,7 +296,6 @@ const formSubtitle = subtitle || config.subtitle;
         <option value="">Sin preferencia</option>
         <option value="mañana">Mañana (9:00 - 12:00)</option>
         <option value="tarde">Tarde (14:00 - 18:00)</option>
-        <option value="noche">Noche (18:00 - 21:00)</option>
       </select>
     </div>
 

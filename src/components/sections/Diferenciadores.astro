@@ -1,0 +1,27 @@
+---
+interface Props {
+  items: string[];
+  titulo?: string;
+  className?: string;
+}
+
+const {
+  items,
+  titulo = 'Lo que te diferenciará:',
+  className = ''
+} = Astro.props;
+---
+
+<div class={`diferenciadores ${className}`}>
+  <h3 class="text-xl font-bold text-gray-800 mb-4">{titulo}</h3>
+  <ul class="space-y-3">
+    {items.map((item) => (
+      <li class="flex items-start">
+        <svg class="w-5 h-5 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+        <span class="text-gray-600">{item}</span>
+      </li>
+    ))}
+  </ul>
+</div>

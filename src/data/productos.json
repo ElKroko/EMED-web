@@ -7,13 +7,15 @@
     "descripcion": "Especialízate en la resolución de conflictos familiares con técnicas específicas para dinámicas familiares complejas y casos de alta sensibilidad emocional.",
     "descripcion_corta": "Especialízate en la resolución de conflictos familiares con técnicas específicas para dinámicas familiares complejas y casos de alta sensibilidad emocional.",
     "descripcionDetallada": "Este diplomado está diseñado para profesionales que deseen especializarse en la mediación de conflictos familiares. Aborda desde los fundamentos teóricos hasta la práctica supervisada, cumpliendo con todos los requisitos del Ministerio de Justicia para el registro oficial de mediadores familiares.",
-    "duracion": "120 horas",
-    "modalidad": "Presencial + Online",
+    "duracion": "220 horas",
+    "modalidad": "Online + Presencial (Prácticas)",
+    "duracion_online": "170 horas",
+    "duracion_presencial": "50 horas",
     "nivel": "Básico - Intermedio",
-    "precio": 450000,
-    "precio_regular": 450000,
-    "precio_formateado": "$450.000",
-    "precioFinanciado": "$350.000",
+    "precio": 750000,
+    "precio_regular": 750000,
+    "precio_formateado": "desde $750.000",
+    "precioFinanciado": "$600.000",
     "destacado": true,
     "imagen": "https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     "imagenHero": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
@@ -30,9 +32,27 @@
       "Material de apoyo descargable",
       "Seguimiento post-certificación"
     ],
+    "diferenciadores": [
+      "Metodología basada en casos reales del sistema judicial chileno",
+      "Docentes mediadores activos con años de experiencia práctica",
+      "Pasantía obligatoria en centros de mediación familiar reconocidos",
+      "Seguimiento post-certificación para inserción laboral efectiva"
+    ],
+    "formacion_online": {
+      "etapa_asincronica": {
+        "titulo": "Etapa asincrónica (plataforma)",
+        "descripcion": "Acceso 24/7 a la plataforma, estudio a tu ritmo propio con material didáctico y actividades interactivas."
+      },
+      "etapa_sincronica": {
+        "titulo": "Etapa sincrónica (Zoom)",
+        "descripcion": "Sesiones en vivo (no grabadas) en formato taller, reflexión en grupo y resolución de dudas directamente con el docente."
+      }
+    },
+    "cta_mensaje": "Un asesor académico te contactará para resolver tus dudas referentes a tu formación como mediador familiar y posterior inscripción en el registro de mediadores del Ministerio de Justicia.",
     "temario": [
       {
-        "modulo": "Módulo 1: Fundamentos de la Mediación",
+        "modulo": "Módulo 1: Fundamentos Mediación Familiar",
+        "horas": 30,
         "contenido": [
           "Historia y principios de la mediación",
           "Marco legal chileno de mediación familiar",
@@ -41,7 +61,8 @@
         ]
       },
       {
-        "modulo": "Módulo 2: Técnicas y Herramientas",
+        "modulo": "Módulo 2: Técnicas y Herramientas Especializadas",
+        "horas": 35,
         "contenido": [
           "Comunicación efectiva y escucha activa",
           "Manejo de emociones en conflicto",
@@ -51,6 +72,7 @@
       },
       {
         "modulo": "Módulo 3: Práctica Supervisada",
+        "horas": 30,
         "contenido": [
           "Simulacros con casos reales",
           "Retroalimentación individualizada",
@@ -60,6 +82,8 @@
       },
       {
         "modulo": "Módulo 4: Pasantía Obligatoria",
+        "horas": 25,
+        "tipo": "presencial",
         "contenido": [
           "Práctica en centros de mediación (100% presencial)",
           "Supervisión directa de mediadores experimentados",
@@ -117,13 +141,14 @@
     "descripcion": "Aprende a mediar conflictos educativos trabajando con estudiantes, padres y equipos docentes en ambientes escolares complejos.",
     "descripcion_corta": "Aprende a mediar conflictos educativos trabajando con estudiantes, padres y equipos docentes en ambientes escolares complejos.",
     "descripcionDetallada": "Formación especializada para profesionales de la educación que buscan implementar programas de mediación escolar efectivos. Incluye herramientas específicas para el trabajo con menores y metodologías adaptadas al contexto educativo.",
-    "duracion": "80 horas",
-    "modalidad": "100% Online",
+    "titulo_principal": "Transformando la Convivencia Escolar",
+    "duracion": "240 horas",
+    "modalidad": "100% online",
     "nivel": "Básico",
-    "precio": 320000,
-    "precio_regular": 320000,
-    "precio_formateado": "$320.000",
-    "precioFinanciado": "$250.000",
+    "precio": 450000,
+    "precio_regular": 450000,
+    "precio_formateado": "desde $450.000",
+    "precioFinanciado": "$360.000",
     "destacado": false,
     "imagen": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
     "imagenHero": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
@@ -210,13 +235,13 @@
     "descripcion": "Desarrolla habilidades para resolver conflictos laborales y mejorar el clima organizacional en empresas y organizaciones.",
     "descripcion_corta": "Desarrolla habilidades para resolver conflictos laborales y mejorar el clima organizacional en empresas y organizaciones.",
     "descripcionDetallada": "Programa especializado para profesionales de recursos humanos, abogados laborales y líderes organizacionales que buscan implementar sistemas efectivos de resolución de conflictos en el ámbito laboral.",
-    "duracion": "100 horas",
-    "modalidad": "Presencial",
+    "duracion": "240 horas",
+    "modalidad": "100% online",
     "nivel": "Intermedio",
-    "precio": 380000,
-    "precio_regular": 380000,
-    "precio_formateado": "$380.000",
-    "precioFinanciado": "$290.000",
+    "precio": 480000,
+    "precio_regular": 480000,
+    "precio_formateado": "desde $480.000",
+    "precioFinanciado": "$380.000",
     "destacado": false,
     "imagen": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
     "imagenHero": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",

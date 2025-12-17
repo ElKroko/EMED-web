@@ -1,0 +1,98 @@
+---
+interface Modulo {
+  modulo: string;
+  horas: number;
+  tipo?: string;
+  contenido: string[];
+}
+
+interface Props {
+  modulos: Modulo[];
+  className?: string;
+}
+
+const { modulos, className = '' } = Astro.props;
+---
+
+<div class={`plan-estudios ${className}`}>
+  <h2 class="text-3xl font-bold text-gray-800 mb-8 flex items-center">
+    <svg class="w-8 h-8 text-celeste mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+    </svg>
+    Plan de Estudios
+  </h2>
+
+  <div class="space-y-6">
+    {modulos.map((modulo, index) => (
+      <div class="border border-gray-200 rounded-lg overflow-hidden">
+        <button
+          class="modulo-toggle w-full p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between"
+          data-target={`modulo-${index + 1}`}
+          aria-expanded="false"
+        >
+          <span class="font-semibold text-gray-800">
+            {modulo.modulo} ({modulo.horas} horas{modulo.tipo === 'presencial' ? ' presenciales' : ''})
+          </span>
+          <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="modulo-content hidden p-4 bg-white" id={`modulo-${index + 1}`}>
+          <ul class="space-y-2">
+            {modulo.contenido.map((item) => (
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-gray-600">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  // Funcionalidad de acordeón para el plan de estudios
+  class PlanEstudiosAccordion {
+    constructor() {
+      this.toggles = document.querySelectorAll('.modulo-toggle');
+      this.init();
+    }
+
+    init() {
+      this.toggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+          const target = e.currentTarget.dataset.target;
+          const content = document.getElementById(target);
+          const icon = e.currentTarget.querySelector('svg');
+
+          if (content.classList.contains('hidden')) {
+            // Abrir el actual
+            content.classList.remove('hidden');
+            icon.style.transform = 'rotate(180deg)';
+            e.currentTarget.setAttribute('aria-expanded', 'true');
+          } else {
+            // Cerrar el actual
+            content.classList.add('hidden');
+            icon.style.transform = 'rotate(0deg)';
+            e.currentTarget.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    }
+  }
+
+  // Inicializar cuando DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    new PlanEstudiosAccordion();
+  });
+</script>
+
+<style>
+  .modulo-toggle[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+</style>

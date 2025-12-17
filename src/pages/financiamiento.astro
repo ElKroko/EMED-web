@@ -5,16 +5,16 @@ import ContactForm from '../components/forms/ContactForm.astro';
 // Opciones de financiamiento
 const financingOptions = [
   {
-    title: "Financiamiento SENCE",
-    description: "Utiliza tu credencial SENCE para financiar hasta el 100% de la capacitación",
+    title: "Financiamiento Empresarial",
+    description: "Opciones de financiamiento corporativo para financiar hasta el 100% de la capacitación",
     features: [
       "Cobertura hasta 100% del programa",
       "Sin costo directo para el trabajador",
       "Proceso 100% online",
-      "Certificación válida para SENCE"
+      "Certificación válida para empresas"
     ],
     icon: "🏛️",
-    buttonText: "Consultar SENCE",
+    buttonText: "Consultar Financiamiento",
     popular: true
   },
   {
@@ -70,9 +70,9 @@ const benefits = [
 ];
 ---
 
-<Layout 
-  title="Financiamiento - EMED | Opciones SENCE, Becas y Facilidades de Pago"
-  description="Conoce todas nuestras opciones de financiamiento: SENCE, becas de cofinanciamiento y facilidades de pago. ¡Inicia tu carrera como mediador sin limitaciones económicas!"
+<Layout
+  title="Financiamiento - EMED | Opciones de Financiamiento, Becas y Facilidades de Pago"
+  description="Conoce todas nuestras opciones de financiamiento: financiamiento empresarial, becas de cofinanciamiento y facilidades de pago. ¡Inicia tu carrera como mediador sin limitaciones económicas!"
 >
 
   <!-- Hero Section -->
@@ -231,7 +231,7 @@ const benefits = [
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
-        <!-- Caso SENCE -->
+        <!-- Caso Financiamiento Empresarial -->
         <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8">
           <div class="flex items-center mb-4">
             <div class="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg mr-4">
@@ -243,13 +243,13 @@ const benefits = [
             </div>
           </div>
           <p class="text-gray-700 italic mb-4">
-            "Gracias al financiamiento SENCE pude estudiar Mediación Escolar sin costo. El proceso fue súper fácil y rápido."
+            "Gracias al financiamiento empresarial pude estudiar Mediación Escolar sin costo. El proceso fue súper fácil y rápido."
           </p>
           <div class="flex items-center text-sm text-blue-600 font-semibold">
             <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
             </svg>
-            100% Financiado con SENCE
+            100% Financiado por empresa
           </div>
         </div>
 
@@ -351,7 +351,7 @@ const benefits = [
     setTimeout(() => {
       const selectElement = document.querySelector('select[name="financiamiento_tipo"]');
       if (selectElement) {
-        const optionValue = type.includes('sence') ? 'sence' : 
+        const optionValue = type.includes('empresarial') ? 'financiamiento-empresarial' :
                            type.includes('beca') ? 'beca-cofinanciamiento' :
                            type.includes('facilidades') ? 'facilidades-pago' : '';
         if (optionValue) {
