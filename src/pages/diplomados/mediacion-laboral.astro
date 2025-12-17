@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ContactForm from '../../components/forms/ContactForm.astro';
+import PlanEstudios from '../../components/sections/PlanEstudios.astro';
+import Diferenciadores from '../../components/sections/Diferenciadores.astro';
 import { getProductoPorSlug } from '../../lib/productos';
 
 // Obtener datos del diplomado desde datos estáticos
@@ -9,9 +11,9 @@ const diplomadoWC = getProductoPorSlug('mediacion-laboral');
 // Datos del diplomado
 const titulo = diplomadoWC?.nombre || 'Diplomado en Mediación Laboral';
 const descripcionCorta = diplomadoWC?.descripcion_corta || 'Desarrolla habilidades para resolver conflictos laborales y mejorar el clima organizacional en empresas y organizaciones.';
-const duracion = diplomadoWC?.duracion || '100 horas';
-const modalidad = diplomadoWC?.modalidad || 'Presencial';
-const precio = diplomadoWC?.precio_formateado || '$380.000';
+const duracion = diplomadoWC?.duracion || '240 horas';
+const modalidad = diplomadoWC?.modalidad || '100% online';
+const precio = diplomadoWC?.precio_formateado || 'desde $480.000';
 const beneficios = diplomadoWC?.beneficios || [];
 const temario = diplomadoWC?.temario || [];
 const requisitos = diplomadoWC?.requisitos || [];
@@ -19,6 +21,14 @@ const metodologia = diplomadoWC?.metodologia || [];
 const certificacion = diplomadoWC?.certificacion || [];
 const empleabilidad = diplomadoWC?.empleabilidad || [];
 const brochure = diplomadoWC?.brochure || null;
+
+// Nuevos campos específicos de Laboral
+const impactoOrganizacion = (diplomadoWC as any)?.impacto_organizacion || [];
+const programaEmpresarial = (diplomadoWC as any)?.programa_empresarial || [];
+const casosReales = (diplomadoWC as any)?.casos_reales || [];
+const beneficiosEmpresariales = (diplomadoWC as any)?.beneficios_empresariales || [];
+const campoAplicacion = (diplomadoWC as any)?.campo_aplicacion || [];
+const diferenciadores = (diplomadoWC as any)?.diferenciadores || [];
 ---
 
 <Layout 
@@ -58,7 +68,7 @@ const brochure = diplomadoWC?.brochure || null;
               Diplomado
             </span>
             <span class="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium">
-              Presencial
+              {modalidad}
             </span>
             <span class="inline-block bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold">
               ✓ RRHH
@@ -224,7 +234,21 @@ const brochure = diplomadoWC?.brochure || null;
                 </li>
               </ul>
             </div>
-            
+
+            <!-- Diferenciadores -->
+            {diferenciadores && diferenciadores.length > 0 && (
+              <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <Diferenciadores items={diferenciadores} titulo="Lo que te diferenciará:" />
+              </div>
+            )}
+
+            <!-- Programa Empresarial -->
+            {programaEmpresarial && programaEmpresarial.length > 0 && (
+              <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <PlanEstudios modulos={programaEmpresarial} />
+              </div>
+            )}
+
             <!-- Temario -->
             <div class="bg-white rounded-2xl p-8 shadow-lg">
               <h2 class="text-3xl font-bold text-gray-800 mb-8 flex items-center">
@@ -547,8 +571,8 @@ const brochure = diplomadoWC?.brochure || null;
                 </div>
               </div>
               
-              <div class="mt-6 space-y-3">
-                <button 
+              <div class="mt-6">
+                <button
                   onclick="scrollToContactForm()"
                   class="inline-flex items-center justify-center w-full px-4 py-3 md:px-6 md:py-4 font-bold text-sm md:text-base rounded-lg transition-all duration-300 text-white bg-celeste hover:bg-turquesa"
                 >
@@ -557,15 +581,6 @@ const brochure = diplomadoWC?.brochure || null;
                   </svg>
                   Consultar con Asesor
                 </button>
-                <a 
-                  href="/financiamiento"
-                  class="inline-flex items-center justify-center w-full px-4 py-3 md:px-6 md:py-4 border-2 border-gray-300 text-gray-700 font-semibold text-sm md:text-base rounded-lg hover:border-celeste hover:text-celeste transition-all duration-300"
-                >
-                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                  </svg>
-                  Ver Financiamiento
-                </a>
               </div>
               
               <!-- Info especial para RRHH -->
@@ -869,7 +884,7 @@ const brochure = diplomadoWC?.brochure || null;
           </div>
 
           <ContactForm 
-            type="diplomado"
+            type="programa"
             program={titulo}
             source="mediacion-laboral"
             title="Consulta sobre Mediación Laboral"

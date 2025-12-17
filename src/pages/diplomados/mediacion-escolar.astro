@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ContactForm from '../../components/forms/ContactForm.astro';
+import PlanEstudios from '../../components/sections/PlanEstudios.astro';
+import Diferenciadores from '../../components/sections/Diferenciadores.astro';
 import { getProductoPorSlug } from '../../lib/productos';
 
 // Obtener datos del diplomado desde datos estáticos
@@ -9,9 +11,9 @@ const diplomadoWC = getProductoPorSlug('mediacion-escolar');
 // Datos del diplomado
 const titulo = diplomadoWC?.nombre || 'Diplomado en Mediación Escolar';
 const descripcionCorta = diplomadoWC?.descripcion_corta || 'Aprende a mediar conflictos educativos trabajando con estudiantes, padres y equipos docentes en ambientes escolares complejos.';
-const duracion = diplomadoWC?.duracion || '80 horas';
-const modalidad = diplomadoWC?.modalidad || '100% Online';
-const precio = diplomadoWC?.precio_formateado || '$320.000';
+const duracion = diplomadoWC?.duracion || '240 horas';
+const modalidad = diplomadoWC?.modalidad || '100% online';
+const precio = diplomadoWC?.precio_formateado || 'desde $450.000';
 const beneficios = diplomadoWC?.beneficios || [];
 const temario = diplomadoWC?.temario || [];
 const requisitos = diplomadoWC?.requisitos || [];
@@ -19,6 +21,14 @@ const metodologia = diplomadoWC?.metodologia || [];
 const certificacion = diplomadoWC?.certificacion || [];
 const empleabilidad = diplomadoWC?.empleabilidad || [];
 const brochure = diplomadoWC?.brochure || null;
+
+// Nuevos campos específicos de Escolar
+const tituloPersonal = (diplomadoWC as any)?.titulo_principal || 'Transformando la Convivencia Escolar';
+const metodologiaAdaptada = (diplomadoWC as any)?.metodologia_adaptada || null;
+const horariosCompatibles = (diplomadoWC as any)?.horarios_compatibles || '';
+const certificacionDetallada = (diplomadoWC as any)?.certificacion_detallada || '';
+const campoAplicacion = (diplomadoWC as any)?.campo_aplicacion || [];
+const diferenciadores = (diplomadoWC as any)?.diferenciadores || [];
 ---
 
 <Layout 
@@ -58,7 +68,7 @@ const brochure = diplomadoWC?.brochure || null;
               Diplomado
             </span>
             <span class="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium">
-              100% Online
+              {modalidad}
             </span>
             <span class="inline-block bg-green-600 text-white px-4 py-2 rounded-full text-sm font-bold">
               ✓ MINEDUC
@@ -178,7 +188,7 @@ const brochure = diplomadoWC?.brochure || null;
             
             <!-- Descripción detallada -->
             <div class="bg-white rounded-2xl p-8 shadow-lg">
-              <h2 class="text-3xl font-bold text-gray-800 mb-8">Transformando la Convivencia Escolar</h2>
+              <h2 class="text-3xl font-bold text-gray-800 mb-8">{tituloPersonal}</h2>
               
               <p class="text-lg text-gray-600 mb-6 leading-relaxed">
                 Formación especializada para profesionales de la educación que buscan implementar programas de mediación escolar efectivos. Incluye herramientas específicas para el trabajo con menores y metodologías adaptadas al contexto educativo chileno.
@@ -224,310 +234,28 @@ const brochure = diplomadoWC?.brochure || null;
                 </li>
               </ul>
             </div>
-            
-            <!-- Temario -->
-            <div class="bg-white rounded-2xl p-8 shadow-lg">
-              <h2 class="text-3xl font-bold text-gray-800 mb-8 flex items-center">
-                <svg class="w-8 h-8 text-celeste mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
-                </svg>
-                Plan de Estudios Especializado
-              </h2>
-              
-              <div class="space-y-6">
-                
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                  <button 
-                    class="modulo-toggle w-full p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between"
-                    data-target="modulo-1"
-                  >
-                    <span class="font-semibold text-gray-800">Módulo 1: Convivencia Escolar y Diagnóstico (20 horas)</span>
-                    <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                  </button>
-                  <div class="modulo-content hidden p-4 bg-white" id="modulo-1">
-                    <ul class="space-y-2">
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Marco normativo: Ley de Convivencia Escolar y reglamentos ministeriales</span>
-                      </li>
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Diagnóstico de clima escolar: instrumentos y metodologías</span>
-                      </li>
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Factores de riesgo y protección en la convivencia escolar</span>
-                      </li>
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Identificación temprana de conflictos y situaciones de riesgo</span>
-                      </li>
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Prevención de la violencia escolar y promoción del buen trato</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
 
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                  <button 
-                    class="modulo-toggle w-full p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between"
-                    data-target="modulo-2"
-                  >
-                    <span class="font-semibold text-gray-800">Módulo 2: Mediación Entre Pares (20 horas)</span>
-                    <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                  </button>
-                  <div class="modulo-content hidden p-4 bg-white" id="modulo-2">
-                    <ul class="space-y-2">
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Selección y formación de mediadores estudiantiles</span>
-                      </li>
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Supervisión de procesos de mediación peer-to-peer</span>
-                      </li>
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Abordaje especializado de casos de bullying y ciberbullying</span>
-                      </li>
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Protocolos de derivación a especialistas externos</span>
-                      </li>
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Desarrollo de habilidades socioemocionales en mediadores</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                  <button 
-                    class="modulo-toggle w-full p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between"
-                    data-target="modulo-3"
-                  >
-                    <span class="font-semibold text-gray-800">Módulo 3: Mediación con Familias y Comunidad Educativa (25 horas)</span>
-                    <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                  </button>
-                  <div class="modulo-content hidden p-4 bg-white" id="modulo-3">
-                    <ul class="space-y-2">
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Mediación en conflictos padres-establecimiento educacional</span>
-                      </li>
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Resolución de tensiones entre apoderados y profesores</span>
-                      </li>
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Promoción de la participación familiar activa y constructiva</span>
-                      </li>
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Comunicación efectiva con familias diversas y multiculturales</span>
-                      </li>
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Mediación intercultural en contextos educativos diversos</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                  <button 
-                    class="modulo-toggle w-full p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between"
-                    data-target="modulo-4"
-                  >
-                    <span class="font-semibold text-gray-800">Módulo 4: Proyecto de Implementación (15 horas)</span>
-                    <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                  </button>
-                  <div class="modulo-content hidden p-4 bg-white" id="modulo-4">
-                    <ul class="space-y-2">
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Diseño de programa de mediación para tu establecimiento</span>
-                      </li>
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Planificación e implementación piloto supervisada</span>
-                      </li>
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Evaluación de impacto y mejora continua del programa</span>
-                      </li>
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Sistematización de experiencias y buenas prácticas</span>
-                      </li>
-                      <li class="flex items-start">
-                        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-gray-600">Presentación final y retroalimentación especializada</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+            <!-- Diferenciadores -->
+            {diferenciadores && diferenciadores.length > 0 && (
+              <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <Diferenciadores items={diferenciadores} titulo="Lo que te diferenciará:" />
               </div>
-            </div>
-            
-            <!-- Metodología -->
-            <div class="bg-white rounded-2xl p-8 shadow-lg">
-              <h2 class="text-3xl font-bold text-gray-800 mb-8 flex items-center">
-                <svg class="w-8 h-8 text-turquesa mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-                </svg>
-                Metodología Adaptada a Profesores
-              </h2>
-              
-              <p class="text-gray-600 leading-relaxed text-lg mb-6">
-                <strong>100% online</strong> con clases sincrónicas semanales, material asincrónico y talleres prácticos virtuales. Diseñado especialmente para profesionales que trabajan en horario escolar.
-              </p>
+            )}
 
-              <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-gradient-to-br from-celeste/10 to-celeste/5 border border-celeste/20 rounded-lg p-4">
-                  <h3 class="font-bold text-gray-800 mb-2 flex items-center">
-                    <svg class="w-5 h-5 text-celeste mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    Horarios Flexibles
-                  </h3>
-                  <ul class="text-sm text-gray-600 space-y-1">
-                    <li>• Clases después de horario escolar</li>
-                    <li>• Material disponible 24/7</li>
-                    <li>• Evaluaciones asincrónicas</li>
-                    <li>• Sin traslados ni costos extras</li>
-                  </ul>
-                </div>
-                <div class="bg-gradient-to-br from-turquesa/10 to-turquesa/5 border border-turquesa/20 rounded-lg p-4">
-                  <h3 class="font-bold text-gray-800 mb-2 flex items-center">
-                    <svg class="w-5 h-5 text-turquesa mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                    </svg>
-                    Aplicación Inmediata
-                  </h3>
-                  <ul class="text-sm text-gray-600 space-y-1">
-                    <li>• Casos reales del aula</li>
-                    <li>• Herramientas para uso inmediato</li>
-                    <li>• Proyecto en tu establecimiento</li>
-                    <li>• Seguimiento personalizado</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Testimonios -->
+            <!-- Plan de Estudios -->
             <div class="bg-white rounded-2xl p-8 shadow-lg">
-              <h2 class="text-3xl font-bold text-gray-800 mb-8 flex items-center">
-                <svg class="w-8 h-8 text-naranja mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
-                </svg>
-                Testimonios de Educadores
-              </h2>
-              
-              <div class="space-y-6">
-                <div class="bg-gray-50 rounded-xl p-6">
-                  <div class="flex items-center mb-4">
-                    <div class="w-12 h-12 bg-celeste rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
-                      AC
-                    </div>
-                    <div>
-                      <h4 class="font-semibold text-gray-800">Ana Cristina López</h4>
-                      <p class="text-gray-600 text-sm">Profesora Básica • Colegio San Patricio</p>
-                    </div>
-                    <div class="ml-auto flex">
-                      {[...Array(5)].map(() => (
-                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                      ))}
-                    </div>
-                  </div>
-                  <p class="text-gray-700 italic">"Transformó completamente mi manera de abordar los conflictos en el aula. Las herramientas son muy prácticas y los estudiantes han respondido increíblemente bien. El clima de mi curso mejoró notablemente. Muy recomendable para cualquier educador."</p>
-                </div>
-
-                <div class="bg-gray-50 rounded-xl p-6">
-                  <div class="flex items-center mb-4">
-                    <div class="w-12 h-12 bg-celeste rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
-                      MS
-                    </div>
-                    <div>
-                      <h4 class="font-semibold text-gray-800">Mario Silva</h4>
-                      <p class="text-gray-600 text-sm">Inspector General • Liceo Técnico Industrial</p>
-                    </div>
-                    <div class="ml-auto flex">
-                      {[...Array(5)].map(() => (
-                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                        </svg>
-                      ))}
-                    </div>
-                  </div>
-                  <p class="text-gray-700 italic">"Como inspector general, este diplomado me dio las competencias para manejar situaciones complejas de convivencia. Los padres ahora participan más activamente y tenemos menos derivaciones a psicología. Excelente inversión."</p>
-                </div>
-              </div>
+              <PlanEstudios modulos={temario} />
             </div>
-            
+
           </div>
-          
+
           <!-- Sidebar -->
           <div class="space-y-8">
-            
+
             <!-- Información del Programa -->
             <div class="bg-white rounded-2xl p-6 shadow-lg">
               <h3 class="text-xl font-bold text-gray-800 mb-8">Información del Programa</h3>
-              
+
               <div class="space-y-4">
                 <div class="flex justify-between items-center py-2 border-b border-gray-200">
                   <span class="text-gray-600">Duración:</span>
@@ -546,9 +274,9 @@ const brochure = diplomadoWC?.brochure || null;
                   <span class="font-bold text-lg text-celeste">{precio}</span>
                 </div>
               </div>
-              
-              <div class="mt-6 space-y-3">
-                <button 
+
+              <div class="mt-6">
+                <button
                   onclick="scrollToContactForm()"
                   class="inline-flex items-center justify-center w-full px-4 py-3 md:px-6 md:py-4 font-bold text-sm md:text-base rounded-lg transition-all duration-300 text-white bg-celeste hover:bg-turquesa"
                 >
@@ -557,29 +285,9 @@ const brochure = diplomadoWC?.brochure || null;
                   </svg>
                   Consultar con Asesor
                 </button>
-                <a 
-                  href="/financiamiento"
-                  class="inline-flex items-center justify-center w-full px-4 py-3 md:px-6 md:py-4 border-2 border-gray-300 text-gray-700 font-semibold text-sm md:text-base rounded-lg hover:border-celeste hover:text-celeste transition-all duration-300"
-                >
-                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                  </svg>
-                  Ver Financiamiento
-                </a>
-              </div>
-              
-              <!-- Info especial para educadores -->
-              <div class="mt-4 bg-gradient-to-r from-celeste/10 to-turquesa/10 border border-celeste/30 rounded-lg p-4">
-                <div class="flex items-center mb-2">
-                  <svg class="w-5 h-5 text-celeste mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                  </svg>
-                  <span class="text-celeste font-semibold text-sm">Perfecto para educadores</span>
-                </div>
-                <p class="text-gray-600 text-sm">Horarios 100% compatibles con el trabajo docente. Puedes estudiar desde casa después de clases.</p>
               </div>
             </div>
-            
+
             <!-- Beneficios -->
             <div class="bg-white rounded-2xl p-6 shadow-lg">
               <h3 class="text-xl font-bold text-gray-800 mb-8">Beneficios Únicos</h3>
@@ -868,8 +576,8 @@ const brochure = diplomadoWC?.brochure || null;
             </p>
           </div>
 
-          <ContactForm 
-            type="diplomado"
+          <ContactForm
+            type="programa"
             program={titulo}
             source="mediacion-escolar"
             title="Consulta sobre Mediación Escolar"
@@ -1001,60 +709,13 @@ const brochure = diplomadoWC?.brochure || null;
 </style>
 
 <script>
-  // Funcionalidad de acordeón para el temario
-  class TemarioAccordion {
-    constructor() {
-      this.toggles = document.querySelectorAll('.modulo-toggle');
-      this.init();
-    }
-
-    init() {
-      this.toggles.forEach(toggle => {
-        toggle.addEventListener('click', (e) => {
-          const target = e.currentTarget.dataset.target;
-          const content = document.getElementById(target);
-          const icon = e.currentTarget.querySelector('svg');
-          
-          if (content.classList.contains('hidden')) {
-            // Cerrar otros acordeones
-            this.closeAll();
-            
-            // Abrir el actual
-            content.classList.remove('hidden');
-            icon.style.transform = 'rotate(180deg)';
-            e.currentTarget.setAttribute('aria-expanded', 'true');
-          } else {
-            // Cerrar el actual
-            content.classList.add('hidden');
-            icon.style.transform = 'rotate(0deg)';
-            e.currentTarget.setAttribute('aria-expanded', 'false');
-          }
-        });
-      });
-    }
-
-    closeAll() {
-      this.toggles.forEach(toggle => {
-        const target = toggle.dataset.target;
-        const content = document.getElementById(target);
-        const icon = toggle.querySelector('svg');
-        
-        content.classList.add('hidden');
-        icon.style.transform = 'rotate(0deg)';
-        toggle.setAttribute('aria-expanded', 'false');
-      });
-    }
-  }
-
   // Función para scroll suave al formulario
   function scrollToContactForm() {
-    document.getElementById('contact-form').scrollIntoView({
-      behavior: 'smooth'
-    });
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
   }
-
-  // Inicializar cuando DOM esté listo
-  document.addEventListener('DOMContentLoaded', () => {
-    new TemarioAccordion();
-  });
 </script>
