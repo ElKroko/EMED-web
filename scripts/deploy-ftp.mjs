@@ -165,23 +165,57 @@ async function deploy() {
       const remoteFile = relativePath.replace(/\\/g, '/'); // Convertir \ a / para FTP
       const fileSize = statSync(localFile).size;
 
-      // Crear directorios remotos si es necesario
-      const remoteDir = remoteFile.split('/').slice(0, -1).join('/');
-      if (remoteDir) {
-        try {
-          await client.ensureDir(remoteDir);
-        } catch (error) {
-          // Ignorar errores de directorios que ya existen
+      try {
+        // Asegurarnos de estar en el directorio base antes de cada operación
+        await client.cd(env.FTP_REMOTE_PATH);
+
+        // Crear directorios remotos si es necesario
+        const remoteDir = remoteFile.split('/').slice(0, -1).join('/');
+        if (remoteDir) {
+          try {
+            // Crear directorios manualmente sin cambiar el CWD
+            const parts = remoteDir.split('/');
+            let currentPath = env.FTP_REMOTE_PATH;
+
+            for (const part of parts) {
+              currentPath = `${currentPath}/${part}`;
+              try {
+                // Intentar crear el directorio sin usar ensureDir (que hace CWD)
+                await client.send('MKD ' + part);
+              } catch (mkdError) {
+                // Ignorar error 550 (directorio ya existe)
+                if (!mkdError.message.includes('550')) {
+                  throw mkdError;
+                }
+              }
+              // Cambiar al directorio que acabamos de crear
+              await client.cd(currentPath);
+            }
+
+            // Volver al directorio base
+            await client.cd(env.FTP_REMOTE_PATH);
+          } catch (dirError) {
+            console.log(''); // Nueva línea
+            log(`\n⚠️ Error creando directorio ${remoteDir}: ${dirError.message}`, colors.yellow);
+            throw dirError;
+          }
         }
+
+        // Subir archivo (desde el directorio base)
+        await client.uploadFrom(localFile, remoteFile);
+        uploadedCount++;
+        uploadedSize += fileSize;
+
+        const progress = Math.round((uploadedCount / files.length) * 100);
+        process.stdout.write(`\r  Progreso: ${progress}% (${uploadedCount}/${files.length}) - ${formatBytes(uploadedSize)} subidos`);
+      } catch (error) {
+        console.log(''); // Nueva línea para error
+        log(`\n⚠️ Error subiendo ${remoteFile}: ${error.message}`, colors.yellow);
+        if (error.code) {
+          log(`   Código FTP: ${error.code}`, colors.yellow);
+        }
+        log('Continuando con siguiente archivo...', colors.yellow);
       }
-
-      // Subir archivo
-      await client.uploadFrom(localFile, remoteFile);
-      uploadedCount++;
-      uploadedSize += fileSize;
-
-      const progress = Math.round((uploadedCount / files.length) * 100);
-      process.stdout.write(`\r  Progreso: ${progress}% (${uploadedCount}/${files.length}) - ${formatBytes(uploadedSize)} subidos`);
     }
 
     console.log(''); // Nueva línea después del progreso
