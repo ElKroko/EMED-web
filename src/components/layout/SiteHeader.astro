@@ -2,6 +2,7 @@
 export interface NavLink {
   label: string;
   href: string;
+  children?: NavLink[];
 }
 
 export interface Props {
@@ -12,7 +13,15 @@ export interface Props {
 const {
   links = [
     { label: 'HOME', href: '/' },
-    { label: 'DIPLOMADOS', href: '/diplomados' },
+    { 
+      label: 'DIPLOMADOS', 
+      href: '/diplomados',
+      children: [
+        { label: 'Mediación Familiar', href: '/diplomados/mediacion-familiar' },
+        { label: 'Mediación Escolar', href: '/diplomados/mediacion-escolar' },
+        { label: 'Mediación Laboral', href: '/diplomados/mediacion-laboral' }
+      ]
+    },
     // { label: 'CURSOS', href: '/cursos' }, // Temporalmente oculto - en desarrollo
     { label: 'NOSOTROS', href: '/nosotros' },
     { label: 'ADMISIÓN', href: '/admision' },
@@ -38,13 +47,34 @@ const {
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex items-center space-x-8">
         {links.map((link) => (
-          <a 
-            href={link.href}
-            class="nav-link font-bold tracking-wide hover:opacity-80 transition-all duration-200 relative drop-shadow-sm"
-            style="color: var(--color-white);"
-          >
-            {link.label}
-          </a>
+          <div class="relative group">
+            <a 
+              href={link.href}
+              class="nav-link font-bold tracking-wide hover:opacity-80 transition-all duration-200 relative drop-shadow-sm flex items-center"
+              style="color: var(--color-white);"
+            >
+              {link.label}
+              {link.children && (
+                <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              )}
+            </a>
+            
+            {link.children && (
+              <div class="absolute left-0 mt-2 w-56 bg-celeste rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 z-50 border border-white/20 overflow-hidden">
+                {link.children.map((child) => (
+                  <a 
+                    href={child.href}
+                    class="block px-4 py-3 text-sm text-white hover:bg-white/10 transition-colors duration-200 font-medium border-b border-white/10 last:border-none"
+                    style="color: white !important;"
+                  >
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
         ))}
       </div>
 
@@ -68,19 +98,32 @@ const {
     <div class="mobile-menu lg:hidden hidden">
       <div class="py-4 space-y-2 border-t border-white border-opacity-20">
         {links.map((link) => (
-          <a 
-            href={link.href}
-            class="mobile-nav-link block px-4 py-3 font-bold text-base tracking-wide transition-all duration-200 rounded-md mx-2"
-          >
-            {link.label}
-          </a>
+          <div>
+            <a 
+              href={link.href}
+              class="mobile-nav-link block px-4 py-3 font-bold text-base tracking-wide transition-all duration-200 rounded-md mx-2"
+            >
+              {link.label}
+            </a>
+            {link.children && (
+              <div class="pl-8 space-y-1 mt-1 mb-2">
+                {link.children.map((child) => (
+                  <a 
+                    href={child.href}
+                    class="block px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-md text-sm transition-colors duration-200"
+                  >
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
         ))}
       </div>
     </div>
 
   </div>
 </header>
-
 <script>
   class SiteHeader {
     constructor() {

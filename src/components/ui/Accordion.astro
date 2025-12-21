@@ -37,7 +37,11 @@ const { items, className = "", allowMultiple = false } = Astro.props;
         class={`accordion-content ${item.isOpen ? '' : 'hidden'}`}
         role="region"
       >
+<<<<<<< HEAD
         <div class="px-6 pb-6 pt-2 text-gray-600 leading-relaxed prose prose-sm max-w-none">{item.content}</div>
+=======
+        <div class="px-6 pb-6 pt-2 text-gray-600 leading-relaxed prose prose-sm max-w-none" set:html={item.content}></div>
+>>>>>>> 67f1724e2e9ea0188e0fe3e18046caaa366d1370
       </div>
     </div>
   ))}

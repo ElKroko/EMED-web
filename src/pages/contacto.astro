@@ -1,7 +1,7 @@
----
 import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/forms/ContactForm.astro';
 import TwoColumnBlock from '../components/sections/TwoColumnBlock.astro';
+import Accordion from '../components/ui/Accordion.astro';
 
 // Información de contacto
 const contactInfo = {
@@ -204,28 +204,7 @@ const faqs = [
       </div>
 
       <div class="max-w-4xl mx-auto space-y-4">
-        {faqs.map((faq, index) => (
-          <div class="faq-item bg-white border border-gray-200 rounded-xl overflow-hidden">
-            <button
-              class="faq-question w-full text-left p-6 flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
-              data-faq-index={index}
-            >
-              <h3 class="text-lg font-bold text-gray-900 pr-4">
-                {faq.question}
-              </h3>
-              <svg class="faq-icon w-6 h-6 text-celeste flex-shrink-0 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
-            <div class="faq-answer hidden">
-              <div class="px-6 pb-6 pt-2">
-                <p class="text-gray-700 leading-relaxed">
-                  {faq.answer}
-                </p>
-              </div>
-            </div>
-          </div>
-        ))}
+        <Accordion items={faqs.map(f => ({ title: f.question, content: f.answer }))} />
       </div>
 
       <div class="text-center mt-12">
@@ -311,31 +290,7 @@ const faqs = [
 </Layout>
 
 <script>
-  // Funcionalidad del acordeón de FAQs
-  document.addEventListener('DOMContentLoaded', () => {
-    const faqQuestions = document.querySelectorAll('.faq-question');
-
-    faqQuestions.forEach((question) => {
-      question.addEventListener('click', () => {
-        const faqItem = question.closest('.faq-item');
-        const answer = faqItem?.querySelector('.faq-answer');
-        const icon = question.querySelector('.faq-icon');
-
-        if (!answer || !icon) return;
-
-        // Toggle respuesta
-        const isHidden = answer.classList.contains('hidden');
-
-        if (isHidden) {
-          answer.classList.remove('hidden');
-          icon.style.transform = 'rotate(180deg)';
-        } else {
-          answer.classList.add('hidden');
-          icon.style.transform = 'rotate(0deg)';
-        }
-      });
-    });
-  });
+  // Funcionalidad del acordeón de FAQs (Manejado por componente)
 </script>
 
 <style>

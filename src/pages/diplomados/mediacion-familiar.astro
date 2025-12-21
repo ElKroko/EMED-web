@@ -722,51 +722,6 @@ const brochure = diplomadoWC?.brochure || null;
 </style>
 
 <script>
-  // Funcionalidad de acordeón para el temario
-  class TemarioAccordion {
-    constructor() {
-      this.toggles = document.querySelectorAll('.modulo-toggle');
-      this.init();
-    }
-
-    init() {
-      this.toggles.forEach(toggle => {
-        toggle.addEventListener('click', (e) => {
-          const target = e.currentTarget.dataset.target;
-          const content = document.getElementById(target);
-          const icon = e.currentTarget.querySelector('svg');
-          
-          if (content.classList.contains('hidden')) {
-            // Cerrar otros acordeones
-            this.closeAll();
-            
-            // Abrir el actual
-            content.classList.remove('hidden');
-            icon.style.transform = 'rotate(180deg)';
-            e.currentTarget.setAttribute('aria-expanded', 'true');
-          } else {
-            // Cerrar el actual
-            content.classList.add('hidden');
-            icon.style.transform = 'rotate(0deg)';
-            e.currentTarget.setAttribute('aria-expanded', 'false');
-          }
-        });
-      });
-    }
-
-    closeAll() {
-      this.toggles.forEach(toggle => {
-        const target = toggle.dataset.target;
-        const content = document.getElementById(target);
-        const icon = toggle.querySelector('svg');
-        
-        content.classList.add('hidden');
-        icon.style.transform = 'rotate(0deg)';
-        toggle.setAttribute('aria-expanded', 'false');
-      });
-    }
-  }
-
   // Función para scroll suave al formulario
   function scrollToContactForm() {
     document.getElementById('contact-form').scrollIntoView({
@@ -774,8 +729,10 @@ const brochure = diplomadoWC?.brochure || null;
     });
   }
 
+  // Inicializar cuando DOM esté listo (Solo scroll, el acordeón se maneja en el componente)
+
   // Inicializar cuando DOM esté listo
   document.addEventListener('DOMContentLoaded', () => {
-    new TemarioAccordion();
+    // new TemarioAccordion(); // Removido, se maneja por componente
   });
 </script>
