@@ -45,7 +45,7 @@ function loadEnv() {
     log('\n💡 Asegúrate de crear un archivo .env con las credenciales FTP', colors.yellow);
     log('Ejemplo de contenido:', colors.cyan);
     log('FTP_HOST=emediacion.cl', colors.cyan);
-    log('FTP_USER=emedroot', colors.cyan);
+    log('FTP_USER=emedroot_loader', colors.cyan);
     log('FTP_PASSWORD=tu_password', colors.cyan);
     log('FTP_REMOTE_PATH=/nuevo.emediacion.cl', colors.cyan);
     process.exit(1);
@@ -102,7 +102,7 @@ async function deploy() {
 
   const distPath = join(__dirname, '..', 'dist');
   const client = new Client();
-  client.ftp.verbose = false;
+  client.ftp.verbose = false; // Cambiar a true para debug
 
   try {
     // 1. Verificar que existe el directorio dist
@@ -129,7 +129,7 @@ async function deploy() {
       host: env.FTP_HOST,
       user: env.FTP_USER,
       password: env.FTP_PASSWORD,
-      secure: false,
+      secure: false, // Cambiar a true si el servidor soporta FTPS
     });
     log('✓ Conectado exitosamente', colors.green);
 
@@ -162,38 +162,46 @@ async function deploy() {
 
     for (const localFile of files) {
       const relativePath = relative(distPath, localFile);
-      const remoteFile = relativePath.replace(/\\/g, '/');
+      const remoteFile = relativePath.replace(/\\/g, '/'); // Convertir \ a / para FTP
       const fileSize = statSync(localFile).size;
 
       try {
+        // Asegurarnos de estar en el directorio base antes de cada operación
         await client.cd(env.FTP_REMOTE_PATH);
 
+        // Crear directorios remotos si es necesario
         const remoteDir = remoteFile.split('/').slice(0, -1).join('/');
         if (remoteDir) {
           try {
+            // Crear directorios manualmente sin cambiar el CWD
             const parts = remoteDir.split('/');
             let currentPath = env.FTP_REMOTE_PATH;
 
             for (const part of parts) {
               currentPath = `${currentPath}/${part}`;
               try {
+                // Intentar crear el directorio sin usar ensureDir (que hace CWD)
                 await client.send('MKD ' + part);
               } catch (mkdError) {
+                // Ignorar error 550 (directorio ya existe)
                 if (!mkdError.message.includes('550')) {
                   throw mkdError;
                 }
               }
+              // Cambiar al directorio que acabamos de crear
               await client.cd(currentPath);
             }
 
+            // Volver al directorio base
             await client.cd(env.FTP_REMOTE_PATH);
           } catch (dirError) {
-            console.log('');
+            console.log(''); // Nueva línea
             log(`\n⚠️ Error creando directorio ${remoteDir}: ${dirError.message}`, colors.yellow);
             throw dirError;
           }
         }
 
+        // Subir archivo (desde el directorio base)
         await client.uploadFrom(localFile, remoteFile);
         uploadedCount++;
         uploadedSize += fileSize;
@@ -201,7 +209,7 @@ async function deploy() {
         const progress = Math.round((uploadedCount / files.length) * 100);
         process.stdout.write(`\r  Progreso: ${progress}% (${uploadedCount}/${files.length}) - ${formatBytes(uploadedSize)} subidos`);
       } catch (error) {
-        console.log('');
+        console.log(''); // Nueva línea para error
         log(`\n⚠️ Error subiendo ${remoteFile}: ${error.message}`, colors.yellow);
         if (error.code) {
           log(`   Código FTP: ${error.code}`, colors.yellow);
@@ -210,7 +218,7 @@ async function deploy() {
       }
     }
 
-    console.log('');
+    console.log(''); // Nueva línea después del progreso
     log('✓ Todos los archivos subidos exitosamente', colors.green);
 
     // 7. Validar que los archivos críticos existen en el servidor

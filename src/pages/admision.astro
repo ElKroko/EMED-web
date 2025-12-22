@@ -51,11 +51,20 @@ const programRows = [
   <!-- Contenedor principal uniforme -->
   <div class="bg-crema min-h-screen">
   
-    <!-- Hero más pequeño -->
-    <section class="hero-admision relative z-20 bg-celeste">
+    <!-- Hero más pequeño con SVG extendido -->
+    <section class="hero-admision relative z-20">
+      <!-- SVG de fondo que se extiende hacia abajo -->
+      <div class="absolute top-0 left-0 w-full h-[150vh] -z-10">
+        <img
+          src="/images/pages/heroadmision.svg"
+          alt=""
+          class="w-full h-full object-cover object-top"
+        />
+      </div>
+      
       <!-- Contenedor principal con márgenes consistentes -->
       <div class="main-container max-w-[1200px] mx-auto px-6 md:px-12 relative z-10">
-        <div class="flex justify-end items-center h-full min-h-[30vh] py-20">
+        <div class="flex justify-end items-center h-full min-h-[30vh]">
           <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold text-white">
             Admisión
           </h1>
@@ -127,12 +136,9 @@ const programRows = [
   <section class="financing-section relative bg-crema overflow-hidden py-20">
     <!-- Formas orgánicas de fondo -->
     <div class="absolute inset-0 w-full">
-      <svg viewBox="0 0 1200 800" class="w-full h-full" preserveAspectRatio="none">
-        <!-- Forma naranja principal -->
-        <path d="M0,200 C200,150 400,100 600,120 C800,140 1000,100 1200,150 L1200,600 C1000,550 800,580 600,560 C400,540 200,580 0,550 Z" fill="#F5821F" opacity="0.9"/>
-        <!-- Forma amarilla secundaria -->
-        <path d="M0,400 C300,350 500,380 700,360 C900,340 1100,380 1200,350 L1200,800 L0,800 Z" fill="#FDB813" opacity="0.8"/>
-      </svg>
+    <!-- Fondo limpio -->
+    <div class="absolute inset-0 w-full">
+    </div>
     </div>
     
     <!-- Contenedor principal con márgenes consistentes -->
@@ -178,7 +184,11 @@ const programRows = [
   </section>
   
   <!-- Sección Modalidades de Estudio -->
-  <section class="modalities-section relative py-20 bg-crema">
+  <section class="modalities-section relative overflow-hidden py-20">
+    <!-- Fondo limpio -->
+    <div class="absolute -top-32 left-0 w-full h-[150vh] -z-10">
+    </div>
+    
     <!-- Contenedor principal con márgenes consistentes -->
     <div class="main-container max-w-[1200px] mx-auto px-6 md:px-12 relative z-10">
       
