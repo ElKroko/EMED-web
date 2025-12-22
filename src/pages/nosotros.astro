@@ -19,14 +19,7 @@ const getFoto = (index) => fotos[index % fotos.length];
   <div class="bg-crema min-h-screen">
   
     <!-- Hero: Quienes Somos -->
-    <section class="hero-nosotros relative overflow-hidden py-24">
-      <!-- SVG de fondo celeste -->
-      <div class="absolute inset-0">
-        <svg viewBox="0 0 1200 800" class="w-full h-full" preserveAspectRatio="none">
-          <path d="M0,0 L1200,0 L1200,650 C1000,620 800,660 600,640 C400,620 200,660 0,650 Z" fill="#7EC5D6"/>
-        </svg>
-      </div>
-      
+    <section class="hero-nosotros relative overflow-hidden py-24 bg-celeste">
       <div class="container mx-auto px-4 relative z-10">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
           
@@ -66,13 +59,6 @@ const getFoto = (index) => fotos[index % fotos.length];
           </div>
           
         </div>
-      </div>
-      
-      <!-- Forma orgánica inferior -->
-      <div class="absolute bottom-0 left-0 right-0 h-24">
-        <svg viewBox="0 0 1200 120" class="w-full h-full" preserveAspectRatio="none">
-          <path d="M0,120 C300,80 500,60 600,80 C700,100 900,60 1200,80 L1200,120 Z" fill="#FDB813"/>
-        </svg>
       </div>
     </section>
 
