@@ -8,6 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "deploy": "node scripts/deploy-ftp.mjs",
+    "deploy:full": "npm run build && npm run deploy",
     "deploy:zip": "node scripts/deploy-zip.mjs",
     "prepare:assets": "node scripts/copy-assets.mjs"
   },
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.19",
-    "archiver": "^7.0.1"
+    "archiver": "^7.0.1",
+    "basic-ftp": "^5.0.5"
   }
 }
