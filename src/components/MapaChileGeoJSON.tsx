@@ -16,6 +16,9 @@ const MapaChileGeoJSON: React.FC<Props> = ({
   useEffect(() => {
     if (!svgRef.current || typeof window === 'undefined') return;
 
+    // cleanup function defined at top level scope of effect
+    let cleanup = () => {};
+
     const initMap = async () => {
       try {
         // Importar D3 dinámicamente
@@ -52,10 +55,15 @@ const MapaChileGeoJSON: React.FC<Props> = ({
         };
 
         // Crear tooltip
+        // Use a unique class or ID to avoid conflicts if multiple maps exist (though unlikely here)
+        const tooltipClass = `tooltip-geojson-${Math.random().toString(36).substr(2, 9)}`;
+        
         const tooltip = d3.select("body").append("div")
-          .attr("class", "tooltip-geojson")
+          .attr("class", `tooltip-geojson ${tooltipClass}`)
           .style("opacity", 0)
           .style("position", "absolute")
+          .style("top", "0") // Important: prevent layout shift
+          .style("left", "0") // Important: prevent layout shift
           .style("background", "rgba(44, 62, 80, 0.95)")
           .style("color", "white")
           .style("padding", "16px")
@@ -67,6 +75,11 @@ const MapaChileGeoJSON: React.FC<Props> = ({
           .style("box-shadow", "0 8px 32px rgba(0,0,0,0.3)")
           .style("backdrop-filter", "blur(10px)")
           .style("border", "1px solid rgba(255,255,255,0.1)");
+
+        // Update cleanup function
+        cleanup = () => {
+          d3.select(`.${tooltipClass}`).remove();
+        };
 
         // Fondo simple sin gradiente
         svg.append("rect")
@@ -224,14 +237,7 @@ const MapaChileGeoJSON: React.FC<Props> = ({
           .style("fill", "#6b7280")
           .text(d => d.range);
 
-        // Quitar el título del mapa ya que tenemos info panel
-
         console.log('✅ Mapa GeoJSON de Chile cargado correctamente');
-
-        // Cleanup
-        return () => {
-          d3.select(".tooltip-geojson").remove();
-        };
 
       } catch (error) {
         console.error('❌ Error cargando mapa GeoJSON:', error);
@@ -246,6 +252,11 @@ const MapaChileGeoJSON: React.FC<Props> = ({
     };
 
     initMap();
+
+    // Actual useEffect cleanup
+    return () => {
+      cleanup();
+    };
   }, [height]);
 
   return (

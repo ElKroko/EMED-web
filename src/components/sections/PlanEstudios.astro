@@ -15,18 +15,12 @@ import Accordion from '../ui/Accordion.astro';
 
 const { modulos, className = '' } = Astro.props;
 
-const accordionItems = modulos.map(modulo => ({
+// Instead of HTML strings, pass the raw data
+const accordionItems = modulos.map((modulo, idx) => ({
   title: `${modulo.modulo} (${modulo.horas} horas${modulo.tipo === 'presencial' ? ' presenciales' : ''})`,
-  content: `<ul class="space-y-2">
-    ${modulo.contenido.map(item => `
-      <li class="flex items-start">
-        <svg class="w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg>
-        <span class="text-gray-600">${item}</span>
-      </li>
-    `).join('')}
-  </ul>`
+  content: '', // Empty, will be filled by JS
+  data: modulo.contenido, // Pass raw data
+  id: `modulo-${idx}`
 }));
 ---
 

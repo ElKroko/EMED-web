@@ -3,6 +3,8 @@ export interface AccordionItem {
   title: string;
   content: string;
   isOpen?: boolean;
+  data?: any;
+  id?: string;
 }
 
 export interface Props {
@@ -11,37 +13,36 @@ export interface Props {
   allowMultiple?: boolean;
 }
 
-const { items, className = "", allowMultiple = false } = Astro.props;
+const { items, className = "", allowMultiple = false} = Astro.props;
 ---
 
 <div class={`accordion-container ${className}`} data-allow-multiple={allowMultiple}>
   {items.map((item, index) => (
     <div class="accordion-item bg-white rounded-xl border border-gray-200 overflow-hidden mb-4 shadow-sm hover:shadow-md transition-shadow duration-200">
-      <button 
+      <button
         class="accordion-trigger w-full text-left p-6 cursor-pointer flex items-center justify-between hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors duration-200"
         aria-expanded={item.isOpen ? "true" : "false"}
         aria-controls={`accordion-content-${index}`}
       >
         <span class="text-lg font-semibold text-gray-800 pr-4">{item.title}</span>
-        <svg 
-          class={`accordion-icon w-6 h-6 text-celeste flex-shrink-0 transition-transform duration-300 ${item.isOpen ? 'rotate-180' : ''}`} 
-          fill="none" 
-          stroke="currentColor" 
+        <svg
+          class={`accordion-icon w-6 h-6 text-celeste flex-shrink-0 transition-transform duration-300 ${item.isOpen ? 'rotate-180' : ''}`}
+          fill="none"
+          stroke="currentColor"
           viewBox="0 0 24 24"
         >
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
         </svg>
       </button>
-      <div 
+      <div
         id={`accordion-content-${index}`}
         class={`accordion-content ${item.isOpen ? '' : 'hidden'}`}
         role="region"
+        data-items={item.data ? JSON.stringify(item.data) : null}
       >
-<<<<<<< HEAD
-        <div class="px-6 pb-6 pt-2 text-gray-600 leading-relaxed prose prose-sm max-w-none">{item.content}</div>
-=======
-        <div class="px-6 pb-6 pt-2 text-gray-600 leading-relaxed prose prose-sm max-w-none" set:html={item.content}></div>
->>>>>>> 67f1724e2e9ea0188e0fe3e18046caaa366d1370
+        <div class="px-6 pb-6 pt-2 text-gray-600 leading-relaxed prose prose-sm max-w-none accordion-content-inner">
+          {item.content || ''}
+        </div>
       </div>
     </div>
   ))}
@@ -105,6 +106,53 @@ const { items, className = "", allowMultiple = false } = Astro.props;
 
   // Initialize accordions
   document.addEventListener('DOMContentLoaded', () => {
+    // First, render content from JSON data
+    const contentDivs = document.querySelectorAll('.accordion-content');
+    contentDivs.forEach(div => {
+      const itemsData = div.getAttribute('data-items');
+      const innerDiv = div.querySelector('.accordion-content-inner');
+
+      if (itemsData && innerDiv && innerDiv.innerHTML.trim() === '') {
+        try {
+          const items = JSON.parse(itemsData);
+          const ul = document.createElement('ul');
+          ul.className = 'space-y-2';
+
+          items.forEach(itemText => {
+            const li = document.createElement('li');
+            li.className = 'flex items-start';
+
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('class', 'w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0');
+            svg.setAttribute('fill', 'none');
+            svg.setAttribute('stroke', 'currentColor');
+            svg.setAttribute('viewBox', '0 0 24 24');
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('stroke-linecap', 'round');
+            path.setAttribute('stroke-linejoin', 'round');
+            path.setAttribute('stroke-width', '2');
+            path.setAttribute('d', 'M5 13l4 4L19 7');
+
+            svg.appendChild(path);
+
+            const span = document.createElement('span');
+            span.className = 'text-gray-600';
+            span.textContent = itemText;
+
+            li.appendChild(svg);
+            li.appendChild(span);
+            ul.appendChild(li);
+          });
+
+          innerDiv.appendChild(ul);
+        } catch (e) {
+          console.error('Error parsing accordion data:', e);
+        }
+      }
+    });
+
+    // Then initialize accordions
     const accordions = document.querySelectorAll('.accordion-container');
     accordions.forEach(acc => new Accordion(acc));
   });

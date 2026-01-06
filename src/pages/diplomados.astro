@@ -1,28 +1,34 @@
+---
 import Layout from '../layouts/Layout.astro';
 import { getDiplomados } from '../lib/productos';
 import Accordion from '../components/ui/Accordion.astro';
 
-// FAQs data
+// FAQs data - content as plain text will be rendered directly
 const faqsDiplomados = [
   {
     title: "¿Qué requisitos necesito para inscribirme?",
-    content: "Solo necesitas ser profesional universitario o tener experiencia relevante en el área. No es necesaria experiencia previa en mediación."
+    content: "Solo necesitas ser profesional universitario o tener experiencia relevante en el área. No es necesaria experiencia previa en mediación.",
+    data: null
   },
   {
     title: "¿Los diplomados tienen validez oficial?",
-    content: "Sí, todos nuestros diplomados cuentan con certificación oficial y reconocimiento institucional. Están acreditados por las entidades correspondientes."
+    content: "Sí, todos nuestros diplomados cuentan con certificación oficial y reconocimiento institucional. Están acreditados por las entidades correspondientes.",
+    data: null
   },
   {
     title: "¿Puedo trabajar como mediador al graduarme?",
-    content: "Absolutamente. Nuestros graduados pueden ejercer como mediadores certificados y muchos han establecido sus propias prácticas profesionales."
+    content: "Absolutamente. Nuestros graduados pueden ejercer como mediadores certificados y muchos han establecido sus propias prácticas profesionales.",
+    data: null
   },
   {
     title: "¿Ofrecen modalidad online?",
-    content: "Sí, tenemos modalidades presencial, online y mixta para adaptarnos a tu disponibilidad y preferencias de aprendizaje."
+    content: "Sí, tenemos modalidades presencial, online y mixta para adaptarnos a tu disponibilidad y preferencias de aprendizaje.",
+    data: null
   },
   {
     title: "¿Qué opciones de financiamiento tienen?",
-    content: "Ofrecemos múltiples opciones: pago al contado con descuento, cuotas sin interés, y planes de financiamiento adaptados a tu situación."
+    content: "Ofrecemos múltiples opciones: pago al contado con descuento, cuotas sin interés, y planes de financiamiento adaptados a tu situación.",
+    data: null
   }
 ];
 
@@ -422,62 +428,33 @@ const diplomadosFinales = diplomadosRaw.map(producto => {
         </div>
       </div>
     </section>
+    <style>
+      .program-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 400px;
+      }
+
+      .program-link {
+        color: white !important;
+        margin-top: auto;
+      }
+
+      .program-link:hover {
+        color: white !important;
+      }
+
+      /* Limitar líneas de descripción */
+      .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    </style>
   </div>
 
   </div>
 </Layout>
-
-<script>
-  // Funcionalidad del acordeón de FAQs
-  document.addEventListener('DOMContentLoaded', () => {
-    const faqQuestions = document.querySelectorAll('.faq-question');
-
-    faqQuestions.forEach((question) => {
-      question.addEventListener('click', () => {
-        const faqItem = question.closest('.faq-item');
-        const answer = faqItem?.querySelector('.faq-answer');
-        const icon = question.querySelector('.faq-icon');
-
-        if (!answer || !icon) return;
-
-        // Toggle respuesta
-        const isHidden = answer.classList.contains('hidden');
-
-        if (isHidden) {
-          answer.classList.remove('hidden');
-          icon.style.transform = 'rotate(180deg)';
-        } else {
-          answer.classList.add('hidden');
-          icon.style.transform = 'rotate(0deg)';
-        }
-      });
-    });
-  });
-</script>
-
-<style>
-  .program-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    min-height: 400px;
-  }
-
-  .program-link {
-    color: white !important;
-    margin-top: auto;
-  }
-
-  .program-link:hover {
-    color: white !important;
-  }
-
-  /* Limitar líneas de descripción */
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-</style>

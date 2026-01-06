@@ -28,7 +28,7 @@ const {
           {heading}
         </h2>
         <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed mb-8">
-          <div>{content}</div>
+          <div set:html={content} />
         </div>
         
         <!-- Botón CTA -->

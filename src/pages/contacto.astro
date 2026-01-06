@@ -1,3 +1,4 @@
+---
 import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/forms/ContactForm.astro';
 import TwoColumnBlock from '../components/sections/TwoColumnBlock.astro';
@@ -204,7 +205,7 @@ const faqs = [
       </div>
 
       <div class="max-w-4xl mx-auto space-y-4">
-        <Accordion items={faqs.map(f => ({ title: f.question, content: f.answer }))} />
+        <Accordion items={faqs.map(f => ({ title: f.question, content: f.answer, data: null }))} />
       </div>
 
       <div class="text-center mt-12">
