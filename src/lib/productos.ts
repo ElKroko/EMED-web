@@ -63,7 +63,16 @@ export function getProductosDestacados(): Producto[] {
  * Obtiene un producto por su slug
  */
 export function getProductoPorSlug(slug: string): Producto | null {
-  const producto = getTodosLosProductos().find(p => p.slug === slug);
+  // First check in diplomados (primary source for diplomados)
+  let producto = getDiplomados().find(p => p.slug === slug);
+  if (producto) return producto;
+
+  // Then check in cursos
+  producto = getCursos().find((p: any) => p.slug === slug);
+  if (producto) return producto;
+
+  // Finally check in general products
+  producto = getTodosLosProductos().find(p => p.slug === slug);
   return producto || null;
 }
 

@@ -26,6 +26,7 @@ const empleabilidad = diplomadoWC?.empleabilidad || [];
 const diferenciadores = diplomadoWC?.diferenciadores || [];
 const ctaMensaje = diplomadoWC?.cta_mensaje || "";
 const testimonios = diplomadoWC?.testimonios || [];
+const rutaAprendizaje = diplomadoWC?.ruta_aprendizaje || null;
 ---
 
 <Layout
@@ -179,10 +180,10 @@ const testimonios = diplomadoWC?.testimonios || [];
               </h2>
 
               <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-                Formación especializada para profesionales de la educación que
-                buscan implementar programas de mediación escolar efectivos.
-                Incluye herramientas específicas para el trabajo con menores y
-                metodologías adaptadas al contexto educativo chileno.
+                Diplomado estructurado en <strong>3 etapas consecutivas</strong> que
+                te llevan desde los fundamentos psicosociales hasta la aplicación
+                práctica de técnicas de mediación escolar. Combina formación asincrónica
+                en plataforma con jornadas sincrónicas en vivo.
               </p>
 
               <div
@@ -199,15 +200,16 @@ const testimonios = diplomadoWC?.testimonios || [];
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                     ></path>
                   </svg>
-                  100% Flexible y Online
+                  100% Online con Clases en Vivo
                 </h3>
                 <p class="text-gray-700">
-                  Modalidad completamente virtual que se adapta a los horarios
-                  de los profesionales de la educación, con contenido disponible
-                  24/7 y clases sincrónicas opcionales.
+                  Formación <strong>asincrónica</strong> en plataforma (acceso 24/7,
+                  a tu ritmo) + <strong>jornadas sincrónicas</strong> por Zoom con
+                  docentes expertos. Diseñado para compatibilizar con tu jornada laboral
+                  en el colegio.
                 </p>
               </div>
 
@@ -218,15 +220,157 @@ const testimonios = diplomadoWC?.testimonios || [];
                   Material Descargable
                 </h3>
                 <DownloadButtons
-                  mallaUrl="/docs/malla-escolar-placeholder.pdf"
-                  calendarioUrl="/docs/calendario-escolar-placeholder.pdf"
-                  arancelesUrl="/docs/aranceles-escolar-placeholder.pdf"
+                  mallaUrl="/docs/diplomados/mediacion-escolar/malla.pdf"
+                  calendarioUrl="/docs/diplomados/mediacion-escolar/brochure.pdf"
+                  arancelesUrl="/docs/diplomados/mediacion-escolar/aranceles.pdf"
                   className="mt-4"
                 />
               </div>
             </div>
 
-            <!-- 2. Metodología -->
+            <!-- 2. Ruta de Aprendizaje -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+              <h2
+                class="text-3xl font-bold text-gray-800"
+                style="margin-bottom: 10px;"
+              >
+                Ruta de Aprendizaje
+              </h2>
+              <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                La formación se organiza en <strong
+                  >3 etapas consecutivas</strong
+                >, donde cada curso es requisito del siguiente y el Diplomado se
+                obtiene al completar toda la ruta:
+              </p>
+
+              <!-- Timeline Visual -->
+              <div class="space-y-4">
+                <!-- Etapa 1 -->
+                <div class="flex items-start">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 rounded-full bg-celeste text-white flex items-center justify-center font-bold text-xl shadow-lg"
+                  >
+                    1
+                  </div>
+                  <div class="ml-4 flex-1">
+                    <div
+                      class="bg-gradient-to-r from-celeste/10 to-transparent p-5 rounded-xl border-l-4 border-celeste"
+                    >
+                      <h4 class="font-bold text-gray-800 text-lg">
+                        Curso 1: Bases Psicosociales de la Convivencia Escolar
+                      </h4>
+                      <span
+                        class="inline-block mt-2 px-3 py-1 bg-celeste/20 text-celeste text-xs font-bold rounded-full uppercase tracking-wide"
+                      >
+                        Online Asincrónico
+                      </span>
+                      <p class="text-gray-600 text-sm mt-2">
+                        Fundamentos teóricos en plataforma de estudio. Acceso
+                        24/7, avanza a tu ritmo.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Conector -->
+                <div
+                  class="ml-6 w-0.5 h-6 bg-gradient-to-b from-celeste to-turquesa"
+                >
+                </div>
+
+                <!-- Etapa 2 -->
+                <div class="flex items-start">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 rounded-full bg-turquesa text-white flex items-center justify-center font-bold text-xl shadow-lg"
+                  >
+                    2
+                  </div>
+                  <div class="ml-4 flex-1">
+                    <div
+                      class="bg-gradient-to-r from-turquesa/10 to-transparent p-5 rounded-xl border-l-4 border-turquesa"
+                    >
+                      <h4 class="font-bold text-gray-800 text-lg">
+                        Curso 2: Mediación desde el Enfoque MINEDUC
+                      </h4>
+                      <span
+                        class="inline-block mt-2 px-3 py-1 bg-turquesa/20 text-turquesa text-xs font-bold rounded-full uppercase tracking-wide"
+                      >
+                        Online Asincrónico
+                      </span>
+                      <p class="text-gray-600 text-sm mt-2">
+                        Marco normativo y metodológico MINEDUC para la mediación
+                        escolar.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Conector -->
+                <div
+                  class="ml-6 w-0.5 h-6 bg-gradient-to-b from-turquesa to-naranja"
+                >
+                </div>
+
+                <!-- Etapa 3 (Diplomado) -->
+                <div class="flex items-start">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 rounded-full bg-naranja text-white flex items-center justify-center font-bold text-xl shadow-lg"
+                  >
+                    3
+                  </div>
+                  <div class="ml-4 flex-1">
+                    <div
+                      class="bg-gradient-to-r from-naranja/10 to-transparent p-5 rounded-xl border-l-4 border-naranja"
+                    >
+                      <h4 class="font-bold text-gray-800 text-lg">
+                        Ciclo de Diplomado: Jornadas en Vivo
+                      </h4>
+                      <span
+                        class="inline-block mt-2 px-3 py-1 bg-naranja/20 text-naranja text-xs font-bold rounded-full uppercase tracking-wide"
+                      >
+                        Sincrónico por Zoom
+                      </span>
+                      <p class="text-gray-600 text-sm mt-2">
+                        Aplicación práctica con docentes expertos. Talleres de
+                        casos y técnicas de mediación.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Nota informativa -->
+              <div
+                class="mt-8 p-5 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl flex items-start shadow-sm"
+              >
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-green-100 flex items-center justify-center"
+                >
+                  <svg
+                    class="w-5 h-5 text-green-600"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-4">
+                  <p class="text-green-800 font-bold text-lg">
+                    Este Diplomado incluye todo el paquete
+                  </p>
+                  <p class="text-green-700 text-sm mt-1">
+                    Al inscribirte obtienes acceso a <strong
+                      >Curso 1 + Curso 2 + Ciclo de Certificación</strong
+                    >, todo incluido en una sola matrícula.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Metodología -->
             <div class="bg-white rounded-2xl p-8 shadow-lg">
               <MetodologiaOnline />
             </div>
@@ -334,7 +478,7 @@ const testimonios = diplomadoWC?.testimonios || [];
               </p>
 
               <div class="grid md:grid-cols-2 gap-4 relative z-10">
-                <!-- Establecimientos Educacionales -->
+                <!-- Colegios y Liceos -->
                 <div
                   class="group/item flex items-start bg-gradient-to-br from-gray-50 to-white p-4 rounded-xl border border-gray-100 hover:bg-white hover:shadow-md hover:border-green-200 transition-all duration-300"
                 >
@@ -357,10 +501,10 @@ const testimonios = diplomadoWC?.testimonios || [];
                   </div>
                   <div>
                     <span class="text-gray-800 font-semibold block mb-1"
-                      >Establecimientos Educacionales</span
+                      >Colegios y Liceos</span
                     >
                     <span class="text-gray-500 text-sm"
-                      >Colegios, liceos y escuelas públicas y privadas</span
+                      >Establecimientos públicos y privados de todo Chile</span
                     >
                   </div>
                 </div>
@@ -391,12 +535,12 @@ const testimonios = diplomadoWC?.testimonios || [];
                       >Equipos de Convivencia Escolar</span
                     >
                     <span class="text-gray-500 text-sm"
-                      >Gestión de conflictos y clima escolar</span
+                      >Departamentos de convivencia y gestión de conflictos</span
                     >
                   </div>
                 </div>
 
-                <!-- Departamentos Provinciales -->
+                <!-- Supervisión MINEDUC -->
                 <div
                   class="group/item flex items-start bg-gradient-to-br from-gray-50 to-white p-4 rounded-xl border border-gray-100 hover:bg-white hover:shadow-md hover:border-green-200 transition-all duration-300"
                 >
@@ -419,48 +563,17 @@ const testimonios = diplomadoWC?.testimonios || [];
                   </div>
                   <div>
                     <span class="text-gray-800 font-semibold block mb-1"
-                      >Departamentos Provinciales</span
+                      >Supervisión y Apoyo Técnico-Pedagógico</span
                     >
                     <span class="text-gray-500 text-sm"
-                      >DEPROV y Secretarías de Educación</span
-                    >
-                  </div>
-                </div>
-
-                <!-- ONGs Educativas -->
-                <div
-                  class="group/item flex items-start bg-gradient-to-br from-gray-50 to-white p-4 rounded-xl border border-gray-100 hover:bg-white hover:shadow-md hover:border-green-200 transition-all duration-300"
-                >
-                  <div
-                    class="w-12 h-12 flex-shrink-0 bg-white rounded-xl shadow-sm flex items-center justify-center text-green-600 mr-4 group-hover/item:scale-110 group-hover/item:bg-green-50 group-hover/item:shadow-md transition-all duration-300"
-                  >
-                    <svg
-                      class="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <span class="text-gray-800 font-semibold block mb-1"
-                      >ONGs Educativas</span
-                    >
-                    <span class="text-gray-500 text-sm"
-                      >Fundaciones y organizaciones del tercer sector</span
+                      >MINEDUC, sostenedores y equipos de supervisión</span
                     >
                   </div>
                 </div>
 
                 <!-- Consultoría Educativa -->
                 <div
-                  class="group/item flex items-start bg-gradient-to-br from-gray-50 to-white p-4 rounded-xl border border-gray-100 hover:bg-white hover:shadow-md hover:border-green-200 transition-all duration-300 md:col-span-2"
+                  class="group/item flex items-start bg-gradient-to-br from-gray-50 to-white p-4 rounded-xl border border-gray-100 hover:bg-white hover:shadow-md hover:border-green-200 transition-all duration-300"
                 >
                   <div
                     class="w-12 h-12 flex-shrink-0 bg-white rounded-xl shadow-sm flex items-center justify-center text-green-600 mr-4 group-hover/item:scale-110 group-hover/item:bg-green-50 group-hover/item:shadow-md transition-all duration-300"
@@ -481,11 +594,42 @@ const testimonios = diplomadoWC?.testimonios || [];
                   </div>
                   <div>
                     <span class="text-gray-800 font-semibold block mb-1"
-                      >Consultoría Educativa Independiente</span
+                      >Consultoría y Asesoría Educativa</span
                     >
                     <span class="text-gray-500 text-sm"
-                      >Asesoría en convivencia escolar y resolución de
-                      conflictos para instituciones educativas</span
+                      >Asesoría independiente para instituciones</span
+                    >
+                  </div>
+                </div>
+
+                <!-- Proyectos y Programas -->
+                <div
+                  class="group/item flex items-start bg-gradient-to-br from-gray-50 to-white p-4 rounded-xl border border-gray-100 hover:bg-white hover:shadow-md hover:border-green-200 transition-all duration-300 md:col-span-2"
+                >
+                  <div
+                    class="w-12 h-12 flex-shrink-0 bg-white rounded-xl shadow-sm flex items-center justify-center text-green-600 mr-4 group-hover/item:scale-110 group-hover/item:bg-green-50 group-hover/item:shadow-md transition-all duration-300"
+                  >
+                    <svg
+                      class="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="text-gray-800 font-semibold block mb-1"
+                      >Proyectos y Programas de Educación</span
+                    >
+                    <span class="text-gray-500 text-sm"
+                      >Organismos públicos, fundaciones y ONG dedicadas a la
+                      educación</span
                     >
                   </div>
                 </div>
@@ -532,7 +676,12 @@ const testimonios = diplomadoWC?.testimonios || [];
             </div>
 
             <!-- 5. Malla (Plan de Estudios) -->
-            <NewPlanEstudios modulos={temario as any} tituloPrograma={titulo} />
+            <!-- 5. Malla (Plan de Estudios) -->
+            <NewPlanEstudios
+              modulos={temario as any}
+              tituloPrograma={titulo}
+              pdfUrl="/docs/diplomados/mediacion-escolar/malla.pdf"
+            />
 
             <!-- 6. Certificación -->
             <div
@@ -580,95 +729,165 @@ const testimonios = diplomadoWC?.testimonios || [];
                 <!-- Main Certification Statement -->
                 <div>
                   <p class="text-lg text-gray-700 leading-relaxed">
-                    Nuestro programa de Mediación Escolar cuenta con la
-                    certificación académica del <strong
+                    Al completar el programa recibirás el <strong
                       class="text-gray-900 font-bold bg-yellow-50 px-2 py-0.5 rounded"
-                      >Instituto Profesional IPChile</strong
-                    >, una institución de reconocido prestigio en formación
-                    profesional.
+                      >Diploma de Especialización en Mediación Escolar</strong
+                    >, con reconocimiento oficial y validez nacional.
                   </p>
                 </div>
 
-                <!-- Certification Details -->
-                <div
-                  class="bg-gradient-to-br from-green-50 to-white rounded-xl p-6 border border-green-100 shadow-sm relative overflow-hidden"
-                >
-                  <div class="flex items-start">
-                    <div class="flex-shrink-0 mt-1">
-                      <svg
-                        class="w-6 h-6 text-green-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"></path>
-                      </svg>
-                    </div>
-                    <div class="ml-4">
-                      <h4 class="text-lg font-bold text-gray-900 mb-2">
-                        Certificación Válida para Educación
-                      </h4>
-                      <p class="text-gray-600">
-                        Esta certificación te acredita como <strong
-                          class="text-green-700"
-                          >Mediador Escolar Profesional</strong
-                        > y te habilita para ejercer en:
-                      </p>
+                <!-- Certification Badges -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <!-- NCh 2728 -->
+                  <div
+                    class="bg-gradient-to-br from-blue-50 to-white rounded-xl p-5 border border-blue-100 shadow-sm"
+                  >
+                    <div class="flex items-start">
                       <div
-                        class="mt-3 p-3 bg-white rounded-lg border border-green-100 text-center shadow-sm"
+                        class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center"
                       >
-                        <span
-                          class="text-green-800 font-bold uppercase tracking-tight"
-                          >Establecimientos Educacionales de Chile</span
+                        <svg
+                          class="w-5 h-5 text-blue-600"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
                         >
+                          <path
+                            fill-rule="evenodd"
+                            d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                      </div>
+                      <div class="ml-3">
+                        <h5 class="font-bold text-gray-800">Norma NCh 2728</h5>
+                        <p class="text-sm text-gray-600 mt-1">
+                          Acreditación bajo norma chilena de calidad
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SENCE -->
+                  <div
+                    class="bg-gradient-to-br from-green-50 to-white rounded-xl p-5 border border-green-100 shadow-sm"
+                  >
+                    <div class="flex items-start">
+                      <div
+                        class="flex-shrink-0 w-10 h-10 rounded-full bg-green-100 flex items-center justify-center"
+                      >
+                        <svg
+                          class="w-5 h-5 text-green-600"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                      </div>
+                      <div class="ml-3">
+                        <h5 class="font-bold text-gray-800">
+                          Reconocimiento SENCE
+                        </h5>
+                        <p class="text-sm text-gray-600 mt-1">
+                          Válido para franquicia tributaria
+                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <!-- Hours Breakdown -->
+                <!-- Validity Statement -->
+                <div
+                  class="bg-gradient-to-br from-amber-50 to-white rounded-xl p-6 border border-amber-100 shadow-sm"
+                >
+                  <div class="flex items-start">
+                    <div class="flex-shrink-0 mt-1">
+                      <svg
+                        class="w-6 h-6 text-amber-600"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="ml-4">
+                      <h4 class="text-lg font-bold text-gray-900 mb-2">
+                        Válido en Todo Chile
+                      </h4>
+                      <p class="text-gray-600">
+                        Esta certificación te habilita para ejercer como <strong
+                          class="text-amber-700"
+                          >Mediador Escolar Profesional</strong
+                        > en instituciones educativas <strong
+                          >públicas y privadas</strong
+                        > de todo el país.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Program Structure -->
                 <div>
                   <h5
                     class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2"
                   >
-                    Estructura del Programa
+                    Estructura del Diplomado
                   </h5>
-                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div
-                      class="flex items-center p-4 bg-gray-50 rounded-xl border border-gray-100 group-hover:border-celeste/30 transition-colors"
+                      class="flex items-center p-3 bg-celeste/5 rounded-xl border border-celeste/20"
                     >
                       <div
-                        class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-celeste font-bold text-xl shadow-sm mr-4"
+                        class="w-8 h-8 rounded-full bg-celeste text-white flex items-center justify-center font-bold text-sm mr-3"
                       >
-                        200
+                        1
                       </div>
                       <div>
                         <span
-                          class="block text-sm text-gray-500 font-semibold uppercase"
-                          >Horas</span
+                          class="block text-xs text-celeste font-semibold uppercase"
+                          >Asincrónico</span
                         >
-                        <span class="block text-gray-900 font-bold text-lg"
-                          >Teóricas</span
+                        <span class="block text-gray-800 font-bold text-sm"
+                          >Curso 1</span
                         >
                       </div>
                     </div>
                     <div
-                      class="flex items-center p-4 bg-gray-50 rounded-xl border border-gray-100 group-hover:border-crema/50 transition-colors"
+                      class="flex items-center p-3 bg-turquesa/5 rounded-xl border border-turquesa/20"
                     >
                       <div
-                        class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-naranja font-bold text-xl shadow-sm mr-4"
+                        class="w-8 h-8 rounded-full bg-turquesa text-white flex items-center justify-center font-bold text-sm mr-3"
                       >
-                        40
+                        2
                       </div>
                       <div>
                         <span
-                          class="block text-sm text-gray-500 font-semibold uppercase"
-                          >Horas</span
+                          class="block text-xs text-turquesa font-semibold uppercase"
+                          >Asincrónico</span
                         >
-                        <span class="block text-gray-900 font-bold text-lg"
-                          >Prácticas</span
+                        <span class="block text-gray-800 font-bold text-sm"
+                          >Curso 2</span
+                        >
+                      </div>
+                    </div>
+                    <div
+                      class="flex items-center p-3 bg-naranja/5 rounded-xl border border-naranja/20"
+                    >
+                      <div
+                        class="w-8 h-8 rounded-full bg-naranja text-white flex items-center justify-center font-bold text-sm mr-3"
+                      >
+                        3
+                      </div>
+                      <div>
+                        <span
+                          class="block text-xs text-naranja font-semibold uppercase"
+                          >Sincrónico</span
+                        >
+                        <span class="block text-gray-800 font-bold text-sm"
+                          >Certificación</span
                         >
                       </div>
                     </div>
@@ -985,7 +1204,7 @@ const testimonios = diplomadoWC?.testimonios || [];
                   </div>
                 </div>
 
-                <div class="mt-6 space-y-3">
+                <div class="mt-6 flex flex-col gap-4">
                   <button
                     onclick="scrollToContactForm()"
                     class="btn-sidebar btn-sidebar-primary"

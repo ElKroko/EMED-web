@@ -7,10 +7,11 @@ interface FAQItem {
 interface Props {
     items: FAQItem[];
     className?: string;
+    pdfMallaUrl?: string; // New prop for dynamic PDF URL
 }
 
 import Accordion from "../ui/Accordion.astro";
-const { items, className = "" } = Astro.props;
+const { items, className = "", pdfMallaUrl = "#" } = Astro.props;
 
 const accordionItems = items.map((item, idx) => ({
     title: item.pregunta,
@@ -51,7 +52,7 @@ const accordionItems = items.map((item, idx) => ({
                     Consultar próxima edición
                 </button>
                 <button
-                    onclick="window.open('/docs/malla-familiar-placeholder.pdf', '_blank')"
+                    onclick={`window.open('${pdfMallaUrl}', '_blank')`}
                     class="inline-flex items-center justify-center px-6 py-3 border border-gray-200 text-sm font-medium rounded-lg text-gray-600 bg-gray-50 hover:bg-gray-100 transition-colors whitespace-nowrap"
                 >
                     Descargar malla

@@ -322,16 +322,16 @@
   },
   {
     "id": "mediacion-escolar",
-    "nombre": "Mediación Escolar",
+    "nombre": "Diplomado en Mediación Aplicada a la Convivencia Escolar",
     "slug": "mediacion-escolar",
     "tipo": "Diplomado",
-    "descripcion": "Aprende a mediar conflictos educativos trabajando con estudiantes, padres y equipos docentes en ambientes escolares complejos.",
-    "descripcion_corta": "Aprende a mediar conflictos educativos trabajando con estudiantes, padres y equipos docentes en ambientes escolares complejos.",
-    "descripcionDetallada": "Formación especializada para profesionales de la educación que buscan implementar programas de mediación escolar efectivos. Incluye herramientas específicas para el trabajo con menores y metodologías adaptadas al contexto educativo.",
-    "titulo_principal": "Transformando la Convivencia Escolar",
+    "descripcion": "Formación integral en mediación escolar con enfoque MINEDUC. Desarrolla competencias psicosociales y técnicas de mediación para transformar la convivencia en tu comunidad educativa.",
+    "descripcion_corta": "Formación integral en mediación escolar con enfoque MINEDUC para transformar la convivencia en tu comunidad educativa.",
+    "descripcionDetallada": "Diplomado estructurado en 3 etapas consecutivas que te llevan desde los fundamentos psicosociales hasta la aplicación práctica de técnicas de mediación escolar. Incluye formación asincrónica en plataforma y jornadas sincrónicas en vivo con docentes expertos.",
+    "titulo_principal": "Diplomado en Mediación Aplicada a la Convivencia Escolar",
     "duracion": "240 horas",
-    "modalidad": "100% online",
-    "nivel": "Básico",
+    "modalidad": "Online (Asincrónico + Sincrónico)",
+    "nivel": "Básico - Intermedio",
     "precio": 450000,
     "precio_regular": 450000,
     "precio_formateado": "desde $450.000",
@@ -344,112 +344,159 @@
       "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
     ],
     "beneficios": [
-      "Flexibilidad horaria total",
-      "Material descargable permanente",
-      "Casos prácticos del ámbito educativo",
-      "Certificación válida para instituciones educativas",
-      "Herramientas digitales incluidas",
-      "Acceso a comunidad de práctica"
+      "Formación 100% online con flexibilidad horaria",
+      "Material de estudio permanente en plataforma",
+      "Clases en vivo por Zoom con docentes expertos",
+      "Casos prácticos del contexto educativo chileno",
+      "Certificación con reconocimiento SENCE",
+      "Acceso a comunidad de práctica profesional"
     ],
     "diferenciadores": [
-      "Enfoque preventivo en Convivencia Escolar",
-      "Estrategias de Mediación entre pares",
-      "Herramientas para el trabajo con familias",
-      "Actualización normativa MINEDUC vigente"
+      "Enfoque MINEDUC actualizado y vigente",
+      "Ruta de aprendizaje progresiva (Curso 1 → Curso 2 → Certificación)",
+      "Técnicas de mediación entre pares aplicables inmediatamente",
+      "Talleres prácticos en vivo con análisis de casos reales"
     ],
+    "ruta_aprendizaje": {
+      "descripcion": "La formación se organiza en 3 etapas consecutivas, donde cada curso es requisito del siguiente y el Diplomado se obtiene al completar toda la ruta.",
+      "etapas": [
+        {
+          "numero": 1,
+          "nombre": "Curso 1: Bases Psicosociales de la Convivencia Escolar",
+          "modalidad": "Online asincrónico",
+          "descripcion": "Fundamentos teóricos en plataforma de estudio"
+        },
+        {
+          "numero": 2,
+          "nombre": "Curso 2: Mediación desde el enfoque MINEDUC",
+          "modalidad": "Online asincrónico",
+          "descripcion": "Marco normativo y metodológico MINEDUC"
+        },
+        {
+          "numero": 3,
+          "nombre": "Ciclo de Diplomado",
+          "modalidad": "Jornadas en vivo por Zoom",
+          "descripcion": "Aplicación práctica con docentes expertos"
+        }
+      ]
+    },
     "formacion_online": {
       "etapa_asincronica": {
-        "titulo": "Etapa asincrónica (plataforma)",
-        "descripcion": "Acceso 24/7 a aula virtual con recursos interactivos, foros y material de estudio especializado en convivencia escolar."
+        "titulo": "Formación Asincrónica (Plataforma)",
+        "descripcion": "Acceso 24/7 a plataforma de estudio con material didáctico, videos explicativos y cuestionarios de evaluación. Avanza a tu propio ritmo."
       },
       "etapa_sincronica": {
-        "titulo": "Etapa sincrónica (Zoom)",
-        "descripcion": "Clases en vivo semanales para análisis de casos escolares, role-playing y resolución de consultas con expertos."
+        "titulo": "Formación Sincrónica (Zoom en Vivo)",
+        "descripcion": "Jornadas en tiempo real con docentes expertos. Talleres prácticos, análisis de casos, role-playing y resolución de dudas."
       }
     },
     "cta_mensaje": "Un asesor académico te contactará para orientarte sobre cómo este diplomado puede transformar la convivencia en tu comunidad educativa.",
     "temario": [
       {
-        "modulo": "Módulo 1: Convivencia Escolar",
-        "horas": 60,
+        "modulo": "Curso 1: Bases Psicosociales de la Convivencia Escolar",
+        "grupo": "Curso 1 (Asincrónico)",
+        "horas_estimadas": "Acceso en plataforma",
+        "resumen": "Fundamentos psicosociales para comprender y abordar la convivencia escolar.",
+        "competencias": [
+          "Comprender la relación entre sociedad y conflicto en el contexto escolar",
+          "Desarrollar competencias psicosociales para la intervención educativa",
+          "Aplicar inteligencia emocional en situaciones conflictivas"
+        ],
         "contenido": [
-          "Diagnóstico de clima escolar",
-          "Factores de conflicto en establecimientos",
-          "Prevención y resolución temprana",
-          "Normativa educacional vigente"
-        ]
+          "Sociedad y conflicto",
+          "Competencias psicosociales (Parte I)",
+          "Competencias psicosociales (Parte II)",
+          "Competencias psicoemocionales",
+          "Inteligencia emocional y técnicas de manejo de situaciones conflictivas"
+        ],
+        "evidencia": "Cuestionarios de evaluación en plataforma"
       },
       {
-        "modulo": "Módulo 2: Mediación Entre Pares",
-        "horas": 60,
+        "modulo": "Curso 2: Mediación desde el Enfoque MINEDUC",
+        "grupo": "Curso 2 (Asincrónico)",
+        "horas_estimadas": "Acceso en plataforma",
+        "resumen": "Marco normativo y metodológico del MINEDUC para la mediación escolar.",
+        "competencias": [
+          "Dominar el enfoque MINEDUC para la convivencia escolar",
+          "Diseñar e implementar programas de mediación escolar",
+          "Aplicar técnicas de mediación adaptadas al contexto educativo"
+        ],
         "contenido": [
-          "Formación de mediadores estudiantiles",
-          "Supervisión de procesos peer-to-peer",
-          "Casos de bullying y acoso",
-          "Protocolo de derivación"
-        ]
+          "Enfoque MINEDUC (Parte I)",
+          "Enfoque MINEDUC (Parte II)",
+          "Introducción a la mediación escolar",
+          "Elaboración y gestión de un programa de mediación escolar",
+          "Mediación y su aplicación en el contexto escolar"
+        ],
+        "evidencia": "Cuestionarios de evaluación en plataforma"
       },
       {
-        "modulo": "Módulo 3: Trabajo con Familias",
-        "horas": 60,
+        "modulo": "Ciclo de Diplomado: Jornadas en Vivo",
+        "grupo": "Certificación (Sincrónico)",
+        "horas_estimadas": "Clases en vivo",
+        "resumen": "Aplicación práctica intensiva con docentes expertos en tiempo real.",
+        "competencias": [
+          "Integrar conocimientos teóricos en la práctica mediadora",
+          "Conducir procesos de mediación escolar con casos reales",
+          "Diseñar protocolos de intervención para establecimientos"
+        ],
         "contenido": [
-          "Mediación padres-establecimiento",
-          "Conflictos apoderado-docente",
-          "Participación familiar activa",
-          "Comunicación efectiva con familias"
-        ]
-      },
-      {
-        "modulo": "Módulo 4: Diseño de Proyectos",
-        "horas": 60,
-        "contenido": [
-          "Elaboración de planes de gestión",
-          "Indicadores de calidad",
-          "Evaluación de impacto",
-          "Sostenibilidad de programas"
-        ]
+          "Enfoque MINEDUC (aplicación práctica)",
+          "Elaboración y gestión de un programa de mediación escolar",
+          "Técnicas de Mediación Escolar",
+          "Taller de Casos"
+        ],
+        "evidencia": "Participación activa y evaluación práctica"
       }
     ],
     "requisitos": [
-      "Título en educación o afines",
-      "Experiencia en establecimientos educacionales",
-      "Conocimiento básico de convivencia escolar",
+      "Personas que trabajan actualmente en establecimientos escolares o desean integrarse a este ámbito",
+      "Interés en la convivencia y mediación escolar",
+      "Conocimiento básico del contexto escolar (deseable, no excluyente)",
       "Acceso a internet estable"
     ],
     "metodologia": [
-      "100% online con clases sincrónicas semanales",
-      "Material asincrónico y talleres prácticos virtuales"
+      {
+        "titulo": "Formación Asincrónica",
+        "icono": "laptop",
+        "descripcion": "Acceso 24/7 a plataforma de estudio con material didáctico, videos y cuestionarios. Avanza a tu ritmo."
+      },
+      {
+        "titulo": "Formación Sincrónica",
+        "icono": "video",
+        "descripcion": "Clases en vivo por Zoom con docentes expertos. Talleres prácticos, análisis de casos y resolución de dudas en tiempo real."
+      }
     ],
     "metodologia_adaptada": {
-      "titulo": "Metodología adaptada a trabajo escolar",
-      "descripcion": "100% online con formato sincrónico y asincrónico, talleres virtuales orientados a compatibilizar con tu jornada laboral escolar."
+      "titulo": "Metodología adaptada al trabajo escolar",
+      "descripcion": "Formación 100% online que combina estudio autónomo en plataforma con jornadas en vivo por Zoom, diseñada para compatibilizar con tu jornada laboral."
     },
     "horarios_compatibles": "Horarios 100% compatibles con tu trabajo en establecimientos educacionales",
     "certificacion": [
       "Diploma de Especialización en Mediación Escolar",
-      "Certificación con mención a NCH 2728",
-      "Reconocido por instituciones educativas"
+      "Acreditación bajo la norma NCh 2728",
+      "Reconocimiento SENCE",
+      "Válido para instituciones educativas públicas y privadas de Chile"
     ],
-    "certificacion_detallada": "Certificación con mención a NCH 2728 y reconocimiento del sector educativo",
+    "certificacion_detallada": "Diploma de Especialización en Mediación Escolar con acreditación NCh 2728 y reconocimiento SENCE, válido para instituciones públicas y privadas.",
     "empleabilidad": [
-      "Colegios y liceos",
-      "Departamentos de convivencia escolar",
-      "Supervisión educacional (MINEDUC)",
-      "Consultoría educativa",
-      "Proyectos gubernamentales"
+      "Colegios y liceos públicos y privados",
+      "Equipos y departamentos de convivencia escolar",
+      "Supervisión y apoyo técnico-pedagógico (MINEDUC y sostenedores)",
+      "Consultoría y asesoría educativa",
+      "Proyectos y programas de educación (organismos públicos, fundaciones, ONG)"
     ],
     "campo_aplicacion": [
       "Colegios y liceos públicos y privados",
-      "Departamentos de convivencia escolar",
-      "Supervisión educacional MINEDUC",
-      "Consultorías en educación",
-      "Proyectos de mejora de convivencia",
-      "Centros de formación docente"
+      "Equipos y departamentos de convivencia escolar",
+      "Supervisión y apoyo técnico-pedagógico (MINEDUC y sostenedores)",
+      "Consultoría y asesoría educativa",
+      "Proyectos y programas de educación (organismos públicos, fundaciones, ONG)"
     ],
     "ubicacion": "Online",
     "en_stock": true,
-    "categorias": ["Mediación", "Educación"],
-    "etiquetas": ["Online", "Convivencia Escolar", "Mediación"],
+    "categorias": ["Mediación", "Educación", "Convivencia Escolar"],
+    "etiquetas": ["Online", "Convivencia Escolar", "Mediación", "MINEDUC", "NCh 2728", "SENCE"],
     "testimonios": [
       {
         "nombre": "Ana Cristina López",
@@ -467,14 +514,14 @@
   },
   {
     "id": "mediacion-laboral",
-    "nombre": "Mediación Laboral",
+    "nombre": "Diplomado de Liderazgo y Mediación Laboral",
     "slug": "mediacion-laboral",
     "tipo": "Diplomado",
     "descripcion": "Desarrolla habilidades para resolver conflictos laborales y mejorar el clima organizacional en empresas y organizaciones.",
     "descripcion_corta": "Desarrolla habilidades para resolver conflictos laborales y mejorar el clima organizacional en empresas y organizaciones.",
     "descripcionDetallada": "Programa especializado para profesionales de recursos humanos, abogados laborales y líderes organizacionales que buscan implementar sistemas efectivos de resolución de conflictos en el ámbito laboral.",
     "duracion": "240 horas",
-    "modalidad": "100% online",
+    "modalidad": "Mixta (Asincrónico + Sincrónico)",
     "nivel": "Intermedio",
     "precio": 480000,
     "precio_regular": 480000,
@@ -551,45 +598,75 @@
     ],
     "temario": [
       {
-        "modulo": "Módulo 1: Conflictos Organizacionales",
-        "horas": 60,
-        "contenido": [
-          "Tipología de conflictos laborales",
-          "Análisis del clima organizacional",
-          "Factores desencadenantes de conflictos",
-          "Impacto en la productividad"
-        ]
-      },
-      {
-        "modulo": "Módulo 2: Mediación en Relaciones Laborales",
-        "horas": 60,
-        "contenido": [
-          "Técnicas específicas para el ámbito laboral",
-          "Mediación supervisor-subordinado",
-          "Conflictos entre pares",
-          "Gestión de equipos en crisis"
+        "modulo": "Curso 1: Clima Laboral y Comunicación Efectiva en las Organizaciones",
+        "grupo": "Curso 1 (Asincrónico)",
+        "horas_estimadas": "Acceso en plataforma",
+        "resumen": "Fundamentos del clima organizacional y herramientas de comunicación efectiva.",
+        "competencias": [
+          "Comprender la relación entre el individuo y su entorno laboral",
+          "Analizar los factores que inciden en el clima organizacional",
+          "Desarrollar habilidades de comunicación efectiva en el contexto laboral"
         ],
-        "horas_estimadas": "3 semanas"
+        "contenido": [
+          "El individuo y su relación laboral",
+          "El individuo en el contexto laboral",
+          "La comunicación: base de un buen clima laboral"
+        ],
+        "evidencia": "Cuestionarios de evaluación en plataforma"
       },
       {
-        "modulo": "Módulo 3: Marco Legal Laboral",
-        "horas": 60,
+        "modulo": "Curso 2: El Arte de Mediar: Estrategias, Mediación y Bienestar",
+        "grupo": "Curso 2 (Asincrónico)",
+        "horas_estimadas": "Acceso en plataforma",
+        "resumen": "Técnicas de mediación, negociación y autocuidado para el líder organizacional.",
+        "competencias": [
+          "Identificar y analizar conflictos laborales y organizacionales",
+          "Aplicar técnicas de resolución alternativa de conflictos",
+          "Desarrollar estrategias de negociación efectiva",
+          "Implementar prácticas de autocuidado y liderazgo positivo"
+        ],
         "contenido": [
-          "Normativa laboral chilena",
-          "Derechos y deberes en mediación",
-          "Procedimientos disciplinarios",
-          "Documentación legal de acuerdos"
-        ]
+          "Conflicto laboral y organizacional",
+          "Resolución alternativa de conflictos",
+          "Negociación",
+          "Autocuidado del líder",
+          "Liderazgo laboral positivo"
+        ],
+        "evidencia": "Cuestionarios de evaluación en plataforma"
       },
       {
-        "modulo": "Módulo 4: Práctica Empresarial",
-        "horas": 60,
+        "modulo": "Marco Legal Básico de la Relación Laboral",
+        "grupo": "Marco Legal (Asincrónico)",
+        "horas_estimadas": "Acceso en plataforma",
+        "resumen": "Conocimientos jurídicos esenciales para la mediación laboral.",
+        "competencias": [
+          "Comprender el marco legal básico de las relaciones laborales en Chile",
+          "Identificar derechos y deberes en el ámbito laboral",
+          "Vincular la normativa laboral con la práctica de mediación"
+        ],
         "contenido": [
-          "Simulacros con casos empresariales",
-          "Role-playing supervisado",
-          "Elaboración de protocolos internos",
-          "Presentación de proyecto final"
-        ]
+          "Conociendo el marco legal básico de la relación laboral"
+        ],
+        "evidencia": "Cuestionarios de evaluación en plataforma"
+      },
+      {
+        "modulo": "Certificación: Jornadas Sincrónicas",
+        "grupo": "Certificación (Sincrónico)",
+        "horas_estimadas": "Clases en vivo",
+        "resumen": "Aplicación práctica intensiva con docentes expertos en tiempo real.",
+        "competencias": [
+          "Aplicar el derecho laboral en contextos de mediación",
+          "Comprender el marco sindical chileno",
+          "Dominar técnicas específicas de mediación laboral",
+          "Integrar conocimientos en casos prácticos"
+        ],
+        "contenido": [
+          "Derecho laboral",
+          "Derecho sindical",
+          "Técnicas de mediación laboral",
+          "Taller de casos"
+        ],
+        "evidencia": "Participación activa y evaluación práctica"
       }
     ],
     "requisitos": [

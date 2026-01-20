@@ -14,9 +14,10 @@ interface Modulo {
 interface Props {
     modulos: Modulo[];
     tituloPrograma: string;
+    pdfUrl?: string;
 }
 
-const { modulos, tituloPrograma } = Astro.props;
+const { modulos, tituloPrograma, pdfUrl = "#" } = Astro.props;
 
 const grupos = modulos.reduce(
     (acc, modulo) => {
@@ -31,21 +32,37 @@ const grupos = modulos.reduce(
 );
 
 const gruposOrdenados = [
+    // Mediación Familiar
     "Formación Asincrónica",
     "Formación Sincrónica",
     "Pasantía Presencial (Santiago)",
+    // Mediación Escolar y Laboral
+    "Curso 1 (Asincrónico)",
+    "Curso 2 (Asincrónico)",
+    "Marco Legal (Asincrónico)",
+    "Certificación (Sincrónico)",
     ...Object.keys(grupos).filter(
         (k) =>
             ![
                 "Formación Asincrónica",
                 "Formación Sincrónica",
                 "Pasantía Presencial (Santiago)",
+                "Curso 1 (Asincrónico)",
+                "Curso 2 (Asincrónico)",
+                "Marco Legal (Asincrónico)",
+                "Certificación (Sincrónico)",
             ].includes(k),
     ),
 ];
 
 // Flatten modules for index finding
 const allModules = gruposOrdenados.flatMap((g) => grupos[g] || []);
+
+// Determinar si es layout de 4 columnas (Mediación Laboral tiene Marco Legal)
+const isLaboralLayout =
+    grupos["Marco Legal (Asincrónico)"] &&
+    grupos["Marco Legal (Asincrónico)"].length > 0;
+const gridCols = isLaboralLayout ? "lg:grid-cols-4" : "lg:grid-cols-3";
 ---
 
 <div
@@ -71,7 +88,7 @@ const allModules = gruposOrdenados.flatMap((g) => grupos[g] || []);
                 </p>
             </div>
             <button
-                onclick="window.open('/docs/malla-familiar-placeholder.pdf', '_blank')"
+                onclick={`window.open('${pdfUrl}', '_blank')`}
                 class="flex-shrink-0 inline-flex items-center justify-center px-8 py-4 border border-gray-200 text-sm font-bold rounded-2xl text-gray-700 bg-white hover:bg-gray-50 hover:border-gray-300 hover:shadow-md transition-all duration-300 group"
             >
                 <svg
@@ -93,35 +110,52 @@ const allModules = gruposOrdenados.flatMap((g) => grupos[g] || []);
 
         <!-- Quick Stats -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-            {
-                [
-                    { label: "Duración", value: "220 horas", color: "blue" },
-                    { label: "Modalidad", value: "Mixta", color: "purple" },
-                    { label: "Ingreso", value: "Continuo", color: "green" },
-                    { label: "Práctica", value: "Santiago", color: "orange" },
-                ].map((stat) => (
-                    <div
-                        class={`p-4 rounded-xl border bg-${stat.color}-50/30 border-${stat.color}-100/50`}
-                    >
-                        <span
-                            class={`block text-xs uppercase tracking-wider font-bold text-${stat.color}-900/60 mb-1`}
-                        >
-                            {stat.label}
-                        </span>
-                        <span
-                            class={`font-bold text-${stat.color}-900 text-lg`}
-                        >
-                            {stat.value}
-                        </span>
-                    </div>
-                ))
-            }
+            <div class="p-4 rounded-xl bg-amber-50/50 border border-amber-100">
+                <span
+                    class="block text-xs uppercase tracking-wider font-bold text-amber-700/70 mb-1"
+                >
+                    Total Módulos
+                </span>
+                <span class="font-bold text-amber-900 text-lg">
+                    {modulos.length}
+                </span>
+            </div>
+            <div
+                class="p-4 rounded-xl bg-orange-50/50 border border-orange-100"
+            >
+                <span
+                    class="block text-xs uppercase tracking-wider font-bold text-orange-700/70 mb-1"
+                >
+                    Formación
+                </span>
+                <span class="font-bold text-orange-900 text-lg"> Mixta </span>
+            </div>
+            <div class="p-4 rounded-xl bg-amber-50/50 border border-amber-100">
+                <span
+                    class="block text-xs uppercase tracking-wider font-bold text-amber-700/70 mb-1"
+                >
+                    Ingreso
+                </span>
+                <span class="font-bold text-amber-900 text-lg"> Continuo </span>
+            </div>
+            <div
+                class="p-4 rounded-xl bg-orange-50/50 border border-orange-100"
+            >
+                <span
+                    class="block text-xs uppercase tracking-wider font-bold text-orange-700/70 mb-1"
+                >
+                    Certificación
+                </span>
+                <span class="font-bold text-orange-900 text-lg">
+                    Incluida
+                </span>
+            </div>
         </div>
     </div>
 
     <!-- PHASES GRID VIEW -->
     <div class="p-6 md:p-10 bg-white">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class={`grid grid-cols-1 md:grid-cols-2 ${gridCols} gap-6`}>
             <!-- Asynchronous Phase -->
             {
                 gruposOrdenados.includes("Formación Asincrónica") &&
@@ -253,6 +287,128 @@ const allModules = gruposOrdenados.flatMap((g) => grupos[g] || []);
                         </div>
                     )
             }
+            <!-- Curso 1 (Mediación Escolar) - Amarillo suave -->
+            {
+                gruposOrdenados.includes("Curso 1 (Asincrónico)") &&
+                    grupos["Curso 1 (Asincrónico)"] &&
+                    grupos["Curso 1 (Asincrónico)"].map((modulo) => (
+                        <div
+                            class="flex flex-col h-full rounded-3xl p-6 shadow-sm hover:shadow-lg transition-all duration-300"
+                            style="background: linear-gradient(135deg, rgba(253, 224, 71, 0.15) 0%, rgba(253, 224, 71, 0.05) 50%, white 100%); border: 1px solid rgba(253, 224, 71, 0.3);"
+                        >
+                            <div class="mb-4">
+                                <div
+                                    class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg shadow-sm"
+                                    style="background: rgba(253, 224, 71, 0.4); color: #854d0e;"
+                                >
+                                    1
+                                </div>
+                            </div>
+                            <h3 class="text-gray-900 font-bold text-lg mb-3 leading-snug">
+                                {modulo.modulo}
+                            </h3>
+                            {modulo.resumen && (
+                                <p class="text-gray-600 text-sm leading-relaxed flex-grow">
+                                    {modulo.resumen}
+                                </p>
+                            )}
+                        </div>
+                    ))
+            }
+
+            <!-- Curso 2 (Mediación Escolar) - Intermedio amarillo-naranja -->
+            {
+                gruposOrdenados.includes("Curso 2 (Asincrónico)") &&
+                    grupos["Curso 2 (Asincrónico)"] &&
+                    grupos["Curso 2 (Asincrónico)"].map((modulo) => (
+                        <div
+                            class="flex flex-col h-full rounded-3xl p-6 shadow-sm hover:shadow-lg transition-all duration-300"
+                            style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(251, 146, 60, 0.08) 50%, white 100%); border: 1px solid rgba(251, 146, 60, 0.3);"
+                        >
+                            <div class="mb-4">
+                                <div
+                                    class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg shadow-sm"
+                                    style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.5), rgba(251, 146, 60, 0.5)); color: #9a3412;"
+                                >
+                                    2
+                                </div>
+                            </div>
+                            <h3 class="text-gray-900 font-bold text-lg mb-3 leading-snug">
+                                {modulo.modulo}
+                            </h3>
+                            {modulo.resumen && (
+                                <p class="text-gray-600 text-sm leading-relaxed flex-grow">
+                                    {modulo.resumen}
+                                </p>
+                            )}
+                        </div>
+                    ))
+            }
+
+            <!-- Marco Legal (Mediación Laboral) - Azul -->
+            {
+                gruposOrdenados.includes("Marco Legal (Asincrónico)") &&
+                    grupos["Marco Legal (Asincrónico)"] &&
+                    grupos["Marco Legal (Asincrónico)"].map((modulo) => (
+                        <div
+                            class="flex flex-col h-full rounded-3xl p-6 shadow-sm hover:shadow-lg transition-all duration-300"
+                            style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.05) 50%, white 100%); border: 1px solid rgba(59, 130, 246, 0.3);"
+                        >
+                            <div class="mb-4">
+                                <div
+                                    class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg shadow-sm"
+                                    style="background: rgba(59, 130, 246, 0.3); color: #1e40af;"
+                                >
+                                    3
+                                </div>
+                            </div>
+                            <h3 class="text-gray-900 font-bold text-lg mb-3 leading-snug">
+                                {modulo.modulo}
+                            </h3>
+                            {modulo.resumen && (
+                                <p class="text-gray-600 text-sm leading-relaxed flex-grow">
+                                    {modulo.resumen}
+                                </p>
+                            )}
+                        </div>
+                    ))
+            }
+
+            <!-- Certificación (Mediación Escolar y Laboral) - Naranja EMED -->
+            {
+                gruposOrdenados.includes("Certificación (Sincrónico)") &&
+                    grupos["Certificación (Sincrónico)"] &&
+                    grupos["Certificación (Sincrónico)"].map((modulo) => {
+                        // Determinar el número dinámicamente
+                        const hasMarcoLegal =
+                            grupos["Marco Legal (Asincrónico)"] &&
+                            grupos["Marco Legal (Asincrónico)"].length > 0;
+                        const certNumber = hasMarcoLegal ? 4 : 3;
+                        return (
+                            <div
+                                class="flex flex-col h-full rounded-3xl p-6 shadow-sm hover:shadow-lg transition-all duration-300"
+                                style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(249, 115, 22, 0.06) 50%, white 100%); border: 1px solid rgba(249, 115, 22, 0.3);"
+                            >
+                                <div class="mb-4">
+                                    <div
+                                        class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-lg shadow-sm"
+                                        style="background: rgba(249, 115, 22, 0.35); color: #7c2d12;"
+                                    >
+                                        {certNumber}
+                                    </div>
+                                </div>
+                                <h3 class="text-gray-900 font-bold text-lg mb-3 leading-snug">
+                                    {modulo.modulo}
+                                </h3>
+                                {modulo.resumen && (
+                                    <p class="text-gray-600 text-sm leading-relaxed flex-grow">
+                                        {modulo.resumen}
+                                    </p>
+                                )}
+                            </div>
+                        );
+                    })
+            }
 
             <!-- Fallback for other groups (like School Mediation) -->
             {
@@ -263,6 +419,10 @@ const allModules = gruposOrdenados.flatMap((g) => grupos[g] || []);
                                 "Formación Asincrónica",
                                 "Formación Sincrónica",
                                 "Pasantía Presencial (Santiago)",
+                                "Curso 1 (Asincrónico)",
+                                "Curso 2 (Asincrónico)",
+                                "Marco Legal (Asincrónico)",
+                                "Certificación (Sincrónico)",
                             ].includes(k),
                     )
                     .map((grupo) => (

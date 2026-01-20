@@ -220,36 +220,224 @@ const testimonios = diplomadoWC?.testimonios || [];
                   Material Descargable
                 </h3>
                 <DownloadButtons
-                  mallaUrl="/docs/malla-laboral.pdf"
-                  calendarioUrl="/docs/calendario-laboral-placeholder.pdf"
-                  arancelesUrl="/docs/aranceles-laboral-placeholder.pdf"
+                  mallaUrl="/docs/diplomados/mediacion-laboral/malla.pdf"
+                  calendarioUrl="/docs/diplomados/mediacion-laboral/brochure.pdf"
+                  arancelesUrl="/docs/diplomados/mediacion-laboral/aranceles.pdf"
                   className="mt-4"
                 />
               </div>
             </div>
 
-            <!-- 2. Metodología -->
+            <!-- 2. Ruta de Aprendizaje -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+              <h2
+                class="text-3xl font-bold text-gray-800"
+                style="margin-bottom: 10px;"
+              >
+                Ruta de Aprendizaje
+              </h2>
+              <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                La formación se organiza en <strong>modalidad mixta</strong>,
+                combinando formación asincrónica en plataforma con jornadas
+                sincrónicas en vivo:
+              </p>
+
+              <!-- Timeline Visual -->
+              <div class="space-y-4">
+                <!-- Curso 1 -->
+                <div class="flex items-start">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-xl shadow-lg"
+                  >
+                    1
+                  </div>
+                  <div class="ml-4 flex-1">
+                    <div
+                      class="bg-gradient-to-r from-purple-600/10 to-transparent p-5 rounded-xl border-l-4 border-purple-600"
+                    >
+                      <h4 class="font-bold text-gray-800 text-lg">
+                        Clima Laboral y Comunicación Efectiva
+                      </h4>
+                      <span
+                        class="inline-block mt-2 px-3 py-1 bg-purple-600/20 text-purple-700 text-xs font-bold rounded-full uppercase tracking-wide"
+                      >
+                        Asincrónico – Plataforma
+                      </span>
+                      <p class="text-gray-600 text-sm mt-2">
+                        El individuo y su relación laboral, el individuo en el
+                        contexto laboral, y la comunicación como base de un buen
+                        clima laboral.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Conector -->
+                <div
+                  class="ml-6 w-0.5 h-6 bg-gradient-to-b from-purple-600 to-indigo-600"
+                >
+                </div>
+
+                <!-- Curso 2 -->
+                <div class="flex items-start">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xl shadow-lg"
+                  >
+                    2
+                  </div>
+                  <div class="ml-4 flex-1">
+                    <div
+                      class="bg-gradient-to-r from-indigo-600/10 to-transparent p-5 rounded-xl border-l-4 border-indigo-600"
+                    >
+                      <h4 class="font-bold text-gray-800 text-lg">
+                        El Arte de Mediar: Estrategias, Mediación y Bienestar
+                      </h4>
+                      <span
+                        class="inline-block mt-2 px-3 py-1 bg-indigo-600/20 text-indigo-700 text-xs font-bold rounded-full uppercase tracking-wide"
+                      >
+                        Asincrónico – Plataforma
+                      </span>
+                      <p class="text-gray-600 text-sm mt-2">
+                        Conflicto laboral, resolución alternativa de conflictos,
+                        negociación, autocuidado del líder y liderazgo positivo.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Conector -->
+                <div
+                  class="ml-6 w-0.5 h-6 bg-gradient-to-b from-indigo-600 to-blue-600"
+                >
+                </div>
+
+                <!-- Bloque Marco Legal -->
+                <div class="flex items-start">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xl shadow-lg"
+                  >
+                    3
+                  </div>
+                  <div class="ml-4 flex-1">
+                    <div
+                      class="bg-gradient-to-r from-blue-600/10 to-transparent p-5 rounded-xl border-l-4 border-blue-600"
+                    >
+                      <h4 class="font-bold text-gray-800 text-lg">
+                        Marco Legal Básico de la Relación Laboral
+                      </h4>
+                      <span
+                        class="inline-block mt-2 px-3 py-1 bg-blue-600/20 text-blue-700 text-xs font-bold rounded-full uppercase tracking-wide"
+                      >
+                        Asincrónico – Plataforma
+                      </span>
+                      <p class="text-gray-600 text-sm mt-2">
+                        Conociendo el marco legal básico de la relación laboral
+                        chilena.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Conector -->
+                <div
+                  class="ml-6 w-0.5 h-6 bg-gradient-to-b from-blue-600 to-naranja"
+                >
+                </div>
+
+                <!-- Certificación (Sincrónica) -->
+                <div class="flex items-start">
+                  <div
+                    class="flex-shrink-0 w-12 h-12 rounded-full bg-naranja text-white flex items-center justify-center font-bold text-xl shadow-lg"
+                  >
+                    <svg
+                      class="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="ml-4 flex-1">
+                    <div
+                      class="bg-gradient-to-r from-naranja/10 to-transparent p-5 rounded-xl border-l-4 border-naranja"
+                    >
+                      <h4 class="font-bold text-gray-800 text-lg">
+                        Certificación: Jornadas Sincrónicas
+                      </h4>
+                      <span
+                        class="inline-block mt-2 px-3 py-1 bg-naranja/20 text-naranja text-xs font-bold rounded-full uppercase tracking-wide"
+                      >
+                        En Vivo – Clases Zoom
+                      </span>
+                      <p class="text-gray-600 text-sm mt-2">
+                        Derecho laboral, derecho sindical, técnicas de mediación
+                        laboral y taller de casos prácticos.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Nota informativa -->
+              <div
+                class="mt-8 p-5 bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-200 rounded-xl flex items-start shadow-sm"
+              >
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center"
+                >
+                  <svg
+                    class="w-5 h-5 text-purple-600"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="ml-4">
+                  <p class="text-purple-800 font-bold text-lg">
+                    Programa de Liderazgo y Mediación Laboral
+                  </p>
+                  <p class="text-purple-700 text-sm mt-1">
+                    Al inscribirte obtienes acceso a <strong
+                      >toda la formación asincrónica + jornadas en vivo de
+                      certificación</strong
+                    >, todo incluido en una sola matrícula.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Metodología -->
             <div class="bg-white rounded-2xl p-8 shadow-lg">
               <MetodologiaOnline
                 items={[
                   {
-                    titulo: "Metodología Práctica Empresarial",
+                    titulo: "Formación Asincrónica",
                     color: "celeste",
                     items: [
-                      "Talleres vivenciales",
-                      "Análisis de casos reales",
-                      "Simulacros organizacionales",
-                      "Role-playing supervisado",
+                      "Acceso 24/7 a plataforma de estudio",
+                      "Material didáctico y videos",
+                      "Cuestionarios de evaluación",
+                      "Avanza a tu propio ritmo",
                     ],
                   },
                   {
-                    titulo: "Networking Profesional",
+                    titulo: "Formación Sincrónica",
                     color: "turquesa",
                     items: [
-                      "Intercambio de experiencias",
-                      "Red de contactos RRHH",
-                      "Comunidad de práctica",
-                      "Colaboración entre pares",
+                      "Jornadas en vivo por Zoom",
+                      "Talleres prácticos con docentes",
+                      "Análisis de casos reales",
+                      "Taller de casos y certificación",
                     ],
                   },
                 ]}
@@ -557,7 +745,12 @@ const testimonios = diplomadoWC?.testimonios || [];
             </div>
 
             <!-- 5. Malla (Plan de Estudios) -->
-            <NewPlanEstudios modulos={temario as any} tituloPrograma={titulo} />
+            <!-- 5. Malla (Plan de Estudios) -->
+            <NewPlanEstudios
+              modulos={temario as any}
+              tituloPrograma={titulo}
+              pdfUrl="/docs/diplomados/mediacion-laboral/malla.pdf"
+            />
 
             <!-- 6. Certificación -->
             <div
@@ -1012,7 +1205,7 @@ const testimonios = diplomadoWC?.testimonios || [];
                   </div>
                 </div>
 
-                <div class="mt-6 space-y-3">
+                <div class="mt-6 flex flex-col gap-4">
                   <button
                     onclick="scrollToContactForm()"
                     class="btn-sidebar btn-sidebar-primary"
