@@ -223,7 +223,7 @@ async function deploy() {
 
     // 7. Validar que los archivos críticos existen en el servidor
     log('\n✅ Validando deployment...', colors.blue);
-    const criticalFiles = ['index.html', '_astro', 'favicon.svg'];
+    const criticalFiles = ['index.html', '_astro', 'favicon.svg', 'send_mail.php'];
     let validationPassed = true;
 
     for (const file of criticalFiles) {

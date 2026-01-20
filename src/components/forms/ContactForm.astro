@@ -406,22 +406,9 @@ const formSubtitle = subtitle || config.subtitle;
     <!-- Botón de envío -->
     <button
       type="submit"
-      class="w-full bg-gradient-to-r from-celeste to-turquesa text-white font-bold py-3 px-6 md:py-4 md:px-8 text-base md:text-lg rounded-lg hover:from-turquesa hover:to-celeste transform hover:scale-[1.02] transition-all duration-200 shadow-lg hover:shadow-xl"
+      class="w-full h-12 md:h-14 flex items-center justify-center bg-gradient-to-r from-celeste to-turquesa text-white font-bold text-base md:text-lg rounded-lg hover:from-turquesa hover:to-celeste transform hover:scale-[1.02] transition-all duration-200 shadow-lg hover:shadow-xl"
     >
-      <div class="flex items-center justify-center">
-        <svg
-          class="w-5 h-5 mr-2"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.014 8.014 0 01-4.244-1.206L3 21l2.206-5.756A8.014 8.014 0 013 12a8 8 0 018-8c4.418 0 8 3.582 8 8z"
-          ></path>
-        </svg>
+      <div>
         {config.buttonText}
       </div>
     </button>
@@ -502,46 +489,43 @@ const formSubtitle = subtitle || config.subtitle;
 
       // Deshabilitar botón
       submitButton.disabled = true;
+      const originalText = submitButton.innerHTML;
       submitButton.innerHTML = "Enviando...";
 
       try {
-        // Aquí iría la lógica para enviar a tu backend/CRM
-        // Por ahora simulamos el envío
-        await this.simulateSubmit(formData);
+        const response = await fetch("/send_mail.php", {
+          method: "POST",
+          body: formData,
+        });
 
-        // Mostrar mensaje de éxito
-        form.style.display = "none";
-        successMessage.classList.remove("hidden");
+        const result = await response.json();
 
-        // Opcional: Redirigir a WhatsApp después de 3 segundos
-        setTimeout(() => {
-          const program = formData.get("program");
-          const nombre = formData.get("nombre");
-          const message = `Hola, soy ${nombre}. Acabo de enviar una consulta sobre ${program || "los programas de EMED"} y me gustaría recibir más información.`;
-          const whatsappUrl = `https://wa.me/56912345678?text=${encodeURIComponent(message)}`;
-          window.open(whatsappUrl, "_blank");
-        }, 3000);
+        if (response.ok && result.status === "success") {
+          // Mostrar mensaje de éxito
+          form.style.display = "none";
+          successMessage.classList.remove("hidden");
+
+          // Opcional: Redirigir a WhatsApp después de 3 segundos
+          setTimeout(() => {
+            const program = formData.get("program");
+            const nombre = formData.get("nombre");
+            const message = `Hola, soy ${nombre}. Acabo de enviar una consulta sobre ${program || "los programas de EMED"} y me gustaría recibir más información.`;
+            const whatsappUrl = `https://wa.me/56912345678?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, "_blank");
+          }, 3000);
+        } else {
+          throw new Error(result.message || "Error al enviar el mensaje");
+        }
       } catch (error) {
         console.error("Error enviando formulario:", error);
         alert(
-          "Hubo un error al enviar tu consulta. Por favor intenta nuevamente.",
+          "Hubo un error al enviar tu consulta. Por favor intenta nuevamente o contáctanos por WhatsApp.",
         );
 
         // Rehabilitar botón
         submitButton.disabled = false;
-        submitButton.innerHTML =
-          form.dataset.originalButtonText || "Enviar Consulta";
+        submitButton.innerHTML = originalText;
       }
-    }
-
-    async simulateSubmit(formData) {
-      // Simular llamada API
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          console.log("Datos del formulario:", Object.fromEntries(formData));
-          resolve();
-        }, 1000);
-      });
     }
   }
 

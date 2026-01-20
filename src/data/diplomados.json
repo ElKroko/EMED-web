@@ -247,6 +247,57 @@
           "Preparación para evaluación ECAME"
         ],
         "evidencia": "Observación directa."
+      },
+      {
+        "modulo": "Pasantía Fase I",
+        "horas_estimadas": "Presencial",
+        "grupo": "Pasantía Presencial (Santiago)",
+        "resumen": "Observación de audiencias de mediación reales y análisis de casos.",
+        "competencias": [
+          "Observación participante",
+          "Análisis crítico de audiencias",
+          "Identificación de modelos de mediación"
+        ],
+        "contenido": [
+          "Observación de sesiones de mediación",
+          "Análisis de estrategias del mediador",
+          "Bitácora de aprendizaje"
+        ],
+        "evidencia": "Bitácora de observación"
+      },
+      {
+        "modulo": "Pasantía Fase II",
+        "horas_estimadas": "Presencial",
+        "grupo": "Pasantía Presencial (Santiago)",
+        "resumen": "Co-mediación asistida y participación activa en sesiones.",
+        "competencias": [
+          "Co-mediación efectiva",
+          "Intervención estratégica asistida",
+          "Manejo de herramientas comunicacionales en vivo"
+        ],
+        "contenido": [
+          "Participación activa como co-mediador",
+          "Aplicación de preguntas y parafraseo",
+          "Apoyo en la conducción del proceso"
+        ],
+        "evidencia": "Rubrica de co-mediación"
+      },
+      {
+        "modulo": "Pasantía Fase III",
+        "horas_estimadas": "Presencial",
+        "grupo": "Pasantía Presencial (Santiago)",
+        "resumen": "Conducción supervisada de procesos de mediación.",
+        "competencias": [
+          "Conducción autónoma supervisada",
+          "Gestión del proceso completo",
+          "Logro de acuerdos viables"
+        ],
+        "contenido": [
+          "Conducción de audiencias bajo supervisión",
+          "Redacción de acuerdos",
+          "Cierre del proceso de mediación"
+        ],
+        "evidencia": "Evaluación final de práctica"
       }
     ],
     "faqs": [
