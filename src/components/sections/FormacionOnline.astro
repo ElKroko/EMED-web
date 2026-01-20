@@ -10,35 +10,70 @@ interface Props {
   className?: string;
 }
 
-const { etapaAsincronica, etapaSincronica, className = '' } = Astro.props;
+const { etapaAsincronica, etapaSincronica, className = "" } = Astro.props;
 ---
 
 <div class={`formacion-online ${className}`}>
-  <h2 class="text-3xl font-bold text-gray-800 mb-8">¿Cómo es la formación online?</h2>
+  <h2 class="text-3xl font-bold text-gray-800" style="margin-bottom: 10px;">
+    ¿Cómo es la formación online?
+  </h2>
 
   <div class="grid md:grid-cols-2 gap-6">
     <!-- Etapa Asincrónica -->
-    <div class="bg-gradient-to-br from-celeste/10 to-celeste/5 border-2 border-celeste/30 rounded-xl p-6">
+    <div
+      class="bg-gradient-to-br from-celeste/10 to-celeste/5 border-2 border-celeste/30 rounded-xl p-6"
+    >
       <div class="flex items-center mb-4">
-        <div class="w-12 h-12 bg-celeste rounded-full flex items-center justify-center mr-4">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        <div
+          class="w-12 h-12 bg-celeste rounded-full flex items-center justify-center mr-4"
+        >
+          <svg
+            class="w-6 h-6 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
         </div>
-        <h3 class="text-xl font-bold text-gray-800">{etapaAsincronica.titulo}</h3>
+        <h3 class="text-xl font-bold text-gray-800">
+          {etapaAsincronica.titulo}
+        </h3>
       </div>
-      <p class="text-gray-600 leading-relaxed">{etapaAsincronica.descripcion}</p>
+      <p class="text-gray-600 leading-relaxed">
+        {etapaAsincronica.descripcion}
+      </p>
     </div>
 
     <!-- Etapa Sincrónica -->
-    <div class="bg-gradient-to-br from-turquesa/10 to-turquesa/5 border-2 border-turquesa/30 rounded-xl p-6">
+    <div
+      class="bg-gradient-to-br from-turquesa/10 to-turquesa/5 border-2 border-turquesa/30 rounded-xl p-6"
+    >
       <div class="flex items-center mb-4">
-        <div class="w-12 h-12 bg-turquesa rounded-full flex items-center justify-center mr-4">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+        <div
+          class="w-12 h-12 bg-turquesa rounded-full flex items-center justify-center mr-4"
+        >
+          <svg
+            class="w-6 h-6 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+            ></path>
           </svg>
         </div>
-        <h3 class="text-xl font-bold text-gray-800">{etapaSincronica.titulo}</h3>
+        <h3 class="text-xl font-bold text-gray-800">
+          {etapaSincronica.titulo}
+        </h3>
       </div>
       <p class="text-gray-600 leading-relaxed">{etapaSincronica.descripcion}</p>
     </div>

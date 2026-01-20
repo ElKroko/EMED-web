@@ -8,13 +8,13 @@
     "descripcion_corta": "Especialízate en la resolución de conflictos familiares con técnicas específicas para dinámicas familiares complejas y casos de alta sensibilidad emocional.",
     "descripcionDetallada": "Este diplomado está diseñado para profesionales que deseen especializarse en la mediación de conflictos familiares. Aborda desde los fundamentos teóricos hasta la práctica supervisada, cumpliendo con todos los requisitos del Ministerio de Justicia para el registro oficial de mediadores familiares.",
     "duracion": "220 horas",
-    "modalidad": "Online + Presencial (Prácticas)",
-    "duracion_online": "170 horas",
-    "duracion_presencial": "50 horas",
+    "modalidad": "Mixta (Online + Presencial)",
+    "duracion_online": "180 horas",
+    "duracion_presencial": "40 horas",
     "nivel": "Básico - Intermedio",
     "precio": 750000,
     "precio_regular": 750000,
-    "precio_formateado": "desde $750.000",
+    "precio_formateado": "desde $785.000",
     "precioFinanciado": "$600.000",
     "destacado": true,
     "imagen": "https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
@@ -51,45 +51,232 @@
     "cta_mensaje": "Un asesor académico te contactará para resolver tus dudas referentes a tu formación como mediador familiar y posterior inscripción en el registro de mediadores del Ministerio de Justicia.",
     "temario": [
       {
-        "modulo": "Módulo 1: Fundamentos Mediación Familiar",
-        "horas": 30,
+        "modulo": "Individuo, Familia y Sociedad",
+        "horas_estimadas": "30 horas",
+        "grupo": "Formación Asincrónica",
+        "resumen": "Bases conceptuales para comprender la dinámica familiar y social.",
+        "competencias": [
+          "Analizar la estructura y funciones de la familia moderna.",
+          "Comprender el impacto social en las dinámicas familiares.",
+          "Identificar variables psicosociales en el conflicto."
+        ],
         "contenido": [
-          "Historia y principios de la mediación",
-          "Marco legal chileno de mediación familiar",
-          "Ética y deontología del mediador",
-          "Tipos de conflictos familiares"
-        ]
+          "Concepto de familia y evolución histórica",
+          "Ciclo vital individual y familiar",
+          "Estructura social y redes de apoyo",
+          "Crisis normativas y no normativas"
+        ],
+        "evidencia": "Cuestionario de evaluación y foro de análisis."
       },
       {
-        "modulo": "Módulo 2: Técnicas y Herramientas Especializadas",
-        "horas": 35,
+        "modulo": "Comunicación Interpersonal",
+        "horas_estimadas": "30 horas",
+        "grupo": "Formación Asincrónica",
+        "resumen": "Herramientas comunicacionales esenciales para la mediación.",
+        "competencias": [
+          "Aplicar técnicas de escucha activa en contextos de tensión.",
+          "Desarrollar habilidades de comunicación asertiva.",
+          "Reconocer barreras comunicacionales."
+        ],
         "contenido": [
-          "Comunicación efectiva y escucha activa",
-          "Manejo de emociones en conflicto",
-          "Técnicas de reformulación y parafraseo",
-          "Generación de opciones y alternativas"
-        ]
+          "Teoría de la comunicación humana",
+          "Axiomas de la comunicación",
+          "Comunicación verbal y no verbal",
+          "Técnicas de parafraseo y preguntas"
+        ],
+        "evidencia": "Análisis de video role-playing."
       },
       {
-        "modulo": "Módulo 3: Práctica Supervisada",
-        "horas": 30,
+        "modulo": "Teoría del Conflicto Parte I",
+        "horas_estimadas": "30 horas",
+        "grupo": "Formación Asincrónica",
+        "resumen": "Fundamentos teóricos para el análisis del conflicto.",
+        "competencias": [
+          "Definir el conflicto desde distintas perspectivas teóricas.",
+          "Identificar las fuentes y tipos de conflicto.",
+          "Analizar la escalada y desescalada del conflicto."
+        ],
         "contenido": [
-          "Simulacros con casos reales",
-          "Retroalimentación individualizada",
-          "Video-análisis de sesiones",
-          "Autoevaluación y mejora continua"
-        ]
+          "Naturaleza y estructura del conflicto",
+          "Estilos de enfrentamiento del conflicto",
+          "Ciclo del conflicto",
+          "Mapeo de conflictos"
+        ],
+        "evidencia": "Estudio de caso teórico."
       },
       {
-        "modulo": "Módulo 4: Pasantía Obligatoria",
-        "horas": 25,
-        "tipo": "presencial",
+        "modulo": "Teoría del Conflicto Parte II",
+        "horas_estimadas": "20 horas",
+        "grupo": "Formación Asincrónica",
+        "resumen": "Profundización en el análisis dinámico de conflictos complejos.",
+        "competencias": [
+          "Aplicar modelos de análisis a casos complejos.",
+          "Diseñar estrategias de intervención inicial.",
+          "Gestionar la resistencia al cambio."
+        ],
         "contenido": [
-          "Práctica en centros de mediación (100% presencial)",
-          "Supervisión directa de mediadores experimentados",
-          "Documentación de casos",
-          "Evaluación final práctica"
-        ]
+          "Negociación y resolución colaborativa",
+          "Poder y desequilibrios en la mediación",
+          "Intervención en crisis",
+          "Modelos de mediación"
+        ],
+        "evidencia": "Evaluación sumativa de teoría del conflicto."
+      },
+      {
+        "modulo": "Introducción al Derecho",
+        "horas_estimadas": "30 horas",
+        "grupo": "Formación Asincrónica",
+        "resumen": "Marco jurídico básico para mediadores no abogados.",
+        "competencias": [
+          "Comprender la estructura del sistema judicial chileno.",
+          "Interpretar normas básicas de derecho de familia.",
+          "Vincular el derecho con la práctica mediadora."
+        ],
+        "contenido": [
+          "Conceptos básicos de derecho",
+          "Fuentes del derecho y jerarquía normativa",
+          "Organización de los Tribunales de Familia",
+          "Principios del procedimiento de familia"
+        ],
+        "evidencia": "Cuestionario de conocimientos legales."
+      },
+      {
+        "modulo": "Derecho de Familia I",
+        "horas_estimadas": "8 horas (Sincrónico)",
+        "grupo": "Formación Sincrónica",
+        "resumen": "Normativa específica aplicada a casos de familia: Alimentos y Relación Directa.",
+        "competencias": [
+          "Aplicar la legislación vigente en alimentos.",
+          "Comprender la regulación de la relación directa y regular.",
+          "Manejar criterios jurisprudenciales recientes."
+        ],
+        "contenido": [
+          "Ley 19.968 de Tribunales de Familia",
+          "Pensión de alimentos: Requisitos y cálculo",
+          "Cumplimiento y apremios",
+          "Relación directa y regular (Régimen de visitas)"
+        ],
+        "evidencia": "Análisis de casos prácticos."
+      },
+      {
+        "modulo": "Derecho de Familia II",
+        "horas_estimadas": "8 horas (Sincrónico)",
+        "grupo": "Formación Sincrónica",
+        "resumen": "Normativa específica: Cuidado Personal, Patria Potestad y Compensación.",
+        "competencias": [
+          "Analizar régimen de bienes y compensación económica.",
+          "Distinguir entre cuidado personal y patria potestad.",
+          "Redactar acuerdos jurídicamente válidos."
+        ],
+        "contenido": [
+          "Cuidado personal (Tuición) y Cuidado compartido",
+          "Patria potestad y sus atributos",
+          "Régimenes patrimoniales del matrimonio",
+          "Compensación económica y divorcio"
+        ],
+        "evidencia": "Taller de redacción de acuerdos."
+      },
+      {
+        "modulo": "Técnicas de Mediación Parte I",
+        "horas_estimadas": "8 horas (Sincrónico)",
+        "grupo": "Formación Sincrónica",
+        "resumen": "Entrenamiento práctico inicial en conducción de audiencias.",
+        "competencias": [
+          "Estructurar el proceso de mediación.",
+          "Realizar un discurso de apertura efectivo.",
+          "Generar confianza (Rapport)."
+        ],
+        "contenido": [
+          "El Encuadre y Discurso de apertura",
+          "Técnicas de acogida y contención",
+          "Escucha activa en la sesión conjunta",
+          "Recopilación de información"
+        ],
+        "evidencia": "Simulación de apertura."
+      },
+      {
+        "modulo": "Técnicas de Mediación Parte II",
+        "horas_estimadas": "8 horas (Sincrónico)",
+        "grupo": "Formación Sincrónica",
+        "resumen": "Entrenamiento en técnicas avanzadas y manejo de la agenda.",
+        "competencias": [
+          "Manejar situaciones de alta emocionalidad.",
+          "Aplicar técnicas de preguntas circulares y reflexivas.",
+          "Construir una agenda de trabajo viable."
+        ],
+        "contenido": [
+          "Generación de Agenda",
+          "Técnicas de interrogación (Circulares, Reflexivas, Estratégicas)",
+          "El Caucus (Sesión privada)",
+          "Empoderamiento y revalorización"
+        ],
+        "evidencia": "Role-playing de etapas intermedias."
+      },
+      {
+        "modulo": "Campo Ocupacional del Mediador",
+        "horas_estimadas": "4 horas (Sincrónico)",
+        "grupo": "Formación Sincrónica",
+        "resumen": "Orientación laboral y ejercicio profesional.",
+        "competencias": [
+          "Identificar nichos laborales para el mediador.",
+          "Conocer el proceso de licitación pública.",
+          "Gestionar la práctica privada."
+        ],
+        "contenido": [
+          "Sistema de Registro de Mediadores",
+          "Licitaciones públicas",
+          "Mediación privada y tarifas",
+          "Marketing para mediadores"
+        ],
+        "evidencia": "Asistencia y participación."
+      },
+      {
+        "modulo": "Técnicas de Mediación III",
+        "horas_estimadas": "40 horas (Presencial)",
+        "grupo": "Pasantía Presencial (Santiago)",
+        "resumen": "A efectuarse en Santiago. Práctica efectiva basada en casos reales, metodología pauta ECAME.",
+        "competencias": [
+          "Integrar todas las técnicas aprendidas.",
+          "Liderar procesos complejos de principio a fin.",
+          "Resolución de impasses en vivo."
+        ],
+        "contenido": [
+          "Práctica avanzada de técnicas",
+          "Manejo de situaciones de crisis en audiencia",
+          "Negociación final y cierre de acuerdos",
+          "Preparación para evaluación ECAME"
+        ],
+        "evidencia": "Observación directa."
+      }
+    ],
+    "faqs": [
+       {
+        "pregunta": "¿Cuál es la duración total del diplomado?",
+        "respuesta": "El programa contempla 220 horas académicas totales. Se distribuyen en 180 horas de formación online (asincrónica + sincrónica) y 40 horas de pasantía presencial intensiva."
+      },
+      {
+        "pregunta": "¿Cuándo comienza la próxima edición?",
+        "respuesta": "Manejamos ciclos de ingreso continuo e inscripciones abiertas. Al matricularte, coordinamos tu ingreso al ciclo más próximo. Te entregaremos un calendario detallado con tus fechas de acceso, sesiones en vivo y semana presencial."
+      },
+      {
+        "pregunta": "¿Dónde se realiza la pasantía presencial?",
+        "respuesta": "La pasantía fase presencial es obligatoria y se realiza en nuestra sede en Santiago. Está diseñada como una semana intensiva (Lunes a Viernes aprox.) para facilitar la participación de alumnos de regiones."
+      },
+      {
+        "pregunta": "¿Las clases online tienen horario fijo?",
+        "respuesta": "La 'Formación Asincrónica' es flexible, accedes 24/7 a la plataforma. La 'Formación Sincrónica' tiene fechas y horarios específicos (generalmente vespertinos) que se informan en tu calendario de cohorte."
+      },
+      {
+        "pregunta": "¿El diplomado es válido para el Registro de Mediadores?",
+        "respuesta": "Sí. Nuestro programa cumple estrictamente con las exigencias de la Ley 19.968 y está diseñado para habilitarte en la inscripción del Registro de Mediadores del Ministerio de Justicia."
+      },
+      {
+        "pregunta": "¿Qué pasa si repruebo un módulo?",
+        "respuesta": "Contamos con instancias de recuperación y acompañamiento docente. Nuestro objetivo es que adquieras las competencias, por lo que tendrás oportunidades de refuerzo si lo necesitas."
+      },
+      {
+        "pregunta": "¿Cuáles son las formas de pago?",
+        "respuesta": "Puedes pagar con tarjeta de crédito (cuotas), débito o transferencia. Consulta por nuestras opciones de financiamiento directo y descuentos por pago contado."
       }
     ],
     "requisitos": [
@@ -164,9 +351,27 @@
       "Herramientas digitales incluidas",
       "Acceso a comunidad de práctica"
     ],
+    "diferenciadores": [
+      "Enfoque preventivo en Convivencia Escolar",
+      "Estrategias de Mediación entre pares",
+      "Herramientas para el trabajo con familias",
+      "Actualización normativa MINEDUC vigente"
+    ],
+    "formacion_online": {
+      "etapa_asincronica": {
+        "titulo": "Etapa asincrónica (plataforma)",
+        "descripcion": "Acceso 24/7 a aula virtual con recursos interactivos, foros y material de estudio especializado en convivencia escolar."
+      },
+      "etapa_sincronica": {
+        "titulo": "Etapa sincrónica (Zoom)",
+        "descripcion": "Clases en vivo semanales para análisis de casos escolares, role-playing y resolución de consultas con expertos."
+      }
+    },
+    "cta_mensaje": "Un asesor académico te contactará para orientarte sobre cómo este diplomado puede transformar la convivencia en tu comunidad educativa.",
     "temario": [
       {
         "modulo": "Módulo 1: Convivencia Escolar",
+        "horas": 60,
         "contenido": [
           "Diagnóstico de clima escolar",
           "Factores de conflicto en establecimientos",
@@ -176,6 +381,7 @@
       },
       {
         "modulo": "Módulo 2: Mediación Entre Pares",
+        "horas": 60,
         "contenido": [
           "Formación de mediadores estudiantiles",
           "Supervisión de procesos peer-to-peer",
@@ -185,11 +391,22 @@
       },
       {
         "modulo": "Módulo 3: Trabajo con Familias",
+        "horas": 60,
         "contenido": [
           "Mediación padres-establecimiento",
           "Conflictos apoderado-docente",
           "Participación familiar activa",
           "Comunicación efectiva con familias"
+        ]
+      },
+      {
+        "modulo": "Módulo 4: Diseño de Proyectos",
+        "horas": 60,
+        "contenido": [
+          "Elaboración de planes de gestión",
+          "Indicadores de calidad",
+          "Evaluación de impacto",
+          "Sostenibilidad de programas"
         ]
       }
     ],
@@ -237,7 +454,13 @@
       {
         "nombre": "Ana Cristina López",
         "profesion": "Profesora Básica",
-        "testimonio": "Transformó completamente mi manera de abordar los conflictos en el aula. Muy recomendable.",
+        "testimonio": "Transformó completamente mi manera de abordar los conflictos en el aula. Las herramientas son muy prácticas y realistas.",
+        "rating": 5
+      },
+      {
+        "nombre": "Pedro Sánchez",
+        "profesion": "Inspector General",
+        "testimonio": "Excelente programa. Me ayudó a actualizar los protocolos de convivencia de mi colegio y mejorar el clima laboral.",
         "rating": 5
       }
     ]
@@ -272,6 +495,23 @@
       "Metodología práctica aplicable",
       "Herramientas de diagnóstico organizacional"
     ],
+    "diferenciadores": [
+      "Diagnóstico e intervención en Clima Organizacional",
+      "Marco legal laboral aplicado a la mediación",
+      "Herramientas de negociación colectiva y diálogo social",
+      "Estrategias de prevención de conflictos para RRHH"
+    ],
+    "formacion_online": {
+      "etapa_asincronica": {
+        "titulo": "Etapa asincrónica (empresarial)",
+        "descripcion": "Plataforma de estudio flexible con casos de negocio, normativa laboral y recursos de gestión organizacional."
+      },
+      "etapa_sincronica": {
+        "titulo": "Etapa sincrónica (networking)",
+        "descripcion": "Sesiones en vivo enfocadas en análisis de conflictos reales, simulaciones de negociación y networking profesional."
+      }
+    },
+    "cta_mensaje": "Solicita información hoy y descubre cómo la mediación puede potenciar tu carrera en el área de Recursos Humanos y Desarrollo Organizacional.",
     "impacto_organizacion": [
       "Reducción de conflictos laborales recurrentes",
       "Mejora del clima organizacional y productividad",
@@ -312,6 +552,7 @@
     "temario": [
       {
         "modulo": "Módulo 1: Conflictos Organizacionales",
+        "horas": 60,
         "contenido": [
           "Tipología de conflictos laborales",
           "Análisis del clima organizacional",
@@ -321,15 +562,18 @@
       },
       {
         "modulo": "Módulo 2: Mediación en Relaciones Laborales",
+        "horas": 60,
         "contenido": [
           "Técnicas específicas para el ámbito laboral",
           "Mediación supervisor-subordinado",
           "Conflictos entre pares",
           "Gestión de equipos en crisis"
-        ]
+        ],
+        "horas_estimadas": "3 semanas"
       },
       {
         "modulo": "Módulo 3: Marco Legal Laboral",
+        "horas": 60,
         "contenido": [
           "Normativa laboral chilena",
           "Derechos y deberes en mediación",
@@ -339,6 +583,7 @@
       },
       {
         "modulo": "Módulo 4: Práctica Empresarial",
+        "horas": 60,
         "contenido": [
           "Simulacros con casos empresariales",
           "Role-playing supervisado",
@@ -354,8 +599,8 @@
       "Entrevista con coordinador académico"
     ],
     "metodologia": [
-      "Modalidad presencial con metodología teórico-práctica",
-      "Incluye talleres vivenciales, análisis de casos reales y simulacros empresariales"
+      "100% online con metodología teórico-práctica",
+      "Incluye talleres vivenciales, análisis de casos reales y simulacros organizacionales"
     ],
     "certificacion": [
       "Diploma de Especialización en Mediación Laboral otorgado por EMED",
@@ -376,21 +621,21 @@
       "Organismos públicos y municipalidades",
       "Dirección del Trabajo"
     ],
-    "ubicacion": "Santiago Centro",
+    "ubicacion": "Online",
     "en_stock": true,
     "categorias": ["Mediación", "Laboral", "RRHH"],
-    "etiquetas": ["Presencial", "Recursos Humanos", "Conflictos Laborales"],
+    "etiquetas": ["Online", "Recursos Humanos", "Conflictos Laborales"],
     "testimonios": [
       {
         "nombre": "Roberto Hernández",
         "profesion": "Jefe de RRHH",
-        "testimonio": "El programa me dio herramientas concretas para manejar conflictos en mi empresa. Muy práctico y aplicable.",
+        "testimonio": "El programa me dio herramientas concretas para manejar conflictos en mi empresa. Reducimos las demandas laborales en 60% y mejoramos notablemente el clima laboral.",
         "rating": 5
       },
       {
         "nombre": "Patricia Silva",
         "profesion": "Consultora Organizacional",
-        "testimonio": "Excelente formación para ampliar mis servicios de consultoría. Los docentes tienen mucha experiencia.",
+        "testimonio": "Excelente formación para ampliar mis servicios de consultoría organizacional. Los casos son muy realistas y aplicables.",
         "rating": 5
       }
     ]

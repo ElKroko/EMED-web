@@ -9,7 +9,7 @@ export interface Producto {
   descripcion_corta: string;
   descripcionDetallada?: string;
   duracion: string;
-  modalidad: 'Presencial' | 'Online' | 'Mixto' | 'Presencial + Online' | '100% Online';
+  modalidad: 'Presencial' | 'Online' | 'Mixto' | 'Presencial + Online' | 'Online + Presencial (Prácticas)' | '100% Online' | '100% online' | 'Mixta (Online + Presencial)';
   nivel?: string;
   precio: number;
   precio_regular: number;
@@ -32,11 +32,38 @@ export interface Producto {
   etiquetas: string[];
   testimonios?: Testimonio[];
   brochure?: BrochureInfo;
+  formacion_online?: {
+    etapa_asincronica: {
+      titulo: string;
+      descripcion: string;
+    };
+    etapa_sincronica: {
+      titulo: string;
+      descripcion: string;
+    };
+  };
+  diferenciadores?: string[];
+  cta_mensaje?: string;
+  duracion_online?: string;
+  duracion_presencial?: string;
+  faqs?: FAQItem[];
 }
 
 export interface TemarioModulo {
   modulo: string;
   contenido: string[];
+  horas?: number;
+  horas_estimadas?: string;
+  grupo?: string;
+  resumen?: string;
+  competencias?: string[];
+  evidencia?: string;
+  tipo?: string;
+}
+
+export interface FAQItem {
+  pregunta: string;
+  respuesta: string;
 }
 
 export interface Testimonio {
