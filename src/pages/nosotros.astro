@@ -3,15 +3,124 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import quienesSomosBanner from "../assets/images/pages/quienes-somos-banner.jpg";
 
-// Array de fotos para rotar entre los miembros del equipo
-const fotos = [
-  "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+// Iconos de valores
+import IconoExcelencia from "../assets/images/common/iconos/Excelencia.svg";
+import IconoEtica from "../assets/images/common/iconos/Etica.svg";
+import IconoCompromiso from "../assets/images/common/iconos/Compromiso.svg";
+import IconoTransformacion from "../assets/images/common/iconos/Transformación.svg";
+
+// Equipo EMED (Directivo/Administrativo)
+const equipoEMED = [
+  {
+    nombre: "Claudia Tassara",
+    cargo: "Directora Académica",
+    initials: "CT",
+    color: "turquesa",
+  },
+  {
+    nombre: "Vicente Perelli",
+    cargo: "Estratega Digital",
+    initials: "VP",
+    color: "celeste",
+  },
+  {
+    nombre: "Camila Palacios",
+    cargo: "Coordinación Académica",
+    initials: "CP",
+    color: "naranja",
+  },
+  {
+    nombre: "Ann Lizette Murúa",
+    cargo: "Orientadora Académica",
+    initials: "AM",
+    color: "amarillo",
+  },
 ];
 
-// Función para obtener foto basada en índice
-const getFoto = (index) => fotos[index % fotos.length];
+// Docentes Nacionales
+const docentesNacionales = [
+  {
+    nombre: "Juan Pablo Letelier",
+    profesion: "Trabajador Social",
+    descripcion: "Mediador Familiar, Escolar y Laboral.",
+    initials: "JL",
+    color: "naranja",
+  },
+  {
+    nombre: "Claudia Tassara",
+    profesion: "Abogada",
+    descripcion: "Mediadora Familiar, Escolar y Laboral.",
+    initials: "CT",
+    color: "turquesa",
+  },
+  {
+    nombre: "María Natalia Castro",
+    profesion: "Psicóloga",
+    descripcion: "Mediadora Familiar y Escolar.",
+    initials: "MC",
+    color: "celeste",
+  },
+  {
+    nombre: "Daniel Carreño (Miccael Sais)",
+    profesion: "Terapeuta",
+    descripcion: "Mediador Escolar y Laboral.",
+    initials: "DC",
+    color: "celeste",
+  },
+  {
+    nombre: "Constanza Navarrete",
+    profesion: "Abogada",
+    descripcion: "Mediadora Familiar.",
+    initials: "CN",
+    color: "turquesa",
+  },
+  {
+    nombre: "Walter Oyarzo",
+    profesion: "Abogado",
+    descripcion: "Mediador Laboral.",
+    initials: "WO",
+    color: "purple-600",
+  },
+];
+
+// Docentes Internacionales
+const docentesInternacionales = [
+  {
+    nombre: "Nathalie Noechwicz",
+    profesion: "Mediadora",
+    descripcion: "Mediadora experta en mediación restaurativa",
+    initials: "NN",
+    color: "celeste",
+  },
+  {
+    nombre: "Javier Vidargas",
+    profesion: "Mediador",
+    descripcion: "Mediador experto en mediación penal",
+    initials: "JV",
+    color: "naranja",
+  },
+  {
+    nombre: "Carla Guardia",
+    profesion: "Mediadora",
+    descripcion: "Mediadora experta en comunidades LGBTIQ+",
+    initials: "CG",
+    color: "turquesa",
+  },
+  {
+    nombre: "Cecilia Ramos Mejía",
+    profesion: "Mediadora",
+    descripcion: "Mediadora experta en mediación escolar",
+    initials: "CR",
+    color: "purple-600",
+  },
+  {
+    nombre: "Daniel Bustelo",
+    profesion: "Mediador",
+    descripcion: "Mediador y Creador de la escuela de la función mediadora",
+    initials: "DB",
+    color: "naranja",
+  },
+];
 ---
 
 <Layout
@@ -78,263 +187,262 @@ const getFoto = (index) => fotos[index % fotos.length];
       </div>
     </section>
 
-    <!-- Sección: Promesa de Valor -->
-    <section class="promesa-valor-section relative py-20 bg-crema">
+    <!-- Sección Unificada: Nuestro Propósito y Valores -->
+    <section class="proposito-section relative bg-crema py-16 overflow-hidden">
       <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-          <div
-            class="bg-gradient-to-br from-celeste/10 via-turquesa/5 to-naranja/10 rounded-3xl p-8 md:p-12 border-2 border-celeste/30 shadow-xl"
-          >
-            <div class="flex items-start space-x-4 mb-6">
-              <div class="flex-shrink-0">
-                <svg
-                  class="w-12 h-12 text-celeste"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
-                  ></path>
-                </svg>
-              </div>
-              <div>
-                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-                  Promesa de Valor
-                </h2>
-                <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
-                  <strong class="text-celeste">Formación práctica</strong>, <strong
-                    class="text-turquesa">acompañamiento cercano</strong
-                  > y <strong class="text-naranja"
-                    >certificaciones reconocidas</strong
-                  > que elevan tu empleabilidad y tu impacto social.
-                </p>
-              </div>
-            </div>
-
-            <!-- Beneficios clave -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-              <div
-                class="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-celeste/20"
-              >
-                <div class="flex items-center space-x-2 mb-2">
-                  <svg
-                    class="w-5 h-5 text-celeste flex-shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
-                    ></path>
-                  </svg>
-                  <h3 class="font-bold text-gray-800">Formación Práctica</h3>
-                </div>
-                <p class="text-sm text-gray-600">
-                  Metodología activa con casos reales
-                </p>
-              </div>
-
-              <div
-                class="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-turquesa/20"
-              >
-                <div class="flex items-center space-x-2 mb-2">
-                  <svg
-                    class="w-5 h-5 text-turquesa flex-shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    ></path>
-                  </svg>
-                  <h3 class="font-bold text-gray-800">Acompañamiento</h3>
-                </div>
-                <p class="text-sm text-gray-600">
-                  Soporte personalizado durante tu formación
-                </p>
-              </div>
-
-              <div
-                class="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-naranja/20"
-              >
-                <div class="flex items-center space-x-2 mb-2">
-                  <svg
-                    class="w-5 h-5 text-naranja flex-shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                  <h3 class="font-bold text-gray-800">Certificación</h3>
-                </div>
-                <p class="text-sm text-gray-600">
-                  Acreditación IRAM reconocida
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sección: Misión y Visión -->
-    <section class="mision-vision-section relative overflow-hidden py-32 z-10">
-      <!-- SVG de fondo amarillo -->
-      <!-- Fondo limpio -->
-      <div class="absolute inset-0 -z-10"></div>
-
-      <div class="container mx-auto px-4 relative z-10">
-        <div class="max-w-5xl mx-auto text-center">
-          <!-- Título introductorio -->
-          <div class="mb-16">
-            <h2
-              class="text-4xl md:text-5xl font-bold text-gray-800 mb-8 leading-tight"
-            >
+        <div class="max-w-6xl mx-auto">
+          <!-- Header con título y propósito -->
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
               Nuestro Propósito
             </h2>
-            <p
-              class="text-xl md:text-2xl text-gray-700 leading-relaxed max-w-3xl mx-auto"
-            >
-              Promover una cultura de paz y diálogo, entregando formación de
-              excelencia que habilite a las personas para ser agentes de cambio
-              en sus comunidades y entornos laborales.
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Promover una cultura de <strong class="text-turquesa"
+                >paz y diálogo</strong
+              >, entregando formación de excelencia que habilite a las personas
+              para ser <strong class="text-naranja">agentes de cambio</strong> en
+              sus comunidades.
             </p>
           </div>
 
-          <!-- Misión -->
-          <div class="mb-20">
-            <div class="flex items-center justify-center mb-8">
-              <div class="w-16 h-1 bg-gray-400"></div>
-              <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mx-6">
-                NUESTRA MISIÓN
-              </h3>
-              <div class="w-16 h-1 bg-gray-400"></div>
-            </div>
-
+          <!-- Grid principal: 3 columnas en desktop -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Columna 1: Nuestra Misión -->
             <div
-              class="bg-white/90 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-gray-200 shadow-2xl"
+              class="proposito-card group relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden"
             >
-              <p
-                class="text-xl md:text-2xl text-gray-800 leading-relaxed font-medium"
+              <div
+                class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-celeste to-turquesa"
               >
-                <span class="text-2xl md:text-3xl font-bold text-amarillo"
-                  >"</span
-                >
-                Formar mediadores de excelencia, éticos y comprometidos, entregando
-                herramientas teóricas y prácticas que les permitan facilitar procesos
-                de diálogo y construcción de acuerdos sostenibles en diversos contextos
-                sociales.
+              </div>
 
-                <span class="text-2xl md:text-3xl font-bold text-amarillo"
-                  >"</span
+              <div class="flex items-center gap-3 mb-4">
+                <div
+                  class="w-10 h-10 rounded-lg bg-celeste/10 flex items-center justify-center group-hover:scale-110 transition-transform"
                 >
+                  <svg
+                    class="w-5 h-5 text-celeste"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800">Nuestra Misión</h3>
+              </div>
+
+              <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                Formar mediadores de excelencia, éticos y comprometidos,
+                entregando herramientas teóricas y prácticas para facilitar
+                procesos de diálogo y construcción de acuerdos sostenibles.
               </p>
 
-              <div class="mt-8 pt-6 border-t border-gray-200">
-                <p class="text-lg text-gray-600 leading-relaxed">
-                  Creemos que cada conflicto es una oportunidad de crecimiento,
-                  y nuestro compromiso es acompañar a las personas en este
-                  proceso de transformación personal y social.
-                </p>
+              <div
+                class="flex items-center gap-2 text-xs text-celeste font-medium"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                <span>Transformamos conflictos en oportunidades</span>
+              </div>
+            </div>
+
+            <!-- Columna 2: Nuestra Visión -->
+            <div
+              class="proposito-card group relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden"
+            >
+              <div
+                class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-naranja to-amarillo"
+              >
+              </div>
+
+              <div class="flex items-center gap-3 mb-4">
+                <div
+                  class="w-10 h-10 rounded-lg bg-naranja/10 flex items-center justify-center group-hover:scale-110 transition-transform"
+                >
+                  <svg
+                    class="w-5 h-5 text-naranja"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    ></path>
+                  </svg>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800">Nuestra Visión</h3>
+              </div>
+
+              <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                Ser la institución líder en formación de mediadores en Chile y
+                Latinoamérica, impulsando la profesionalización de la mediación
+                como vía para la resolución pacífica de conflictos.
+              </p>
+
+              <div
+                class="flex items-center gap-2 text-xs text-naranja font-medium"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                <span>Expandiendo la cultura de paz</span>
+              </div>
+            </div>
+
+            <!-- Columna 3: Lo Que Nos Diferencia -->
+            <div
+              class="proposito-card group relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden"
+            >
+              <div
+                class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-turquesa to-celeste"
+              >
+              </div>
+
+              <div class="flex items-center gap-3 mb-4">
+                <div
+                  class="w-10 h-10 rounded-lg bg-turquesa/10 flex items-center justify-center group-hover:scale-110 transition-transform"
+                >
+                  <svg
+                    class="w-5 h-5 text-turquesa"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
+                    ></path>
+                  </svg>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800">
+                  Lo Que Nos Diferencia
+                </h3>
+              </div>
+
+              <!-- Mini badges de diferenciadores -->
+              <div class="space-y-2">
+                <div
+                  class="flex items-center gap-2 p-2 bg-celeste/5 rounded-lg"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-celeste"></span>
+                  <span class="text-sm text-gray-700"
+                    ><strong class="text-celeste">Formación práctica</strong> con
+                    casos reales</span
+                  >
+                </div>
+                <div
+                  class="flex items-center gap-2 p-2 bg-turquesa/5 rounded-lg"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-turquesa"></span>
+                  <span class="text-sm text-gray-700"
+                    ><strong class="text-turquesa">Acompañamiento</strong> personalizado</span
+                  >
+                </div>
+                <div
+                  class="flex items-center gap-2 p-2 bg-naranja/5 rounded-lg"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-naranja"></span>
+                  <span class="text-sm text-gray-700"
+                    ><strong class="text-naranja">Certificación IRAM</strong> reconocida</span
+                  >
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Visión -->
-          <div>
-            <div class="flex items-center justify-center mb-8">
-              <div class="w-16 h-1 bg-gray-400"></div>
-              <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mx-6">
-                NUESTRA VISIÓN
-              </h3>
-              <div class="w-16 h-1 bg-gray-400"></div>
-            </div>
-
+          <!-- Nuestros Valores con iconos -->
+          <div class="mt-12 pt-8 border-t border-gray-200/50">
+            <p class="text-center text-sm text-gray-400 font-medium mb-8">
+              Nuestros valores
+            </p>
             <div
-              class="bg-white/90 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-gray-200 shadow-2xl"
+              class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
             >
-              <p
-                class="text-xl md:text-2xl text-gray-800 leading-relaxed font-medium"
-              >
-                <span class="text-2xl md:text-3xl font-bold text-amarillo"
-                  >"</span
+              <!-- Excelencia -->
+              <div class="flex flex-col items-center gap-3 group">
+                <div
+                  class="w-20 h-20 flex items-center justify-center rounded-2xl bg-celeste/10 group-hover:bg-celeste/20 transition-colors"
                 >
-                Ser reconocidos como la institución líder en formación de mediadores
-                en Chile y Latinoamérica, impulsando la profesionalización de la mediación
-                como vía privilegiada para la resolución pacífica de conflictos y
-                la construcción del tejido social.
-                <span class="text-2xl md:text-3xl font-bold text-amarillo"
-                  >"</span
+                  <Image
+                    src={IconoExcelencia}
+                    alt="Excelencia"
+                    class="w-12 h-12"
+                  />
+                </div>
+                <span class="text-base font-semibold text-gray-700"
+                  >Excelencia</span
                 >
-              </p>
-
-              <div class="mt-8 pt-6 border-t border-gray-200">
-                <p class="text-lg text-gray-600 leading-relaxed">
-                  Aspiramos a expandir la cultura de paz y diálogo en Chile y
-                  toda América Latina, formando mediadores que transformen
-                  conflictos en oportunidades de entendimiento.
-                </p>
+              </div>
+              <!-- Ética -->
+              <div class="flex flex-col items-center gap-3 group">
+                <div
+                  class="w-20 h-20 flex items-center justify-center rounded-2xl bg-turquesa/10 group-hover:bg-turquesa/20 transition-colors"
+                >
+                  <Image src={IconoEtica} alt="Ética" class="w-12 h-12" />
+                </div>
+                <span class="text-base font-semibold text-gray-700">Ética</span>
+              </div>
+              <!-- Compromiso -->
+              <div class="flex flex-col items-center gap-3 group">
+                <div
+                  class="w-20 h-20 flex items-center justify-center rounded-2xl bg-naranja/10 group-hover:bg-naranja/20 transition-colors"
+                >
+                  <Image
+                    src={IconoCompromiso}
+                    alt="Compromiso"
+                    class="w-12 h-12"
+                  />
+                </div>
+                <span class="text-base font-semibold text-gray-700"
+                  >Compromiso</span
+                >
+              </div>
+              <!-- Transformación -->
+              <div class="flex flex-col items-center gap-3 group">
+                <div
+                  class="w-20 h-20 flex items-center justify-center rounded-2xl bg-amarillo/10 group-hover:bg-amarillo/20 transition-colors"
+                >
+                  <Image
+                    src={IconoTransformacion}
+                    alt="Transformación"
+                    class="w-12 h-12"
+                  />
+                </div>
+                <span class="text-base font-semibold text-gray-700"
+                  >Transformación</span
+                >
               </div>
             </div>
-          </div>
-
-          <!-- Elementos decorativos -->
-          <div class="mt-16 flex justify-center space-x-8">
-            <div class="w-3 h-3 bg-gray-400 rounded-full"></div>
-            <div class="w-3 h-3 bg-gray-500 rounded-full"></div>
-            <div class="w-3 h-3 bg-gray-600 rounded-full"></div>
-            <div class="w-3 h-3 bg-gray-500 rounded-full"></div>
-            <div class="w-3 h-3 bg-gray-400 rounded-full"></div>
           </div>
         </div>
-      </div>
-
-      <!-- Forma orgánica inferior -->
-      <div class="absolute bottom-0 left-0 right-0 h-24">
-        <svg
-          viewBox="0 0 1200 120"
-          class="w-full h-full"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,120 C300,80 500,60 600,80 C700,100 900,60 1200,80 L1200,120 Z"
-            fill="#FEF7E8"></path>
-        </svg>
       </div>
     </section>
 
     <!-- Sección: Nuestro Equipo -->
-    <section class="equipos-section relative py-20 bg-white">
-      <!-- Línea divisoria ondulada -->
-      <div class="absolute top-0 left-0 right-0 h-24">
-        <svg
-          viewBox="0 0 1200 120"
-          class="w-full h-full"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,0 C300,40 500,20 600,40 C700,60 900,20 1200,40 L1200,0 Z"
-            fill="#FEF7E8"></path>
-        </svg>
-      </div>
-
-      <div class="container mx-auto px-4 pt-16">
+    <section class="equipos-section relative py-20 bg-crema">
+      <div class="container mx-auto px-4">
         <!-- Título principal -->
         <div class="text-center mb-16">
           <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
@@ -346,41 +454,31 @@ const getFoto = (index) => fotos[index % fotos.length];
           </p>
         </div>
 
-        <!-- Equipo Directivo -->
+        <!-- Equipo EMED (Directivo) -->
         <div class="mb-20">
           <div class="flex items-center justify-center mb-12">
             <div class="w-16 h-1 bg-celeste"></div>
             <h3 class="text-2xl md:text-3xl font-bold text-celeste mx-6">
-              Equipo Directivo
+              Equipo EMED
             </h3>
             <div class="w-16 h-1 bg-celeste"></div>
           </div>
 
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto"
-          >
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {
-              [...Array(4)].map((_, index) => (
-                <div class="team-card bg-white border border-gray-100 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
-                  <div class="text-center">
-                    <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-300">
-                      <img
-                        src={getFoto(index)}
-                        alt="Director"
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                    </div>
-                    <h4 class="text-lg font-bold text-gray-800 mb-1">
-                      Dr. María González
-                    </h4>
-                    <p class="text-sm font-medium text-celeste mb-3">
-                      Directora Académica
-                    </p>
-                    <p class="text-xs text-gray-600 leading-relaxed">
-                      Especialista en Mediación Familiar con 15+ años de
-                      experiencia docente
-                    </p>
+              equipoEMED.map((miembro) => (
+                <div class="team-card bg-white border border-gray-100 rounded-2xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group text-center">
+                  <div
+                    class={`w-16 h-16 mx-auto mb-3 rounded-full flex items-center justify-center text-2xl font-bold bg-gradient-to-br from-${miembro.color}/20 to-${miembro.color}/10 shadow-md group-hover:shadow-lg transition-all duration-300 text-${miembro.color} border-2 border-${miembro.color}/30`}
+                  >
+                    {miembro.initials}
                   </div>
+                  <h4 class="text-sm font-bold text-gray-800 mb-1">
+                    {miembro.nombre}
+                  </h4>
+                  <p class={`text-xs font-medium text-${miembro.color}`}>
+                    {miembro.cargo}
+                  </p>
                 </div>
               ))
             }
@@ -398,28 +496,25 @@ const getFoto = (index) => fotos[index % fotos.length];
           </div>
 
           <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
           >
             {
-              [...Array(7)].map((_, index) => (
+              docentesNacionales.map((docente) => (
                 <div class="team-card bg-white border border-gray-100 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
                   <div class="text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-full overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-300">
-                      <img
-                        src={getFoto(index + 4)}
-                        alt="Docente"
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
+                    <div
+                      class={`w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-3xl font-bold bg-gray-50 shadow-md group-hover:shadow-lg transition-all duration-300 text-${docente.color}`}
+                    >
+                      {docente.initials}
                     </div>
                     <h4 class="text-base font-bold text-gray-800 mb-1">
-                      Ps. Carlos Mendoza
+                      {docente.nombre}
                     </h4>
-                    <p class="text-sm font-medium text-turquesa mb-3">
-                      Mediación Escolar
+                    <p class={`text-sm font-medium mb-3 text-${docente.color}`}>
+                      {docente.profesion}
                     </p>
                     <p class="text-xs text-gray-600 leading-relaxed">
-                      Psicólogo especializado en resolución de conflictos
-                      educativos
+                      {docente.descripcion}
                     </p>
                   </div>
                 </div>
@@ -438,57 +533,25 @@ const getFoto = (index) => fotos[index % fotos.length];
             <div class="w-16 h-1 bg-naranja"></div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div class="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
             {
-              [...Array(3)].map((_, index) => (
-                <div class="team-card bg-white border border-gray-100 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+              docentesInternacionales.map((docente) => (
+                <div class="team-card bg-white border border-gray-100 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
                   <div class="text-center">
-                    <div class="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-300">
-                      <img
-                        src={getFoto(index + 11)}
-                        alt="Docente Internacional"
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
+                    <div
+                      class={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center text-4xl font-bold bg-gray-50 shadow-md group-hover:shadow-lg transition-all duration-300 text-${docente.color}`}
+                    >
+                      {docente.initials}
                     </div>
                     <h4 class="text-xl font-bold text-gray-800 mb-2">
-                      Dr. Ana Rodríguez
+                      {docente.nombre}
                     </h4>
-                    <p class="text-sm font-medium text-naranja mb-2">
-                      Universidad de Buenos Aires
-                    </p>
-                    <p class="text-sm font-medium text-gray-500 mb-4">
-                      Mediación Comunitaria
+                    <p class={`text-sm font-medium mb-2 text-${docente.color}`}>
+                      {docente.profesion}
                     </p>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                      Doctora en Psicología Social con especialización en
-                      mediación comunitaria. Autora de 5 publicaciones
-                      internacionales sobre resolución de conflictos.
+                      {docente.descripcion}
                     </p>
-
-                    <div class="mt-4 pt-4 border-t border-gray-100">
-                      <a
-                        href="#"
-                        class="inline-flex items-center text-xs text-naranja hover:text-amarillo transition-colors duration-200"
-                      >
-                        <svg
-                          class="w-3 h-3 mr-1"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5z"
-                            clip-rule="evenodd"
-                          />
-                          <path
-                            fill-rule="evenodd"
-                            d="M7.414 15.414a2 2 0 01-2.828-2.828l3-3a2 2 0 012.828 0 1 1 0 001.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        Ver perfil completo
-                      </a>
-                    </div>
                   </div>
                 </div>
               ))
@@ -537,54 +600,42 @@ const getFoto = (index) => fotos[index % fotos.length];
     min-height: 70vh;
   }
 
-  .mision-vision-section {
-    min-height: 100vh;
+  .proposito-section {
+    /* Sección compacta sin min-height forzado */
+  }
+
+  /* Estilos para las tarjetas de propósito */
+  .proposito-card {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .proposito-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(126, 197, 214, 0.05),
+      transparent
+    );
+    transition: left 0.6s ease;
+  }
+
+  .proposito-card:hover::before {
+    left: 100%;
+  }
+
+  .proposito-card:hover {
+    transform: translateY(-4px);
   }
 
   .equipos-section {
     min-height: auto;
-  }
-
-  /* Efectos de cristal para las cajas de misión y visión */
-  .mision-vision-section .bg-white\/10 {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-  }
-
-  /* Animaciones suaves para elementos decorativos */
-  .mision-vision-section .rounded-full {
-    animation: pulse-subtle 3s ease-in-out infinite;
-  }
-
-  .mision-vision-section .rounded-full:nth-child(2) {
-    animation-delay: 0.6s;
-  }
-
-  .mision-vision-section .rounded-full:nth-child(3) {
-    animation-delay: 1.2s;
-  }
-
-  .mision-vision-section .rounded-full:nth-child(4) {
-    animation-delay: 1.8s;
-  }
-
-  .mision-vision-section .rounded-full:nth-child(5) {
-    animation-delay: 2.4s;
-  }
-
-  @keyframes pulse-subtle {
-    0%,
-    100% {
-      opacity: 0.4;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.1);
-    }
   }
 
   /* Estilos para tarjetas del equipo */
@@ -620,7 +671,7 @@ const getFoto = (index) => fotos[index % fotos.length];
     transform: translateY(-8px);
   }
 
-  .team-card .group:hover img {
+  .team-card .group:hover .rounded-full {
     transform: scale(1.1);
   }
 

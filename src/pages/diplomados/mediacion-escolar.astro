@@ -91,9 +91,14 @@ const rutaAprendizaje = diplomadoWC?.ruta_aprendizaje || null;
           </h1>
 
           <p class="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
-            {descripcionCorta}
-            <strong
-              >Certificación válida para establecimientos educacionales</strong
+            <strong>Ruta de aprendizaje en mediación escolar</strong>, abierta a
+            todas las personas interesadas en integrarse y aportar a una
+            comunidad educativa a través de esta formación, <strong
+              >sin requisito de título profesional</strong
+            >. Con <strong
+              >enfoque psicosocial, marco normativo y lineamientos MINEDUC</strong
+            >, orientada a <strong
+              >transformar la convivencia escolar desde la práctica real</strong
             >.
           </p>
 
@@ -180,10 +185,11 @@ const rutaAprendizaje = diplomadoWC?.ruta_aprendizaje || null;
               </h2>
 
               <p class="text-lg text-gray-600 mb-6 leading-relaxed">
-                Diplomado estructurado en <strong>3 etapas consecutivas</strong> que
-                te llevan desde los fundamentos psicosociales hasta la aplicación
-                práctica de técnicas de mediación escolar. Combina formación asincrónica
-                en plataforma con jornadas sincrónicas en vivo.
+                Diplomado organizado en 3 etapas progresivas que te acompañan
+                desde los fundamentos psicosociales hasta la aplicación real de
+                la mediación escolar. Integra formación en plataforma con
+                espacios en vivo, combinando aprendizaje autónomo con encuentros
+                sincrónicos para la práctica y el trabajo colaborativo.
               </p>
 
               <div
@@ -203,13 +209,14 @@ const rutaAprendizaje = diplomadoWC?.ruta_aprendizaje || null;
                       d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                     ></path>
                   </svg>
-                  100% Online con Clases en Vivo
+                  100% online, con acompañamiento real
                 </h3>
                 <p class="text-gray-700">
-                  Formación <strong>asincrónica</strong> en plataforma (acceso 24/7,
-                  a tu ritmo) + <strong>jornadas sincrónicas</strong> por Zoom con
-                  docentes expertos. Diseñado para compatibilizar con tu jornada laboral
-                  en el colegio.
+                  Formación en plataforma para avanzar a tu ritmo + encuentros
+                  en vivo por Zoom con docentes y facilitadores expertos. Una
+                  ruta flexible que se adapta a tu vida, te acompaña en el
+                  proceso y te permite formarte sin dejar de trabajar ni de
+                  habitar tu realidad cotidiana.
                 </p>
               </div>
 
@@ -237,10 +244,10 @@ const rutaAprendizaje = diplomadoWC?.ruta_aprendizaje || null;
                 Ruta de Aprendizaje
               </h2>
               <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                La formación se organiza en <strong
-                  >3 etapas consecutivas</strong
-                >, donde cada curso es requisito del siguiente y el Diplomado se
-                obtiene al completar toda la ruta:
+                La formación se organiza como una ruta de aprendizaje en 3
+                etapas progresivas, donde cada curso es parte de un proceso
+                continuo. Cada etapa habilita la siguiente, y el Diplomado se
+                obtiene al completar todo el recorrido formativo.
               </p>
 
               <!-- Timeline Visual -->
@@ -359,12 +366,13 @@ const rutaAprendizaje = diplomadoWC?.ruta_aprendizaje || null;
                 </div>
                 <div class="ml-4">
                   <p class="text-green-800 font-bold text-lg">
-                    Este Diplomado incluye todo el paquete
+                    Este Diplomado integra toda la ruta de aprendizaje
                   </p>
                   <p class="text-green-700 text-sm mt-1">
-                    Al inscribirte obtienes acceso a <strong
-                      >Curso 1 + Curso 2 + Ciclo de Certificación</strong
-                    >, todo incluido en una sola matrícula.
+                    Al inscribirte, accedes a todas las etapas del proceso
+                    formativo: <strong
+                      >Curso 1, Curso 2 y el Ciclo de Certificación</strong
+                    >, incluidos en una sola matrícula.
                   </p>
                 </div>
               </div>
@@ -372,7 +380,31 @@ const rutaAprendizaje = diplomadoWC?.ruta_aprendizaje || null;
 
             <!-- 3. Metodología -->
             <div class="bg-white rounded-2xl p-8 shadow-lg">
-              <MetodologiaOnline />
+              <MetodologiaOnline
+                items={[
+                  {
+                    titulo: "Aprendizaje Flexible",
+                    items: [
+                      "Contenido disponible 24/7",
+                      "Avanza a tu propio ritmo",
+                      "Acceso desde cualquier dispositivo",
+                      "Sesiones grabadas",
+                    ],
+                    color: "celeste",
+                  },
+                  {
+                    titulo: "Enfoque práctico y experiencial",
+                    items: [
+                      "Aprender haciendo, no solo estudiando",
+                      "Análisis de casos reales de contextos escolares",
+                      "Talleres de aplicación práctica",
+                      "Espacios de conversación y reflexión compartida",
+                      "Acompañamiento y feedback personalizado en el proceso formativo",
+                    ],
+                    color: "turquesa",
+                  },
+                ]}
+              />
             </div>
 
             <!-- 3. Requisitos -->
@@ -400,9 +432,24 @@ const rutaAprendizaje = diplomadoWC?.ruta_aprendizaje || null;
                 </span>
                 Requisitos de Ingreso
               </h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Esta formación está pensada para personas que sienten el interés
+                real de aportar a la convivencia escolar y formar parte de una
+                comunidad educativa, ya sea porque hoy trabajan en
+                establecimientos o porque desean integrarse a este ámbito a
+                través de la capacitación.
+              </p>
+
+              <h4 class="font-bold text-gray-800 mb-4">Requisitos básicos:</h4>
+
               <div class="grid md:grid-cols-2 gap-4">
                 {
-                  requisitos.map((item) => (
+                  [
+                    "Interés genuino por la convivencia y la mediación escolar",
+                    "Motivación por aprender y participar activamente en la ruta formativa",
+                    "Conocimiento básico del contexto escolar (deseable, no excluyente)",
+                    "Acceso a internet estable para la formación online",
+                  ].map((item) => (
                     <div class="group flex items-start bg-gray-50 p-4 rounded-xl border border-gray-100 hover:bg-white hover:shadow-md hover:border-teal-100 transition-all duration-300">
                       <div class="w-10 h-10 flex-shrink-0 bg-white rounded-lg shadow-sm flex items-center justify-center text-teal-600 mr-4 group-hover:scale-110 group-hover:bg-teal-50 transition-all duration-300">
                         <svg
@@ -729,10 +776,12 @@ const rutaAprendizaje = diplomadoWC?.ruta_aprendizaje || null;
                 <!-- Main Certification Statement -->
                 <div>
                   <p class="text-lg text-gray-700 leading-relaxed">
-                    Al completar el programa recibirás el <strong
-                      class="text-gray-900 font-bold bg-yellow-50 px-2 py-0.5 rounded"
-                      >Diploma de Especialización en Mediación Escolar</strong
-                    >, con reconocimiento oficial y validez nacional.
+                    Este Diplomado ofrece una <strong
+                      >certificación IPCHILE de forma opcional</strong
+                    >, la cual habilita el acceso al registro de la
+                    Superintendencia de Educación, para quienes cumplan con los
+                    requisitos formales exigidos por la Supereduc, la cual se
+                    gestiona y paga al final del proceso formativo.
                   </p>
                 </div>
 
@@ -910,32 +959,63 @@ const rutaAprendizaje = diplomadoWC?.ruta_aprendizaje || null;
                 establecimientos públicos y privados.
               </p>
               <div class="grid md:grid-cols-2 gap-6">
+                <!-- Docente 1 -->
                 <div class="flex items-center p-4 bg-gray-50 rounded-xl">
                   <div
-                    class="w-16 h-16 bg-crema rounded-full flex items-center justify-center text-naranja text-2xl font-bold mr-4"
+                    class="w-16 h-16 bg-crema rounded-full flex items-center justify-center text-naranja text-2xl font-bold mr-4 shrink-0"
                   >
-                    MP
+                    JL
                   </div>
                   <div>
-                    <h4 class="font-bold text-gray-800">María Pérez</h4>
-                    <p class="text-sm text-gray-600">Psicóloga Educacional</p>
-                    <p class="text-xs text-gray-500">
-                      Magíster en Convivencia Escolar
-                    </p>
+                    <h4 class="font-bold text-gray-800">Juan Pablo Letelier</h4>
+                    <p class="text-sm text-gray-600">Trabajador Social</p>
+                    <p class="text-xs text-gray-500">Mediador</p>
                   </div>
                 </div>
+
+                <!-- Docente 2 -->
                 <div class="flex items-center p-4 bg-gray-50 rounded-xl">
                   <div
-                    class="w-16 h-16 bg-crema rounded-full flex items-center justify-center text-turquesa text-2xl font-bold mr-4"
+                    class="w-16 h-16 bg-crema rounded-full flex items-center justify-center text-turquesa text-2xl font-bold mr-4 shrink-0"
                   >
-                    CR
+                    CT
                   </div>
                   <div>
-                    <h4 class="font-bold text-gray-800">Carlos Rodríguez</h4>
-                    <p class="text-sm text-gray-600">Mediador Escolar</p>
-                    <p class="text-xs text-gray-500">
-                      10 años en Liderazgo Educativo
-                    </p>
+                    <h4 class="font-bold text-gray-800">Claudia Tassara</h4>
+                    <p class="text-sm text-gray-600">Abogada</p>
+                    <p class="text-xs text-gray-500">Mediadora</p>
+                  </div>
+                </div>
+
+                <!-- Docente 3 -->
+                <div class="flex items-center p-4 bg-gray-50 rounded-xl">
+                  <div
+                    class="w-16 h-16 bg-crema rounded-full flex items-center justify-center text-purple-600 text-2xl font-bold mr-4 shrink-0"
+                  >
+                    MC
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-800">
+                      María Natalia Castro
+                    </h4>
+                    <p class="text-sm text-gray-600">Psicóloga</p>
+                    <p class="text-xs text-gray-500">Mediadora</p>
+                  </div>
+                </div>
+
+                <!-- Docente 4 -->
+                <div class="flex items-center p-4 bg-gray-50 rounded-xl">
+                  <div
+                    class="w-16 h-16 bg-crema rounded-full flex items-center justify-center text-celeste text-2xl font-bold mr-4 shrink-0"
+                  >
+                    DS
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-800">
+                      Daniel Carreño (Miccael Sais)
+                    </h4>
+                    <p class="text-sm text-gray-600">Terapeuta</p>
+                    <p class="text-xs text-gray-500">Mediador</p>
                   </div>
                 </div>
               </div>
@@ -967,7 +1047,14 @@ const rutaAprendizaje = diplomadoWC?.ruta_aprendizaje || null;
               </h3>
               <div class="grid md:grid-cols-2 gap-4">
                 {
-                  beneficios.map((item) => (
+                  [
+                    "Formación 100% online con flexibilidad horaria",
+                    "Material de estudio permanente en plataforma",
+                    "Clases en vivo por Zoom con docentes expertos",
+                    "Casos prácticos del contexto educativo chileno",
+                    "Certificación con reconocimiento SENCE",
+                    "Acceso a comunidad de práctica profesional",
+                  ].map((item) => (
                     <div class="group flex items-start bg-gray-50 p-4 rounded-xl border border-gray-100 hover:bg-white hover:shadow-md hover:border-blue-100 transition-all duration-300">
                       <div class="w-10 h-10 flex-shrink-0 bg-white rounded-lg shadow-sm flex items-center justify-center text-blue-600 mr-4 group-hover:scale-110 group-hover:bg-blue-50 transition-all duration-300">
                         <svg
@@ -1198,8 +1285,9 @@ const rutaAprendizaje = diplomadoWC?.ruta_aprendizaje || null;
                   </div>
                   <div class="program-info-row">
                     <span class="program-info-label">Inscripciones:</span>
-                    <span class="program-info-value font-bold text-naranja"
-                      >Abiertas / Flujo continuo</span
+                    <span
+                      class="program-info-value font-bold text-gray-800 text-right ml-auto"
+                      >Consulta por próximas fechas de inicio.</span
                     >
                   </div>
                 </div>

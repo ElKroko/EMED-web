@@ -12,9 +12,9 @@
     "duracion_online": "170 horas",
     "duracion_presencial": "50 horas",
     "nivel": "Básico - Intermedio",
-    "precio": 750000,
-    "precio_regular": 750000,
-    "precio_formateado": "desde $750.000",
+    "precio": 725000,
+    "precio_regular": 725000,
+    "precio_formateado": "desde $725.000",
     "precioFinanciado": "$600.000",
     "destacado": true,
     "imagen": "https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
@@ -327,8 +327,15 @@
     ],
     "ubicacion": "Santiago Centro",
     "en_stock": true,
-    "categorias": ["Mediación", "Familia"],
-    "etiquetas": ["Certificación", "Ministerio de Justicia", "Mediación Familiar"],
+    "categorias": [
+      "Mediación",
+      "Familia"
+    ],
+    "etiquetas": [
+      "Certificación",
+      "Ministerio de Justicia",
+      "Mediación Familiar"
+    ],
     "testimonios": [
       {
         "nombre": "María José González",
@@ -427,8 +434,15 @@
     ],
     "ubicacion": "Online",
     "en_stock": true,
-    "categorias": ["Mediación", "Educación"],
-    "etiquetas": ["Online", "Convivencia Escolar", "Mediación"],
+    "categorias": [
+      "Mediación",
+      "Educación"
+    ],
+    "etiquetas": [
+      "Online",
+      "Convivencia Escolar",
+      "Mediación"
+    ],
     "testimonios": [
       {
         "nombre": "Ana Cristina López",
@@ -529,8 +543,16 @@
     ],
     "ubicacion": "Santiago Centro",
     "en_stock": true,
-    "categorias": ["Mediación", "Laboral", "RRHH"],
-    "etiquetas": ["Presencial", "Recursos Humanos", "Conflictos Laborales"],
+    "categorias": [
+      "Mediación",
+      "Laboral",
+      "RRHH"
+    ],
+    "etiquetas": [
+      "Presencial",
+      "Recursos Humanos",
+      "Conflictos Laborales"
+    ],
     "testimonios": [
       {
         "nombre": "Roberto Hernández",
@@ -627,8 +649,15 @@
     ],
     "ubicacion": "Online",
     "en_stock": true,
-    "categorias": ["Comunicación", "Desarrollo Personal"],
-    "etiquetas": ["Online", "Comunicación", "Asertividad"],
+    "categorias": [
+      "Comunicación",
+      "Desarrollo Personal"
+    ],
+    "etiquetas": [
+      "Online",
+      "Comunicación",
+      "Asertividad"
+    ],
     "testimonios": [
       {
         "nombre": "Andrea Martínez",
@@ -734,8 +763,15 @@
     ],
     "ubicacion": "Santiago Centro",
     "en_stock": true,
-    "categorias": ["Negociación", "Desarrollo Profesional"],
-    "etiquetas": ["Presencial", "Negociación", "Estrategias Avanzadas"],
+    "categorias": [
+      "Negociación",
+      "Desarrollo Profesional"
+    ],
+    "etiquetas": [
+      "Presencial",
+      "Negociación",
+      "Estrategias Avanzadas"
+    ],
     "testimonios": [
       {
         "nombre": "Carlos Espinoza",

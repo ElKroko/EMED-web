@@ -12,9 +12,9 @@
     "duracion_online": "180 horas",
     "duracion_presencial": "40 horas",
     "nivel": "Básico - Intermedio",
-    "precio": 750000,
-    "precio_regular": 750000,
-    "precio_formateado": "desde $785.000",
+    "precio": 725000,
+    "precio_regular": 725000,
+    "precio_formateado": "desde $725.000",
     "precioFinanciado": "$600.000",
     "destacado": true,
     "imagen": "https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
@@ -35,7 +35,7 @@
     "diferenciadores": [
       "Metodología basada en casos reales del sistema judicial chileno",
       "Docentes mediadores activos con años de experiencia práctica",
-      "Pasantía obligatoria en centros de mediación familiar reconocidos",
+      "Pasantía obligatoria basada en casos reales, en nuestro centro de capacitación",
       "Seguimiento post-certificación para inserción laboral efectiva"
     ],
     "formacion_online": {
@@ -247,10 +247,64 @@
           "Preparación para evaluación ECAME"
         ],
         "evidencia": "Observación directa."
+      },
+      {
+        "modulo": "Pasantía Fase I",
+        "horas_estimadas": "Presencial",
+        "grupo": "Pasantía Presencial (Santiago)",
+        "resumen": "Observación de mediaciones reales y análisis de casos.",
+        "competencias": [
+          "Observación crítica de procesos de mediación.",
+          "Identificación de etapas y técnicas.",
+          "Análisis de la dinámica relacional."
+        ],
+        "contenido": [
+          "Observación de audiencias",
+          "Análisis de casos observados",
+          "Identificación de estilos del mediador",
+          "Registro de observación"
+        ],
+        "evidencia": "Bitácora de observación."
+      },
+      {
+        "modulo": "Pasantía Fase II",
+        "horas_estimadas": "Presencial",
+        "grupo": "Pasantía Presencial (Santiago)",
+        "resumen": "Co-mediación y participación asistida en procesos reales.",
+        "competencias": [
+          "Participar activamente en la co-mediación.",
+          "Aplicar técnicas específicas bajo supervisión.",
+          "Manejo de la imparcialidad."
+        ],
+        "contenido": [
+          "Co-mediación asistida",
+          "Intervenciones supervisadas",
+          "Manejo de caucus",
+          "Redacción de acuerdos parciales"
+        ],
+        "evidencia": "Informe de co-mediación."
+      },
+      {
+        "modulo": "Pasantía Fase III",
+        "horas_estimadas": "Presencial",
+        "grupo": "Pasantía Presencial (Santiago)",
+        "resumen": "Conducción autónoma supervisada de procesos de mediación.",
+        "competencias": [
+          "Conducir procesos de mediación completos.",
+          "Gestionar crisis y desequilibrios de poder.",
+          "Lograr acuerdos válidos y sostenibles."
+        ],
+        "contenido": [
+          "Conducción de audiencias simuladas y reales",
+          "Evaluación práctica final (ECAME)",
+          "Cierre de acuerdos y legalización",
+          "Feedback final de desempeño"
+        ],
+        "evidencia": "Evaluación práctica final."
       }
     ],
     "faqs": [
-       {
+      {
         "pregunta": "¿Cuál es la duración total del diplomado?",
         "respuesta": "El programa contempla 220 horas académicas totales. Se distribuyen en 180 horas de formación online (asincrónica + sincrónica) y 40 horas de pasantía presencial intensiva."
       },
@@ -280,11 +334,10 @@
       }
     ],
     "requisitos": [
-      "Título profesional universitario de al menos 8 semestres",
-      "Experiencia laboral mínima de 2 años",
-      "Entrevista personal con equipo académico",
-      "Carta de motivación",
-      "Disponibilidad para asistir a pasantía presencial"
+      "Título profesional de al menos 8 semestres de formación",
+      "Llenar solicitud de inscripción",
+      "Disponibilidad para asistir a pasantía presencial",
+      "Contar con motivación para trabajar con familias"
     ],
     "metodologia": [
       "Modalidad híbrida que combina clases teóricas online con talleres prácticos presenciales",
@@ -303,8 +356,15 @@
     ],
     "ubicacion": "Santiago Centro",
     "en_stock": true,
-    "categorias": ["Mediación", "Familia"],
-    "etiquetas": ["Certificación", "Ministerio de Justicia", "Mediación Familiar"],
+    "categorias": [
+      "Mediación",
+      "Familia"
+    ],
+    "etiquetas": [
+      "Certificación",
+      "Ministerio de Justicia",
+      "Mediación Familiar"
+    ],
     "testimonios": [
       {
         "nombre": "María José González",
@@ -495,8 +555,19 @@
     ],
     "ubicacion": "Online",
     "en_stock": true,
-    "categorias": ["Mediación", "Educación", "Convivencia Escolar"],
-    "etiquetas": ["Online", "Convivencia Escolar", "Mediación", "MINEDUC", "NCh 2728", "SENCE"],
+    "categorias": [
+      "Mediación",
+      "Educación",
+      "Convivencia Escolar"
+    ],
+    "etiquetas": [
+      "Online",
+      "Convivencia Escolar",
+      "Mediación",
+      "MINEDUC",
+      "NCh 2728",
+      "SENCE"
+    ],
     "testimonios": [
       {
         "nombre": "Ana Cristina López",
@@ -700,8 +771,16 @@
     ],
     "ubicacion": "Online",
     "en_stock": true,
-    "categorias": ["Mediación", "Laboral", "RRHH"],
-    "etiquetas": ["Online", "Recursos Humanos", "Conflictos Laborales"],
+    "categorias": [
+      "Mediación",
+      "Laboral",
+      "RRHH"
+    ],
+    "etiquetas": [
+      "Online",
+      "Recursos Humanos",
+      "Conflictos Laborales"
+    ],
     "testimonios": [
       {
         "nombre": "Roberto Hernández",

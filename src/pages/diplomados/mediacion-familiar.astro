@@ -17,10 +17,10 @@ const diplomadoWC = getProductoPorSlug("mediacion-familiar");
 const titulo = diplomadoWC?.nombre || "Diplomado en Mediación Familiar";
 const descripcionCorta =
   diplomadoWC?.descripcion_corta ||
-  "Especialízate en la resolución de conflictos familiares con técnicas específicas para dinámicas familiares complejas y casos de alta sensibilidad emocional.";
+  "Fórmate como mediador familiar y ayuda a madres y padres a resolver sus conflictos con foco en el bienestar de sus hijos, protegiendo sus vínculos y su estabilidad emocional.";
 const duracion = diplomadoWC?.duracion || "220 horas";
 const modalidad = diplomadoWC?.modalidad || "Online + Presencial (Prácticas)";
-const precio = diplomadoWC?.precio_formateado || "desde $850.000";
+const precio = diplomadoWC?.precio_formateado || "desde $725.000";
 const beneficios = diplomadoWC?.beneficios || [];
 const temario = diplomadoWC?.temario || [];
 const requisitos = diplomadoWC?.requisitos || [];
@@ -214,12 +214,12 @@ const faqs = diplomadoWC?.faqs || [];
                   Certificación Oficial
                 </h3>
                 <p class="text-gray-700">
-                  Al completar exitosamente el diplomado, podrás inscribirte en
-                  el <strong
-                    >Registro de Mediadores Familiares del Ministerio de
-                    Justicia</strong
-                  >, habilitándote para ejercer profesionalmente la mediación
-                  familiar en Chile.
+                  Nuestro Diplomado cumple con los requisitos de la Circular
+                  3511 (2025) y cuenta con certificación oficial de IPCHILE,
+                  <strong class="text-gray-800"
+                    >Instituto de Educación Superior reconocido por el Estado</strong
+                  >, lo que te permite acceder al Registro Único de Mediadores
+                  (RUM) del Ministerio de Justicia.
                 </p>
               </div>
 
@@ -418,7 +418,10 @@ const faqs = diplomadoWC?.faqs || [];
                       >Tribunales de Familia</span
                     >
                     <span class="text-gray-500 text-sm"
-                      >Como mediador en el sistema de justicia familiar</span
+                      >La mediación familiar te permite trabajar formalmente en
+                      procesos vinculados a los Tribunales de Familia, a través
+                      del Registro Único de Mediadores del Ministerio de
+                      Justicia.</span
                     >
                   </div>
                 </div>
@@ -670,9 +673,9 @@ const faqs = diplomadoWC?.faqs || [];
                       class="flex items-center p-4 bg-gray-50 rounded-xl border border-gray-100 group-hover:border-celeste/30 transition-colors"
                     >
                       <div
-                        class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-celeste font-bold text-xl shadow-sm mr-4"
+                        class="w-20 h-12 rounded-full bg-white flex items-center justify-center text-celeste font-bold text-lg shadow-sm mr-4"
                       >
-                        180
+                        180 hrs.
                       </div>
                       <div>
                         <span
@@ -688,9 +691,9 @@ const faqs = diplomadoWC?.faqs || [];
                       class="flex items-center p-4 bg-gray-50 rounded-xl border border-gray-100 group-hover:border-crema/50 transition-colors"
                     >
                       <div
-                        class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-naranja font-bold text-xl shadow-sm mr-4"
+                        class="w-20 h-12 rounded-full bg-white flex items-center justify-center text-naranja font-bold text-lg shadow-sm mr-4"
                       >
-                        40
+                        40 hrs.
                       </div>
                       <div>
                         <span
@@ -725,32 +728,75 @@ const faqs = diplomadoWC?.faqs || [];
                 licitados.
               </p>
               <div class="grid md:grid-cols-2 gap-6">
+                <!-- Juan Pablo Letelier -->
                 <div class="flex items-center p-4 bg-gray-50 rounded-xl">
                   <div
                     class="w-16 h-16 bg-crema rounded-full flex items-center justify-center text-naranja text-2xl font-bold mr-4"
                   >
-                    JD
+                    JL
                   </div>
                   <div>
-                    <h4 class="font-bold text-gray-800">Jane Doe</h4>
-                    <p class="text-sm text-gray-600">
-                      Mediadora Familiar Registrada
-                    </p>
-                    <p class="text-xs text-gray-500">15 años de experiencia</p>
+                    <h4 class="font-bold text-gray-800">Juan Pablo Letelier</h4>
+                    <p class="text-sm text-gray-600">Trabajador Social</p>
+                    <p class="text-xs text-gray-500">Mediador Familiar</p>
                   </div>
                 </div>
+
+                <!-- Claudia Tassara -->
                 <div class="flex items-center p-4 bg-gray-50 rounded-xl">
                   <div
                     class="w-16 h-16 bg-crema rounded-full flex items-center justify-center text-turquesa text-2xl font-bold mr-4"
                   >
-                    JS
+                    CT
                   </div>
                   <div>
-                    <h4 class="font-bold text-gray-800">John Smith</h4>
-                    <p class="text-sm text-gray-600">Abogado de Familia</p>
-                    <p class="text-xs text-gray-500">
-                      Magíster en Derecho de Familia
-                    </p>
+                    <h4 class="font-bold text-gray-800">Claudia Tassara</h4>
+                    <p class="text-sm text-gray-600">Abogada</p>
+                    <p class="text-xs text-gray-500">Mediadora Familiar</p>
+                  </div>
+                </div>
+
+                <!-- Daniel Bustelo -->
+                <div class="flex items-center p-4 bg-gray-50 rounded-xl">
+                  <div
+                    class="w-16 h-16 bg-crema rounded-full flex items-center justify-center text-naranja text-2xl font-bold mr-4"
+                  >
+                    DB
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-800">Daniel Bustelo</h4>
+                    <p class="text-sm text-gray-600">Abogado</p>
+                    <p class="text-xs text-gray-500">Mediador Familiar</p>
+                  </div>
+                </div>
+
+                <!-- Constanza Navarrete -->
+                <div class="flex items-center p-4 bg-gray-50 rounded-xl">
+                  <div
+                    class="w-16 h-16 bg-crema rounded-full flex items-center justify-center text-turquesa text-2xl font-bold mr-4"
+                  >
+                    CN
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-800">Constanza Navarrete</h4>
+                    <p class="text-sm text-gray-600">Abogado</p>
+                    <p class="text-xs text-gray-500">Mediadora Familiar</p>
+                  </div>
+                </div>
+
+                <!-- María Natalia Castro -->
+                <div class="flex items-center p-4 bg-gray-50 rounded-xl">
+                  <div
+                    class="w-16 h-16 bg-crema rounded-full flex items-center justify-center text-naranja text-2xl font-bold mr-4"
+                  >
+                    MC
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-800">
+                      María Natalia Castro
+                    </h4>
+                    <p class="text-sm text-gray-600">Psicóloga</p>
+                    <p class="text-xs text-gray-500">Mediadora Familiar</p>
                   </div>
                 </div>
               </div>
