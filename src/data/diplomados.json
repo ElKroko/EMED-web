@@ -378,8 +378,35 @@
         "testimonio": "Excelente formación teórica y práctica. Los docentes son profesionales con amplia experiencia en mediación.",
         "rating": 5
       }
+    ],
+    "docentes": [
+      {
+        "nombre": "Claudia Tassara",
+        "profesion": "Abogada",
+        "descripcion": "Mediadora Familiar, Escolar y Laboral.",
+        "imagen": "claudia-tassara.webp"
+      },
+      {
+        "nombre": "Juan Pablo Letelier",
+        "profesion": "Trabajador Social",
+        "descripcion": "Mediador Familiar, Escolar y Laboral.",
+        "imagen": "juan-pablo-letelier.webp"
+      },
+      {
+        "nombre": "María Natalia Castro",
+        "profesion": "Psicóloga",
+        "descripcion": "Mediadora Familiar y Escolar.",
+        "imagen": "maria-natalia-castro.webp"
+      },
+      {
+        "nombre": "Constanza Navarrete",
+        "profesion": "Abogada",
+        "descripcion": "Mediadora Familiar.",
+        "imagen": "constanza-navarrete.webp"
+      }
     ]
   },
+
   {
     "id": "mediacion-escolar",
     "nombre": "Diplomado en Mediación Aplicada a la Convivencia Escolar",
@@ -404,12 +431,12 @@
       "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
     ],
     "beneficios": [
-      "Formación 100% online con flexibilidad horaria",
-      "Material de estudio permanente en plataforma",
-      "Clases en vivo por Zoom con docentes expertos",
-      "Casos prácticos del contexto educativo chileno",
+      "Formación 100% online, flexible y compatible con tu vida personal y laboral",
+      "Acceso permanente a material de estudio en plataforma",
+      "Clases en vivo por Zoom con docentes y facilitadores expertos",
+      "Trabajo con casos reales del contexto educativo chileno",
       "Certificación con reconocimiento SENCE",
-      "Acceso a comunidad de práctica profesional"
+      "Acceso a comunidad de práctica y red de mediadores escolares"
     ],
     "diferenciadores": [
       "Enfoque MINEDUC actualizado y vigente",
@@ -581,22 +608,55 @@
         "testimonio": "Excelente programa. Me ayudó a actualizar los protocolos de convivencia de mi colegio y mejorar el clima laboral.",
         "rating": 5
       }
+    ],
+    "docentes": [
+      {
+        "nombre": "Claudia Tassara",
+        "profesion": "Abogada",
+        "descripcion": "Mediadora Familiar, Escolar y Laboral.",
+        "imagen": "claudia-tassara.webp"
+      },
+      {
+        "nombre": "Juan Pablo Letelier",
+        "profesion": "Trabajador Social",
+        "descripcion": "Mediador Familiar, Escolar y Laboral.",
+        "imagen": "juan-pablo-letelier.webp"
+      },
+      {
+        "nombre": "María Natalia Castro",
+        "profesion": "Psicóloga",
+        "descripcion": "Mediadora Familiar y Escolar.",
+        "imagen": "maria-natalia-castro.webp"
+      },
+      {
+        "nombre": "Daniel Carreño",
+        "profesion": "Terapeuta",
+        "descripcion": "Mediador Escolar y Laboral.",
+        "imagen": "daniel-carreno.webp"
+      },
+      {
+        "nombre": "Cecilia Ramos Mejía",
+        "profesion": "Mediadora",
+        "descripcion": "Mediadora experta en mediación escolar",
+        "imagen": "cecilia-ramos-mejia.webp"
+      }
     ]
   },
+
   {
     "id": "mediacion-laboral",
     "nombre": "Diplomado de Liderazgo y Mediación Laboral",
     "slug": "mediacion-laboral",
     "tipo": "Diplomado",
     "descripcion": "Desarrolla habilidades para resolver conflictos laborales y mejorar el clima organizacional en empresas y organizaciones.",
-    "descripcion_corta": "Desarrolla habilidades para resolver conflictos laborales y mejorar el clima organizacional en empresas y organizaciones.",
+    "descripcion_corta": "Programa abierto a toda persona interesada en mejorar la convivencia laboral, aprendiendo a gestionar los conflictos con herramientas de mediación y enfoque al diálogo, en el marco de la Ley Karin.",
     "descripcionDetallada": "Programa especializado para profesionales de recursos humanos, abogados laborales y líderes organizacionales que buscan implementar sistemas efectivos de resolución de conflictos en el ámbito laboral.",
     "duracion": "240 horas",
     "modalidad": "Mixta (Asincrónico + Sincrónico)",
     "nivel": "Intermedio",
-    "precio": 480000,
-    "precio_regular": 480000,
-    "precio_formateado": "desde $480.000",
+    "precio": 450000,
+    "precio_regular": 450000,
+    "precio_formateado": "desde $450.000",
     "precioFinanciado": "$380.000",
     "destacado": false,
     "imagen": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
@@ -606,18 +666,19 @@
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
     ],
     "beneficios": [
-      "Orientado a profesionales de RRHH",
-      "Casos empresariales reales",
-      "Networking con otros profesionales",
-      "Certificación para consultorías laborales",
-      "Metodología práctica aplicable",
-      "Herramientas de diagnóstico organizacional"
+      "Abierto a toda persona vinculada al mundo del trabajo.",
+      "Análisis de casos reales del ámbito laboral.",
+      "Comunidad de aprendizaje y redes de colaboración.",
+      "Formación habilitante para servicios de mediación laboral.",
+      "Metodología práctica y aplicable a organizaciones.",
+      "Herramientas para la gestión y prevención de conflictos."
     ],
     "diferenciadores": [
-      "Diagnóstico e intervención en Clima Organizacional",
-      "Marco legal laboral aplicado a la mediación",
-      "Herramientas de negociación colectiva y diálogo social",
-      "Estrategias de prevención de conflictos para RRHH"
+      "Conducir desvinculaciones sin judicializar.",
+      "Facilitar negociaciones entre empresas y sindicatos.",
+      "Implementar programas de prevención Ley Karin.",
+      "Ofrecer mediación laboral a organizaciones.",
+      "Capacitar equipos en gestión colaborativa de conflictos."
     ],
     "formacion_online": {
       "etapa_asincronica": {
@@ -741,10 +802,9 @@
       }
     ],
     "requisitos": [
-      "Título profesional en RRHH, Psicología, Derecho o afines",
-      "Experiencia laboral mínima de 3 años",
-      "Conocimientos básicos de legislación laboral",
-      "Entrevista con coordinador académico"
+      "Interés en contribuir a la mejora de la convivencia en contextos laborales.",
+      "Experiencia o vinculación con equipos de trabajo, organizaciones o relaciones laborales (no excluyente).",
+      "Disposición para aprender herramientas de mediación y gestión colaborativa de conflictos."
     ],
     "metodologia": [
       "100% online con metodología teórico-práctica",
@@ -794,6 +854,33 @@
         "testimonio": "Excelente formación para ampliar mis servicios de consultoría organizacional. Los casos son muy realistas y aplicables.",
         "rating": 5
       }
+    ],
+    "docentes": [
+      {
+        "nombre": "Claudia Tassara",
+        "profesion": "Abogada",
+        "descripcion": "Mediadora Familiar, Escolar y Laboral.",
+        "imagen": "claudia-tassara.webp"
+      },
+      {
+        "nombre": "Juan Pablo Letelier",
+        "profesion": "Trabajador Social",
+        "descripcion": "Mediador Familiar, Escolar y Laboral.",
+        "imagen": "juan-pablo-letelier.webp"
+      },
+      {
+        "nombre": "Daniel Carreño",
+        "profesion": "Terapeuta",
+        "descripcion": "Mediador Escolar y Laboral.",
+        "imagen": "daniel-carreno.webp"
+      },
+      {
+        "nombre": "Walter Oyarzo",
+        "profesion": "Abogado",
+        "descripcion": "Mediador Laboral.",
+        "imagen": "walter-oyarzo.webp"
+      }
     ]
   }
+
 ]

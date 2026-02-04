@@ -1,13 +1,26 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import quienesSomosBanner from "../assets/images/pages/quienes-somos-banner.jpg";
+import quienesSomosBanner from "../assets/images/pages/quienes-somos-banner.webp";
 
 // Iconos de valores
 import IconoExcelencia from "../assets/images/common/iconos/Excelencia.svg";
 import IconoEtica from "../assets/images/common/iconos/Etica.svg";
 import IconoCompromiso from "../assets/images/common/iconos/Compromiso.svg";
 import IconoTransformacion from "../assets/images/common/iconos/Transformación.svg";
+
+// Fotos Docentes
+import imgClaudiaTassara from "../assets/images/docentes/claudia-tassara.webp";
+import imgJuanPabloLetelier from "../assets/images/docentes/juan-pablo-letelier.webp";
+import imgMariaNataliaCastro from "../assets/images/docentes/maria-natalia-castro.webp";
+import imgDanielCarreno from "../assets/images/docentes/daniel-carreno.webp";
+import imgConstanzaNavarrete from "../assets/images/docentes/constanza-navarrete.webp";
+import imgWalterOyarzo from "../assets/images/docentes/walter-oyarzo.webp";
+import imgNathalieNoechwicz from "../assets/images/docentes/nathalie-noechwicz.webp";
+import imgJavierVidargas from "../assets/images/docentes/javier-vidargas.webp";
+import imgCarlaGuardia from "../assets/images/docentes/carla-guardia.webp";
+import imgCeciliaRamosMejia from "../assets/images/docentes/cecilia-ramos-mejia.webp";
+import imgDanielBustelo from "../assets/images/docentes/daniel-bustelo.webp";
 
 // Equipo EMED (Directivo/Administrativo)
 const equipoEMED = [
@@ -16,7 +29,9 @@ const equipoEMED = [
     cargo: "Directora Académica",
     initials: "CT",
     color: "turquesa",
+    imagen: imgClaudiaTassara,
   },
+
   {
     nombre: "Vicente Perelli",
     cargo: "Estratega Digital",
@@ -45,6 +60,7 @@ const docentesNacionales = [
     descripcion: "Mediador Familiar, Escolar y Laboral.",
     initials: "JL",
     color: "naranja",
+    imagen: imgJuanPabloLetelier,
   },
   {
     nombre: "Claudia Tassara",
@@ -52,6 +68,7 @@ const docentesNacionales = [
     descripcion: "Mediadora Familiar, Escolar y Laboral.",
     initials: "CT",
     color: "turquesa",
+    imagen: imgClaudiaTassara,
   },
   {
     nombre: "María Natalia Castro",
@@ -59,6 +76,7 @@ const docentesNacionales = [
     descripcion: "Mediadora Familiar y Escolar.",
     initials: "MC",
     color: "celeste",
+    imagen: imgMariaNataliaCastro,
   },
   {
     nombre: "Daniel Carreño (Miccael Sais)",
@@ -66,6 +84,7 @@ const docentesNacionales = [
     descripcion: "Mediador Escolar y Laboral.",
     initials: "DC",
     color: "celeste",
+    imagen: imgDanielCarreno,
   },
   {
     nombre: "Constanza Navarrete",
@@ -73,6 +92,7 @@ const docentesNacionales = [
     descripcion: "Mediadora Familiar.",
     initials: "CN",
     color: "turquesa",
+    imagen: imgConstanzaNavarrete,
   },
   {
     nombre: "Walter Oyarzo",
@@ -80,6 +100,7 @@ const docentesNacionales = [
     descripcion: "Mediador Laboral.",
     initials: "WO",
     color: "purple-600",
+    imagen: imgWalterOyarzo,
   },
 ];
 
@@ -91,6 +112,7 @@ const docentesInternacionales = [
     descripcion: "Mediadora experta en mediación restaurativa",
     initials: "NN",
     color: "celeste",
+    imagen: imgNathalieNoechwicz,
   },
   {
     nombre: "Javier Vidargas",
@@ -98,6 +120,7 @@ const docentesInternacionales = [
     descripcion: "Mediador experto en mediación penal",
     initials: "JV",
     color: "naranja",
+    imagen: imgJavierVidargas,
   },
   {
     nombre: "Carla Guardia",
@@ -105,6 +128,7 @@ const docentesInternacionales = [
     descripcion: "Mediadora experta en comunidades LGBTIQ+",
     initials: "CG",
     color: "turquesa",
+    imagen: imgCarlaGuardia,
   },
   {
     nombre: "Cecilia Ramos Mejía",
@@ -112,6 +136,7 @@ const docentesInternacionales = [
     descripcion: "Mediadora experta en mediación escolar",
     initials: "CR",
     color: "purple-600",
+    imagen: imgCeciliaRamosMejia,
   },
   {
     nombre: "Daniel Bustelo",
@@ -119,6 +144,7 @@ const docentesInternacionales = [
     descripcion: "Mediador y Creador de la escuela de la función mediadora",
     initials: "DB",
     color: "naranja",
+    imagen: imgDanielBustelo,
   },
 ];
 ---
@@ -469,10 +495,19 @@ const docentesInternacionales = [
               equipoEMED.map((miembro) => (
                 <div class="team-card bg-white border border-gray-100 rounded-2xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group text-center">
                   <div
-                    class={`w-16 h-16 mx-auto mb-3 rounded-full flex items-center justify-center text-2xl font-bold bg-gradient-to-br from-${miembro.color}/20 to-${miembro.color}/10 shadow-md group-hover:shadow-lg transition-all duration-300 text-${miembro.color} border-2 border-${miembro.color}/30`}
+                    class={`w-20 h-20 mx-auto mb-3 rounded-full flex items-center justify-center text-2xl font-bold bg-gradient-to-br from-${miembro.color}/20 to-${miembro.color}/10 shadow-md group-hover:shadow-lg transition-all duration-300 text-${miembro.color} border-2 border-${miembro.color}/30 overflow-hidden`}
                   >
-                    {miembro.initials}
+                    {miembro.imagen ? (
+                      <Image
+                        src={miembro.imagen}
+                        alt={miembro.nombre}
+                        class="w-full h-full object-cover"
+                      />
+                    ) : (
+                      miembro.initials
+                    )}
                   </div>
+
                   <h4 class="text-sm font-bold text-gray-800 mb-1">
                     {miembro.nombre}
                   </h4>
@@ -503,10 +538,19 @@ const docentesInternacionales = [
                 <div class="team-card bg-white border border-gray-100 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
                   <div class="text-center">
                     <div
-                      class={`w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-3xl font-bold bg-gray-50 shadow-md group-hover:shadow-lg transition-all duration-300 text-${docente.color}`}
+                      class={`w-24 h-24 mx-auto mb-4 rounded-full flex items-center justify-center text-3xl font-bold bg-gray-50 shadow-md group-hover:shadow-lg transition-all duration-300 text-${docente.color} overflow-hidden`}
                     >
-                      {docente.initials}
+                      {docente.imagen ? (
+                        <Image
+                          src={docente.imagen}
+                          alt={docente.nombre}
+                          class="w-full h-full object-cover"
+                        />
+                      ) : (
+                        docente.initials
+                      )}
                     </div>
+
                     <h4 class="text-base font-bold text-gray-800 mb-1">
                       {docente.nombre}
                     </h4>
@@ -539,10 +583,19 @@ const docentesInternacionales = [
                 <div class="team-card bg-white border border-gray-100 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)]">
                   <div class="text-center">
                     <div
-                      class={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center text-4xl font-bold bg-gray-50 shadow-md group-hover:shadow-lg transition-all duration-300 text-${docente.color}`}
+                      class={`w-28 h-28 mx-auto mb-6 rounded-full flex items-center justify-center text-4xl font-bold bg-gray-50 shadow-md group-hover:shadow-lg transition-all duration-300 text-${docente.color} overflow-hidden`}
                     >
-                      {docente.initials}
+                      {docente.imagen ? (
+                        <Image
+                          src={docente.imagen}
+                          alt={docente.nombre}
+                          class="w-full h-full object-cover"
+                        />
+                      ) : (
+                        docente.initials
+                      )}
                     </div>
+
                     <h4 class="text-xl font-bold text-gray-800 mb-2">
                       {docente.nombre}
                     </h4>

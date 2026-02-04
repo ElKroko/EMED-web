@@ -1,0 +1,114 @@
+---
+import { Image } from "astro:assets";
+
+interface Docente {
+    nombre: string;
+    profesion: string;
+    descripcion: string;
+    imagen: string;
+}
+
+interface Props {
+    docentes: Docente[];
+}
+
+const { docentes = [] } = Astro.props;
+
+// Importar todas las imágenes de docentes
+const images = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/images/docentes/*.webp",
+);
+---
+
+{
+    docentes.length > 0 && (
+        <section class="docentes-section py-16 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+            <div class="px-8">
+                <div class="flex items-center gap-3 mb-10">
+                    <div class="w-10 h-10 rounded-lg bg-celeste/10 flex items-center justify-center">
+                        <svg
+                            class="w-6 h-6 text-celeste"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                            />
+                        </svg>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800">
+                        Cuerpo Docente
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {docentes.map((docente) => {
+                        const imagePath = `/src/assets/images/docentes/${docente.imagen}`;
+                        const imageLoader = images[imagePath];
+
+                        return (
+                            <div class="docente-card group flex flex-col items-center text-center p-6 rounded-2xl border border-gray-50 hover:border-celeste/30 hover:shadow-md transition-all duration-300">
+                                <div class="relative mb-6">
+                                    <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-crema shadow-inner group-hover:border-celeste/20 transition-colors">
+                                        {imageLoader ? (
+                                            <Image
+                                                src={imageLoader()}
+                                                alt={docente.nombre}
+                                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-110"
+                                            />
+                                        ) : (
+                                            <div class="w-full h-full bg-gray-100 flex items-center justify-center text-gray-400 font-bold text-2xl">
+                                                {docente.nombre
+                                                    .split(" ")
+                                                    .map((n) => n[0])
+                                                    .join("")}
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-celeste rounded-full flex items-center justify-center text-white shadow-lg transform group-hover:scale-110 transition-transform">
+                                        <svg
+                                            class="w-4 h-4"
+                                            fill="currentColor"
+                                            viewBox="0 0 20 20"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <h3 class="text-xl font-bold text-gray-800 mb-1 group-hover:text-celeste transition-colors">
+                                    {docente.nombre}
+                                </h3>
+                                <p class="text-celeste font-medium text-sm mb-3 uppercase tracking-wider">
+                                    {docente.profesion}
+                                </p>
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    {docente.descripcion}
+                                </p>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        </section>
+    )
+}
+
+<style>
+    .docente-card {
+        background: linear-gradient(to bottom, #ffffff, #fafafa);
+    }
+
+    .docente-card:hover {
+        background: #ffffff;
+        transform: translateY(-5px);
+    }
+</style>
