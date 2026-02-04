@@ -8,8 +8,6 @@ deploys/
 # dependencies
 node_modules/
 
-# auto-generated assets (copied from src/assets)
-public/images/
 
 # logs
 npm-debug.log*
