@@ -5,9 +5,10 @@ import MetodologiaHibrida from "../../components/sections/MetodologiaHibrida.ast
 import Diferenciadores from "../../components/sections/Diferenciadores.astro";
 import FormacionOnline from "../../components/sections/FormacionOnline.astro";
 import DownloadButtons from "../../components/sections/DownloadButtons.astro";
-import PlanEstudios from "../../components/sections/PlanEstudios.astro";
+import PLAN_ESTUDIOS from "../../components/sections/PlanEstudios.astro";
 import NewPlanEstudios from "../../components/sections/NewPlanEstudios.astro";
 import FAQ from "../../components/sections/FAQ.astro";
+import DocentesDiplomado from "../../components/sections/DocentesDiplomado.astro";
 import { getProductoPorSlug } from "../../lib/productos";
 
 // Obtener datos del diplomado desde datos estáticos
@@ -31,6 +32,7 @@ const formacionOnline = diplomadoWC?.formacion_online || null;
 const ctaMensaje = diplomadoWC?.cta_mensaje || "";
 const testimonios = diplomadoWC?.testimonios || [];
 const faqs = diplomadoWC?.faqs || [];
+const docentes = diplomadoWC?.docentes || [];
 ---
 
 <Layout
@@ -417,11 +419,9 @@ const faqs = diplomadoWC?.faqs || [];
                     <span class="text-gray-800 font-semibold block mb-1"
                       >Tribunales de Familia</span
                     >
-                    <span class="text-gray-500 text-sm"
-                      >La mediación familiar te permite trabajar formalmente en
-                      procesos vinculados a los Tribunales de Familia, a través
-                      del Registro Único de Mediadores del Ministerio de
-                      Justicia.</span
+                    <span class="text-gray-500 text-sm">
+                      Te permite ejercer ante Tribunales de Familia vía Registro
+                      Único de Mediadores.</span
                     >
                   </div>
                 </div>
@@ -715,92 +715,7 @@ const faqs = diplomadoWC?.faqs || [];
             </div>
 
             <!-- 7. Cuerpo Docente -->
-            <div class="bg-white rounded-2xl p-8 shadow-lg">
-              <h2
-                class="text-3xl font-bold text-gray-800"
-                style="margin-bottom: 10px;"
-              >
-                Cuerpo Docente
-              </h2>
-              <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                Aprende de mediadores activos, abogados y psicólogos con amplia
-                trayectoria en Tribunales de Familia y centros de mediación
-                licitados.
-              </p>
-              <div class="grid md:grid-cols-2 gap-6">
-                <!-- Juan Pablo Letelier -->
-                <div class="flex items-center p-4 bg-gray-50 rounded-xl">
-                  <div
-                    class="w-16 h-16 bg-crema rounded-full flex items-center justify-center text-naranja text-2xl font-bold mr-4"
-                  >
-                    JL
-                  </div>
-                  <div>
-                    <h4 class="font-bold text-gray-800">Juan Pablo Letelier</h4>
-                    <p class="text-sm text-gray-600">Trabajador Social</p>
-                    <p class="text-xs text-gray-500">Mediador Familiar</p>
-                  </div>
-                </div>
-
-                <!-- Claudia Tassara -->
-                <div class="flex items-center p-4 bg-gray-50 rounded-xl">
-                  <div
-                    class="w-16 h-16 bg-crema rounded-full flex items-center justify-center text-turquesa text-2xl font-bold mr-4"
-                  >
-                    CT
-                  </div>
-                  <div>
-                    <h4 class="font-bold text-gray-800">Claudia Tassara</h4>
-                    <p class="text-sm text-gray-600">Abogada</p>
-                    <p class="text-xs text-gray-500">Mediadora Familiar</p>
-                  </div>
-                </div>
-
-                <!-- Daniel Bustelo -->
-                <div class="flex items-center p-4 bg-gray-50 rounded-xl">
-                  <div
-                    class="w-16 h-16 bg-crema rounded-full flex items-center justify-center text-naranja text-2xl font-bold mr-4"
-                  >
-                    DB
-                  </div>
-                  <div>
-                    <h4 class="font-bold text-gray-800">Daniel Bustelo</h4>
-                    <p class="text-sm text-gray-600">Abogado</p>
-                    <p class="text-xs text-gray-500">Mediador Familiar</p>
-                  </div>
-                </div>
-
-                <!-- Constanza Navarrete -->
-                <div class="flex items-center p-4 bg-gray-50 rounded-xl">
-                  <div
-                    class="w-16 h-16 bg-crema rounded-full flex items-center justify-center text-turquesa text-2xl font-bold mr-4"
-                  >
-                    CN
-                  </div>
-                  <div>
-                    <h4 class="font-bold text-gray-800">Constanza Navarrete</h4>
-                    <p class="text-sm text-gray-600">Abogado</p>
-                    <p class="text-xs text-gray-500">Mediadora Familiar</p>
-                  </div>
-                </div>
-
-                <!-- María Natalia Castro -->
-                <div class="flex items-center p-4 bg-gray-50 rounded-xl">
-                  <div
-                    class="w-16 h-16 bg-crema rounded-full flex items-center justify-center text-naranja text-2xl font-bold mr-4"
-                  >
-                    MC
-                  </div>
-                  <div>
-                    <h4 class="font-bold text-gray-800">
-                      María Natalia Castro
-                    </h4>
-                    <p class="text-sm text-gray-600">Psicóloga</p>
-                    <p class="text-xs text-gray-500">Mediadora Familiar</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <DocentesDiplomado docentes={docentes} />
 
             <!-- 8. Beneficios Exclusivos -->
             <div

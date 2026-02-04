@@ -47,6 +47,14 @@ export interface Producto {
   duracion_online?: string;
   duracion_presencial?: string;
   faqs?: FAQItem[];
+  docentes?: Docente[];
+}
+
+export interface Docente {
+  nombre: string;
+  profesion: string;
+  descripcion: string;
+  imagen: string;
 }
 
 export interface TemarioModulo {
