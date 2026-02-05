@@ -1,33 +1,42 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getDiplomados } from '../lib/productos';
-import Accordion from '../components/ui/Accordion.astro';
-
+import CtaFinal from "../components/sections/CtaFinal.astro";
 // FAQs data - content as plain text will be rendered directly
 const faqsDiplomados = [
   {
-    title: "¿Qué requisitos necesito para inscribirme?",
-    content: "Solo necesitas ser profesional universitario o tener experiencia relevante en el área. No es necesaria experiencia previa en mediación.",
-    data: null
-  },
-  {
-    title: "¿Los diplomados tienen validez oficial?",
-    content: "Sí, todos nuestros diplomados cuentan con certificación oficial y reconocimiento institucional. Están acreditados por las entidades correspondientes.",
-    data: null
-  },
-  {
-    title: "¿Puedo trabajar como mediador al graduarme?",
-    content: "Absolutamente. Nuestros graduados pueden ejercer como mediadores certificados y muchos han establecido sus propias prácticas profesionales.",
-    data: null
-  },
-  {
     title: "¿Ofrecen modalidad online?",
-    content: "Sí, tenemos modalidades presencial, online y mixta para adaptarnos a tu disponibilidad y preferencias de aprendizaje.",
+    content: "Sí. Trabajamos en formatos sincrónico (clases por zoom), y asincrónico (clases grabadas y material disponible en plataforma).",
     data: null
   },
   {
-    title: "¿Qué opciones de financiamiento tienen?",
-    content: "Ofrecemos múltiples opciones: pago al contado con descuento, cuotas sin interés, y planes de financiamiento adaptados a tu situación.",
+    title: "¿Tienen financiamiento?",
+    content: "Sí. Contamos con opciones de financiamiento empresarial para programas de mediación laboral y escolar. Además, ofrecemos facilidades de pago en cuotas y descuentos preferenciales por pago al contado o tarjeta de crédito.",
+    data: null
+  },
+  {
+    title: "¿Los programas están acreditados?",
+    content: "Absolutamente. Contamos con certificación NCh2728, lo que garantiza la calidad de nuestros procesos. El Diplomado en Mediación Familiar cuenta además con la certificación de IPCHILE (institución reconocida por el Estado), cumpliendo con todas las normativas del Ministerio de Justicia.",
+    data: null
+  },
+  {
+    title: "¿Entregan certificado al finalizar?",
+    content: "Sí, todos nuestros programas diplomados incluyen un certificado oficial digital que acredita las horas cursadas, la aprobación de los módulos y las competencias adquiridas durante el programa.",
+    data: null
+  },
+  {
+    title: "¿Cuál es la duración de los diplomados?",
+    content: "La duración varía según el programa específico, oscilando generalmente entre las 120 y 220 horas cronológicas (incluyendo horas de trabajo autónomo y prácticas cuando corresponde). Revisa la ficha de cada diplomado para el detalle exacto.",
+    data: null
+  },
+  {
+    title: "¿Cuándo inician las clases?",
+    content: "Tenemos fechas de inicio flexibles a lo largo de todo el año para nuestros distintos programas. Te recomendamos contactar a un asesor para conocer la próxima fecha disponible para el programa de tu interés.",
+    data: null
+  },
+  {
+    title: "¿Necesito conocimientos previos?",
+    content: "Para la mayoría de nuestros diplomados se requiere contar con un título técnico de nivel superior o profesional. Sin embargo, algunos cursos libres están abiertos a todo público. Revisa los requisitos específicos en la página de cada oferta académica.",
     data: null
   }
 ];
@@ -38,7 +47,7 @@ const diplomadosRaw = getDiplomados();
 // Mapear a formato para la UI
 const diplomadosFinales = diplomadosRaw.map(producto => {
   // Determinar badges
-  let badges = [];
+  let badges: string[] = [];
   if (producto.slug === 'mediacion-familiar') {
     badges = ['MÁS POPULAR'];
   }
@@ -65,130 +74,82 @@ const diplomadosFinales = diplomadosRaw.map(producto => {
 >
   <div class="bg-crema min-h-screen">
 
-  <!-- Hero Section con SVG celeste -->
-  <section class="hero-diplomados relative overflow-hidden py-24">
-    <!-- SVG de fondo celeste -->
-    <div class="absolute inset-0">
-      <svg viewBox="0 0 1200 800" class="w-full h-full" preserveAspectRatio="none">
-        <path d="M0,0 L1200,0 L1200,650 C1000,620 800,660 600,640 C400,620 200,660 0,650 Z" fill="#7EC5D6"/>
-      </svg>
-    </div>
-
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="text-center text-white">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-          Diplomados Especializados
-        </h1>
-        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
-          Programas de alta especialización con certificación oficial y reconocimiento profesional
-        </p>
-        <div class="flex justify-center flex-wrap gap-4">
-          <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium border border-white/30">
-            {diplomadosFinales.length} Especialidades Disponibles
+    <!-- Hero Section Clean & Compact -->
+    <section class="relative pt-20 pb-12 overflow-hidden bg-celeste">
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center text-white mb-12">
+          <span class="inline-block py-1 px-3 rounded-full bg-white/10 text-white/90 text-sm font-semibold mb-4 border border-white/20">
+            Formación Continua y Especializada
           </span>
-          <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium border border-white/30">
-            Certificación Oficial
-          </span>
-          <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium border border-white/30">
-            Modalidades Flexibles
-          </span>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight">
+            Diplomados Especializados
+          </h1>
+          <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+            Programas de alta especialización con certificación oficial, diseñados para potenciar tu carrera profesional.
+          </p>
         </div>
-      </div>
-    </div>
 
-    <!-- Forma orgánica inferior -->
-    <div class="absolute bottom-0 left-0 right-0 h-24">
-      <svg viewBox="0 0 1200 120" class="w-full h-full" preserveAspectRatio="none">
-        <path d="M0,120 C300,80 500,60 600,80 C700,100 900,60 1200,80 L1200,120 Z" fill="#FEF3E2"/>
-      </svg>
-    </div>
-  </section>
-
-  <!-- Resto de la página con fondo crema -->
-  <div class="relative min-h-screen bg-transparent">
-    
-    <!-- Fondo limpio -->
-    <div class="absolute inset-0 z-0">
-    </div>
-
-    <!-- Diplomados Grid -->
-    <section class="py-20 relative z-10">
-      <div class="container mx-auto px-4">
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-12">
+        <!-- Diplomados Grid - Integrado en el Hero/Header "Above the Fold" -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto relative z-20">
           {diplomadosFinales.map((diplomado) => (
-            <div class={`program-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden ${diplomado.destacado ? 'ring-2 ring-naranja' : ''}`}>
-
-              <!-- Imagen del programa -->
-              <div class="relative h-40 overflow-hidden">
+            <article class={`bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 ${diplomado.destacado ? 'ring-2 ring-naranja relative' : 'border border-gray-100'}`}>
+              
+              {/* Imagen Compacta */}
+              <div class="relative h-48 overflow-hidden group">
                 <img
                   src={diplomado.imagen || 'https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}
                   alt={diplomado.titulo}
-                  class="w-full h-full object-cover"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
 
                 {diplomado.destacado && (
-                  <div class="absolute top-2 right-2">
-                    <span class="text-4xl drop-shadow-lg">⭐</span>
-                  </div>
+                   <div class="absolute top-3 right-3 bg-naranja text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg flex items-center gap-1">
+                     <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                     MÁS POPULAR
+                   </div>
                 )}
-
-                <div class="absolute top-2 left-2">
-                  <span class="inline-block px-2 py-1 rounded-full text-xs font-bold bg-naranja text-white">
-                    Diplomado
-                  </span>
+                
+                <div class="absolute bottom-3 left-4 right-4">
+                    <h3 class="text-xl font-bold text-white leading-tight mb-1 shadow-black drop-shadow-md">
+                      {diplomado.titulo}
+                    </h3>
                 </div>
               </div>
 
-              <div class="p-4">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">
-                  {diplomado.titulo}
-                </h3>
+              <div class="p-6">
+                <!-- Información Clave Compacta -->
+                <div class="flex items-center text-sm text-gray-500 mb-4 space-x-4">
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-1.5 text-turquesa" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        {diplomado.duracion}
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-1.5 text-turquesa" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        {diplomado.modalidad}
+                    </div>
+                </div>
 
-                <p class="text-gray-600 text-base leading-relaxed mb-3 line-clamp-2">
+                <p class="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-2 h-10">
                   {diplomado.descripcion}
                 </p>
 
-                <div class="space-y-1 mb-3">
-                  <div class="flex items-center text-sm text-gray-600">
-                    <svg class="w-4 h-4 mr-1 text-turquesa" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <span>{diplomado.duracion}</span>
-                  </div>
-
-                  <div class="flex items-center text-sm text-gray-600">
-                    <svg class="w-4 h-4 mr-1 text-turquesa" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                    </svg>
-                    <span>{diplomado.modalidad}</span>
-                  </div>
-
-                  {diplomado.precio && (
-                    <div class="flex items-center text-base mt-2">
-                      <svg class="w-4 h-4 mr-1 text-naranja" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                      </svg>
-                      <span class="font-bold text-naranja text-lg">{diplomado.precio}</span>
+                <div class="flex items-end justify-between mt-auto">
+                    <div>
+                        <span class="text-xs text-gray-400 block mb-1">Inversión desde</span>
+                        <span class="text-lg font-bold text-naranja">{diplomado.precio}</span>
                     </div>
-                  )}
-                </div>
 
-                <a
-                  href={diplomado.url}
-                  class={`inline-flex items-center justify-center w-full px-4 py-2 mt-4 text-sm font-bold rounded-lg transition-all duration-300 program-link ${diplomado.destacado ? 'bg-naranja hover:bg-amarillo text-white' : 'bg-celeste hover:bg-turquesa text-white'}`}
-                >
-                  Ver Detalles
-                  <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                  </svg>
-                </a>
+                    <a href={diplomado.url} class={`inline-flex items-center justify-center px-4 py-2 text-sm font-bold rounded-lg transition-all duration-300 ${diplomado.destacado ? 'bg-celeste hover:bg-turquesa text-white shadow-md hover:shadow-lg' : 'bg-gray-50 hover:bg-gray-100 text-gray-700 hover:text-gray-900'}`}>
+                        Ver Programa
+                        <svg class="ml-1.5 w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
-
       </div>
     </section>
 
@@ -204,101 +165,41 @@ const diplomadosFinales = diplomadosRaw.map(producto => {
           </p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div class="text-center group">
-            <div class="w-16 h-16 mx-auto mb-4 bg-celeste rounded-full flex items-center justify-center text-white text-2xl group-hover:bg-turquesa transition-colors duration-300">
-              🎓
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Item 1 -->
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
+            <div class="w-14 h-14 bg-celeste/10 rounded-full flex items-center justify-center text-celeste mb-4">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path></svg>
             </div>
             <h3 class="text-xl font-bold text-gray-800 mb-2">+3000 Graduados</h3>
-            <p class="text-gray-600">Mediadores formados exitosamente en nuestros programas</p>
+            <p class="text-sm text-gray-600">Mediadores formados exitosamente en nuestros programas</p>
           </div>
 
-          <div class="text-center group">
-            <div class="w-16 h-16 mx-auto mb-4 bg-naranja rounded-full flex items-center justify-center text-white text-2xl group-hover:bg-amarillo transition-colors duration-300">
-              ⭐
+          <!-- Item 2 -->
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
+            <div class="w-14 h-14 bg-naranja/10 rounded-full flex items-center justify-center text-naranja mb-4">
+               <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </div>
             <h3 class="text-xl font-bold text-gray-800 mb-2">20+ Años</h3>
-            <p class="text-gray-600">De experiencia y liderazgo en formación de mediadores</p>
+            <p class="text-sm text-gray-600">De experiencia y liderazgo en formación de mediadores</p>
           </div>
 
-          <div class="text-center group">
-            <div class="w-16 h-16 mx-auto mb-4 bg-turquesa rounded-full flex items-center justify-center text-white text-2xl group-hover:bg-celeste transition-colors duration-300">
-              📋
+          <!-- Item 3 -->
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
+             <div class="w-14 h-14 bg-turquesa/10 rounded-full flex items-center justify-center text-turquesa mb-4">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </div>
             <h3 class="text-xl font-bold text-gray-800 mb-2">Acreditación Oficial</h3>
-            <p class="text-gray-600">Programas certificados y reconocidos institucionalmente</p>
+            <p class="text-sm text-gray-600">Programas certificados y reconocidos institucionalmente</p>
           </div>
 
-          <div class="text-center group">
-            <div class="w-16 h-16 mx-auto mb-4 bg-amarillo rounded-full flex items-center justify-center text-white text-2xl group-hover:bg-naranja transition-colors duration-300">
-              🤝
+          <!-- Item 4 -->
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
+             <div class="w-14 h-14 bg-amarillo/20 rounded-full flex items-center justify-center text-naranja mb-4">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
             </div>
             <h3 class="text-xl font-bold text-gray-800 mb-2">Metodología Práctica</h3>
-            <p class="text-gray-600">Aprendizaje basado en casos reales y experiencias</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sección Testimonios -->
-    <section class="py-20 relative z-10">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            Lo que dicen nuestros graduados
-          </h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Testimonios reales de mediadores que transformaron su carrera profesional con EMED
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-            <div class="flex items-center mb-6">
-              <img src="https://images.unsplash.com/photo-1494790108755-2616b612b829?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="María González" class="w-12 h-12 rounded-full mr-4 object-cover" />
-              <div>
-                <h4 class="font-bold text-gray-800">María González</h4>
-                <p class="text-sm text-gray-600">Mediadora Familiar Certificada</p>
-              </div>
-            </div>
-            <p class="text-gray-700 leading-relaxed mb-4">
-              "El diplomado de Mediación Familiar cambió completamente mi perspectiva profesional. Los docentes son excepcionales y la metodología práctica me preparó para casos reales."
-            </p>
-            <div class="flex text-amarillo">
-              ⭐⭐⭐⭐⭐
-            </div>
-          </div>
-
-          <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-            <div class="flex items-center mb-6">
-              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Carlos Mendoza" class="w-12 h-12 rounded-full mr-4 object-cover" />
-              <div>
-                <h4 class="font-bold text-gray-800">Carlos Mendoza</h4>
-                <p class="text-sm text-gray-600">Mediador Laboral</p>
-              </div>
-            </div>
-            <p class="text-gray-700 leading-relaxed mb-4">
-              "EMED me brindó las herramientas necesarias para especializarme en mediación laboral. Hoy trabajo en una importante empresa resolviendo conflictos internos."
-            </p>
-            <div class="flex text-amarillo">
-              ⭐⭐⭐⭐⭐
-            </div>
-          </div>
-
-          <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-            <div class="flex items-center mb-6">
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Ana Rodríguez" class="w-12 h-12 rounded-full mr-4 object-cover" />
-              <div>
-                <h4 class="font-bold text-gray-800">Ana Rodríguez</h4>
-                <p class="text-sm text-gray-600">Mediadora Escolar</p>
-              </div>
-            </div>
-            <p class="text-gray-700 leading-relaxed mb-4">
-              "La formación en mediación escolar me permitió implementar programas de convivencia en mi colegio. Los resultados han sido extraordinarios."
-            </p>
-            <div class="flex text-amarillo">
-              ⭐⭐⭐⭐⭐
-            </div>
+            <p class="text-sm text-gray-600">Aprendizaje basado en casos reales y experiencias</p>
           </div>
         </div>
       </div>
@@ -307,55 +208,134 @@ const diplomadosFinales = diplomadosRaw.map(producto => {
     <!-- Sección Garantías y Beneficios -->
     <section class="py-20 relative z-10">
       <div class="container mx-auto px-4">
-        <div class="bg-white rounded-2xl p-8 md:p-12 shadow-xl border border-gray-100">
-          <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
               Tu inversión está protegida
             </h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
               Estudia con total tranquilidad respaldado por nuestras garantías y beneficios exclusivos
             </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <!-- Card 1 -->
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow group">
+               <div class="w-16 h-16 bg-verde/10 rounded-full flex items-center justify-center text-verde mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+               </div>
+               <h3 class="text-xl font-bold text-gray-800 mb-3">Certificación Garantizada</h3>
+               <p class="text-gray-600 leading-relaxed text-sm">Si cumples con los requisitos académicos, garantizamos tu certificación oficial</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow group">
+               <div class="w-16 h-16 bg-celeste/10 rounded-full flex items-center justify-center text-celeste mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+               </div>
+               <h3 class="text-xl font-bold text-gray-800 mb-3">Apoyo Post-Graduación</h3>
+               <p class="text-gray-600 leading-relaxed text-sm">Asesoría continua y networking con graduados para potenciar tu carrera</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow group">
+               <div class="w-16 h-16 bg-naranja/10 rounded-full flex items-center justify-center text-naranja mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+               </div>
+               <h3 class="text-xl font-bold text-gray-800 mb-3">Material Actualizado</h3>
+               <p class="text-gray-600 leading-relaxed text-sm">Contenidos constantemente actualizados según normativas vigentes</p>
+            </div>
+
+             <!-- Card 4 -->
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow group">
+               <div class="w-16 h-16 bg-turquesa/10 rounded-full flex items-center justify-center text-turquesa mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path></svg>
+               </div>
+               <h3 class="text-xl font-bold text-gray-800 mb-3">Facilidades de Pago</h3>
+               <p class="text-gray-600 leading-relaxed text-sm">Planes de financiamiento flexibles adaptados a tu situación, incluyendo cuotas sin interés</p>
+            </div>
+
+             <!-- Card 5 -->
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow group md:col-span-2 lg:col-span-2">
+               <div class="w-16 h-16 bg-amarillo/20 rounded-full flex items-center justify-center text-naranja mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+               </div>
+               <h3 class="text-xl font-bold text-gray-800 mb-3">Excelencia Académica</h3>
+               <p class="text-gray-600 leading-relaxed text-sm max-w-lg mx-auto">Docentes con amplia experiencia práctica y reconocimiento en el área de mediación. Aprende de los mejores.</p>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Testimonios -->
+    <section class="py-20 relative z-10">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+            Lo que dicen nuestros graduados
+          </h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            Testimonios reales de mediadores que transformaron su carrera profesional con EMED
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center mb-6">
+              <img src="https://images.unsplash.com/photo-1494790108755-2616b612b829?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="María González" class="w-12 h-12 rounded-full mr-4 object-cover ring-2 ring-gray-100" />
+              <div>
+                <h4 class="font-bold text-gray-800">María González</h4>
+                <p class="text-xs text-gray-500 font-semibold uppercase tracking-wide">Mediadora Familiar</p>
+              </div>
+            </div>
+            <p class="text-gray-600 leading-relaxed mb-4 text-sm italic">
+              "El diplomado de Mediación Familiar cambió completamente mi perspectiva profesional. Los docentes son excepcionales y la metodología práctica me preparó para casos reales."
+            </p>
+            <div class="flex text-amarillo space-x-1">
+               <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+               <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+               <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+               <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+               <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
           </div>
 
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="text-center group">
-              <div class="w-20 h-20 mx-auto mb-6 bg-verde rounded-full flex items-center justify-center text-white text-3xl group-hover:scale-110 transition-transform duration-300">
-                🛡️
+          <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center mb-6">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Carlos Mendoza" class="w-12 h-12 rounded-full mr-4 object-cover ring-2 ring-gray-100" />
+              <div>
+                <h4 class="font-bold text-gray-800">Carlos Mendoza</h4>
+                <p class="text-xs text-gray-500 font-semibold uppercase tracking-wide">Mediador Laboral</p>
               </div>
-              <h3 class="text-xl font-bold text-gray-800 mb-3">Certificación Garantizada</h3>
-              <p class="text-gray-600 leading-relaxed">Si cumples con los requisitos académicos, garantizamos tu certificación oficial</p>
             </div>
-
-            <div class="text-center group">
-              <div class="w-20 h-20 mx-auto mb-6 bg-celeste rounded-full flex items-center justify-center text-white text-3xl group-hover:scale-110 transition-transform duration-300">
-                🎯
-              </div>
-              <h3 class="text-xl font-bold text-gray-800 mb-3">Apoyo Post-Graduación</h3>
-              <p class="text-gray-600 leading-relaxed">Asesoría continua y networking con graduados para potenciar tu carrera</p>
+            <p class="text-gray-600 leading-relaxed mb-4 text-sm italic">
+              "EMED me brindó las herramientas necesarias para especializarme en mediación laboral. Hoy trabajo en una importante empresa resolviendo conflictos internos."
+            </p>
+            <div class="flex text-amarillo space-x-1">
+               <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+               <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+               <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+               <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+               <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             </div>
+          </div>
 
-            <div class="text-center group">
-              <div class="w-20 h-20 mx-auto mb-6 bg-naranja rounded-full flex items-center justify-center text-white text-3xl group-hover:scale-110 transition-transform duration-300">
-                📚
+          <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center mb-6">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Ana Rodríguez" class="w-12 h-12 rounded-full mr-4 object-cover ring-2 ring-gray-100" />
+              <div>
+                <h4 class="font-bold text-gray-800">Ana Rodríguez</h4>
+                <p class="text-xs text-gray-500 font-semibold uppercase tracking-wide">Mediadora Escolar</p>
               </div>
-              <h3 class="text-xl font-bold text-gray-800 mb-3">Material Actualizado</h3>
-              <p class="text-gray-600 leading-relaxed">Contenidos constantemente actualizados según normativas vigentes</p>
             </div>
-
-            <div class="text-center group md:col-span-2 lg:col-span-1">
-              <div class="w-20 h-20 mx-auto mb-6 bg-turquesa rounded-full flex items-center justify-center text-white text-3xl group-hover:scale-110 transition-transform duration-300">
-                💰
-              </div>
-              <h3 class="text-xl font-bold text-gray-800 mb-3">Facilidades de Pago</h3>
-              <p class="text-gray-600 leading-relaxed">Planes de financiamiento flexibles adaptados a tu situación</p>
-            </div>
-
-            <div class="text-center group md:col-span-2 lg:col-span-2">
-              <div class="w-20 h-20 mx-auto mb-6 bg-amarillo rounded-full flex items-center justify-center text-white text-3xl group-hover:scale-110 transition-transform duration-300">
-                🏆
-              </div>
-              <h3 class="text-xl font-bold text-gray-800 mb-3">Excelencia Académica</h3>
-              <p class="text-gray-600 leading-relaxed">Docentes con amplia experiencia práctica y reconocimiento en el área de mediación</p>
+            <p class="text-gray-600 leading-relaxed mb-4 text-sm italic">
+              "La formación en mediación escolar me permitió implementar programas de convivencia en mi colegio. Los resultados han sido extraordinarios."
+            </p>
+            <div class="flex text-amarillo space-x-1">
+               <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+               <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+               <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+               <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+               <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             </div>
           </div>
         </div>
@@ -374,62 +354,64 @@ const diplomadosFinales = diplomadosRaw.map(producto => {
           </p>
         </div>
 
-        <div class="max-w-4xl mx-auto">
-          <Accordion items={faqsDiplomados} />
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+          <div class="space-y-4">
+            {faqsDiplomados.map((faq) => (
+              <details class="group bg-white rounded-xl shadow-sm border border-gray-100 open:ring-2 open:ring-celeste/20 open:shadow-md transition-all duration-300">
+                <summary class="flex justify-between items-center w-full p-6 text-left cursor-pointer list-none focus:outline-none">
+                  <span class="text-lg font-bold text-gray-800 group-open:text-celeste transition-colors">
+                    {faq.title}
+                  </span>
+                  <span class="text-celeste group-open:rotate-180 transition-transform duration-300 flex-shrink-0 ml-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </span>
+                </summary>
+                <div class="px-6 pb-6 pt-0 text-gray-600 leading-relaxed border-t border-transparent group-open:border-gray-50">
+                  {faq.content}
+                </div>
+              </details>
+            ))}
+          </div>
         </div>
       </div>
     </section>
+
+<script>
+  // Accordion behavior: Close others when one opens
+  // This script runs on client-side to add the exclusive open behavior
+  document.addEventListener('astro:page-load', () => {
+    const detailsElements = document.querySelectorAll("details.group");
+
+    detailsElements.forEach((detail) => {
+      if (!(detail instanceof HTMLDetailsElement)) return;
+
+      const summary = detail.querySelector("summary");
+      if (summary) {
+        summary.addEventListener("click", (e) => {
+          // If we are clicking to open (currently closed)
+          if (!detail.open) {
+            // Close all others
+            detailsElements.forEach((other) => {
+              if (
+                other !== detail &&
+                other instanceof HTMLDetailsElement &&
+                other.open
+              ) {
+                other.removeAttribute("open");
+              }
+            });
+          }
+        });
+      }
+    });
+  });
+</script>
 
     <!-- CTA Final Section -->
-    <section class="py-20 relative z-10">
-      <div class="container mx-auto px-4">
-        <div class="bg-white rounded-2xl p-8 md:p-12 shadow-xl border border-gray-100 text-center">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-            ¿Listo para transformar tu carrera profesional?
-          </h2>
-          <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Nuestros asesores académicos te ayudarán a elegir el diplomado perfecto según tu experiencia y objetivos profesionales. Recibe orientación personalizada sin compromiso.
-          </p>
-          <div class="flex justify-center">
-            <a 
-              href="/contacto"
-              class="inline-flex items-center justify-center px-12 py-5 bg-gradient-to-r from-celeste to-turquesa text-white font-bold text-xl rounded-xl hover:from-turquesa hover:to-celeste transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              <svg class="mr-3 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.007 8.007 0 01-7-4 8 8 0 017-4c4.418 0 8-3.582 8-8z"></path>
-              </svg>
-              Hablar con un Asesor Académico
-            </a>
-          </div>
-          
-          <!-- Elementos de confianza adicionales -->
-          <div class="mt-8 pt-8 border-t border-gray-200">
-            <div class="flex flex-wrap justify-center items-center gap-6 text-sm text-gray-500">
-              <div class="flex items-center">
-                <svg class="w-4 h-4 mr-2 text-verde" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                Asesoría 100% Gratuita
-              </div>
-              <div class="flex items-center">
-                <svg class="w-4 h-4 mr-2 text-verde" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                Sin Compromiso
-              </div>
-              <div class="flex items-center">
-                <svg class="w-4 h-4 mr-2 text-verde" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                Respuesta en 24 horas
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <CtaFinal pagina="diplomados" />
 
-  </div>
 
   </div>
 </Layout>

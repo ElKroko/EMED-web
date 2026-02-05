@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import CtaFinal from "../components/sections/CtaFinal.astro";
 import { Image } from "astro:assets";
 import quienesSomosBanner from "../assets/images/pages/quienes-somos-banner.webp";
 
@@ -611,40 +612,11 @@ const docentesInternacionales = [
             }
           </div>
         </div>
-
-        <!-- CTA de contacto -->
-        <div
-          class="text-center bg-gradient-to-r from-celeste/10 to-turquesa/10 rounded-2xl p-8 border border-celeste/20"
-        >
-          <h3 class="text-2xl font-bold text-gray-800 mb-4">
-            ¿Quieres conocer más sobre nuestro equipo?
-          </h3>
-          <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
-            Nuestros profesionales están disponibles para resolver tus consultas
-            sobre nuestros programas de formación
-          </p>
-          <a
-            href="/contacto"
-            class="inline-flex items-center px-8 py-4 bg-celeste text-white font-bold text-lg rounded-xl hover:bg-turquesa transform hover:scale-105 transition-all duration-200 shadow-lg"
-          >
-            Contactar con Nuestro Equipo
-            <svg
-              class="ml-2 w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.007 8.007 0 01-7-4 8 8 0 017-4c4.418 0 8-3.582 8-8z"
-              ></path>
-            </svg>
-          </a>
-        </div>
       </div>
     </section>
+
+    <!-- CTA Final Contextual -->
+    <CtaFinal pagina="nosotros" />
   </div>
 </Layout>
 

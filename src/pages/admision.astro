@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import CtaFinal from "../components/sections/CtaFinal.astro";
 import { Image } from "astro:assets";
 import admisionBanner from "../assets/images/pages/foto-4.webp";
 import salaClases from "../assets/images/pages/sala-de-clases.webp";
@@ -661,54 +662,7 @@ const benefits = [
       </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="py-24 bg-crema relative overflow-hidden">
-      <!-- Decorator -->
-      <div
-        class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-naranja/5 blur-3xl"
-      >
-      </div>
-      <div
-        class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-celeste/5 blur-3xl"
-      >
-      </div>
-
-      <div class="container mx-auto px-6 relative z-10 text-center">
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-          ¿Estás listo para dar el siguiente paso?
-        </h2>
-        <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-          No dejes pasar la oportunidad de formarte con los mejores. Solicita
-          información hoy mismo y comienza tu transformación profesional.
-        </p>
-
-        <div class="flex flex-col sm:flex-row justify-center gap-6">
-          <a
-            href="/contacto"
-            class="inline-flex justify-center items-center px-10 py-5 bg-naranja text-white text-lg font-bold rounded-xl hover:bg-amarillo transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
-          >
-            Solicitar Información
-            <svg
-              class="w-6 h-6 ml-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-            </svg>
-          </a>
-          <a
-            href="/diplomados"
-            class="inline-flex justify-center items-center px-10 py-5 bg-white text-gray-700 border-2 border-gray-200 text-lg font-bold rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all duration-300 shadow-sm hover:shadow-md"
-          >
-            Explorar Catálogo
-          </a>
-        </div>
-      </div>
-    </section>
+    <!-- CTA Final Contextual -->
+    <CtaFinal pagina="admision" />
   </div>
 </Layout>

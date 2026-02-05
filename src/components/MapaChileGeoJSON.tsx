@@ -273,7 +273,7 @@ const MapaChileGeoJSON: React.FC<Props> = ({
               <p className="text-lg text-gray-600 leading-relaxed">
                 En 20 años hemos formado a más de 6.000 mediadores familiares.
                 Hoy, más de 1.800 de nuestros mediadores están vigentes en el Registro Nacional, presentes en las 16 regiones de Chile.
-                En la Región Metropolitana, nuestros egresados representan el 15,5% del Registro Único de Mediadores (RUM).
+                En la Región Metropolitana, nuestros egresados representan el 13,9% del Registro Único de Mediadores (RUM).
               </p>
             </div>
 

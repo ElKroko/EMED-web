@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCursos } from '../lib/productos';
+import CtaFinal from '../components/sections/CtaFinal.astro';
 
 // Obtener todos los cursos desde datos estáticos
 const cursos = getCursos();
@@ -190,5 +191,8 @@ const cursos = getCursos();
         )}
       </div>
     </section>
+    
+    <!-- CTA Final Contextual -->
+    <CtaFinal pagina="cursos" />
   </div>
 </Layout>
