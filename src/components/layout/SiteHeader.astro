@@ -126,38 +126,71 @@ const {
     </nav>
 
     <!-- Mobile Navigation Menu -->
-    <div class="mobile-menu lg:hidden hidden">
-      <div class="py-4 space-y-2 border-t border-white border-opacity-20">
-        {
-          links.map((link) => (
-            <div>
-              <a
-                href={link.href}
-                class="mobile-nav-link block px-4 py-3 font-bold text-base tracking-wide transition-all duration-200 rounded-md mx-2"
-              >
-                {link.label}
-              </a>
-              {link.children && (
-                <div class="pl-8 space-y-1 mt-1 mb-2">
-                  {link.children.map((child) => (
-                    <a
-                      href={child.href}
-                      class="block px-4 py-2 text-white/90 hover:text-white hover:bg-white/10 rounded-md text-sm transition-colors duration-200"
+    <div
+      class="mobile-menu lg:hidden hidden fixed top-[80px] left-0 w-full h-[calc(100vh-80px)] bg-celeste z-40 overflow-y-auto"
+    >
+      <div class="container mx-auto px-4 py-6 flex flex-col h-full">
+        <div class="space-y-1">
+          {
+            links.map((link) => (
+              <div class="border-b border-white/10 last:border-none">
+                <a
+                  href={link.href}
+                  class="mobile-nav-link block py-4 text-xl font-bold text-white tracking-wide transition-all duration-300 hover:text-white/80 flex justify-between items-center group"
+                >
+                  <span>{link.label}</span>
+                  {link.children && (
+                    <svg
+                      class="w-5 h-5 text-white/50 group-hover:text-white transition-colors"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
                     >
-                      {child.label}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))
-        }
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  )}
+                </a>
+                {link.children && (
+                  <div class="pl-4 space-y-2 mb-4 mt-1 border-l-2 border-white/20 ml-2">
+                    {link.children.map((child) => (
+                      <a
+                        href={child.href}
+                        class="block py-2 px-3 text-white/80 hover:text-white hover:bg-white/10 rounded-lg text-base font-medium transition-all duration-200"
+                      >
+                        {child.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Mobile Menu Footer Info -->
+        <div class="mt-auto pt-8 pb-12 text-white/60 text-sm text-center">
+          <p>
+            © {new Date().getFullYear()} EMED. Todos los derechos reservados.
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </header>
 <script>
   class SiteHeader {
+    header: HTMLElement | null;
+    mobileMenuButton: HTMLElement | null;
+    mobileMenu: HTMLElement | null;
+    hamburgerIcon: HTMLElement | null;
+    closeIcon: HTMLElement | null;
+    isMenuOpen: boolean;
+
     constructor() {
       this.header = document.querySelector(".site-header");
       this.mobileMenuButton = document.querySelector(".mobile-menu-button");
@@ -179,13 +212,6 @@ const {
       const mobileLinks = document.querySelectorAll(".mobile-menu a");
       mobileLinks.forEach((link) => {
         link.addEventListener("click", () => this.closeMobileMenu());
-      });
-
-      // Close mobile menu when clicking outside
-      document.addEventListener("click", (e) => {
-        if (this.isMenuOpen && !this.header?.contains(e.target as Node)) {
-          this.closeMobileMenu();
-        }
       });
 
       // Handle scroll for sticky header effect
@@ -210,25 +236,33 @@ const {
     openMobileMenu() {
       this.isMenuOpen = true;
       this.mobileMenu?.classList.remove("hidden");
+      this.mobileMenu?.classList.add("flex"); // Ensure flex layout for full height
       this.hamburgerIcon?.classList.add("hidden");
       this.closeIcon?.classList.remove("hidden");
       this.mobileMenuButton?.setAttribute("aria-expanded", "true");
       document.body.style.overflow = "hidden";
+      this.header?.classList.add("bg-celeste"); // Ensure solid background when open
     }
 
     closeMobileMenu() {
       this.isMenuOpen = false;
       this.mobileMenu?.classList.add("hidden");
+      this.mobileMenu?.classList.remove("flex");
       this.hamburgerIcon?.classList.remove("hidden");
       this.closeIcon?.classList.add("hidden");
       this.mobileMenuButton?.setAttribute("aria-expanded", "false");
       document.body.style.overflow = "";
+
+      // Revert background if at top
+      if (window.scrollY <= 100) {
+        this.header?.classList.remove("bg-celeste");
+      }
     }
 
     handleScroll() {
       const scrollY = window.scrollY;
 
-      if (scrollY > 100) {
+      if (scrollY > 100 || this.isMenuOpen) {
         this.header?.classList.add("header-scrolled");
       } else {
         this.header?.classList.remove("header-scrolled");
@@ -245,11 +279,17 @@ const {
 <style>
   .site-header {
     backdrop-filter: blur(8px);
-    background-color: rgba(126, 197, 214, 0.9);
+    background-color: rgba(
+      126,
+      197,
+      214,
+      0.95
+    ); /* Default bg to avoid transparency issues */
   }
 
-  .site-header.header-scrolled {
-    background-color: rgba(126, 197, 214, 0.95);
+  .site-header.header-scrolled,
+  .site-header.bg-celeste {
+    background-color: var(--color-celeste);
     box-shadow: var(--shadow-lg);
   }
 
@@ -269,32 +309,25 @@ const {
   }
 
   .mobile-menu {
-    animation: slideDown 0.3s ease-out;
+    animation: fadeIn 0.3s ease-out;
     background-color: var(--color-celeste);
+    /* Subtle gradient for premium feel */
+    background: linear-gradient(180deg, var(--color-celeste) 0%, #6bbecf 100%);
   }
 
-  .mobile-nav-link {
-    color: white;
-    text-decoration: none;
-  }
-
-  .mobile-nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.15);
+  /* Force white text on all mobile menu links */
+  .mobile-menu a {
     color: white !important;
-    text-decoration: none;
-    transform: translateX(4px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
-  .mobile-nav-link:active {
-    background-color: rgba(255, 255, 255, 0.25);
-    transform: translateX(2px);
+  .mobile-menu a:hover {
+    color: rgba(255, 255, 255, 0.9) !important;
   }
 
-  @keyframes slideDown {
+  @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(-10px);
+      transform: translateY(10px);
     }
     to {
       opacity: 1;
@@ -310,6 +343,11 @@ const {
   @media (max-width: 1023px) {
     body {
       padding-top: 72px;
+    }
+
+    .mobile-menu {
+      top: 72px;
+      height: calc(100vh - 72px);
     }
   }
 </style>

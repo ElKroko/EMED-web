@@ -41,12 +41,12 @@ const programas = productos.slice(0, maxItems).map(producto => {
 });
 ---
 
-<section class={`programs-grid py-20 bg-crema ${className}`}>
+<section class={`programs-grid py-12 md:py-20 bg-crema ${className}`}>
   <div class="container mx-auto px-4 relative z-10">
     
     <!-- Título de la sección -->
     <div class="text-center mb-16 relative z-20">
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 text-center">
+      <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold text-black mb-6 text-center">
         {heading}
       </h2>
       <p class="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed text-center">
@@ -91,7 +91,7 @@ const programas = productos.slice(0, maxItems).map(producto => {
               {programa.title}
             </h3>
 
-            <p class="text-gray-600 text-base leading-relaxed mb-3 line-clamp-2">
+            <p class="text-gray-600 text-base leading-relaxed mb-3 line-clamp-none md:line-clamp-2">
               {programa.description}
             </p>
 

@@ -188,7 +188,23 @@ a[class*="border-"][class*="rounded"]:hover {
 
 /* Hero Programs */
 .hero-programa {
-  min-height: 70vh;
+  min-height: 60vh; /* Reduced for mobile */
+  position: relative;
+}
+
+.hero-programa img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .hero-programa {
+    min-height: 70vh;
+  }
 }
 
 /* Utilities */
