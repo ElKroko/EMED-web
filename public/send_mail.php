@@ -35,30 +35,71 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    $to = "info@emediacion.cl";
-    $subject = "Nueva Consulta Web - " . ($program ? $program : "General");
+    // 1. Correo de Notificación (Para EMED)
+    $to_admin = "info@emediacion.cl";
+    $subject_admin = "Nueva Consulta Web - " . ($program ? $program : "General");
 
-    $email_content = "Has recibido una nueva consulta desde el sitio web:\n\n";
-    $email_content .= "Detalles del Contacto:\n";
-    $email_content .= "------------------------\n";
-    $email_content .= "Nombre: $nombre\n";
-    $email_content .= "Email: $email\n";
-    $email_content .= "Teléfono: $telefono\n";
-    $email_content .= "Ciudad: $ciudad\n";
-    $email_content .= "Programa/Interés: $program $interes\n";
-    $email_content .= "Horario preferido: $horario\n";
-    $email_content .= "Preferencia de contacto: $preferencias\n\n";
-    $email_content .= "Mensaje:\n$mensaje\n";
+    $email_content_admin = "Has recibido una nueva consulta desde el sitio web:\n\n";
+    $email_content_admin .= "Detalles del Contacto:\n";
+    $email_content_admin .= "------------------------\n";
+    $email_content_admin .= "Nombre: $nombre\n";
+    $email_content_admin .= "Email: $email\n";
+    $email_content_admin .= "Teléfono: $telefono\n";
+    $email_content_admin .= "Ciudad: $ciudad\n";
+    $email_content_admin .= "Programa/Interés: $program $interes\n";
+    $email_content_admin .= "Horario preferido: $horario\n";
+    $email_content_admin .= "Preferencia de contacto: $preferencias\n\n";
+    $email_content_admin .= "Mensaje:\n$mensaje\n";
 
-    $headers = "From: web@emediacion.cl\r\n";
-    $headers .= "Reply-To: $email\r\n";
-    $headers .= "X-Mailer: PHP/" . phpversion();
+    // Headers para notificación admin
+    $headers_admin = "From: web@emediacion.cl\r\n";
+    $headers_admin .= "Reply-To: $email\r\n";
+    $headers_admin .= "X-Mailer: PHP/" . phpversion();
 
-    if (mail($to, $subject, $email_content, $headers)) {
-        echo json_encode(["status" => "success", "message" => "Mensaje enviado con éxito"]);
+    // Enviar notificación al admin
+    $admin_sent = mail($to_admin, $subject_admin, $email_content_admin, $headers_admin);
+
+    // 2. Correo de Confirmación (Para el Usuario)
+    $to_user = $email;
+    $subject_user = "Hemos recibido tu consulta - EMED";
+
+    $email_content_user = "Hola $nombre,\n\n";
+    $email_content_user .= "Gracias por contactarte con EMED. Hemos recibido tu consulta exitosamente.\n\n";
+    $email_content_user .= "Nuestro equipo revisará tu solicitud sobre " . ($program ? $program : "nuestros programas") . " y te contactaremos a la brevedad posible";
+    
+    if ($horario !== 'Sin preferencia') {
+        $email_content_user .= " dentro de tu horario preferido ($horario).";
+    } else {
+        $email_content_user .= ".";
+    }
+    
+    $email_content_user .= "\n\n";
+    $email_content_user .= "Si tienes alguna duda urgente, puedes escribirnos directamente a este correo o contactarnos por WhatsApp al +56 9 6562 0939.\n\n";
+    $email_content_user .= "Saludos cordiales,\n";
+    $email_content_user .= "Equipo EMED\n";
+    $email_content_user .= "www.emediacion.cl";
+
+    // Headers para confirmación usuario
+    $headers_user = "From: info@emediacion.cl\r\n";
+    $headers_user .= "Reply-To: info@emediacion.cl\r\n";
+    $headers_user .= "X-Mailer: PHP/" . phpversion();
+
+    // Enviar confirmación al usuario
+    // Nota: El éxito de este envío no determina el status de la API, pero es bueno intentarlo.
+    $user_sent = mail($to_user, $subject_user, $email_content_user, $headers_user);
+
+    if ($admin_sent) {
+        echo json_encode([
+            "status" => "success", 
+            "message" => "Mensaje enviado con éxito",
+            "debug" => [
+                "admin_mail" => $admin_sent,
+                "user_mail" => $user_sent
+            ]
+        ]);
     } else {
         http_response_code(500);
-        echo json_encode(["status" => "error", "message" => "Error al enviar el correo"]);
+        echo json_encode(["status" => "error", "message" => "Error al enviar el correo de notificación"]);
     }
 } else {
     http_response_code(403);

@@ -445,9 +445,9 @@ const formSubtitle = subtitle || config.subtitle;
     <div class="text-center">
       <p class="text-gray-600 text-sm mb-4">¿Prefieres hablar ahora?</p>
       <a
-        href="https://wa.me/56912345678?text=Hola,%20tengo%20una%20consulta%20sobre%20los%20programas%20de%20EMED"
+        href="https://wa.me/56965620939?text=Hola,%20tengo%20una%20consulta%20sobre%20los%20programas%20de%20EMED"
         target="_blank"
-        class="inline-flex items-center px-4 py-3 md:px-6 md:py-4 bg-green-500 text-white font-semibold text-sm md:text-base rounded-lg hover:bg-green-600 transition-all duration-200 transform hover:scale-105 shadow-lg"
+        class="whatsapp-direct-btn inline-flex items-center px-4 py-3 md:px-6 md:py-4 bg-green-500 text-white font-semibold text-sm md:text-base rounded-lg hover:bg-green-600 transition-all duration-200 transform hover:scale-105 shadow-lg"
       >
         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
           <path
@@ -462,8 +462,13 @@ const formSubtitle = subtitle || config.subtitle;
 
 <script>
   class ContactFormHandler {
+    forms;
+    whatsappNumber;
+
     constructor() {
+      // @ts-ignore
       this.forms = document.querySelectorAll(".contact-form");
+      this.whatsappNumber = "56965620939"; // Número oficial
       this.init();
     }
 
@@ -478,6 +483,78 @@ const formSubtitle = subtitle || config.subtitle;
         // Manejar envío del formulario
         form.addEventListener("submit", (e) => this.handleSubmit(e));
       });
+
+      // Manejar botones de WhatsApp directo para que incluyan datos del formulario si existen
+      const directButtons = document.querySelectorAll(".whatsapp-direct-btn");
+      directButtons.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const container = btn.closest(".contact-form-container");
+          const form = container?.querySelector("form");
+
+          if (form) {
+            const formData = new FormData(form);
+            const hasData =
+              formData.get("nombre") ||
+              formData.get("email") ||
+              formData.get("mensaje");
+
+            if (hasData) {
+              e.preventDefault();
+              const msg = this.formatWhatsAppMessage(formData);
+              const whatsappUrl = `https://wa.me/${this.whatsappNumber}?text=${msg}`;
+              window.open(whatsappUrl, "_blank");
+            }
+            // Si no hay datos, dejamos que el link funcione normalmente con su mensaje predeterminado
+          }
+        });
+      });
+    }
+
+    formatWhatsAppMessage(formData) {
+      let msg = `*Nueva Consulta desde Web*\n\n`;
+
+      const nombre = formData.get("nombre");
+      const email = formData.get("email");
+      const telefono = formData.get("telefono");
+
+      if (nombre) msg += `*Nombre:* ${nombre}\n`;
+      if (email) msg += `*Email:* ${email}\n`;
+      if (telefono) msg += `*Teléfono:* ${telefono}\n`;
+
+      const empresa = formData.get("empresa");
+      const ciudad = formData.get("ciudad");
+      if (empresa) msg += `*Empresa:* ${empresa}\n`;
+      if (ciudad) msg += `*Ciudad:* ${ciudad}\n`;
+
+      const program = formData.get("program");
+      const interes = formData.get("interes");
+      if (program) msg += `*Programa:* ${program}\n`;
+      if (interes) msg += `*Interés:* ${interes}\n`;
+
+      const financiamiento = formData.get("financiamiento_tipo");
+      if (financiamiento) msg += `*Financiamiento:* ${financiamiento}\n`;
+
+      const sector = formData.get("sector");
+      if (sector) msg += `*Sector:* ${sector}\n`;
+
+      const numParticipantes = formData.get("num_participantes");
+      if (numParticipantes) msg += `*Participantes:* ${numParticipantes}\n`;
+
+      // Obtener preferencias (puede haber múltiples)
+      // @ts-ignore
+      const preferencias = formData.getAll("contacto_preferencia[]");
+
+      if (preferencias.length > 0) {
+        msg += `*Preferencia Contacto:* ${preferencias.join(", ")}\n`;
+      }
+
+      const horario = formData.get("horario_preferido");
+      if (horario) msg += `*Horario:* ${horario}\n`;
+
+      const mensaje = formData.get("mensaje");
+      if (mensaje) msg += `\n*Mensaje:*\n${mensaje}`;
+
+      return encodeURIComponent(msg);
     }
 
     async handleSubmit(e) {
@@ -485,46 +562,80 @@ const formSubtitle = subtitle || config.subtitle;
       const form = e.target;
       const formData = new FormData(form);
       const submitButton = form.querySelector('button[type="submit"]');
-      const successMessage = form.parentElement.querySelector(".form-success");
+      const successMessage = form.parentElement?.querySelector(".form-success");
+
+      // Verificar si WhatsApp está seleccionado
+      // @ts-ignore
+      const preferencias = formData.getAll("contacto_preferencia[]");
+      const isWhatsApp = preferencias.includes("whatsapp");
 
       // Deshabilitar botón
-      submitButton.disabled = true;
-      const originalText = submitButton.innerHTML;
-      submitButton.innerHTML = "Enviando...";
+      if (submitButton) {
+        submitButton.disabled = true;
+        // const originalText = submitButton.innerHTML; // No longer needed in scope unless we revert
+        submitButton.innerHTML = "Procesando...";
+      }
 
-      try {
-        const response = await fetch("/send_mail.php", {
-          method: "POST",
-          body: formData,
-        });
+      // Preparar el envío por email (siempre intentamos enviar el correo para registro)
+      const emailPromise = fetch("/send_mail.php", {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .catch((err) => ({ status: "error", message: err.message }));
 
-        const result = await response.json();
+      // Si seleccionó WhatsApp, preparamos la redirección
+      if (isWhatsApp) {
+        const msg = this.formatWhatsAppMessage(formData);
+        const whatsappUrl = `https://wa.me/${this.whatsappNumber}?text=${msg}`;
 
-        if (response.ok && result.status === "success") {
-          // Mostrar mensaje de éxito
-          form.style.display = "none";
+        // Abrir WhatsApp inmediatamente
+        window.open(whatsappUrl, "_blank");
+
+        // Mostramos mensaje de éxito en la web también
+        form.style.display = "none";
+        if (successMessage) {
           successMessage.classList.remove("hidden");
-
-          // Opcional: Redirigir a WhatsApp después de 3 segundos
-          setTimeout(() => {
-            const program = formData.get("program");
-            const nombre = formData.get("nombre");
-            const message = `Hola, soy ${nombre}. Acabo de enviar una consulta sobre ${program || "los programas de EMED"} y me gustaría recibir más información.`;
-            const whatsappUrl = `https://wa.me/56912345678?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, "_blank");
-          }, 3000);
-        } else {
-          throw new Error(result.message || "Error al enviar el mensaje");
+          const p = successMessage.querySelector("p");
+          if (p)
+            p.textContent =
+              "Hemos abierto WhatsApp para continuar tu consulta. También hemos intentado registrar tu solicitud por correo.";
         }
-      } catch (error) {
-        console.error("Error enviando formulario:", error);
-        alert(
-          "Hubo un error al enviar tu consulta. Por favor intenta nuevamente o contáctanos por WhatsApp.",
-        );
+      } else {
+        // Flujo normal solo email
+        try {
+          const result = await emailPromise;
 
-        // Rehabilitar botón
-        submitButton.disabled = false;
-        submitButton.innerHTML = originalText;
+          if (result.status === "success") {
+            form.style.display = "none";
+            if (successMessage) successMessage.classList.remove("hidden");
+          } else {
+            throw new Error(result.message || "Error al enviar el mensaje");
+          }
+        } catch (error) {
+          console.error("Error enviando formulario:", error);
+
+          // Si falla el email y no seleccionó WhatsApp, le ofrecemos WhatsApp como alternativa
+          const msg = this.formatWhatsAppMessage(formData);
+          const whatsappUrl = `https://wa.me/${this.whatsappNumber}?text=${msg}`;
+
+          if (
+            confirm(
+              "Hubo un problema al enviar el correo. ¿Deseas enviar la información por WhatsApp?",
+            )
+          ) {
+            window.open(whatsappUrl, "_blank");
+          } else {
+            alert(
+              "Hubo un error al enviar tu consulta. Por favor intenta nuevamente más tarde.",
+            );
+          }
+
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.innerHTML = "Enviar Consulta";
+          }
+        }
       }
     }
   }
