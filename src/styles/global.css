@@ -168,12 +168,12 @@ a[class*="border-"][class*="rounded"]:hover {
 }
 
 /* Contact Form Specifics (from diplomados-mediacion.css) */
-#contact-form .contact-form-container button[type="submit"] {
+.contact-form-container button[type="submit"] {
   background: linear-gradient(to right, var(--color-celeste), var(--color-turquesa)) !important;
   color: white !important;
 }
 
-#contact-form .contact-form-container button[type="submit"]:hover {
+.contact-form-container button[type="submit"]:hover {
   background: linear-gradient(to right, var(--color-turquesa), var(--color-celeste)) !important;
   color: white !important;
 }

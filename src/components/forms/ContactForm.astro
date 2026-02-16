@@ -474,6 +474,9 @@ const formSubtitle = subtitle || config.subtitle;
 
     init() {
       this.forms.forEach((form) => {
+        if (form.dataset.handlerAttached) return;
+        form.dataset.handlerAttached = "true";
+
         // Agregar timestamp cuando se carga el formulario
         const timestampField = form.querySelector('input[name="timestamp"]');
         if (timestampField) {
@@ -572,69 +575,63 @@ const formSubtitle = subtitle || config.subtitle;
       // Deshabilitar botón
       if (submitButton) {
         submitButton.disabled = true;
-        // const originalText = submitButton.innerHTML; // No longer needed in scope unless we revert
-        submitButton.innerHTML = "Procesando...";
+        submitButton.innerHTML = "Enviando...";
       }
 
-      // Preparar el envío por email (siempre intentamos enviar el correo para registro)
-      const emailPromise = fetch("/send_mail.php", {
-        method: "POST",
-        body: formData,
-      })
-        .then((res) => res.json())
-        .catch((err) => ({ status: "error", message: err.message }));
+      try {
+        const response = await fetch("/send_mail.php", {
+          method: "POST",
+          body: formData,
+        });
 
-      // Si seleccionó WhatsApp, preparamos la redirección
-      if (isWhatsApp) {
-        const msg = this.formatWhatsAppMessage(formData);
-        const whatsappUrl = `https://wa.me/${this.whatsappNumber}?text=${msg}`;
-
-        // Abrir WhatsApp inmediatamente
-        window.open(whatsappUrl, "_blank");
-
-        // Mostramos mensaje de éxito en la web también
-        form.style.display = "none";
-        if (successMessage) {
-          successMessage.classList.remove("hidden");
-          const p = successMessage.querySelector("p");
-          if (p)
-            p.textContent =
-              "Hemos abierto WhatsApp para continuar tu consulta. También hemos intentado registrar tu solicitud por correo.";
-        }
-      } else {
-        // Flujo normal solo email
+        let result;
+        const text = await response.text();
         try {
-          const result = await emailPromise;
+          result = JSON.parse(text);
+        } catch (e) {
+          // Si no es JSON válido, asumimos error o éxito basado en status
+          result = { status: response.ok ? "success" : "error", message: text };
+        }
 
-          if (result.status === "success") {
-            form.style.display = "none";
-            if (successMessage) successMessage.classList.remove("hidden");
-          } else {
-            throw new Error(result.message || "Error al enviar el mensaje");
+        if (response.ok && (result.status === "success" || !result.status)) {
+          // Éxito
+          form.style.display = "none";
+          if (successMessage) {
+            successMessage.classList.remove("hidden");
+
+            // Si el usuario quería WhatsApp, le mostramos un botón para continuar allí
+            if (isWhatsApp) {
+              const p = successMessage.querySelector("p");
+              if (p) {
+                p.innerHTML = `Hemos enviado un correo de confirmación.<br><br>
+                 <a href="https://wa.me/${this.whatsappNumber}?text=${this.formatWhatsAppMessage(formData)}" 
+                    target="_blank" 
+                    class="inline-block mt-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+                    Continuar en WhatsApp
+                 </a>`;
+              }
+            }
           }
-        } catch (error) {
-          console.error("Error enviando formulario:", error);
+        } else {
+          throw new Error(result.message || "Error al enviar el mensaje");
+        }
+      } catch (error) {
+        console.error("Error enviando formulario:", error);
 
-          // Si falla el email y no seleccionó WhatsApp, le ofrecemos WhatsApp como alternativa
+        // Si falla el email le ofrecemos WhatsApp como alternativa
+        if (
+          confirm(
+            "Hubo un problema con el envío del correo. ¿Deseas enviar la información por WhatsApp?",
+          )
+        ) {
           const msg = this.formatWhatsAppMessage(formData);
           const whatsappUrl = `https://wa.me/${this.whatsappNumber}?text=${msg}`;
+          window.open(whatsappUrl, "_blank");
+        }
 
-          if (
-            confirm(
-              "Hubo un problema al enviar el correo. ¿Deseas enviar la información por WhatsApp?",
-            )
-          ) {
-            window.open(whatsappUrl, "_blank");
-          } else {
-            alert(
-              "Hubo un error al enviar tu consulta. Por favor intenta nuevamente más tarde.",
-            );
-          }
-
-          if (submitButton) {
-            submitButton.disabled = false;
-            submitButton.innerHTML = "Enviar Consulta";
-          }
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.innerHTML = "Enviar Consulta";
         }
       }
     }

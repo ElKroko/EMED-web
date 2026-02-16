@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // 1. Correo de Notificación (Para EMED)
-    $to_admin = "info@emediacion.cl";
+    $to_admin = "manager@emediacion.cl";
     $subject_admin = "Nueva Consulta Web - " . ($program ? $program : "General");
 
     $email_content_admin = "Has recibido una nueva consulta desde el sitio web:\n\n";
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email_content_admin .= "Mensaje:\n$mensaje\n";
 
     // Headers para notificación admin
-    $headers_admin = "From: web@emediacion.cl\r\n";
+    $headers_admin = "From: info@emediacion.cl\r\n";
     $headers_admin .= "Reply-To: $email\r\n";
     $headers_admin .= "X-Mailer: PHP/" . phpversion();
 
