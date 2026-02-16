@@ -16,7 +16,7 @@ const { docentes = [] } = Astro.props;
 
 // Importar todas las imágenes de docentes
 const images = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/images/docentes/*.webp",
+    "/src/assets/images/docentes/*.{webp,jpg,jpeg,png}",
 );
 ---
 
