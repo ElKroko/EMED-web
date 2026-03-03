@@ -48,6 +48,7 @@ export interface Producto {
   duracion_presencial?: string;
   faqs?: FAQItem[];
   docentes?: Docente[];
+  ruta_aprendizaje?: any;
 }
 
 export interface Docente {

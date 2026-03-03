@@ -24,6 +24,7 @@ import imgCeciliaRamosMejia from "../assets/images/docentes/cecilia-ramos-mejia.
 import imgDanielBustelo from "../assets/images/docentes/daniel-bustelo.webp";
 import imgCamilaPalacios from "../assets/images/docentes/camila-palacios.webp";
 import imgVicentePerelli from "../assets/images/docentes/vicente-perelli.webp";
+import imgAnnLizetteMurua from "../assets/images/docentes/ann-lizette-murua.webp";
 
 // Equipo EMED (Directivo/Administrativo)
 const equipoEMED = [
@@ -54,6 +55,8 @@ const equipoEMED = [
     cargo: "Orientadora Académica",
     initials: "AM",
     color: "amarillo",
+    imagen: imgAnnLizetteMurua,
+    imgStyle: "object-position: center 30%",
   },
 ];
 
@@ -507,6 +510,7 @@ const docentesInternacionales = [
                         src={miembro.imagen}
                         alt={miembro.nombre}
                         class="w-full h-full object-cover"
+                        style={miembro.imgStyle || ""}
                       />
                     ) : (
                       miembro.initials

@@ -35,12 +35,91 @@ const {
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
 		<meta name="twitter:card" content="summary_large_image" />
+		<meta
+			http-equiv="Content-Security-Policy"
+			content="script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://stats.g.doubleclick.net;"
+		/>
+		<!-- Google Tag Manager -->
+		<script>
+			(function (w, d, s, l, i) {
+				w[l] = w[l] || [];
+				w[l].push({
+					"gtm.start": new Date().getTime(),
+					event: "gtm.js",
+				});
+				var f = d.getElementsByTagName(s)[0],
+					j = d.createElement(s),
+					dl = l != "dataLayer" ? "&l=" + l : "";
+				j.setAttribute("async", "true");
+				j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+				f.parentNode.insertBefore(j, f);
+			})(window, document, "script", "dataLayer", "GTM-M7FMVPHG");
+		</script>
+		<!-- End Google Tag Manager -->
 	</head>
 	<body>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript
+			><iframe
+				src="https://www.googletagmanager.com/ns.html?id=GTM-M7FMVPHG"
+				height="0"
+				width="0"
+				style="display:none;visibility:hidden"></iframe></noscript
+		>
+		<!-- End Google Tag Manager (noscript) -->
 		<SiteHeader logoSrc="/images/common/emed_logo.svg" />
 		<main>
 			<slot />
 		</main>
 		<SiteFooter />
+		<script>
+			// 🎨 Digitalismo Developer Credit — ASCII Art
+			const lines = [
+				"",
+				"   ████   █  ███  █ █████  ███  █     █ ███ █   █  ███   ",
+				"   █   █  █ █     █   █   █   █ █     █ █   ██ ██ █   █  ",
+				"   █   █  █ █  ██ █   █   █████ █     █ ███ █ █ █ █   █  ",
+				"   █   █  █ █   █ █   █   █   █ █     █   █ █   █ █   █  ",
+				"   ████   █  ███  █   █   █   █ █████ █ ███ █   █  ███   ",
+				"",
+				"   🚀 ¡Hola, dev! Nos encanta que tengas curiosidad",
+				"   Este sitio fue desarrollado por Digitalismo.                 ",
+				"   🌐 www.digitalismo.cl                                        ",
+				"   ✉️  hola@digitalismo.cl — ¡Trabajemos juntos!                 ",
+				"",
+			];
+			const colors = [
+				"#7B2FF7",
+				"#7633F3",
+				"#7137EF",
+				"#6C3BEB",
+				"#673FE7",
+				"#6243E3",
+				"#5D47DF",
+				"#584BDB",
+				"#534FD7",
+				"#4E53D3",
+				"#4957CF",
+				"#445BCB",
+				"#3F5FC7",
+				"#3A63C3",
+				"#3567BF",
+				"#306BBB",
+				"#2B6FB7",
+				"#2673B3",
+				"#2177AF",
+				"#1C7BAB",
+				"#177FA7",
+				"#1283A3",
+				"#22D1EE",
+			];
+			lines.forEach((line, i) => {
+				const c = colors[Math.min(i, colors.length - 1)];
+				console.log(
+					`%c${line}`,
+					`color:${c};font-family:monospace;font-size:12px;font-weight:bold;`,
+				);
+			});
+		</script>
 	</body>
 </html>
