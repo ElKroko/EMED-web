@@ -19,6 +19,10 @@ pnpm-debug.log*
 .env
 .env.production
 
+# SMTP credentials (sensitive)
+smtp_config.php
+public/smtp_config.php
+
 # macOS-specific files
 .DS_Store
 
