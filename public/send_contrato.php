@@ -87,6 +87,117 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $body_admin .= "------------------------\n";
     $body_admin .= "1. Cédula de Identidad: " . $_FILES['cedula']['name'] . "\n";
     $body_admin .= "2. Certificado de Título: " . $_FILES['certificado']['name'] . "\n\n";
+    
+    $texto_contrato = "
+═══════════════════════════════════════
+CONTRATO DE CAPACITACIÓN — CENTRO DE ESTUDIOS DE MEDIACIÓN S.A.
+═══════════════════════════════════════
+
+Centro de Estudios de Mediación S.A, pionero en la Mediación en nuestro país, está comprometido con la formación de profesionales en las diferentes áreas de la mediación, otorgándoles herramientas teóricas y prácticas acordes a las necesidades de nuestra sociedad.
+
+PRIMERO: OBJETO DEL CONTRATO
+El presente contrato de capacitación define los derechos y obligaciones del Alumno y de Centro de Estudios de Mediación S.A. respecto de la prestación del servicio de capacitación.
+
+SEGUNDO: CONDICIONES GENERALES; REGLAMENTO ACADÉMICO
+1.- FECHA DE INICIO Y TÉRMINO
+El Diplomado se inicia y culmina formalmente, los días indicados en el calendario de origen, enviado a su correo electrónico, cuando solicitó información del programa de estudio.
+
+2.- MALLA CURRICULAR, MATERIAL DE ESTUDIO Y OTROS INSUMOS
+a) Malla Curricular: Documento en el cual se encuentra especificado, el contenido académico del diplomado, objetivos generales y específicos, metodología, mecanismos de evaluación y staff de docentes del programa contratado.
+b) Material de Estudio: Contenido académico al cual el alumno accede de manera remota en nuestra plataforma on line a través de un usuario y contraseña una vez que se ha finalizado su proceso de incorporación.
+c) Calendario Académico: Documento en el que se encuentra la programación del diplomado con fecha de inicio y cierre. En dicho documento se encuentran establecidas las fechas de entrega de cuestionarios, reflexiones, jornadas zoom y presenciales en su caso.
+d) Carpeta virtual con materiales académicos complementarios: Carpeta que se encuentra alojada en Drive, y a la cual el alumno accede a través de un enlace que comparte al inicio del Diplomado. Dicha carpeta incluye material de apoyo, presentaciones en power point de cada una de las clases.
+
+3.- HORARIOS DE CLASES PRESENCIALES (APLICA SOLO PARA FORMACIÓN DE MEDIADORES FAMILIARES)
+El ciclo de clases presenciales inicia y finaliza en las fechas y horarios indicadas en el calendario. Cada estudiante podrá acceder, durante dichas jornadas a dos servicios de café diarios (mañana y tarde). El servicio de café es un menú básico que consiste en café, té, agua y galletas. Durante las jornadas presenciales se encuentra programado un receso para almuerzo de una hora, entre 13:00 y 14:00 hrs. El almuerzo será de costo de cada alumno. La última jornada, el día de término del diplomado finalizará a las 18:00 hrs. Se recomienda adquirir pasajes posterior a las 21:00 hrs de ese día o al día siguiente.
+
+4.- MODALIDAD
+El Diplomado se realiza en una modalidad Online o Semi-Presencial, según sea el caso, y acredita las horas de estudio indicadas en la Malla Académica.
+
+5.- EVALUACIÓN
+El alumno contará con los plazos que están fijados en su calendario académico para realizar sus evaluaciones.
+- El estudiante deberá contestar cada cuestionario verificador de contenidos en los plazos establecidos, con dos intentos por cuestionario.
+- El alumno podrá canalizar sus consultas a través de la plataforma e-training. El profesor tendrá 5 días para contestar.
+- Las evaluaciones se efectuarán en escala de 1.0 a 7.0, debiendo ser aprobadas con un mínimo de 4.0.
+- Diplomado Familiar: Cuestionarios + trabajos ponderan 50%, pasantías ponderan 50%.
+- Programas online: Se evalúan promediando el total de los cuestionarios verificadores.
+
+6.- ASISTENCIA
+Para el Diplomado de Mediadores Familiares, las jornadas presenciales son obligatorias con asistencia del 100%. Las conferencias en tiempo real también requieren 100% de asistencia.
+
+7.- REQUISITOS DE APROBACIÓN
+- Aprobación de todas las cátedras con nota mínima 4.0
+- Asistencia 100% a clases por videoconferencia y presenciales si aplica
+- Arancel al día
+
+8.- ENTREGA DE CERTIFICADOS
+El Certificado y Diploma serán entregados en un plazo máximo de 7 semanas desde la finalización del programa.
+
+9.- FORMAS DE ENTREGA DE CERTIFICADO
+a) Retiro en dependencias, personalmente o por tercero.
+b) Envío por correo privado ($14.000), despacho por Correos de Chile o Chilexpress.
+
+10.- ORIENTACIÓN ACADÉMICA
+El Titular declara haber recibido orientación académica en el proceso de inscripción y haber resuelto todas sus inquietudes.
+
+TERCERO: SOLICITUD DE DOCUMENTOS ANEXOS
+El alumno podrá solicitar los siguientes documentos previo pago del arancel:
+- Certificado de Alumno Regular — 0,12 UF
+- Certificado de Documentos en Trámite — 0,12 UF
+- Duplicado de Concentración de Notas — 0,20 UF
+- Duplicado de Certificado de Aprobación — 0,20 UF
+- Otro Certificado relativo a su formación — 0,12 UF
+
+CUARTO: APLICA SOLO AL DIPLOMADO DE FORMACIÓN DE MEDIADORES EN CONFLICTOS FAMILIARES
+El alumno declara haber recibido información completa respecto del proceso de inscripción en el Registro Único de Mediadores del Ministerio de Justicia. Requisitos exigidos por la Ley N° 19.968:
+1. Poseer título profesional de carrera de al menos ocho semestres.
+2. Poseer título o diploma de especialización en mediación (mínimo 180 horas teóricas y 40 horas de práctica efectiva).
+3. No haber sido condenado por delito que merezca pena aflictiva ni por actos de violencia intrafamiliar.
+4. Disponer de un lugar adecuado para desarrollar la mediación.
+
+QUINTO: CANALES FORMALES DE COMUNICACIÓN
+Centro de Estudios de Mediación utiliza como canal formal de comunicación el correo electrónico. La comunicación vía telefónica o vía WhatsApp u otro medio no constituyen información oficial.
+
+SEXTO: PAGO DE MATRÍCULA Y ARANCEL
+El alumno acepta pagar el arancel y matrícula vigente para la capacitación contratada, comprometiéndose a formalizar el pago antes de la fecha de inicio del programa.
+
+SÉPTIMO: DEVOLUCIÓN DE MATRÍCULA O ARANCEL
+La devolución solo procede en caso de cancelación de la actividad de capacitación. No procederá restitución por causas imputables al alumno.
+
+OCTAVO: POSTERGACIÓN DE ACTIVIDADES PRESENCIALES
+1.- Por requerimiento de autoridad sanitaria: Se ofrecerán nuevas alternativas de fecha. Los alumnos podrán reprogramar durante los 3 años siguientes sin costo adicional.
+2.- A requerimiento del alumno: La no asistencia no exime del compromiso de pago. El alumno tendrá 12 meses para completar su capacitación sin cobro adicional. Transcurrido dicho plazo deberá cancelar el 50% del arancel vigente. Transcurridos 3 años prescribirá la opción de reprogramar.
+
+NOVENO: RESOLUCIÓN DE CONFLICTOS
+Toda discrepancia será resuelta a través de procesos de diálogos. En caso de no ser satisfactorio, se podrá solicitar un proceso de mediación. Los honorarios del mediador serán de $30.000 por sesión de 40 minutos, pagados en partes iguales.
+
+DÉCIMO: CESIÓN DE DERECHOS
+Las obligaciones y derechos no podrán cederse ni subrogarse a favor de otra persona. Ninguna otra persona puede asistir a las clases en lugar del alumno.
+
+DÉCIMO PRIMERO: FACTORIZACIÓN DE DOCUMENTOS
+En caso de pago con documentos a plazo, estos podrán ser factorizados. En caso de mora, el estudiante asumirá los gastos de cobranza e interés. EMED retendrá la entrega de documentos de certificación hasta la regularización del arancel.
+
+La suscripción del presente contrato se efectúa bajo las normas del artículo 2, letra F y artículo 3 de La Ley 19799 \"de documentos electrónicos, firma electrónica y los servicios de certificación de dicha firma\". Declara el alumno haber recibido copia del mismo y manifiesta su conformidad.
+
+DÉCIMO SEGUNDO: DOMICILIO
+Para los efectos legales derivados del presente contrato, las partes fijan domicilio en la ciudad de Santiago.
+
+CLÁUSULA ADICIONAL — Pago por Suscripción con Tarjeta
+Las siguientes disposiciones solo serán aplicables en el caso de que el Alumno elija la modalidad de pago mediante suscripción con tarjeta de débito o crédito.
+1. OBJETO: Regular el pago del Diplomado mediante cuotas con tarjeta de débito o crédito.
+2. PAGO EN CUOTAS: El alumno pagará entre 3 y 10 cuotas según la opción seleccionada al inscribirse. Las cuotas se programarán automáticamente.
+3. PRIMER PAGO: El acceso a la plataforma se habilitará después del pago de la primera cuota.
+4. ACCESO A PRÁCTICAS: Para participar en prácticas presenciales, deberá haber completado el pago total.
+5. INCUMPLIMIENTO Y MORA: La mora genera un interés de 0,007 UF diarias y la suspensión del acceso a instancias formativas.
+6. ADELANTO DE PAGO: Solicitar por escrito a finanzas@emediacion.cl.
+7. SUSPENSIÓN: Por única vez, de 3 a 12 meses. Reactivación con tarifa de 0,5 UF.
+8. CAMBIO DE FORMA DE PAGO: Una vez seleccionada la modalidad de cuotas, no podrá cambiar a otra modalidad con beneficios adicionales.
+";
+
+    $body_admin .= "\nTEXTO ÍNTEGRO DEL CONTRATO ACEPTADO\n";
+    $body_admin .= "------------------------\n";
+    $body_admin .= $texto_contrato . "\n\n";
+
     $body_admin .= "═══════════════════════════════════════\n";
     $body_admin .= "Fecha: " . date('d/m/Y H:i:s') . "\n";
 
@@ -127,6 +238,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $body_user .= "- Cédula de Identidad\n";
         $body_user .= "- Certificado de Título\n\n";
         $body_user .= "Nuestro equipo revisará tu documentación y te contactará para continuar con el proceso.\n\n";
+        $body_user .= "A continuación, adjuntamos una copia del contrato que has aceptado:\n\n";
+        $body_user .= $texto_contrato . "\n\n";
         $body_user .= "Si tienes consultas, escríbenos a este correo o por WhatsApp al +56 9 6562 0939.\n\n";
         $body_user .= "Saludos cordiales,\nEquipo EMED\nwww.emediacion.cl";
 
