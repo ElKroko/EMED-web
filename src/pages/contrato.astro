@@ -1,0 +1,1219 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const regiones = [
+    "Arica y Parinacota",
+    "Tarapacá",
+    "Antofagasta",
+    "Atacama",
+    "Coquimbo",
+    "Valparaíso",
+    "Región Metropolitana de Santiago",
+    "O'Higgins",
+    "Maule",
+    "Ñuble",
+    "Biobío",
+    "La Araucanía",
+    "Los Ríos",
+    "Los Lagos",
+    "Aysén",
+    "Magallanes y la Antártica Chilena",
+];
+---
+
+<Layout
+    title="Contrato de Capacitación - EMED"
+    description="Lee y acepta el contrato de capacitación de Centro de Estudios de Mediación S.A. para formalizar tu inscripción."
+>
+    <div class="bg-crema min-h-screen">
+        <!-- Hero -->
+        <section class="bg-celeste relative overflow-hidden py-16 md:py-24">
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="text-center text-white">
+                    <div
+                        class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-6"
+                    >
+                        <svg
+                            class="w-5 h-5 mr-2"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                            ></path></svg
+                        >
+                        Documento contractual
+                    </div>
+                    <h1
+                        class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight"
+                    >
+                        Contrato de
+                        <span class="relative inline-block"
+                            >Capacitación
+                            <svg
+                                class="absolute w-full h-[0.5em] -bottom-2 left-0 text-amarillo"
+                                viewBox="0 0 200 9"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M2.00025 6.99997C25.0003 2.99999 74.5002 -2.00002 198.001 2.50001"
+                                    stroke="currentColor"
+                                    stroke-width="3"
+                                    stroke-linecap="round"></path>
+                            </svg>
+                        </span>
+                    </h1>
+                    <p
+                        class="text-lg md:text-xl mb-4 max-w-2xl mx-auto leading-relaxed opacity-90"
+                    >
+                        Lee detenidamente el contrato, completa tus datos y
+                        adjunta los documentos requeridos para formalizar tu
+                        inscripción.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contract Content -->
+        <section class="py-10 md:py-16 bg-transparent">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <!-- Contract Text -->
+                <div class="bg-white rounded-2xl shadow-xl p-6 md:p-10 mb-10">
+                    <div
+                        class="flex items-center mb-6 pb-4 border-b border-gray-200"
+                    >
+                        <div
+                            class="w-10 h-10 rounded-full bg-celeste/10 text-celeste flex items-center justify-center mr-3 flex-shrink-0"
+                        >
+                            <svg
+                                class="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                ></path></svg
+                            >
+                        </div>
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-800">
+                            Contrato de Capacitación — Centro de Estudios de
+                            Mediación S.A.
+                        </h2>
+                    </div>
+
+                    <div
+                        id="contract-text"
+                        class="contract-content prose prose-gray max-w-none text-sm md:text-base leading-relaxed text-gray-700 max-h-[600px] overflow-y-auto pr-2 md:pr-4 scroll-smooth"
+                    >
+                        <p class="mb-4">
+                            Centro de Estudios de Mediación S.A, pionero en la
+                            Mediación en nuestro país, está comprometido con la
+                            formación de profesionales en las diferentes áreas
+                            de la mediación, otorgándoles herramientas teóricas
+                            y prácticas acordes a las necesidades de nuestra
+                            sociedad.
+                        </p>
+
+                        <h3
+                            class="text-base md:text-lg font-bold text-gray-900 mt-6 mb-3"
+                        >
+                            PRIMERO: OBJETO DEL CONTRATO
+                        </h3>
+                        <p class="mb-4">
+                            El presente contrato de capacitación define los
+                            derechos y obligaciones del Alumno y de Centro de
+                            Estudios de Mediación S.A. respecto de la prestación
+                            del servicio de capacitación.
+                        </p>
+
+                        <h3
+                            class="text-base md:text-lg font-bold text-gray-900 mt-6 mb-3"
+                        >
+                            SEGUNDO: CONDICIONES GENERALES; REGLAMENTO ACADÉMICO
+                        </h3>
+
+                        <h4 class="font-bold text-gray-800 mt-4 mb-2">
+                            1.- FECHA DE INICIO Y TÉRMINO
+                        </h4>
+                        <p class="mb-4">
+                            El Diplomado se inicia y culmina formalmente, los
+                            días indicados en el calendario de origen, enviado a
+                            su correo electrónico, cuando solicitó información
+                            del programa de estudio.
+                        </p>
+
+                        <h4 class="font-bold text-gray-800 mt-4 mb-2">
+                            2.- MALLA CURRICULAR, MATERIAL DE ESTUDIO Y OTROS
+                            INSUMOS
+                        </h4>
+                        <p class="mb-2">
+                            <strong>a) Malla Curricular:</strong> Documento en el
+                            cual se encuentra especificado, el contenido académico
+                            del diplomado, objetivos generales y específicos, metodología,
+                            mecanismos de evaluación y staff de docentes del programa
+                            contratado.
+                        </p>
+                        <p class="mb-2">
+                            <strong>b) Material de Estudio:</strong> Contenido académico
+                            al cual el alumno accede de manera remota en nuestra plataforma
+                            on line a través de un usuario y contraseña una vez que
+                            se ha finalizado su proceso de incorporación.
+                        </p>
+                        <p class="mb-2">
+                            <strong>c) Calendario Académico:</strong> Documento en
+                            el que se encuentra la programación del diplomado con
+                            fecha de inicio y cierre. En dicho documento se encuentran
+                            establecidas las fechas de entrega de cuestionarios, reflexiones,
+                            jornadas zoom y presenciales en su caso.
+                        </p>
+                        <p class="mb-4">
+                            <strong
+                                >d) Carpeta virtual con materiales académicos
+                                complementarios:</strong
+                            > Carpeta que se encuentra alojada en Drive, y a la cual
+                            el alumno accede a través de un enlace que comparte al
+                            inicio del Diplomado. Dicha carpeta incluye material de
+                            apoyo, presentaciones en power point de cada una de las
+                            clases.
+                        </p>
+
+                        <h4 class="font-bold text-gray-800 mt-4 mb-2">
+                            3.- HORARIOS DE CLASES PRESENCIALES (APLICA SOLO
+                            PARA FORMACIÓN DE MEDIADORES FAMILIARES)
+                        </h4>
+                        <p class="mb-4">
+                            El ciclo de clases presenciales inicia y finaliza en
+                            las fechas y horarios indicadas en el calendario.
+                            Cada estudiante podrá acceder, durante dichas
+                            jornadas a dos servicios de café diarios (mañana y
+                            tarde). El servicio de café es un menú básico que
+                            consiste en café, té, agua y galletas. Durante las
+                            jornadas presenciales se encuentra programado un
+                            receso para almuerzo de una hora, entre 13:00 y
+                            14:00 hrs. El almuerzo será de costo de cada alumno.
+                            La última jornada, el día de término del diplomado
+                            finalizará a las 18:00 hrs. Se recomienda adquirir
+                            pasajes posterior a las 21:00 hrs de ese día o al
+                            día siguiente.
+                        </p>
+
+                        <h4 class="font-bold text-gray-800 mt-4 mb-2">
+                            4.- MODALIDAD
+                        </h4>
+                        <p class="mb-4">
+                            El Diplomado se realiza en una modalidad Online o
+                            Semi-Presencial, según sea el caso, y acredita las
+                            horas de estudio indicadas en la Malla Académica.
+                        </p>
+
+                        <h4 class="font-bold text-gray-800 mt-4 mb-2">
+                            5.- EVALUACIÓN
+                        </h4>
+                        <p class="mb-2">
+                            El alumno contará con los plazos que están fijados
+                            en su calendario académico para realizar sus
+                            evaluaciones.
+                        </p>
+                        <ul class="list-disc pl-5 mb-4 space-y-1">
+                            <li>
+                                El estudiante deberá contestar cada cuestionario
+                                verificador de contenidos en los plazos
+                                establecidos, con dos intentos por cuestionario.
+                            </li>
+                            <li>
+                                El alumno podrá canalizar sus consultas a través
+                                de la plataforma e-training. El profesor tendrá
+                                5 días para contestar.
+                            </li>
+                            <li>
+                                Las evaluaciones se efectuarán en escala de 1.0
+                                a 7.0, debiendo ser aprobadas con un mínimo de
+                                4.0.
+                            </li>
+                            <li>
+                                <strong>Diplomado Familiar:</strong> Cuestionarios
+                                + trabajos ponderan 50%, pasantías ponderan 50%.
+                            </li>
+                            <li>
+                                <strong>Programas online:</strong> Se evalúan promediando
+                                el total de los cuestionarios verificadores.
+                            </li>
+                        </ul>
+
+                        <h4 class="font-bold text-gray-800 mt-4 mb-2">
+                            6.- ASISTENCIA
+                        </h4>
+                        <p class="mb-4">
+                            Para el Diplomado de Mediadores Familiares, las
+                            jornadas presenciales son obligatorias con
+                            asistencia del 100%. Las conferencias en tiempo real
+                            también requieren 100% de asistencia.
+                        </p>
+
+                        <h4 class="font-bold text-gray-800 mt-4 mb-2">
+                            7.- REQUISITOS DE APROBACIÓN
+                        </h4>
+                        <ul class="list-disc pl-5 mb-4 space-y-1">
+                            <li>
+                                Aprobación de todas las cátedras con nota mínima
+                                4.0
+                            </li>
+                            <li>
+                                Asistencia 100% a clases por videoconferencia y
+                                presenciales si aplica
+                            </li>
+                            <li>Arancel al día</li>
+                        </ul>
+
+                        <h4 class="font-bold text-gray-800 mt-4 mb-2">
+                            8.- ENTREGA DE CERTIFICADOS
+                        </h4>
+                        <p class="mb-4">
+                            El Certificado y Diploma serán entregados en un
+                            plazo máximo de 7 semanas desde la finalización del
+                            programa.
+                        </p>
+
+                        <h4 class="font-bold text-gray-800 mt-4 mb-2">
+                            9.- FORMAS DE ENTREGA DE CERTIFICADO
+                        </h4>
+                        <p class="mb-2">
+                            <strong>a)</strong> Retiro en dependencias, personalmente
+                            o por tercero.
+                        </p>
+                        <p class="mb-4">
+                            <strong>b)</strong> Envío por correo privado ($14.000),
+                            despacho por Correos de Chile o Chilexpress.
+                        </p>
+
+                        <h4 class="font-bold text-gray-800 mt-4 mb-2">
+                            10.- ORIENTACIÓN ACADÉMICA
+                        </h4>
+                        <p class="mb-4">
+                            El Titular declara haber recibido orientación
+                            académica en el proceso de inscripción y haber
+                            resuelto todas sus inquietudes.
+                        </p>
+
+                        <h3
+                            class="text-base md:text-lg font-bold text-gray-900 mt-6 mb-3"
+                        >
+                            TERCERO: SOLICITUD DE DOCUMENTOS ANEXOS
+                        </h3>
+                        <p class="mb-2">
+                            El alumno podrá solicitar los siguientes documentos
+                            previo pago del arancel:
+                        </p>
+                        <ul class="list-disc pl-5 mb-4 space-y-1">
+                            <li>Certificado de Alumno Regular — 0,12 UF</li>
+                            <li>
+                                Certificado de Documentos en Trámite — 0,12 UF
+                            </li>
+                            <li>
+                                Duplicado de Concentración de Notas — 0,20 UF
+                            </li>
+                            <li>
+                                Duplicado de Certificado de Aprobación — 0,20 UF
+                            </li>
+                            <li>
+                                Otro Certificado relativo a su formación — 0,12
+                                UF
+                            </li>
+                        </ul>
+
+                        <h3
+                            class="text-base md:text-lg font-bold text-gray-900 mt-6 mb-3"
+                        >
+                            CUARTO: APLICA SOLO AL DIPLOMADO DE FORMACIÓN DE
+                            MEDIADORES EN CONFLICTOS FAMILIARES
+                        </h3>
+                        <p class="mb-2">
+                            El alumno declara haber recibido información
+                            completa respecto del proceso de inscripción en el
+                            Registro Único de Mediadores del Ministerio de
+                            Justicia. Requisitos exigidos por la Ley N° 19.968:
+                        </p>
+                        <ol class="list-decimal pl-5 mb-4 space-y-1">
+                            <li>
+                                Poseer título profesional de carrera de al menos
+                                ocho semestres.
+                            </li>
+                            <li>
+                                Poseer título o diploma de especialización en
+                                mediación (mínimo 180 horas teóricas y 40 horas
+                                de práctica efectiva).
+                            </li>
+                            <li>
+                                No haber sido condenado por delito que merezca
+                                pena aflictiva ni por actos de violencia
+                                intrafamiliar.
+                            </li>
+                            <li>
+                                Disponer de un lugar adecuado para desarrollar
+                                la mediación.
+                            </li>
+                        </ol>
+
+                        <h3
+                            class="text-base md:text-lg font-bold text-gray-900 mt-6 mb-3"
+                        >
+                            QUINTO: CANALES FORMALES DE COMUNICACIÓN
+                        </h3>
+                        <p class="mb-4">
+                            Centro de Estudios de Mediación utiliza como canal
+                            formal de comunicación el correo electrónico. La
+                            comunicación vía telefónica o vía WhatsApp u otro
+                            medio no constituyen información oficial.
+                        </p>
+
+                        <h3
+                            class="text-base md:text-lg font-bold text-gray-900 mt-6 mb-3"
+                        >
+                            SEXTO: PAGO DE MATRÍCULA Y ARANCEL
+                        </h3>
+                        <p class="mb-4">
+                            El alumno acepta pagar el arancel y matrícula
+                            vigente para la capacitación contratada,
+                            comprometiéndose a formalizar el pago antes de la
+                            fecha de inicio del programa.
+                        </p>
+
+                        <h3
+                            class="text-base md:text-lg font-bold text-gray-900 mt-6 mb-3"
+                        >
+                            SÉPTIMO: DEVOLUCIÓN DE MATRÍCULA O ARANCEL
+                        </h3>
+                        <p class="mb-4">
+                            La devolución solo procede en caso de cancelación de
+                            la actividad de capacitación. No procederá
+                            restitución por causas imputables al alumno.
+                        </p>
+
+                        <h3
+                            class="text-base md:text-lg font-bold text-gray-900 mt-6 mb-3"
+                        >
+                            OCTAVO: POSTERGACIÓN DE ACTIVIDADES PRESENCIALES
+                        </h3>
+                        <p class="mb-2">
+                            <strong
+                                >1.- Por requerimiento de autoridad sanitaria:</strong
+                            > Se ofrecerán nuevas alternativas de fecha. Los alumnos
+                            podrán reprogramar durante los 3 años siguientes sin costo
+                            adicional.
+                        </p>
+                        <p class="mb-4">
+                            <strong>2.- A requerimiento del alumno:</strong> La no
+                            asistencia no exime del compromiso de pago. El alumno
+                            tendrá 12 meses para completar su capacitación sin cobro
+                            adicional. Transcurrido dicho plazo deberá cancelar el
+                            50% del arancel vigente. Transcurridos 3 años prescribirá
+                            la opción de reprogramar.
+                        </p>
+
+                        <h3
+                            class="text-base md:text-lg font-bold text-gray-900 mt-6 mb-3"
+                        >
+                            NOVENO: RESOLUCIÓN DE CONFLICTOS
+                        </h3>
+                        <p class="mb-4">
+                            Toda discrepancia será resuelta a través de procesos
+                            de diálogos. En caso de no ser satisfactorio, se
+                            podrá solicitar un proceso de mediación. Los
+                            honorarios del mediador serán de $30.000 por sesión
+                            de 40 minutos, pagados en partes iguales.
+                        </p>
+
+                        <h3
+                            class="text-base md:text-lg font-bold text-gray-900 mt-6 mb-3"
+                        >
+                            DÉCIMO: CESIÓN DE DERECHOS
+                        </h3>
+                        <p class="mb-4">
+                            Las obligaciones y derechos no podrán cederse ni
+                            subrogarse a favor de otra persona. Ninguna otra
+                            persona puede asistir a las clases en lugar del
+                            alumno.
+                        </p>
+
+                        <h3
+                            class="text-base md:text-lg font-bold text-gray-900 mt-6 mb-3"
+                        >
+                            DÉCIMO PRIMERO: FACTORIZACIÓN DE DOCUMENTOS
+                        </h3>
+                        <p class="mb-4">
+                            En caso de pago con documentos a plazo, estos podrán
+                            ser factorizados. En caso de mora, el estudiante
+                            asumirá los gastos de cobranza e interés. EMED
+                            retendrá la entrega de documentos de certificación
+                            hasta la regularización del arancel.
+                        </p>
+
+                        <p class="mb-4 text-sm text-gray-600 italic">
+                            La suscripción del presente contrato se efectúa bajo
+                            las normas del artículo 2, letra F y artículo 3 de
+                            La Ley 19799 "de documentos electrónicos, firma
+                            electrónica y los servicios de certificación de
+                            dicha firma". Declara el alumno haber recibido copia
+                            del mismo y manifiesta su conformidad.
+                        </p>
+
+                        <h3
+                            class="text-base md:text-lg font-bold text-gray-900 mt-6 mb-3"
+                        >
+                            DÉCIMO SEGUNDO: DOMICILIO
+                        </h3>
+                        <p class="mb-4">
+                            Para los efectos legales derivados del presente
+                            contrato, las partes fijan domicilio en la ciudad de
+                            Santiago.
+                        </p>
+
+                        <hr class="my-6 border-gray-200" />
+
+                        <h3
+                            class="text-base md:text-lg font-bold text-gray-900 mt-6 mb-3"
+                        >
+                            CLÁUSULA ADICIONAL — Pago por Suscripción con
+                            Tarjeta
+                        </h3>
+                        <p class="mb-2 text-sm text-gray-500">
+                            Las siguientes disposiciones solo serán aplicables
+                            en el caso de que el Alumno elija la modalidad de
+                            pago mediante suscripción con tarjeta de débito o
+                            crédito.
+                        </p>
+
+                        <p class="mb-2">
+                            <strong>1. OBJETO:</strong> Regular el pago del Diplomado
+                            mediante cuotas con tarjeta de débito o crédito.
+                        </p>
+                        <p class="mb-2">
+                            <strong>2. PAGO EN CUOTAS:</strong> El alumno pagará entre
+                            3 y 10 cuotas según la opción seleccionada al inscribirse.
+                            Las cuotas se programarán automáticamente.
+                        </p>
+                        <p class="mb-2">
+                            <strong>3. PRIMER PAGO:</strong> El acceso a la plataforma
+                            se habilitará después del pago de la primera cuota.
+                        </p>
+                        <p class="mb-2">
+                            <strong>4. ACCESO A PRÁCTICAS:</strong> Para participar
+                            en prácticas presenciales, deberá haber completado el
+                            pago total.
+                        </p>
+                        <p class="mb-2">
+                            <strong>5. INCUMPLIMIENTO Y MORA:</strong> La mora genera
+                            un interés de 0,007 UF diarias y la suspensión del acceso
+                            a instancias formativas.
+                        </p>
+                        <p class="mb-2">
+                            <strong>6. ADELANTO DE PAGO:</strong> Solicitar por escrito
+                            a finanzas@emediacion.cl.
+                        </p>
+                        <p class="mb-2">
+                            <strong>7. SUSPENSIÓN:</strong> Por única vez, de 3 a
+                            12 meses. Reactivación con tarifa de 0,5 UF.
+                        </p>
+                        <p class="mb-4">
+                            <strong>8. CAMBIO DE FORMA DE PAGO:</strong> Una vez seleccionada
+                            la modalidad de cuotas, no podrá cambiar a otra modalidad
+                            con beneficios adicionales.
+                        </p>
+                    </div>
+
+                    <!-- Scroll indicator -->
+                    <div
+                        id="scroll-indicator"
+                        class="flex items-center justify-center py-3 text-sm text-gray-500 border-t border-gray-100 mt-4"
+                    >
+                        <svg
+                            class="w-4 h-4 mr-2 animate-bounce"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg
+                        >
+                        Desplázate para leer el contrato completo
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div
+                    class="inscription-form-container bg-white rounded-2xl shadow-xl p-6 md:p-10"
+                >
+                    <div class="text-center mb-8">
+                        <h2
+                            class="text-2xl md:text-3xl font-bold text-gray-800 mb-3"
+                        >
+                            Individualización del Titular
+                        </h2>
+                        <p class="text-gray-600 text-base md:text-lg">
+                            Completa tus datos y adjunta los documentos
+                            requeridos. Los campos con <span
+                                class="text-naranja font-bold">*</span
+                            > son obligatorios.
+                        </p>
+                    </div>
+
+                    <form
+                        id="contrato-form"
+                        class="space-y-8"
+                        novalidate
+                        enctype="multipart/form-data"
+                    >
+                        <!-- Datos Personales -->
+                        <fieldset class="space-y-5">
+                            <legend
+                                class="text-lg font-bold text-gray-800 mb-1 flex items-center"
+                            >
+                                <span
+                                    class="w-8 h-8 rounded-full bg-celeste/10 text-celeste flex items-center justify-center mr-3 text-sm font-bold flex-shrink-0"
+                                    >1</span
+                                >
+                                Datos del Titular
+                            </legend>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label
+                                        for="nombre"
+                                        class="block text-sm font-semibold text-gray-700 mb-2"
+                                        >Nombre Completo <span
+                                            class="text-naranja">*</span
+                                        ></label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="nombre"
+                                        name="nombre"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+                                        placeholder="Nombre y apellidos"
+                                    />
+                                </div>
+                                <div>
+                                    <label
+                                        for="rut"
+                                        class="block text-sm font-semibold text-gray-700 mb-2"
+                                        >RUT <span class="text-naranja">*</span
+                                        ></label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="rut"
+                                        name="rut"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+                                        placeholder="Ej: 12345678-9"
+                                        maxlength="12"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label
+                                        for="telefono"
+                                        class="block text-sm font-semibold text-gray-700 mb-2"
+                                        >Teléfono <span class="text-naranja"
+                                            >*</span
+                                        ></label
+                                    >
+                                    <input
+                                        type="tel"
+                                        id="telefono"
+                                        name="telefono"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+                                        placeholder="+56 9 1234 5678"
+                                    />
+                                </div>
+                                <div>
+                                    <label
+                                        for="email"
+                                        class="block text-sm font-semibold text-gray-700 mb-2"
+                                        >Email <span class="text-naranja"
+                                            >*</span
+                                        ></label
+                                    >
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+                                        placeholder="tu@email.com"
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label
+                                    for="direccion"
+                                    class="block text-sm font-semibold text-gray-700 mb-2"
+                                    >Dirección <span class="text-naranja"
+                                        >*</span
+                                    ></label
+                                >
+                                <input
+                                    type="text"
+                                    id="direccion"
+                                    name="direccion"
+                                    required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+                                    placeholder="Dirección completa"
+                                />
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label
+                                        for="region"
+                                        class="block text-sm font-semibold text-gray-700 mb-2"
+                                        >Región <span class="text-naranja"
+                                            >*</span
+                                        ></label
+                                    >
+                                    <select
+                                        id="region"
+                                        name="region"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200 bg-white"
+                                    >
+                                        <option value=""
+                                            >Seleccione su región</option
+                                        >
+                                        {
+                                            regiones.map((r) => (
+                                                <option value={r}>{r}</option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
+                                <div>
+                                    <label
+                                        for="profesion"
+                                        class="block text-sm font-semibold text-gray-700 mb-2"
+                                        >Profesión <span class="text-naranja"
+                                            >*</span
+                                        ></label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="profesion"
+                                        name="profesion"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+                                        placeholder="Ej: Psicóloga, Abogado, Docente"
+                                    />
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <hr class="border-gray-100" />
+
+                        <!-- Programa -->
+                        <fieldset class="space-y-5">
+                            <legend
+                                class="text-lg font-bold text-gray-800 mb-1 flex items-center"
+                            >
+                                <span
+                                    class="w-8 h-8 rounded-full bg-celeste/10 text-celeste flex items-center justify-center mr-3 text-sm font-bold flex-shrink-0"
+                                    >2</span
+                                >
+                                Programa a Contratar
+                            </legend>
+                            <div>
+                                <label
+                                    for="programa"
+                                    class="block text-sm font-semibold text-gray-700 mb-2"
+                                    >Programa <span class="text-naranja">*</span
+                                    ></label
+                                >
+                                <select
+                                    id="programa"
+                                    name="programa"
+                                    required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200 bg-white"
+                                >
+                                    <option value=""
+                                        >Seleccione un programa</option
+                                    >
+                                    <option
+                                        value="Diplomado de Formación de Mediadores en Conflictos Familiares"
+                                        >Diplomado en Mediación Familiar</option
+                                    >
+                                    <option
+                                        value="Diplomado en Mediación Escolar"
+                                        >Diplomado en Mediación Escolar</option
+                                    >
+                                    <option
+                                        value="Diplomado en Mediación Laboral"
+                                        >Diplomado en Mediación Laboral</option
+                                    >
+                                    <option value="Otro">Otro programa</option>
+                                </select>
+                            </div>
+                            <div id="otro-programa-wrapper" class="hidden">
+                                <label
+                                    for="otroprograma"
+                                    class="block text-sm font-semibold text-gray-700 mb-2"
+                                    >Especifique el programa <span
+                                        class="text-naranja">*</span
+                                    ></label
+                                >
+                                <input
+                                    type="text"
+                                    id="otroprograma"
+                                    name="otroprograma"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+                                    placeholder="Nombre del programa"
+                                />
+                            </div>
+                        </fieldset>
+
+                        <hr class="border-gray-100" />
+
+                        <!-- Documentos -->
+                        <fieldset class="space-y-5">
+                            <legend
+                                class="text-lg font-bold text-gray-800 mb-1 flex items-center"
+                            >
+                                <span
+                                    class="w-8 h-8 rounded-full bg-celeste/10 text-celeste flex items-center justify-center mr-3 text-sm font-bold flex-shrink-0"
+                                    >3</span
+                                >
+                                Documentos Adjuntos
+                            </legend>
+
+                            <div
+                                class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-800 flex items-start gap-2"
+                            >
+                                <svg
+                                    class="w-5 h-5 flex-shrink-0 mt-0.5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    ><path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    ></path></svg
+                                >
+                                <p>
+                                    Formatos aceptados: PDF, JPG, PNG. Tamaño
+                                    máximo por archivo: 5 MB.
+                                </p>
+                            </div>
+
+                            <div>
+                                <label
+                                    for="cedula"
+                                    class="block text-sm font-semibold text-gray-700 mb-2"
+                                    >Cédula de Identidad <span
+                                        class="text-naranja">*</span
+                                    ></label
+                                >
+                                <div
+                                    class="file-upload-area relative border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-celeste transition-colors cursor-pointer"
+                                    data-for="cedula"
+                                >
+                                    <input
+                                        type="file"
+                                        id="cedula"
+                                        name="cedula"
+                                        required
+                                        accept=".pdf,.jpg,.jpeg,.png"
+                                        class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                    />
+                                    <svg
+                                        class="w-10 h-10 text-gray-400 mx-auto mb-2"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        ><path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                                        ></path></svg
+                                    >
+                                    <p class="text-sm text-gray-600">
+                                        <span class="text-celeste font-semibold"
+                                            >Haz clic</span
+                                        > o arrastra tu archivo aquí
+                                    </p>
+                                    <p
+                                        class="file-name text-xs text-gray-400 mt-1"
+                                    >
+                                        PDF, JPG o PNG — máx. 5 MB
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label
+                                    for="certificado"
+                                    class="block text-sm font-semibold text-gray-700 mb-2"
+                                    >Certificado de Título <span
+                                        class="text-naranja">*</span
+                                    ></label
+                                >
+                                <div
+                                    class="file-upload-area relative border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-celeste transition-colors cursor-pointer"
+                                    data-for="certificado"
+                                >
+                                    <input
+                                        type="file"
+                                        id="certificado"
+                                        name="certificado"
+                                        required
+                                        accept=".pdf,.jpg,.jpeg,.png"
+                                        class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                    />
+                                    <svg
+                                        class="w-10 h-10 text-gray-400 mx-auto mb-2"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        ><path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                                        ></path></svg
+                                    >
+                                    <p class="text-sm text-gray-600">
+                                        <span class="text-celeste font-semibold"
+                                            >Haz clic</span
+                                        > o arrastra tu archivo aquí
+                                    </p>
+                                    <p
+                                        class="file-name text-xs text-gray-400 mt-1"
+                                    >
+                                        PDF, JPG o PNG — máx. 5 MB
+                                    </p>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <hr class="border-gray-100" />
+
+                        <!-- Aceptación -->
+                        <input
+                            type="hidden"
+                            name="form_type"
+                            value="contrato"
+                        />
+                        <input type="hidden" name="timestamp" value="" />
+
+                        <div class="flex items-start space-x-3">
+                            <input
+                                type="checkbox"
+                                id="acepto"
+                                name="acepto"
+                                required
+                                class="mt-1 text-celeste focus:ring-celeste flex-shrink-0"
+                            />
+                            <label
+                                for="acepto"
+                                class="text-sm text-gray-700 leading-relaxed"
+                            >
+                                <strong>Acepto los términos</strong> en conformidad
+                                al artículo 2, letra F y artículo 3 de La Ley 19799
+                                expresado en este contrato. Declaro haber leído el
+                                contrato completo y estar de acuerdo con sus condiciones.
+                                <span class="text-naranja">*</span>
+                            </label>
+                        </div>
+
+                        <button
+                            type="submit"
+                            id="btn-submit"
+                            class="w-full h-14 flex items-center justify-center font-bold text-lg rounded-lg transform hover:scale-[1.02] transition-all duration-200 shadow-lg hover:shadow-xl"
+                        >
+                            <svg
+                                class="w-5 h-5 mr-2"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path></svg
+                            >
+                            Firmar y Enviar Contrato
+                        </button>
+
+                        <div
+                            id="form-success"
+                            class="hidden bg-green-50 border border-green-200 rounded-xl p-6 text-center"
+                        >
+                            <div
+                                class="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-3"
+                            >
+                                <svg
+                                    class="w-8 h-8 text-green-500"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    ><path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path></svg
+                                >
+                            </div>
+                            <h4 class="text-green-800 font-bold text-xl mb-2">
+                                ¡Contrato enviado exitosamente!
+                            </h4>
+                            <p class="text-green-700 text-sm">
+                                Hemos recibido tu contrato firmado y documentos.
+                                Recibirás un correo de confirmación en breve.
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</Layout>
+
+<script>
+    // Programa condicional
+    const progSelect = document.getElementById("programa") as HTMLSelectElement;
+    const otroPW = document.getElementById("otro-programa-wrapper");
+    const otroPI = document.getElementById("otroprograma") as HTMLInputElement;
+    if (progSelect) {
+        progSelect.addEventListener("change", () => {
+            if (progSelect.value === "Otro") {
+                otroPW?.classList.remove("hidden");
+                otroPI?.setAttribute("required", "");
+            } else {
+                otroPW?.classList.add("hidden");
+                otroPI?.removeAttribute("required");
+                if (otroPI) otroPI.value = "";
+            }
+        });
+    }
+
+    // Timestamp
+    const ts = document.querySelector(
+        'input[name="timestamp"]',
+    ) as HTMLInputElement;
+    if (ts) ts.value = new Date().toISOString();
+
+    // RUT formatting
+    const rutInput = document.getElementById("rut") as HTMLInputElement;
+    if (rutInput) {
+        rutInput.addEventListener("input", () => {
+            let val = rutInput.value.replace(/[^0-9kK]/g, "");
+            if (val.length > 1) {
+                const body = val.slice(0, -1);
+                const dv = val.slice(-1).toUpperCase();
+                let formatted = "";
+                for (let i = body.length - 1, count = 0; i >= 0; i--, count++) {
+                    if (count > 0 && count % 3 === 0)
+                        formatted = "." + formatted;
+                    formatted = body[i] + formatted;
+                }
+                rutInput.value = formatted + "-" + dv;
+            }
+        });
+    }
+
+    // File upload visual feedback
+    document
+        .querySelectorAll('.file-upload-area input[type="file"]')
+        .forEach((input) => {
+            input.addEventListener("change", (e) => {
+                const target = e.target as HTMLInputElement;
+                const area = target.closest(".file-upload-area");
+                const nameEl = area?.querySelector(".file-name");
+                if (target.files && target.files[0] && nameEl) {
+                    const file = target.files[0];
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert("El archivo supera el tamaño máximo de 5 MB.");
+                        target.value = "";
+                        return;
+                    }
+                    nameEl.textContent = `✓ ${file.name} (${(file.size / 1024).toFixed(0)} KB)`;
+                    nameEl.classList.remove("text-gray-400");
+                    nameEl.classList.add("text-green-600", "font-medium");
+                    area?.classList.add("border-green-400", "bg-green-50/50");
+                    area?.classList.remove("border-gray-300");
+                }
+            });
+        });
+
+    // Scroll indicator
+    const contractDiv = document.getElementById("contract-text");
+    const scrollInd = document.getElementById("scroll-indicator");
+    if (contractDiv && scrollInd) {
+        contractDiv.addEventListener("scroll", () => {
+            if (
+                contractDiv.scrollTop + contractDiv.clientHeight >=
+                contractDiv.scrollHeight - 50
+            ) {
+                scrollInd.style.display = "none";
+            }
+        });
+    }
+
+    // Form submission
+    const form = document.getElementById("contrato-form") as HTMLFormElement;
+    const submitBtn = document.getElementById(
+        "btn-submit",
+    ) as HTMLButtonElement;
+    const successDiv = document.getElementById("form-success");
+
+    if (form) {
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            successDiv?.classList.add("hidden");
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<svg class="animate-spin w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Enviando...`;
+            }
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch("/send_contrato.php", {
+                    method: "POST",
+                    body: formData,
+                });
+                let result;
+                const text = await response.text();
+                try {
+                    result = JSON.parse(text);
+                } catch {
+                    result = {
+                        status: response.ok ? "success" : "error",
+                        message: text,
+                    };
+                }
+
+                if (
+                    response.ok &&
+                    (result.status === "success" || !result.status)
+                ) {
+                    window.location.href = "/contrato-firmado";
+                } else {
+                    throw new Error(result.message || "Error al enviar");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                if (
+                    confirm(
+                        "Hubo un problema al enviar. ¿Deseas contactarnos por WhatsApp?",
+                    )
+                ) {
+                    window.open(
+                        "https://wa.me/56965620939?text=Hola,%20tuve%20problemas%20al%20enviar%20el%20contrato%20desde%20la%20web",
+                        "_blank",
+                    );
+                }
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>Firmar y Enviar Contrato`;
+                }
+            }
+        });
+    }
+</script>
+
+<style>
+    .contract-content::-webkit-scrollbar {
+        width: 6px;
+    }
+    .contract-content::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 3px;
+    }
+    .contract-content::-webkit-scrollbar-thumb {
+        background: var(--color-celeste);
+        border-radius: 3px;
+    }
+    .contract-content::-webkit-scrollbar-thumb:hover {
+        background: var(--color-turquesa);
+    }
+
+    .inscription-form-container {
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    }
+    .inscription-form-container input:focus,
+    .inscription-form-container select:focus,
+    .inscription-form-container textarea:focus {
+        box-shadow: 0 0 0 3px rgba(126, 197, 214, 0.1);
+    }
+    .inscription-form-container button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none !important;
+    }
+
+    #btn-submit {
+        background: linear-gradient(
+            to right,
+            var(--color-celeste),
+            var(--color-turquesa)
+        ) !important;
+        color: white !important;
+    }
+    #btn-submit:hover {
+        background: linear-gradient(
+            to right,
+            var(--color-turquesa),
+            var(--color-celeste)
+        ) !important;
+    }
+
+    fieldset {
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+    legend {
+        width: 100%;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+    .animate-spin {
+        animation: spin 1s linear infinite;
+    }
+    @keyframes bounce {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-4px);
+        }
+    }
+    .animate-bounce {
+        animation: bounce 1.5s infinite;
+    }
+</style>

@@ -1,0 +1,925 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const regiones = [
+    "Arica y Parinacota",
+    "Tarapacá",
+    "Antofagasta",
+    "Atacama",
+    "Coquimbo",
+    "Valparaíso",
+    "Región Metropolitana de Santiago",
+    "O'Higgins",
+    "Maule",
+    "Ñuble",
+    "Biobío",
+    "La Araucanía",
+    "Los Ríos",
+    "Los Lagos",
+    "Aysén",
+    "Magallanes y la Antártica Chilena",
+];
+---
+
+<Layout
+    title="Paso 1: Inscripción - EMED | Formaliza tu Inscripción"
+    description="Completa el formulario de inscripción para formalizar tu matrícula en nuestros diplomados de mediación familiar, escolar o laboral."
+>
+    <div class="bg-crema min-h-screen">
+        <!-- Hero Section -->
+        <section class="bg-celeste relative overflow-hidden py-16 md:py-24">
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="text-center text-white">
+                    <!-- Step indicator -->
+                    <div
+                        class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-6"
+                    >
+                        <span
+                            class="w-7 h-7 rounded-full bg-white text-celeste font-bold flex items-center justify-center mr-2 text-sm"
+                            >1</span
+                        >
+                        Paso 1 de inscripción
+                    </div>
+
+                    <h1
+                        class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight"
+                    >
+                        Formaliza tu
+                        <span class="relative inline-block">
+                            Inscripción
+                            <svg
+                                class="absolute w-full h-[0.5em] -bottom-2 left-0 text-amarillo"
+                                viewBox="0 0 200 9"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M2.00025 6.99997C25.0003 2.99999 74.5002 -2.00002 198.001 2.50001"
+                                    stroke="currentColor"
+                                    stroke-width="3"
+                                    stroke-linecap="round"></path>
+                            </svg>
+                        </span>
+                    </h1>
+                    <p
+                        class="text-lg md:text-xl mb-4 max-w-2xl mx-auto leading-relaxed opacity-90"
+                    >
+                        Completa el siguiente formulario para iniciar tu proceso
+                        de inscripción en nuestros programas de mediación
+                        profesional.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulario de Inscripción -->
+        <section class="py-10 md:py-16 bg-transparent">
+            <div class="container mx-auto px-4 max-w-3xl">
+                <div
+                    class="inscription-form-container bg-white rounded-2xl shadow-xl p-6 md:p-10"
+                >
+                    <!-- Form Header -->
+                    <div class="text-center mb-8">
+                        <h2
+                            class="text-2xl md:text-3xl font-bold text-gray-800 mb-3"
+                        >
+                            Formulario de Inscripción
+                        </h2>
+                        <p class="text-gray-600 text-base md:text-lg">
+                            Todos los campos marcados con <span
+                                class="text-naranja font-bold">*</span
+                            > son obligatorios
+                        </p>
+                    </div>
+
+                    <form id="inscripcion-form" class="space-y-8" novalidate>
+                        <!-- ========================================== -->
+                        <!-- SECCIÓN: ¿A QUÉ PROGRAMA POSTULA? -->
+                        <!-- ========================================== -->
+                        <fieldset class="space-y-5">
+                            <legend
+                                class="text-lg font-bold text-gray-800 mb-1 flex items-center"
+                            >
+                                <span
+                                    class="w-8 h-8 rounded-full bg-celeste/10 text-celeste flex items-center justify-center mr-3 text-sm font-bold flex-shrink-0"
+                                    >1</span
+                                >
+                                ¿A qué programa postula?
+                            </legend>
+
+                            <div>
+                                <label
+                                    for="postula"
+                                    class="block text-sm font-semibold text-gray-700 mb-2"
+                                >
+                                    Programa <span class="text-naranja">*</span>
+                                </label>
+                                <select
+                                    id="postula"
+                                    name="postula"
+                                    required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200 bg-white"
+                                >
+                                    <option value=""
+                                        >Seleccione un programa</option
+                                    >
+                                    <option
+                                        value="Diplomado en Mediación Familiar"
+                                        >Diplomado en Mediación Familiar</option
+                                    >
+                                    <option
+                                        value="Diplomado en Mediación Escolar"
+                                        >Diplomado en Mediación Escolar</option
+                                    >
+                                    <option
+                                        value="Diplomado en Mediación Laboral"
+                                        >Diplomado en Mediación Laboral</option
+                                    >
+                                    <option
+                                        value="Curso competencias en mediación para la convivencia escolar"
+                                        >Curso competencias en mediación para la
+                                        convivencia escolar</option
+                                    >
+                                    <option
+                                        value="Curso técnicas de resolución de conflictos laborales"
+                                        >Curso técnicas de resolución de
+                                        conflictos laborales</option
+                                    >
+                                    <option
+                                        value="Curso de preparación para el examen teórico para la habilitación en mediación familiar"
+                                        >Curso de preparación para el examen
+                                        teórico para la habilitación en
+                                        mediación familiar</option
+                                    >
+                                    <option
+                                        value="Curso de actualización de conocimientos en mediación familiar"
+                                        >Curso de actualización de conocimientos
+                                        en mediación familiar</option
+                                    >
+                                    <option
+                                        value="Taller de Habilidades: Crisis emocional en las aulas desafíos y competencias para un clima escolar"
+                                        >Taller de Habilidades: Crisis emocional
+                                        en las aulas desafíos y competencias
+                                        para un clima escolar</option
+                                    >
+                                    <option value="Otro">Otro programa</option>
+                                </select>
+                            </div>
+
+                            <!-- Continuación (visible solo para Mediación Familiar) -->
+                            <div id="continuacion-wrapper" class="hidden">
+                                <label
+                                    for="continuacion"
+                                    class="block text-sm font-semibold text-gray-700 mb-2"
+                                >
+                                    Tipo de inscripción <span
+                                        class="text-naranja">*</span
+                                    >
+                                </label>
+                                <select
+                                    id="continuacion"
+                                    name="continuacion"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200 bg-white"
+                                >
+                                    <option value="">Seleccione</option>
+                                    <option value="Primera Inscripción"
+                                        >Primera Inscripción</option
+                                    >
+                                    <option value="Continuación / Reinscripción"
+                                        >Continuación / Reinscripción</option
+                                    >
+                                </select>
+                            </div>
+
+                            <!-- Otro programa (visible solo si elige "Otro") -->
+                            <div id="otro-programa-wrapper" class="hidden">
+                                <label
+                                    for="otroprograma"
+                                    class="block text-sm font-semibold text-gray-700 mb-2"
+                                >
+                                    Especifique el programa <span
+                                        class="text-naranja">*</span
+                                    >
+                                </label>
+                                <input
+                                    type="text"
+                                    id="otroprograma"
+                                    name="otroprograma"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+                                    placeholder="Nombre del programa al que desea postular"
+                                />
+                            </div>
+                        </fieldset>
+
+                        <hr class="border-gray-100" />
+
+                        <!-- ========================================== -->
+                        <!-- SECCIÓN: DATOS PERSONALES -->
+                        <!-- ========================================== -->
+                        <fieldset class="space-y-5">
+                            <legend
+                                class="text-lg font-bold text-gray-800 mb-1 flex items-center"
+                            >
+                                <span
+                                    class="w-8 h-8 rounded-full bg-celeste/10 text-celeste flex items-center justify-center mr-3 text-sm font-bold flex-shrink-0"
+                                    >2</span
+                                >
+                                Datos Personales
+                            </legend>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label
+                                        for="nombre"
+                                        class="block text-sm font-semibold text-gray-700 mb-2"
+                                    >
+                                        Nombre completo <span
+                                            class="text-naranja">*</span
+                                        >
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="nombre"
+                                        name="nombre"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+                                        placeholder="Ej: María José González Pérez"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label
+                                        for="rut"
+                                        class="block text-sm font-semibold text-gray-700 mb-2"
+                                    >
+                                        RUT <span class="text-naranja">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="rut"
+                                        name="rut"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+                                        placeholder="Ej: 12345678-9"
+                                        maxlength="12"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label
+                                        for="telefono"
+                                        class="block text-sm font-semibold text-gray-700 mb-2"
+                                    >
+                                        Teléfono <span class="text-naranja"
+                                            >*</span
+                                        >
+                                    </label>
+                                    <input
+                                        type="tel"
+                                        id="telefono"
+                                        name="telefono"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+                                        placeholder="+56 9 1234 5678"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label
+                                        for="email"
+                                        class="block text-sm font-semibold text-gray-700 mb-2"
+                                    >
+                                        Email <span class="text-naranja">*</span
+                                        >
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+                                        placeholder="tu@email.com"
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label
+                                    for="direccion"
+                                    class="block text-sm font-semibold text-gray-700 mb-2"
+                                >
+                                    Dirección
+                                </label>
+                                <input
+                                    type="text"
+                                    id="direccion"
+                                    name="direccion"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+                                    placeholder="Ej: Av. Providencia 1234, depto 56"
+                                />
+                            </div>
+
+                            <div>
+                                <label
+                                    for="region"
+                                    class="block text-sm font-semibold text-gray-700 mb-2"
+                                >
+                                    Región
+                                </label>
+                                <select
+                                    id="region"
+                                    name="region"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200 bg-white"
+                                >
+                                    <option value=""
+                                        >Seleccione su región</option
+                                    >
+                                    {
+                                        regiones.map((r) => (
+                                            <option value={r}>{r}</option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
+                        </fieldset>
+
+                        <hr class="border-gray-100" />
+
+                        <!-- ========================================== -->
+                        <!-- SECCIÓN: INFORMACIÓN PROFESIONAL -->
+                        <!-- ========================================== -->
+                        <fieldset class="space-y-5">
+                            <legend
+                                class="text-lg font-bold text-gray-800 mb-1 flex items-center"
+                            >
+                                <span
+                                    class="w-8 h-8 rounded-full bg-celeste/10 text-celeste flex items-center justify-center mr-3 text-sm font-bold flex-shrink-0"
+                                    >3</span
+                                >
+                                Información Profesional
+                            </legend>
+
+                            <div>
+                                <label
+                                    for="cargo"
+                                    class="block text-sm font-semibold text-gray-700 mb-2"
+                                >
+                                    Lugar y cargo donde se desempeña actualmente
+                                </label>
+                                <input
+                                    type="text"
+                                    id="cargo"
+                                    name="cargo"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+                                    placeholder="Ej: Hospital Regional - Psicóloga clínica"
+                                />
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label
+                                        for="titulo_profesional"
+                                        class="block text-sm font-semibold text-gray-700 mb-2"
+                                    >
+                                        Título Profesional <span
+                                            class="text-naranja">*</span
+                                        >
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="titulo_profesional"
+                                        name="titulo_profesional"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+                                        placeholder="Ej: Lic. en Psicología"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label
+                                        for="semestres"
+                                        class="block text-sm font-semibold text-gray-700 mb-2"
+                                    >
+                                        N° de Semestres de Formación
+                                    </label>
+                                    <input
+                                        type="number"
+                                        id="semestres"
+                                        name="semestres"
+                                        min="1"
+                                        max="20"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200"
+                                        placeholder="Ej: 10"
+                                    />
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <hr class="border-gray-100" />
+
+                        <!-- ========================================== -->
+                        <!-- SECCIÓN: INTERESES -->
+                        <!-- ========================================== -->
+                        <fieldset class="space-y-5">
+                            <legend
+                                class="text-lg font-bold text-gray-800 mb-1 flex items-center"
+                            >
+                                <span
+                                    class="w-8 h-8 rounded-full bg-celeste/10 text-celeste flex items-center justify-center mr-3 text-sm font-bold flex-shrink-0"
+                                    >4</span
+                                >
+                                Intereses
+                            </legend>
+
+                            <div>
+                                <label
+                                    for="interes_personal"
+                                    class="block text-sm font-semibold text-gray-700 mb-2"
+                                >
+                                    Interés personal por formarse como mediador
+                                </label>
+                                <textarea
+                                    id="interes_personal"
+                                    name="interes_personal"
+                                    rows="3"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200 resize-none"
+                                    placeholder="Cuéntanos qué te motiva a formarte en esta área..."
+                                ></textarea>
+                            </div>
+
+                            <div>
+                                <label
+                                    for="expectativas"
+                                    class="block text-sm font-semibold text-gray-700 mb-2"
+                                >
+                                    Expectativas al cursar nuestro
+                                    curso/diplomado
+                                </label>
+                                <textarea
+                                    id="expectativas"
+                                    name="expectativas"
+                                    rows="3"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-celeste focus:border-transparent transition-all duration-200 resize-none"
+                                    placeholder="¿Qué esperas obtener de este programa?"
+                                ></textarea>
+                            </div>
+                        </fieldset>
+
+                        <hr class="border-gray-100" />
+
+                        <!-- Campos ocultos -->
+                        <input
+                            type="hidden"
+                            name="form_type"
+                            value="inscripcion"
+                        />
+                        <input type="hidden" name="timestamp" value="" />
+
+                        <!-- Términos y condiciones -->
+                        <div class="flex items-start space-x-3">
+                            <input
+                                type="checkbox"
+                                id="terminos"
+                                name="terminos"
+                                required
+                                class="mt-1 text-celeste focus:ring-celeste flex-shrink-0"
+                            />
+                            <label
+                                for="terminos"
+                                class="text-sm text-gray-600 leading-relaxed"
+                            >
+                                Declaro que la información proporcionada es
+                                verídica y acepto que EMED me contacte para
+                                continuar con el proceso de inscripción. Acepto
+                                la
+                                <a
+                                    href="/politica-de-privacidad"
+                                    class="text-celeste hover:underline"
+                                    >Política de Privacidad</a
+                                >.
+                                <span class="text-naranja">*</span>
+                            </label>
+                        </div>
+
+                        <!-- Botón de envío -->
+                        <button
+                            type="submit"
+                            id="btn-submit"
+                            class="w-full h-14 flex items-center justify-center bg-gradient-to-r from-celeste to-turquesa text-white font-bold text-lg rounded-lg hover:from-turquesa hover:to-celeste transform hover:scale-[1.02] transition-all duration-200 shadow-lg hover:shadow-xl"
+                        >
+                            <svg
+                                class="w-5 h-5 mr-2"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                            Enviar Inscripción
+                        </button>
+
+                        <!-- Mensaje de éxito -->
+                        <div
+                            id="form-success"
+                            class="hidden bg-green-50 border border-green-200 rounded-xl p-6 text-center"
+                        >
+                            <div class="flex items-center justify-center mb-3">
+                                <div
+                                    class="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center"
+                                >
+                                    <svg
+                                        class="w-8 h-8 text-green-500"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h4 class="text-green-800 font-bold text-xl mb-2">
+                                ¡Inscripción enviada exitosamente!
+                            </h4>
+                            <p class="text-green-700 text-sm leading-relaxed">
+                                Hemos recibido tu formulario de inscripción.
+                                Recibirás un correo de confirmación en breve.<br
+                                />
+                                Nuestro equipo revisará tu solicitud y te contactará
+                                para continuar con el proceso.
+                            </p>
+                        </div>
+
+                        <!-- Mensaje de error -->
+                        <div
+                            id="form-error"
+                            class="hidden bg-red-50 border border-red-200 rounded-xl p-6 text-center"
+                        >
+                            <div class="flex items-center justify-center mb-3">
+                                <div
+                                    class="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center"
+                                >
+                                    <svg
+                                        class="w-8 h-8 text-red-500"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h4 class="text-red-800 font-bold text-lg mb-2">
+                                Error al enviar la inscripción
+                            </h4>
+                            <p class="text-red-700 text-sm" id="error-message">
+                                Hubo un problema al procesar tu solicitud. Por
+                                favor, intenta nuevamente.
+                            </p>
+                        </div>
+                    </form>
+
+                    <!-- WhatsApp alternativo -->
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <div class="text-center">
+                            <p class="text-gray-600 text-sm mb-4">
+                                ¿Necesitas ayuda con el formulario?
+                            </p>
+                            <a
+                                href="https://wa.me/56965620939?text=Hola,%20necesito%20ayuda%20con%20el%20formulario%20de%20inscripción%20del%20Paso%201"
+                                target="_blank"
+                                class="whatsapp-btn inline-flex items-center px-5 py-3 bg-green-500 text-white font-semibold text-sm rounded-lg hover:bg-green-600 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                            >
+                                <svg
+                                    class="w-5 h-5 mr-2"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                                    ></path>
+                                </svg>
+                                Escribir por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</Layout>
+
+<script>
+    // Conditional fields logic
+    const postulaSelect = document.getElementById(
+        "postula",
+    ) as HTMLSelectElement;
+    const continuacionWrapper = document.getElementById("continuacion-wrapper");
+    const otroProgramaWrapper = document.getElementById(
+        "otro-programa-wrapper",
+    );
+    const continuacionSelect = document.getElementById(
+        "continuacion",
+    ) as HTMLSelectElement;
+    const otroProgramaInput = document.getElementById(
+        "otroprograma",
+    ) as HTMLInputElement;
+
+    if (postulaSelect) {
+        postulaSelect.addEventListener("change", () => {
+            const val = postulaSelect.value;
+
+            // Continuación: solo visible para Mediación Familiar
+            if (val === "Diplomado en Mediación Familiar") {
+                continuacionWrapper?.classList.remove("hidden");
+                continuacionSelect?.setAttribute("required", "");
+            } else {
+                continuacionWrapper?.classList.add("hidden");
+                continuacionSelect?.removeAttribute("required");
+                if (continuacionSelect) continuacionSelect.value = "";
+            }
+
+            // Otro programa
+            if (val === "Otro") {
+                otroProgramaWrapper?.classList.remove("hidden");
+                otroProgramaInput?.setAttribute("required", "");
+            } else {
+                otroProgramaWrapper?.classList.add("hidden");
+                otroProgramaInput?.removeAttribute("required");
+                if (otroProgramaInput) otroProgramaInput.value = "";
+            }
+        });
+    }
+
+    // Set timestamp
+    const timestampField = document.querySelector(
+        'input[name="timestamp"]',
+    ) as HTMLInputElement;
+    if (timestampField) {
+        timestampField.value = new Date().toISOString();
+    }
+
+    // RUT formatting
+    const rutInput = document.getElementById("rut") as HTMLInputElement;
+    if (rutInput) {
+        rutInput.addEventListener("input", () => {
+            let val = rutInput.value.replace(/[^0-9kK]/g, "");
+            if (val.length > 1) {
+                const body = val.slice(0, -1);
+                const dv = val.slice(-1).toUpperCase();
+                // Format with dots
+                let formatted = "";
+                for (let i = body.length - 1, count = 0; i >= 0; i--, count++) {
+                    if (count > 0 && count % 3 === 0)
+                        formatted = "." + formatted;
+                    formatted = body[i] + formatted;
+                }
+                rutInput.value = formatted + "-" + dv;
+            }
+        });
+    }
+
+    // Form submission
+    const form = document.getElementById("inscripcion-form") as HTMLFormElement;
+    const submitBtn = document.getElementById(
+        "btn-submit",
+    ) as HTMLButtonElement;
+    const successDiv = document.getElementById("form-success");
+    const errorDiv = document.getElementById("form-error");
+    const errorMessage = document.getElementById("error-message");
+    const whatsappNumber = "56965620939";
+
+    if (form) {
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            // Hide previous messages
+            successDiv?.classList.add("hidden");
+            errorDiv?.classList.add("hidden");
+
+            // Disable button
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `
+          <svg class="animate-spin w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Enviando...
+        `;
+            }
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch("/send_inscripcion.php", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                let result;
+                const text = await response.text();
+                try {
+                    result = JSON.parse(text);
+                } catch {
+                    result = {
+                        status: response.ok ? "success" : "error",
+                        message: text,
+                    };
+                }
+
+                if (
+                    response.ok &&
+                    (result.status === "success" || !result.status)
+                ) {
+                    // Success
+                    form.style.display = "none";
+                    successDiv?.classList.remove("hidden");
+                    // Scroll to success message
+                    successDiv?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center",
+                    });
+                } else {
+                    throw new Error(
+                        result.message || "Error al enviar la inscripción",
+                    );
+                }
+            } catch (error) {
+                console.error("Error enviando inscripción:", error);
+
+                // Show error with WhatsApp fallback
+                if (
+                    confirm(
+                        "Hubo un problema al enviar el formulario. ¿Deseas enviar la información por WhatsApp?",
+                    )
+                ) {
+                    const formData = new FormData(form);
+                    const msg = formatWhatsAppMessage(formData);
+                    window.open(
+                        `https://wa.me/${whatsappNumber}?text=${msg}`,
+                        "_blank",
+                    );
+                }
+
+                // Re-enable button
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            Enviar Inscripción
+          `;
+                }
+            }
+        });
+    }
+
+    function formatWhatsAppMessage(formData: FormData) {
+        let msg = `*Nueva Inscripción - Paso 1*\n\n`;
+
+        const programa = formData.get("postula");
+        const continuacion = formData.get("continuacion");
+        const otroPrograma = formData.get("otroprograma");
+
+        msg += `*PROGRAMA:* ${programa}\n`;
+        if (continuacion) msg += `*Tipo:* ${continuacion}\n`;
+        if (otroPrograma) msg += `*Otro programa:* ${otroPrograma}\n`;
+
+        msg += `\n*DATOS PERSONALES*\n`;
+        const nombre = formData.get("nombre");
+        const rut = formData.get("rut");
+        const telefono = formData.get("telefono");
+        const email = formData.get("email");
+        const direccion = formData.get("direccion");
+        const region = formData.get("region");
+
+        if (nombre) msg += `Nombre: ${nombre}\n`;
+        if (rut) msg += `RUT: ${rut}\n`;
+        if (telefono) msg += `Teléfono: ${telefono}\n`;
+        if (email) msg += `Email: ${email}\n`;
+        if (direccion) msg += `Dirección: ${direccion}\n`;
+        if (region) msg += `Región: ${region}\n`;
+
+        msg += `\n*INFORMACIÓN PROFESIONAL*\n`;
+        const cargo = formData.get("cargo");
+        const titulo = formData.get("titulo_profesional");
+        const semestres = formData.get("semestres");
+
+        if (cargo) msg += `Cargo: ${cargo}\n`;
+        if (titulo) msg += `Título: ${titulo}\n`;
+        if (semestres) msg += `Semestres: ${semestres}\n`;
+
+        msg += `\n*INTERESES*\n`;
+        const interes = formData.get("interes_personal");
+        const expectativas = formData.get("expectativas");
+
+        if (interes) msg += `Interés: ${interes}\n`;
+        if (expectativas) msg += `Expectativas: ${expectativas}\n`;
+
+        return encodeURIComponent(msg);
+    }
+</script>
+
+<style>
+    .inscription-form-container {
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    }
+
+    .inscription-form-container input:focus,
+    .inscription-form-container select:focus,
+    .inscription-form-container textarea:focus {
+        box-shadow: 0 0 0 3px rgba(126, 197, 214, 0.1);
+    }
+
+    .inscription-form-container button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none !important;
+    }
+
+    /* Forzar colores correctos en botones */
+    .inscription-form-container a[class*="bg-"],
+    .inscription-form-container button[class*="bg-"] {
+        color: white !important;
+        text-decoration: none !important;
+    }
+
+    .inscription-form-container a[class*="bg-"]:hover,
+    .inscription-form-container button[class*="bg-"]:hover {
+        color: white !important;
+        text-decoration: none !important;
+    }
+
+    /* Submit button — gradiente explícito (fix Tailwind custom colors) */
+    #btn-submit {
+        background: linear-gradient(
+            to right,
+            var(--color-celeste),
+            var(--color-turquesa)
+        ) !important;
+        color: white !important;
+    }
+
+    #btn-submit:hover {
+        background: linear-gradient(
+            to right,
+            var(--color-turquesa),
+            var(--color-celeste)
+        ) !important;
+    }
+
+    /* WhatsApp button */
+    .whatsapp-btn {
+        background-color: #22c55e !important;
+        color: white !important;
+    }
+
+    .whatsapp-btn:hover {
+        background-color: #16a34a !important;
+    }
+
+    fieldset {
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    legend {
+        width: 100%;
+    }
+
+    /* smooth scroll */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Animation for spinner */
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .animate-spin {
+        animation: spin 1s linear infinite;
+    }
+</style>
