@@ -1,11 +1,13 @@
 # build output
 dist/
+deploys/
 
 # generated types
 .astro/
 
 # dependencies
 node_modules/
+
 
 # logs
 npm-debug.log*
@@ -17,8 +19,13 @@ pnpm-debug.log*
 .env
 .env.production
 
+# SMTP credentials (sensitive)
+smtp_config.php
+public/smtp_config.php
+
 # macOS-specific files
 .DS_Store
 
 # jetbrains setting folder
 .idea/
+nul

@@ -1,0 +1,103 @@
+---
+interface Props {
+  titulo?: string;
+  descripcion?: string;
+  items?: {
+    titulo: string;
+    items: string[];
+    color: "celeste" | "turquesa" | "purple" | "naranja";
+  }[];
+  className?: string;
+}
+
+const {
+  titulo = "Metodología 100% Online",
+  descripcion = "Programa diseñado para adaptarse a tu ritmo, con clases asincrónicas disponibles 24/7 y sesiones sincrónicas enfocadas en la práctica.",
+  items = [
+    {
+      titulo: "Aprendizaje Flexible",
+      items: [
+        "Contenido disponible 24/7",
+        "Avanza a tu propio ritmo",
+        "Acceso desde cualquier dispositivo",
+        "Sesiones grabadas",
+      ],
+      color: "celeste",
+    },
+    {
+      titulo: "Enfoque Práctico",
+      items: [
+        "Análisis de casos reales",
+        "Talleres de aplicación",
+        "Foros de debate",
+        "Feedback personalizado",
+      ],
+      color: "turquesa",
+    },
+  ],
+  className = "",
+} = Astro.props;
+
+const getColorClasses = (color: string) => {
+  switch (color) {
+    case "celeste":
+      return "from-celeste/10 to-celeste/5 border-celeste/20 text-celeste";
+    case "turquesa":
+      return "from-turquesa/10 to-turquesa/5 border-turquesa/20 text-turquesa";
+    case "purple":
+      return "from-purple-100 to-blue-100 border-purple-200 text-purple-600";
+    case "naranja":
+      return "from-naranja/10 to-naranja/5 border-naranja/20 text-naranja";
+    default:
+      return "from-celeste/10 to-celeste/5 border-celeste/20 text-celeste";
+  }
+};
+---
+
+<div class={`metodologia-online ${className}`}>
+  <h2 class="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight mb-3">
+    {titulo}
+  </h2>
+
+  <p
+    class="text-gray-600 leading-relaxed text-lg mb-6"
+    set:html={descripcion}
+  />
+
+  <div class="grid md:grid-cols-2 gap-6">
+    {
+      items.map((item) => {
+        const colorClass = getColorClasses(item.color);
+        const parts = colorClass.split(" ");
+        const bgBorder = parts.slice(0, 3).join(" "); // gradient and border
+        const textColor = parts[3]; // text color
+
+        return (
+          <div class={`bg-gradient-to-br ${bgBorder} border rounded-lg p-4`}>
+            <h3 class="font-bold text-gray-800 mb-2 flex items-center">
+              <svg
+                class={`w-5 h-5 ${textColor} mr-2`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 8l2 2 4-4"
+                />
+              </svg>
+              {item.titulo}
+            </h3>
+            <ul class="text-sm text-gray-600 space-y-1">
+              {item.items.map((subitem) => (
+                <li>• {subitem}</li>
+              ))}
+            </ul>
+          </div>
+        );
+      })
+    }
+  </div>
+</div>

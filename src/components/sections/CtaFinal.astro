@@ -1,0 +1,305 @@
+---
+interface Props {
+    pagina:
+        | "index"
+        | "nosotros"
+        | "mediacion"
+        | "empresas"
+        | "admision"
+        | "financiamiento"
+        | "cursos"
+        | "diplomados";
+    clase?: string;
+}
+
+type IconType =
+    | "catalogue"
+    | "academic"
+    | "start"
+    | "proposal"
+    | "enroll"
+    | "finance"
+    | "register";
+
+const { pagina, clase = "" } = Astro.props;
+
+// Contenido contextual por página
+const contenidoPorPagina = {
+    index: {
+        titulo: "Da el primer paso hacia una sociedad más dialogante",
+        descripcion:
+            "La mediación es más que una profesión: es una forma de contribuir a la construcción de paz social. Únete a nuestra comunidad de mediadores y sé parte del cambio.",
+        ctaPrincipal: {
+            texto: "Explorar Catálogo de Programas",
+            url: "/diplomados",
+            icono: "catalogue" as IconType,
+        },
+        ctaSecundario: {
+            texto: "Conoce Nuestra Metodología",
+            url: "/nosotros",
+        },
+    },
+    nosotros: {
+        titulo: "¿Te identificas con nuestra visión?",
+        descripcion:
+            "Si compartes nuestra pasión por el diálogo y la transformación social, queremos conocerte. Descubre cómo nuestros programas pueden potenciar tu impacto profesional.",
+        ctaPrincipal: {
+            texto: "Ver Programas de Formación",
+            url: "/diplomados",
+            icono: "academic" as IconType,
+        },
+        ctaSecundario: {
+            texto: "Agenda una Asesoría Gratuita",
+            url: "/contacto",
+        },
+    },
+    mediacion: {
+        titulo: "¿Listo para convertirte en facilitador de diálogos constructivos?",
+        descripcion:
+            "Ahora que conoces la esencia de la mediación, es el momento perfecto para dar el siguiente paso. Fórmate con quienes llevan más de 20 años transformando conflictos en oportunidades.",
+        ctaPrincipal: {
+            texto: "Comenzar mi Formación",
+            url: "/diplomados",
+            icono: "start" as IconType,
+        },
+        ctaSecundario: {
+            texto: "Solicitar Más Información",
+            url: "/contacto",
+        },
+    },
+    empresas: {
+        titulo: "Transforma el clima laboral de tu organización",
+        descripcion:
+            "Ya conoces los beneficios de nuestros programas corporativos. El siguiente paso es diseñar juntos una solución personalizada para los desafíos específicos de tu empresa.",
+        ctaPrincipal: {
+            texto: "Solicitar Propuesta Corporativa",
+            url: "/contacto",
+            icono: "proposal" as IconType,
+        },
+        ctaSecundario: {
+            texto: "Descargar Catálogo Empresarial",
+            url: "/diplomados",
+        },
+    },
+    admision: {
+        titulo: "El momento de actuar es ahora",
+        descripcion:
+            "Los cupos son limitados y cada año miles de profesionales transforman su carrera con EMED. No pospongas tu crecimiento profesional: da el primer paso hoy mismo.",
+        ctaPrincipal: {
+            texto: "Solicitar Admisión",
+            url: "/contacto",
+            icono: "enroll" as IconType,
+        },
+        ctaSecundario: {
+            texto: "Consultar Financiamiento",
+            url: "/contacto",
+        },
+    },
+    financiamiento: {
+        titulo: "Tu inversión en el futuro comienza hoy",
+        descripcion:
+            "Ya conoces nuestras opciones de financiamiento. Ahora es el momento de tomar acción: contáctanos y diseñaremos juntos el plan perfecto para tu situación.",
+        ctaPrincipal: {
+            texto: "Solicitar Evaluación Financiera",
+            url: "/contacto",
+            icono: "finance" as IconType,
+        },
+        ctaSecundario: {
+            texto: "Ver Todos los Programas",
+            url: "/diplomados",
+        },
+    },
+    cursos: {
+        titulo: "Especialízate y diferénciate en el mercado",
+        descripcion:
+            "Los cursos de especialización son el complemento perfecto para tu desarrollo profesional. Elige el tuyo y comienza a destacarte en tu área de práctica.",
+        ctaPrincipal: {
+            texto: "Inscribirme en un Curso",
+            url: "/contacto",
+            icono: "register" as IconType,
+        },
+        ctaSecundario: {
+            texto: "Ver Diplomados Completos",
+            url: "/diplomados",
+        },
+    },
+    diplomados: {
+        titulo: "¿Listo para transformar tu carrera profesional?",
+        descripcion:
+            "Nuestros asesores académicos te ayudarán a elegir el diplomado perfecto según tu experiencia. Recibe orientación personalizada sin compromiso.",
+        ctaPrincipal: {
+            texto: "Hablar con un Asesor",
+            url: "/contacto",
+            icono: "academic" as IconType,
+        },
+        ctaSecundario: {
+            texto: "Consultar Financiamiento",
+            url: "/contacto",
+        },
+    },
+};
+
+const contenido = contenidoPorPagina[pagina];
+
+// Iconos
+const iconos = {
+    catalogue: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>`,
+    academic: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>`,
+    start: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>`,
+    proposal: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>`,
+    enroll: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>`,
+    finance: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path></svg>`,
+    register: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>`,
+};
+---
+
+<section
+    class={`cta-final py-16 md:py-20 bg-crema relative overflow-hidden ${clase}`}
+>
+    <!-- Decoradores de fondo sutiles -->
+    <div
+        class="absolute top-0 left-0 w-96 h-96 bg-celeste/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"
+    >
+    </div>
+    <div
+        class="absolute bottom-0 right-0 w-96 h-96 bg-naranja/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"
+    >
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+            <!-- Título -->
+            <h2
+                class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6 leading-tight"
+            >
+                {contenido.titulo}
+            </h2>
+
+            <!-- Descripción -->
+            <p
+                class="text-lg md:text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed"
+            >
+                {contenido.descripcion}
+            </p>
+
+            <!-- Botones de acción -->
+            <div
+                class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+            >
+                <a
+                    href={contenido.ctaPrincipal.url}
+                    class="cta-button-primary inline-flex items-center justify-center px-8 py-4 bg-celeste text-white font-bold text-lg rounded-xl hover:bg-turquesa transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl group"
+                >
+                    <span
+                        set:html={iconos[
+                            contenido.ctaPrincipal.icono as keyof typeof iconos
+                        ]}
+                        class="mr-3 group-hover:rotate-12 transition-transform"
+                    />
+                    {contenido.ctaPrincipal.texto}
+                </a>
+
+                <a
+                    href={contenido.ctaSecundario.url}
+                    class="inline-flex items-center justify-center px-8 py-4 bg-transparent font-bold text-lg rounded-xl hover:bg-turquesa hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
+                    style="color: #00A6B1 !important; border: 2px solid #00A6B1;"
+                >
+                    {contenido.ctaSecundario.texto}
+                </a>
+            </div>
+
+            <!-- Elementos de confianza (chips) -->
+            <div class="pt-6 border-t border-gray-300">
+                <div
+                    class="flex flex-wrap justify-center items-center gap-4 md:gap-6"
+                >
+                    <div
+                        class="flex items-center bg-white px-4 py-2 rounded-full shadow-sm"
+                    >
+                        <svg
+                            class="w-5 h-5 mr-2 text-verde"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm font-semibold text-gray-700"
+                            >+20 años de experiencia</span
+                        >
+                    </div>
+                    <div
+                        class="flex items-center bg-white px-4 py-2 rounded-full shadow-sm"
+                    >
+                        <svg
+                            class="w-5 h-5 mr-2 text-verde"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm font-semibold text-gray-700"
+                            >+6000 graduados</span
+                        >
+                    </div>
+                    <div
+                        class="flex items-center bg-white px-4 py-2 rounded-full shadow-sm"
+                    >
+                        <svg
+                            class="w-5 h-5 mr-2 text-verde"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm font-semibold text-gray-700"
+                            >Certificación NCh2728</span
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .cta-button-primary {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-button-primary::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translate(-50%, -50%);
+        transition:
+            width 0.6s,
+            height 0.6s;
+    }
+
+    .cta-button-primary:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+
+    @media (max-width: 640px) {
+        .cta-button-primary,
+        .cta-button-primary + a {
+            width: 100%;
+        }
+    }
+</style>

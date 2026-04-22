@@ -4,23 +4,33 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/copy-assets.mjs",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "node scripts/deploy-ftp.mjs",
+    "deploy:full": "npm run build && npm run deploy",
+    "deploy:zip": "node scripts/deploy-zip.mjs",
+    "prepare:assets": "node scripts/copy-assets.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
     "@fontsource-variable/inter": "^5.2.6",
+    "@fontsource/ubuntu": "^5.2.8",
     "@tailwindcss/vite": "^4.1.11",
     "@types/d3": "^7.4.3",
     "@types/react": "^19.1.8",
-    "astro": "^5.10.1",
+    "astro": "5.10.1",
     "d3": "^7.9.0",
+    "heic-convert": "^2.1.0",
+    "jpeg-js": "^0.4.4",
     "leaflet": "^1.9.4",
     "react": "^19.1.0",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
-    "@types/leaflet": "^1.9.19"
+    "@types/leaflet": "^1.9.19",
+    "archiver": "^7.0.1",
+    "basic-ftp": "^5.0.5"
   }
 }

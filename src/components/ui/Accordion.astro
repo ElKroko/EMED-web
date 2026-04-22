@@ -1,0 +1,159 @@
+---
+export interface AccordionItem {
+  title: string;
+  content: string;
+  isOpen?: boolean;
+  data?: any;
+  id?: string;
+}
+
+export interface Props {
+  items: AccordionItem[];
+  className?: string;
+  allowMultiple?: boolean;
+}
+
+const { items, className = "", allowMultiple = false} = Astro.props;
+---
+
+<div class={`accordion-container ${className}`} data-allow-multiple={allowMultiple}>
+  {items.map((item, index) => (
+    <div class="accordion-item bg-white rounded-xl border border-gray-200 overflow-hidden mb-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+      <button
+        class="accordion-trigger w-full text-left p-6 cursor-pointer flex items-center justify-between hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors duration-200"
+        aria-expanded={item.isOpen ? "true" : "false"}
+        aria-controls={`accordion-content-${index}`}
+      >
+        <span class="text-lg font-semibold text-gray-800 pr-4">{item.title}</span>
+        <svg
+          class={`accordion-icon w-6 h-6 text-celeste flex-shrink-0 transition-transform duration-300 ${item.isOpen ? 'rotate-180' : ''}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </button>
+      <div
+        id={`accordion-content-${index}`}
+        class={`accordion-content ${item.isOpen ? '' : 'hidden'}`}
+        role="region"
+        data-items={item.data ? JSON.stringify(item.data) : null}
+      >
+        <div class="px-6 pb-6 pt-2 text-gray-600 leading-relaxed prose prose-sm max-w-none accordion-content-inner">
+          {item.content || ''}
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  class Accordion {
+    constructor(element) {
+      this.container = element;
+      this.triggers = element.querySelectorAll('.accordion-trigger');
+      this.allowMultiple = element.dataset.allowMultiple === 'true';
+      this.init();
+    }
+
+    init() {
+      this.triggers.forEach(trigger => {
+        trigger.addEventListener('click', () => this.toggleItem(trigger));
+      });
+    }
+
+    toggleItem(trigger) {
+      const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+      const contentId = trigger.getAttribute('aria-controls');
+      const content = document.getElementById(contentId);
+      const icon = trigger.querySelector('.accordion-icon');
+
+      if (!this.allowMultiple && !isExpanded) {
+        this.closeAll();
+      }
+
+      if (isExpanded) {
+        this.close(trigger, content, icon);
+      } else {
+        this.open(trigger, content, icon);
+      }
+    }
+
+    open(trigger, content, icon) {
+      trigger.setAttribute('aria-expanded', 'true');
+      content.classList.remove('hidden');
+      // Small animation for content appearance could rely on CSS transition of max-height if implemented
+      // For now, relies on 'hidden' class toggle
+      icon.classList.add('rotate-180');
+    }
+
+    close(trigger, content, icon) {
+      trigger.setAttribute('aria-expanded', 'false');
+      content.classList.add('hidden');
+      icon.classList.remove('rotate-180');
+    }
+
+    closeAll() {
+      this.triggers.forEach(trigger => {
+        const contentId = trigger.getAttribute('aria-controls');
+        const content = document.getElementById(contentId);
+        const icon = trigger.querySelector('.accordion-icon');
+        this.close(trigger, content, icon);
+      });
+    }
+  }
+
+  // Initialize accordions
+  document.addEventListener('DOMContentLoaded', () => {
+    // First, render content from JSON data
+    const contentDivs = document.querySelectorAll('.accordion-content');
+    contentDivs.forEach(div => {
+      const itemsData = div.getAttribute('data-items');
+      const innerDiv = div.querySelector('.accordion-content-inner');
+
+      if (itemsData && innerDiv && innerDiv.innerHTML.trim() === '') {
+        try {
+          const items = JSON.parse(itemsData);
+          const ul = document.createElement('ul');
+          ul.className = 'space-y-2';
+
+          items.forEach(itemText => {
+            const li = document.createElement('li');
+            li.className = 'flex items-start';
+
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('class', 'w-4 h-4 text-celeste mt-1 mr-3 flex-shrink-0');
+            svg.setAttribute('fill', 'none');
+            svg.setAttribute('stroke', 'currentColor');
+            svg.setAttribute('viewBox', '0 0 24 24');
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('stroke-linecap', 'round');
+            path.setAttribute('stroke-linejoin', 'round');
+            path.setAttribute('stroke-width', '2');
+            path.setAttribute('d', 'M5 13l4 4L19 7');
+
+            svg.appendChild(path);
+
+            const span = document.createElement('span');
+            span.className = 'text-gray-600';
+            span.textContent = itemText;
+
+            li.appendChild(svg);
+            li.appendChild(span);
+            ul.appendChild(li);
+          });
+
+          innerDiv.appendChild(ul);
+        } catch (e) {
+          console.error('Error parsing accordion data:', e);
+        }
+      }
+    });
+
+    // Then initialize accordions
+    const accordions = document.querySelectorAll('.accordion-container');
+    accordions.forEach(acc => new Accordion(acc));
+  });
+</script>

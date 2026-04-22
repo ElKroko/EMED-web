@@ -1,6 +1,6 @@
 ---
-import BenefitCard from '../ui/BenefitCard.astro';
-import MidHeroSVG from './MidHeroSVG.astro';
+import BenefitCard from "../ui/BenefitCard.astro";
+import MidHeroSVG from "./MidHeroSVG.astro";
 
 export interface Props {
   className?: string;
@@ -9,97 +9,112 @@ export interface Props {
   midHeroSVGColor2?: string;
 }
 
-const { 
+const {
   className = "",
   showMidHeroSVG = true,
   midHeroSVGColor1 = "var(--color-amarillo)",
-  midHeroSVGColor2 = "var(--color-naranja)"
+  midHeroSVGColor2 = "var(--color-naranja)",
 } = Astro.props;
 
 const benefits = [
   {
     title: "Habilidades en Demanda",
-    text: "Desarrolla competencias altamente valoradas en el mercado laboral actual, donde la resolución pacífica de conflictos es fundamental.",
-    icon: "📈"
+    text: "Formarte como mediador es una gran decisión: fortalecerás <strong>habilidades socioemocionales</strong> —escucha activa, comunicación clara, gestión de conflictos y empatía— que hoy <strong>el mercado valora muchísimo</strong>. Estas competencias se convierten en <strong>ventajas profesionales concretas</strong> y te abren más y mejores oportunidades laborales.",
+    icon: "📈",
   },
   {
     title: "Crecimiento Personal",
-    text: "Fortalece tu inteligencia emocional, comunicación efectiva y capacidad de liderazgo a través de la práctica de la mediación.",
-    icon: "🌱"
+    text: "Ser mediador impulsa tu <strong>crecimiento personal</strong>. Aprendes a escucharte y a escuchar a otros, <strong>gestionas tus emociones con más calma</strong>, tomas mejores decisiones bajo presión y construyes <strong>relaciones más sanas</strong>. En el camino, ganas autoconfianza y una mirada más empática y madura de los conflictos de la vida.",
+    icon: "🌱",
   },
   {
-    title: "Impacto Social Positivo",
-    text: "Contribuye a construir una sociedad más pacífica y colaborativa, ayudando a resolver conflictos de manera constructiva.",
-    icon: "🤝"
+    title: "Impacto Social Real",
+    text: "Promueve el <strong>diálogo donde antes había confrontación</strong>, previene escaladas de violencia y ayuda a que familias, escuelas y equipos de trabajo acuerden <strong>soluciones justas y sostenibles</strong>. Con cada conflicto bien gestionado, se fortalecen la confianza, la convivencia y el sentido de comunidad. En simple: <strong>formas puentes, no muros</strong>.",
+    icon: "🤝",
   },
   {
     title: "Versatilidad Profesional",
-    text: "Aplica tus conocimientos en múltiples áreas: familiar, laboral, escolar, comunitaria y empresarial.",
-    icon: "🎯"
-  }
+    text: "La mediación te abre puertas en <strong>diversos ámbitos</strong>: familiar, laboral, escolar, comunitario y empresarial; con las mismas herramientas resuelves conflictos y sumas valor donde vayas. Además, puedes <strong>ejercer 100% online</strong>, manejar tu agenda y usarla como complemento o como una <strong>nueva alternativa laboral</strong>.",
+    icon: "🎯",
+  },
 ];
 
-const lifestyleImage = "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80";
+import lifestyleImage from "../../assets/images/pages/sala-de-clases.webp";
 ---
 
-<section class={`why-study-mediation relative py-20 bg-crema ${className}`}>
-  
+<section
+  class={`why-study-mediation relative py-12 md:py-20 bg-crema ${className}`}
+>
   <!-- MidHero SVG Background -->
-  {showMidHeroSVG && (
-    <div class="absolute z-0" style="top: -50%; left: 0; right: 0; height: 200%; overflow: visible;">
-      <MidHeroSVG 
-        color1={midHeroSVGColor1}
-        color2={midHeroSVGColor2}
-        className="mid-hero-svg-bg"
-        zIndex={1}
-      />
-    </div>
-  )}
-  
+  {
+    showMidHeroSVG && (
+      <div
+        class="absolute z-0"
+        style="top: -50%; left: 0; right: 0; height: 200%; overflow: visible;"
+      >
+        <MidHeroSVG
+          color1={midHeroSVGColor1}
+          color2={midHeroSVGColor2}
+          className="mid-hero-svg-bg"
+          zIndex={1}
+        />
+      </div>
+    )
+  }
+
   <div class="container mx-auto px-4 relative z-10">
-    
     <!-- Título de la sección -->
     <div class="text-center mb-16 relative z-20">
-      <h2 class="text-center text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6">
-        ¿Por qué estudiar mediación?
+      <h2
+        class="text-center text-3xl md:text-5xl lg:text-6xl font-bold text-black mb-6"
+      >
+        ¿Por qué estudiar mediación junto a nosotros?
       </h2>
-      <p class="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-        Descubre las ventajas de convertirte en un mediador profesional certificado
+      <p
+        class="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed"
+      >
+        Descubre las ventajas de convertirte en un mediador profesional
+        certificado
       </p>
     </div>
 
     <!-- Grid de contenido -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch relative z-20">
-      
+    <div
+      class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch relative z-20"
+    >
       <!-- Imagen lifestyle (2/3 del grid en desktop) -->
       <div class="lg:col-span-1 order-2 lg:order-1 relative z-20">
-        <div class="relative group h-full">
-          <img 
-            src={lifestyleImage}
+        <div
+          class="relative group h-full overflow-hidden rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300"
+        >
+          <img
+            src={lifestyleImage.src}
             alt="Profesionales en sesión de mediación"
-            class="w-full h-full min-h-96 lg:min-h-full object-cover rounded-lg shadow-xl group-hover:shadow-2xl transition-shadow duration-300"
+            class="w-full h-full min-h-96 lg:min-h-full object-cover scale-125"
             loading="lazy"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+          </div>
         </div>
       </div>
 
       <!-- Tarjetas de beneficios (1/3 del grid en desktop) -->
       <div class="lg:col-span-2 order-1 lg:order-2 relative z-20">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {benefits.map((benefit) => (
-            <BenefitCard 
-              title={benefit.title}
-              text={benefit.text}
-              icon={benefit.icon}
-            />
-          ))}
+          {
+            benefits.map((benefit) => (
+              <BenefitCard
+                title={benefit.title}
+                text={benefit.text}
+                icon={benefit.icon}
+              />
+            ))
+          }
         </div>
       </div>
-
     </div>
-
-
   </div>
 </section>
 

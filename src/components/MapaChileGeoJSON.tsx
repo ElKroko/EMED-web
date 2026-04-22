@@ -6,7 +6,7 @@ interface Props {
   title?: string;
 }
 
-const MapaChileGeoJSON: React.FC<Props> = ({ 
+const MapaChileGeoJSON: React.FC<Props> = ({
   className = "",
   height = "700px",
   title = ""
@@ -15,6 +15,9 @@ const MapaChileGeoJSON: React.FC<Props> = ({
 
   useEffect(() => {
     if (!svgRef.current || typeof window === 'undefined') return;
+
+    // cleanup function defined at top level scope of effect
+    let cleanup = () => { };
 
     const initMap = async () => {
       try {
@@ -29,7 +32,7 @@ const MapaChileGeoJSON: React.FC<Props> = ({
         const svg = d3.select(svgRef.current);
         const width = 600; // Ancho reducido para formato vertical
         const heightNum = 1000; // Altura aumentada para formato vertical
-        
+
         svg.attr("width", width).attr("height", heightNum);
         svg.selectAll("*").remove();
 
@@ -52,10 +55,15 @@ const MapaChileGeoJSON: React.FC<Props> = ({
         };
 
         // Crear tooltip
+        // Use a unique class or ID to avoid conflicts if multiple maps exist (though unlikely here)
+        const tooltipClass = `tooltip-geojson-${Math.random().toString(36).substr(2, 9)}`;
+
         const tooltip = d3.select("body").append("div")
-          .attr("class", "tooltip-geojson")
+          .attr("class", `tooltip-geojson ${tooltipClass}`)
           .style("opacity", 0)
           .style("position", "absolute")
+          .style("top", "0") // Important: prevent layout shift
+          .style("left", "0") // Important: prevent layout shift
           .style("background", "rgba(44, 62, 80, 0.95)")
           .style("color", "white")
           .style("padding", "16px")
@@ -67,6 +75,11 @@ const MapaChileGeoJSON: React.FC<Props> = ({
           .style("box-shadow", "0 8px 32px rgba(0,0,0,0.3)")
           .style("backdrop-filter", "blur(10px)")
           .style("border", "1px solid rgba(255,255,255,0.1)");
+
+        // Update cleanup function
+        cleanup = () => {
+          d3.select(`.${tooltipClass}`).remove();
+        };
 
         // Fondo simple sin gradiente
         svg.append("rect")
@@ -86,16 +99,16 @@ const MapaChileGeoJSON: React.FC<Props> = ({
           .attr("stroke-width", 1)
           .style("cursor", "pointer")
           .style("transition", "all 0.3s ease")
-          .on("mouseover", function(event, d: any) {
+          .on("mouseover", function (event, d: any) {
             d3.select(this)
               .attr("stroke", "#F5821F")
               .attr("stroke-width", 3)
               .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.3))");
-            
+
             tooltip.transition()
               .duration(200)
               .style("opacity", 1);
-            
+
             const props = d.properties;
             tooltip.html(`
               <div style="text-align: center;">
@@ -121,12 +134,12 @@ const MapaChileGeoJSON: React.FC<Props> = ({
               .style("left", (event.pageX + 15) + "px")
               .style("top", (event.pageY - 10) + "px");
           })
-          .on("mouseout", function() {
+          .on("mouseout", function () {
             d3.select(this)
               .attr("stroke", "#ffffff")
               .attr("stroke-width", 1.5)
               .style("filter", "none");
-            
+
             tooltip.transition()
               .duration(300)
               .style("opacity", 0);
@@ -224,14 +237,7 @@ const MapaChileGeoJSON: React.FC<Props> = ({
           .style("fill", "#6b7280")
           .text(d => d.range);
 
-        // Quitar el título del mapa ya que tenemos info panel
-
         console.log('✅ Mapa GeoJSON de Chile cargado correctamente');
-
-        // Cleanup
-        return () => {
-          d3.select(".tooltip-geojson").remove();
-        };
 
       } catch (error) {
         console.error('❌ Error cargando mapa GeoJSON:', error);
@@ -246,58 +252,64 @@ const MapaChileGeoJSON: React.FC<Props> = ({
     };
 
     initMap();
+
+    // Actual useEffect cleanup
+    return () => {
+      cleanup();
+    };
   }, [height]);
 
   return (
-    <div className={`w-full overflow-visible ${className} min-h-[700px]`}>
-    <div className={`w-full bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl shadow-lg overflow-visible`}>
-      <div className="flex flex-col lg:flex-row gap-8 p-8 ">
-        
-        {/* Columna Izquierda - Información y Estadísticas */}
-        <div className="flex-1 flex flex-col gap-8 justify-center">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              Nuestro Impacto Nacional
-            </h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Con presencia en las 16 regiones de Chile, EMED ha formado más de 1,800 mediadores profesionales, 
-              representando el 15.5% del registro nacional de mediadores en la Región Metropolitana.
-            </p>
-          </div>
-          
-          {/* Estadísticas */}
-          <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow-sm text-center">
-              <div className="text-3xl font-bold text-celeste mb-2">1,844</div>
-              <div className="text-gray-600 font-medium">Alumnos Formados</div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm text-center">
-              <div className="text-3xl font-bold text-turquesa mb-2">4,485</div>
-              <div className="text-gray-600 font-medium">Mediadores Inscritos</div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm text-center">
-              <div className="text-3xl font-bold text-naranja mb-2">16</div>
-              <div className="text-gray-600 font-medium">Regiones con Presencia</div>
-            </div>
-            <div>
-              <p className='text-sm text-gray-500 italic'>* Datos actualizados a julio 2025</p>
-            </div>
-          </div>
-        </div>
+    <div className={`w-full overflow-visible ${className}`}>
+      <div className={`w-full bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl shadow-lg overflow-visible`}>
+        <div className="flex flex-col lg:flex-row gap-8 p-8 ">
 
-        {/* Columna Derecha - Mapa Vertical */}
-        <div className="flex-1 flex items-center justify-center ">
-          <svg
-            ref={svgRef}
-            className="w-full max-w-md h-full"
-            style={{ minHeight: "700px", maxHeight: "1200px" }}
-            viewBox="0 100 600 800"
-            preserveAspectRatio="xMidYMid meet"
-          />
+          {/* Columna Izquierda - Información y Estadísticas */}
+          <div className="flex-1 flex flex-col gap-8 justify-center">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                Nuestro Impacto Nacional
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                En 20 años hemos formado a más de 6.000 mediadores familiares.
+                Hoy, más de 1.800 de nuestros mediadores están vigentes en el Registro Nacional, presentes en las 16 regiones de Chile.
+                En la Región Metropolitana, nuestros egresados representan el 13,9% del Registro Único de Mediadores (RUM).
+              </p>
+            </div>
+
+            {/* Estadísticas */}
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+              <div className="bg-white p-6 rounded-lg shadow-sm text-center">
+                <div className="text-3xl font-bold text-celeste mb-2">1,844</div>
+                <div className="text-gray-600 font-medium">Alumnos Formados</div>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm text-center">
+                <div className="text-3xl font-bold text-turquesa mb-2">4,485</div>
+                <div className="text-gray-600 font-medium">Mediadores Inscritos</div>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm text-center">
+                <div className="text-3xl font-bold text-naranja mb-2">16</div>
+                <div className="text-gray-600 font-medium">Regiones con Presencia</div>
+              </div>
+              <div>
+                <p className='text-sm text-gray-500 italic'>* Datos actualizados a julio 2025</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Columna Derecha - Mapa Vertical */}
+          <div className="flex-1 flex items-center justify-center ">
+            <svg
+              ref={svgRef}
+              className="w-full max-w-md h-full"
+              style={{ minHeight: "700px", maxHeight: "1200px" }}
+              viewBox="0 100 600 800"
+              preserveAspectRatio="xMidYMid meet"
+            />
+          </div>
+
         </div>
-        
       </div>
-    </div>
     </div>
   );
 };

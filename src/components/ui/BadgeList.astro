@@ -1,0 +1,16 @@
+---
+interface Props {
+  items: string[];
+  className?: string;
+}
+
+const { items, className = "" } = Astro.props;
+---
+
+<div class={`badge-list flex flex-wrap gap-2 ${className}`}>
+  {items.map((item) => (
+    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-celeste/10 text-celeste border border-celeste/20">
+      {item}
+    </span>
+  ))}
+</div>

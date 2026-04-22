@@ -1,5 +1,5 @@
 ---
-import { getEmedProducts } from '../../lib/wp';
+import { getDiplomados } from '../../lib/productos';
 
 export interface Props {
   heading?: string;
@@ -8,81 +8,45 @@ export interface Props {
   maxItems?: number;
 }
 
-const { 
+const {
   heading = "Nuestros Programas",
   subheading = "Especialízate en diferentes áreas de la mediación con nuestros programas certificados",
   className = "",
   maxItems = 6
 } = Astro.props;
 
-// Función para limpiar HTML de las descripciones
-const limpiarHTML = (htmlString) => {
-  if (!htmlString) return '';
-  return htmlString
-    .replace(/<[^>]*>/g, '') // Eliminar todas las etiquetas HTML
-    .replace(/&nbsp;/g, ' ') // Reemplazar &nbsp; con espacios
-    .replace(/&amp;/g, '&') // Reemplazar &amp; con &
-    .replace(/&lt;/g, '<') // Reemplazar &lt; con <
-    .replace(/&gt;/g, '>') // Reemplazar &gt; con >
-    .trim();
-};
-
-// Función para formatear precios
-const formatearPrecio = (precio) => {
-  if (!precio || precio === '0' || precio === 0) return null;
-  let numero = typeof precio === 'string' ? parseFloat(precio.replace(/[^\d.-]/g, '')) : precio;
-  if (isNaN(numero)) return null;
-  
-  // Si el número es menor a 1000, probablemente está en miles (ej: 550 = $550.000)
-  if (numero < 1000 && numero > 0) {
-    numero = numero * 1000;
-  }
-  
-  return `$${numero.toLocaleString('es-CL')}`;
-};
-
-// Obtener solo los diplomados de WooCommerce
-let productos = [];
-try {
-  const todosLosProductos = await getEmedProducts({ per_page: 50, orderby: 'menu_order', order: 'asc' });
-  productos = todosLosProductos.filter(producto => producto.tipo === 'Diplomado');
-} catch (error) {
-  console.error('Error al cargar productos para el home:', error);
-}
+// Obtener diplomados desde datos estáticos
+const productos = getDiplomados();
 
 // Mapear productos a formato del componente
 const programas = productos.slice(0, maxItems).map(producto => {
-  // Procesar precios correctamente
-  const precioRegular = formatearPrecio(producto.regular_price || producto.price);
-  const precioOferta = formatearPrecio(producto.sale_price);
-  const precio = precioOferta || precioRegular;
-  
-  // Determinar si es destacado (mediación familiar o si es featured)
-  const esDestacado = producto.slug.includes('mediacion-familiar') || producto.featured || producto.destacado;
-  
+  // Determinar si es destacado (mediación familiar)
+  const esDestacado = producto.slug.includes('mediacion-familiar') || producto.destacado;
+
   // Determinar URL según el tipo
   const urlBase = producto.tipo === 'Diplomado' ? '/diplomados' : '/cursos';
   const url = `${urlBase}/${producto.slug}`;
-  
+
   return {
-    title: producto.name,
-    description: limpiarHTML(producto.short_description) || 'Programa especializado en técnicas de mediación.',
+    title: producto.nombre,
+    description: producto.descripcion_corta || 'Programa especializado en técnicas de mediación.',
     duration: producto.duracion || 'Por definir',
     modality: producto.modalidad || 'Por definir',
     tipo: producto.tipo,
-    price: precio,
+    price: producto.precio_formateado,
     highlight: esDestacado,
+    imagen: producto.imagen,
     url: url
   };
 });
 ---
 
-<section class={`programs-grid py-20 bg-crema ${className}`}>
+<section class={`programs-grid py-12 md:py-20 bg-crema ${className}`}>
   <div class="container mx-auto px-4 relative z-10">
     
     <!-- Título de la sección -->
     <div class="text-center mb-16 relative z-20">
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 text-center">
+      <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold text-black mb-6 text-center">
         {heading}
       </h2>
       <p class="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed text-center">
@@ -91,68 +55,84 @@ const programas = productos.slice(0, maxItems).map(producto => {
     </div>
 
     <!-- Grid de programas -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 relative z-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 relative z-20">
       {programas.map((programa) => (
-        <div class={`program-card bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 ${programa.highlight ? 'destacado-grande' : ''}`}>
-          
-          <div class="flex items-center justify-between mb-4">
-            <span class={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${
-              programa.tipo === 'Diplomado' ? 'bg-naranja text-white' : 'bg-turquesa text-white'
-            }`}>
-              {programa.tipo}
-            </span>
-            
+        <a
+          href={programa.url}
+          class={`program-card bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 relative overflow-hidden block cursor-pointer group ${programa.highlight ? 'destacado-card' : ''}`}
+        >
+
+          <!-- Imagen del programa -->
+          <div class="relative h-40 overflow-hidden">
+            <img
+              src={programa.imagen || 'https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}
+              alt={programa.title}
+              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              loading="lazy"
+            />
+
             {programa.highlight && (
-              <span class="inline-block bg-celeste text-white px-3 py-1 rounded-full text-sm font-semibold">
-                ⭐ Más Popular
-              </span>
-            )}
-          </div>
-          
-          <h3 class="text-2xl font-bold text-gray-800 mb-4">
-            {programa.title}
-          </h3>
-          
-          <p class="text-gray-600 leading-relaxed mb-6 line-clamp-3">
-            {programa.description}
-          </p>
-          
-          <div class="space-y-3 mb-6">
-            <div class="flex items-center text-sm text-gray-600">
-              <svg class="w-4 h-4 mr-2 text-turquesa" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-              <span class="font-medium text-gray-800">Duración: </span>{programa.duration}
-            </div>
-            
-            <div class="flex items-center text-sm text-gray-600">
-              <svg class="w-4 h-4 mr-2 text-turquesa" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-              </svg>
-              <span class="font-medium text-gray-800">Modalidad: </span>{programa.modality}
-            </div>
-            
-            {programa.price && (
-              <div class="flex items-center text-sm text-gray-600">
-                <svg class="w-4 h-4 mr-2 text-naranja" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                </svg>
-                <span class="font-medium text-gray-800">Inversión: </span>
-                <span class="font-bold text-celeste">{programa.price}</span>
+              <div class="absolute top-2 right-2">
+                <span class="text-4xl drop-shadow-lg">⭐</span>
               </div>
             )}
+
+            <div class="absolute top-2 left-2">
+              <span class={`inline-block px-2 py-1 rounded-full text-xs font-bold ${
+                programa.tipo === 'Diplomado' ? 'bg-naranja text-white' : 'bg-turquesa text-white'
+              }`}>
+                {programa.tipo}
+              </span>
+            </div>
           </div>
-          
-          <a 
-            href={programa.url}
-            class={`inline-flex items-center justify-center w-full px-6 py-3 font-semibold rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg program-link ${programa.highlight ? 'bg-naranja hover:bg-amarillo' : 'bg-celeste hover:bg-turquesa'}`}
-          >
-            Ver Detalles
-            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
+
+          <div class="p-4 flex flex-col flex-grow">
+            <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-naranja transition-colors duration-300">
+              {programa.title}
+            </h3>
+
+            <p class="text-gray-600 text-base leading-relaxed mb-3 line-clamp-none md:line-clamp-2">
+              {programa.description}
+            </p>
+
+            <div class="space-y-1 mb-3">
+              <div class="flex items-center text-sm text-gray-600">
+                <svg class="w-4 h-4 mr-1 text-turquesa" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span>{programa.duration}</span>
+              </div>
+
+              <div class="flex items-center text-sm text-gray-600">
+                <svg class="w-4 h-4 mr-1 text-turquesa" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                <span>{programa.modality}</span>
+              </div>
+
+              {programa.price && (
+                <div class="flex items-center text-base mt-2">
+                  <svg class="w-4 h-4 mr-1 text-naranja" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                  </svg>
+                  <div class="flex flex-col">
+                    <span class="font-bold text-naranja text-lg">{programa.price}</span>
+                    <span class="text-xs text-gray-500 font-normal">Consulta por facilidades de pago</span>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div class="mt-auto pt-2">
+              <span class={`inline-flex items-center justify-center w-full px-4 py-2 text-sm font-bold rounded-lg transition-all duration-300 ${programa.highlight ? 'bg-naranja group-hover:bg-amarillo text-white' : 'bg-celeste group-hover:bg-turquesa text-white'}`}>
+                Ver Detalles
+                <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </a>
       ))}
     </div>
 
@@ -179,54 +159,54 @@ const programas = productos.slice(0, maxItems).map(producto => {
     flex-direction: column;
     height: 100%;
     min-height: 400px;
+    text-decoration: none;
   }
-  
-  .program-link {
-    color: white !important;
-    margin-top: auto;
+
+  .program-card:hover {
+    transform: translateY(-4px);
   }
-  
-  .program-link:hover {
-    color: white !important;
+
+  .destacado-card {
+    box-shadow: 0 4px 20px rgba(238, 128, 12, 0.15);
   }
-  
+
+  .destacado-card:hover {
+    box-shadow: 0 8px 30px rgba(238, 128, 12, 0.25);
+  }
+
   .main-cta-button {
     color: white !important;
   }
-  
+
   .main-cta-button:hover {
     color: white !important;
   }
-  
+
   .secondary-cta-button {
     color: var(--color-celeste) !important;
     border-color: var(--color-celeste) !important;
   }
-  
+
   .secondary-cta-button:hover {
     background-color: var(--color-celeste) !important;
     color: white !important;
   }
-  
-  .destacado-grande {
-    transform: scale(1.15) !important;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
-    z-index: 10;
-    position: relative;
-  }
-  
-  .destacado-grande:hover {
-    transform: scale(1.15) translateY(-8px) !important;
-  }
-  
+
   /* Limitar líneas de descripción */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  
+
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .space-x-4 > * + * {

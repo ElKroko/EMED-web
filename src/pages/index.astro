@@ -1,41 +1,52 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import HeroSlider from '../components/sections/HeroSlider.astro';
-import CTAButtonsRow from '../components/ui/CTAButtonsRow.astro';
-import TwoColumnBlockWithVideo from '../components/sections/TwoColumnBlockWithVideo.astro';
-import WhyStudyMediation from '../components/sections/WhyStudyMediation.astro';
-import ProgramsGrid from '../components/sections/ProgramsGrid.astro';
-import AccreditationBanner from '../components/sections/AccreditationBanner.astro';
-import MapaChileGeoJSON from '../components/MapaChileGeoJSON.tsx';
+import Layout from "../layouts/Layout.astro";
+import HeroSlider from "../components/sections/HeroSlider.astro";
+import CTAButtonsRow from "../components/ui/CTAButtonsRow.astro";
+import TwoColumnBlockWithVideo from "../components/sections/TwoColumnBlockWithVideo.astro";
+import WhyStudyMediation from "../components/sections/WhyStudyMediation.astro";
+import ProgramsGrid from "../components/sections/ProgramsGrid.astro";
+import AccreditationBanner from "../components/sections/AccreditationBanner.astro";
+import MapaChileGeoJSON from "../components/MapaChileGeoJSON.tsx";
+import heroMediadores from "../assets/images/pages/hero-mediadores.webp";
+import heroFoto2 from "../assets/images/pages/foto-2.webp";
+import heroFoto3 from "../assets/images/pages/foto-3.webp";
+import heroFoto4 from "../assets/images/pages/foto-4.webp";
 
 // Datos del Hero Slider
 const heroSlides = [
   {
-    img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    img: heroMediadores.src,
     heading: "FORMANDO MEDIADORES",
     sub: "DESDE 2005",
     ctaText: "Conoce nuestros programas",
-    ctaLink: "/programas"
+    ctaLink: "/programas",
   },
   {
-    img: "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+    img: heroFoto2.src,
     heading: "CAPACITACIÓN PROFESIONAL",
     sub: "CON METODOLOGÍA PRÁCTICA",
     ctaText: "Ver admisión",
-    ctaLink: "/admision"
+    ctaLink: "/admision",
   },
   {
-    img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    img: heroFoto3.src,
     heading: "CERTIFICACIÓN RECONOCIDA",
-    sub: "ACREDITADOS POR SENCE E IRAM",
+    sub: "ACREDITADOS E IRAM",
     ctaText: "Contactanos",
-    ctaLink: "/contacto"
-  }
+    ctaLink: "/contacto",
+  },
+  {
+    img: heroFoto4.src,
+    heading: "EXPERIENCIA TRANSFORMADORA",
+    sub: "APRENDIZAJE INTEGRAL",
+    ctaText: "Inscríbete hoy",
+    ctaLink: "/admision",
+  },
 ];
 
 // Contenido de la sección Mediación
 const mediationContent = `
-<p>La <strong>mediación</strong> es un método de resolución alternativa de conflictos en el que un tercero neutral e imparcial, el mediador, facilita la comunicación entre las partes para que ellas mismas encuentren una solución mutuamente satisfactoria.</p>
+<p>La <strong>mediación</strong> es un método de resolución alternativa de conflictos en el que un tercero imparcial, el mediador, facilita la comunicación entre las partes para que ellas mismas encuentren una solución mutuamente satisfactoria.</p>
 
 <p>Este proceso confidencial y voluntario se basa en el diálogo constructivo, la escucha activa y la búsqueda de intereses comunes, permitiendo que las personas involucradas mantengan el control sobre las decisiones que afectan sus vidas.</p>
 
@@ -43,63 +54,59 @@ const mediationContent = `
 `;
 ---
 
-<Layout 
+<Layout
   title="EMED - Formando Mediadores desde 2005"
   description="Centro de formación especializado en mediación familiar, escolar y laboral. Programas acreditados con metodología práctica y certificación reconocida."
 >
-  
   <!-- Hero Slider -->
-  <HeroSlider 
-    slides={heroSlides}
-    autoplay={true}
-    autoplayDelay={6000}
-  />
-  
+  <HeroSlider slides={heroSlides} autoplay={true} autoplayDelay={6000} />
+
   <!-- Mini CTAs con fondo celeste plano -->
-  <CTAButtonsRow 
+  <CTAButtonsRow
     useSVGBackground={false}
     items={[
       { label: "+20 años de experiencia", href: "/nosotros", icon: "📅" },
       { label: "+6000 mediadores formados", href: "/programas", icon: "👥" },
-      { label: "+15% del registro único de mediadores familiares", href: "/programas", icon: "🎓" }
+      {
+        label: "+15% del registro único de mediadores familiares",
+        href: "/programas",
+        icon: "🎓",
+      },
     ]}
   />
-  
+
   <!-- Sección Mediación con Video -->
   <section class="py-16 bg-crema relative">
-    <TwoColumnBlockWithVideo 
-      videoId="REEMPLAZA_CON_ID_DEL_VIDEO"
+    <TwoColumnBlockWithVideo
+      videoId="AVU0nZPhdyE"
       heading="¿Qué es la Mediación?"
       content={mediationContent}
       reverse={false}
       youtubeChannelUrl="https://youtube.com/@emediacion"
     />
   </section>
-  
+
   <!-- Sección ¿Por qué estudiar mediación? -->
-  <WhyStudyMediation 
-    showMidHeroSVG={true}
+  <WhyStudyMediation
+    showMidHeroSVG={false}
     midHeroSVGColor1="#F7C97B"
     midHeroSVGColor2="#EE800C"
   />
-  
+
   <!-- Sección Programas -->
   <ProgramsGrid />
-  
+
   <!-- Sección Mapa de Impacto -->
   <section class="py-20 bg-crema">
     <div class="container mx-auto px-4">
-      <MapaChileGeoJSON 
+      <MapaChileGeoJSON
         client:only="react"
-        title=""
+        title="Impacto Social Real"
         height="800px"
         className="w-full max-w-7xl mx-auto"
       />
     </div>
   </section>
   <!-- Sección Acreditación -->
-  <AccreditationBanner 
-    mascotSrc="/src/assets/images/pages/emed_acreditado.png"
-  />
-
+  <AccreditationBanner mascotSrc="/images/pages/emed_acreditado.webp" />
 </Layout>

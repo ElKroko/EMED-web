@@ -1,0 +1,207 @@
+[
+  {
+    "id": "comunicacion-efectiva",
+    "nombre": "Comunicación Efectiva en Conflictos",
+    "slug": "comunicacion-efectiva",
+    "tipo": "Curso",
+    "descripcion": "Curso intensivo para desarrollar habilidades de comunicación asertiva y escucha activa en situaciones de tensión.",
+    "descripcion_corta": "Curso intensivo para desarrollar habilidades de comunicación asertiva y escucha activa en situaciones de tensión.",
+    "descripcionDetallada": "Curso práctico e intensivo diseñado para profesionales que necesitan mejorar sus habilidades comunicacionales en contextos de conflicto y tensión.",
+    "duracion": "24 horas",
+    "modalidad": "Online",
+    "nivel": "Básico",
+    "precio": 120000,
+    "precio_regular": 120000,
+    "precio_formateado": "$120.000",
+    "precioFinanciado": "$90.000",
+    "destacado": false,
+    "imagen": "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+    "imagenHero": "https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "galeria": [
+      "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+      "https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+    ],
+    "beneficios": [
+      "Aplicable a cualquier área profesional",
+      "Técnicas inmediatamente útiles",
+      "Duración intensiva y práctica",
+      "Complemento perfecto para diplomados",
+      "Flexibilidad horaria total",
+      "Material descargable permanente"
+    ],
+    "temario": [
+      {
+        "modulo": "Módulo 1: Fundamentos de Comunicación",
+        "contenido": [
+          "Principios de comunicación asertiva",
+          "Barreras comunicacionales comunes",
+          "El rol de las emociones en la comunicación",
+          "Comunicación verbal y no verbal"
+        ]
+      },
+      {
+        "modulo": "Módulo 2: Escucha Activa",
+        "contenido": [
+          "Técnicas de escucha empática",
+          "Parafraseo y reformulación",
+          "Preguntas abiertas y cerradas",
+          "Manejo del silencio"
+        ]
+      },
+      {
+        "modulo": "Módulo 3: Comunicación en Crisis",
+        "contenido": [
+          "Manejo de conversaciones difíciles",
+          "Técnicas de desescalada",
+          "Comunicación bajo presión",
+          "Negociación básica"
+        ]
+      }
+    ],
+    "requisitos": [
+      "Sin requisitos previos específicos",
+      "Interés en mejorar habilidades comunicacionales",
+      "Acceso a internet estable para clases online",
+      "Disponibilidad para ejercicios prácticos"
+    ],
+    "metodologia": [
+      "100% online con clases sincrónicas interactivas",
+      "Ejercicios prácticos y retroalimentación personalizada"
+    ],
+    "certificacion": [
+      "Certificado de Participación en Comunicación Efectiva en Conflictos"
+    ],
+    "empleabilidad": [
+      "Todas las áreas profesionales",
+      "Atención al cliente",
+      "Gestión de equipos",
+      "Ventas y negociación",
+      "Servicio público"
+    ],
+    "ubicacion": "Online",
+    "en_stock": true,
+    "categorias": ["Comunicación", "Desarrollo Personal"],
+    "etiquetas": ["Online", "Comunicación", "Asertividad"],
+    "testimonios": [
+      {
+        "nombre": "Andrea Martínez",
+        "profesion": "Ejecutiva Comercial",
+        "testimonio": "Curso muy práctico. Las técnicas las he aplicado inmediatamente en mi trabajo con excelentes resultados.",
+        "rating": 5
+      },
+      {
+        "nombre": "Jorge Morales",
+        "profesion": "Supervisor de Producción",
+        "testimonio": "Me ayudó mucho a manejar mejor los conflictos con mi equipo. Recomendado para cualquier líder.",
+        "rating": 4
+      }
+    ]
+  },
+  {
+    "id": "negociacion-avanzada",
+    "nombre": "Técnicas de Negociación Avanzada",
+    "slug": "negociacion-avanzada",
+    "tipo": "Curso",
+    "descripcion": "Perfecciona tus habilidades de negociación con estrategias avanzadas aplicables en mediación y resolución de conflictos.",
+    "descripcion_corta": "Perfecciona tus habilidades de negociación con estrategias avanzadas aplicables en mediación y resolución de conflictos.",
+    "descripcionDetallada": "Curso avanzado para profesionales que buscan perfeccionar sus habilidades de negociación utilizando técnicas sofisticadas y estrategias ganar-ganar.",
+    "duracion": "32 horas",
+    "modalidad": "Presencial",
+    "nivel": "Avanzado",
+    "precio": 180000,
+    "precio_regular": 180000,
+    "precio_formateado": "$180.000",
+    "precioFinanciado": "$140.000",
+    "destacado": false,
+    "imagen": "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+    "imagenHero": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    "galeria": [
+      "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+    ],
+    "beneficios": [
+      "Estrategias de negociación ganar-ganar",
+      "Casos complejos y multiculturales",
+      "Técnicas de persuasión ética",
+      "Aplicable en mediación comercial",
+      "Práctica intensiva presencial",
+      "Networking con negociadores expertos"
+    ],
+    "temario": [
+      {
+        "modulo": "Módulo 1: Psicología de la Negociación",
+        "contenido": [
+          "Perfiles de negociadores",
+          "Sesgos cognitivos en negociación",
+          "Manejo de presión y estrés",
+          "Inteligencia emocional aplicada"
+        ]
+      },
+      {
+        "modulo": "Módulo 2: Estrategias Avanzadas",
+        "contenido": [
+          "Negociación distributiva vs integrativa",
+          "Creación de valor en negociaciones",
+          "Manejo de múltiples partes",
+          "Técnicas de persuasión ética"
+        ]
+      },
+      {
+        "modulo": "Módulo 3: Negociación Intercultural",
+        "contenido": [
+          "Diferencias culturales en negociación",
+          "Protocolo y etiqueta internacional",
+          "Comunicación no verbal intercultural",
+          "Adaptación de estrategias"
+        ]
+      },
+      {
+        "modulo": "Módulo 4: Simulacros Avanzados",
+        "contenido": [
+          "Casos empresariales complejos",
+          "Negociaciones multiparte",
+          "Situaciones de alta tensión",
+          "Evaluación y retroalimentación"
+        ]
+      }
+    ],
+    "requisitos": [
+      "Experiencia previa en negociación",
+      "Título profesional o técnico",
+      "Curso básico de mediación (recomendado)",
+      "Compromiso con asistencia presencial"
+    ],
+    "metodologia": [
+      "100% presencial con metodología experiencial intensiva",
+      "Incluye simulacros, role-playing y análisis de video"
+    ],
+    "certificacion": [
+      "Certificado de Especialización en Técnicas de Negociación Avanzada"
+    ],
+    "empleabilidad": [
+      "Mediación comercial",
+      "Consultoría empresarial",
+      "Ventas corporativas",
+      "Relaciones internacionales",
+      "Gestión de contratos"
+    ],
+    "ubicacion": "Santiago Centro",
+    "en_stock": true,
+    "categorias": ["Negociación", "Desarrollo Profesional"],
+    "etiquetas": ["Presencial", "Negociación", "Estrategias Avanzadas"],
+    "testimonios": [
+      {
+        "nombre": "Carlos Espinoza",
+        "profesion": "Gerente Comercial",
+        "testimonio": "Las técnicas aprendidas mejoraron significativamente mis resultados en negociaciones comerciales complejas.",
+        "rating": 5
+      },
+      {
+        "nombre": "Mónica Herrera",
+        "profesion": "Mediadora Comercial",
+        "testimonio": "Curso excelente para llevar la mediación al siguiente nivel. Muy recomendado para profesionales experimentados.",
+        "rating": 5
+      }
+    ]
+  }
+]
