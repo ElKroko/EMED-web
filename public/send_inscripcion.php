@@ -25,6 +25,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // ==========================================
+    // PROTECCIÓN ANTI-SPAM
+    // ==========================================
+    require_once __DIR__ . '/spam_protection.php';
+    checkHoneypot($input);
+    verifyTurnstile($input['cf-turnstile-response'] ?? '', $_SERVER['REMOTE_ADDR'] ?? '');
+    checkRateLimit($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+
+    // ==========================================
     // DATOS DEL FORMULARIO
     // ==========================================
 

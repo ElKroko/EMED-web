@@ -24,6 +24,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $input = $_POST;
     }
 
+    // ==========================================
+    // PROTECCIÓN ANTI-SPAM
+    // ==========================================
+    require_once __DIR__ . '/spam_protection.php';
+    checkHoneypot($input);
+    verifyTurnstile($input['cf-turnstile-response'] ?? '', $_SERVER['REMOTE_ADDR'] ?? '');
+    checkRateLimit($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+
     $nombre = strip_tags($input['nombre'] ?? '');
     $email = filter_var($input['email'] ?? '', FILTER_SANITIZE_EMAIL);
     $telefono = strip_tags($input['telefono'] ?? '');

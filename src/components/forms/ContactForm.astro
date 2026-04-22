@@ -114,6 +114,11 @@ const formSubtitle = subtitle || config.subtitle;
     <input type="hidden" name="source" value={source} />
     <input type="hidden" name="timestamp" value="" />
 
+    <!-- Honeypot anti-spam: oculto para humanos, bots lo llenan -->
+    <div style="display:none" aria-hidden="true">
+      <input type="text" name="website" tabindex="-1" autocomplete="off" />
+    </div>
+
     <!-- Información Personal -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
@@ -403,6 +408,9 @@ const formSubtitle = subtitle || config.subtitle;
       </label>
     </div>
 
+    <!-- Cloudflare Turnstile -->
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAACyTSkU-5pQP68n-" data-theme="light"></div>
+
     <!-- Botón de envío -->
     <button
       type="submit"
@@ -459,6 +467,8 @@ const formSubtitle = subtitle || config.subtitle;
     </div>
   </div>
 </div>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <script>
   class ContactFormHandler {

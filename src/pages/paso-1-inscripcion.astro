@@ -477,6 +477,11 @@ const regiones = [
                         />
                         <input type="hidden" name="timestamp" value="" />
 
+                        <!-- Honeypot anti-spam -->
+                        <div style="display:none" aria-hidden="true">
+                            <input type="text" name="website" tabindex="-1" autocomplete="off" />
+                        </div>
+
                         <!-- Términos y condiciones -->
                         <div class="flex items-start space-x-3">
                             <input
@@ -502,6 +507,9 @@ const regiones = [
                                 <span class="text-naranja">*</span>
                             </label>
                         </div>
+
+                        <!-- Cloudflare Turnstile -->
+                        <div class="cf-turnstile" data-sitekey="0x4AAAAAACyTSkU-5pQP68n-" data-theme="light"></div>
 
                         <!-- Botón de envío -->
                         <button
@@ -622,6 +630,8 @@ const regiones = [
         </section>
     </div>
 </Layout>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <script>
     // Conditional fields logic

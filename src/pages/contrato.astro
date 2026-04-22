@@ -919,6 +919,11 @@ const regiones = [
                         />
                         <input type="hidden" name="timestamp" value="" />
 
+                        <!-- Honeypot anti-spam -->
+                        <div style="display:none" aria-hidden="true">
+                            <input type="text" name="website" tabindex="-1" autocomplete="off" />
+                        </div>
+
                         <div class="flex items-start space-x-3">
                             <input
                                 type="checkbox"
@@ -939,6 +944,9 @@ const regiones = [
                             </label>
                         </div>
 
+                        <!-- Cloudflare Turnstile -->
+                        <div class="cf-turnstile" data-sitekey="0x4AAAAAACyTSkU-5pQP68n-" data-theme="light"></div>
+
                         <button
                             type="submit"
                             id="btn-submit"
@@ -958,6 +966,27 @@ const regiones = [
                             >
                             Firmar y Enviar Contrato
                         </button>
+
+                        <div
+                            id="form-error"
+                            class="hidden bg-red-50 border border-red-200 rounded-xl p-4"
+                        >
+                            <div class="flex items-start gap-3">
+                                <svg class="w-6 h-6 text-red-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <div>
+                                    <p class="text-red-800 font-semibold mb-1">Error al enviar el formulario</p>
+                                    <p id="form-error-message" class="text-red-700 text-sm mb-3"></p>
+                                    <a
+                                        href="https://wa.me/56965620939?text=Hola,%20tuve%20problemas%20al%20enviar%20el%20contrato%20desde%20la%20web"
+                                        target="_blank"
+                                        class="inline-flex items-center gap-2 text-sm bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors"
+                                    >
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.089.534 4.054 1.474 5.765L0 24l6.41-1.446A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.213-3.727.84.876-3.633-.234-.373A9.818 9.818 0 1112 21.818z"/></svg>
+                                        Contactar por WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
                         <div
                             id="form-success"
@@ -992,6 +1021,8 @@ const regiones = [
         </section>
     </div>
 </Layout>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <script>
     // Programa condicional
@@ -1085,6 +1116,20 @@ const regiones = [
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
             successDiv?.classList.add("hidden");
+            document.getElementById("form-error")?.classList.add("hidden");
+
+            // Verificar que el widget Turnstile haya cargado y generado el token
+            const turnstileToken = (form.querySelector('[name="cf-turnstile-response"]') as HTMLInputElement)?.value;
+            if (!turnstileToken) {
+                const errorDiv = document.getElementById("form-error");
+                const errorMsg = document.getElementById("form-error-message");
+                if (errorDiv && errorMsg) {
+                    errorMsg.textContent = "La verificación de seguridad aún está cargando. Espera unos segundos y vuelve a intentarlo.";
+                    errorDiv.classList.remove("hidden");
+                    errorDiv.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                }
+                return;
+            }
 
             if (submitBtn) {
                 submitBtn.disabled = true;
@@ -1119,15 +1164,12 @@ const regiones = [
                 }
             } catch (error) {
                 console.error("Error:", error);
-                if (
-                    confirm(
-                        "Hubo un problema al enviar. ¿Deseas contactarnos por WhatsApp?",
-                    )
-                ) {
-                    window.open(
-                        "https://wa.me/56965620939?text=Hola,%20tuve%20problemas%20al%20enviar%20el%20contrato%20desde%20la%20web",
-                        "_blank",
-                    );
+                const errorDiv = document.getElementById("form-error");
+                const errorMsg = document.getElementById("form-error-message");
+                if (errorDiv && errorMsg) {
+                    errorMsg.textContent = (error as Error).message || "Error desconocido al enviar. Intenta de nuevo o contáctanos.";
+                    errorDiv.classList.remove("hidden");
+                    errorDiv.scrollIntoView({ behavior: "smooth", block: "nearest" });
                 }
                 if (submitBtn) {
                     submitBtn.disabled = false;

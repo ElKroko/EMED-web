@@ -16,6 +16,14 @@ use PHPMailer\PHPMailer\Exception;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+    // ==========================================
+    // PROTECCIÓN ANTI-SPAM
+    // ==========================================
+    require_once __DIR__ . '/spam_protection.php';
+    checkHoneypotPost();
+    verifyTurnstile($_POST['cf-turnstile-response'] ?? '', $_SERVER['REMOTE_ADDR'] ?? '');
+    checkRateLimit($_SERVER['REMOTE_ADDR'] ?? 'unknown', 2); // contrato: máx 2 por minuto
+
     // Datos del formulario
     $nombre = strip_tags($_POST['nombre'] ?? '');
     $rut = strip_tags($_POST['rut'] ?? '');
@@ -38,15 +46,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $max_size = 5 * 1024 * 1024; // 5MB
     $allowed = ['application/pdf', 'image/jpeg', 'image/png'];
 
+    $fileLabels = ['cedula' => 'Cédula de Identidad', 'certificado' => 'Certificado de Título'];
     foreach (['cedula', 'certificado'] as $fileKey) {
-        if (!isset($_FILES[$fileKey]) || $_FILES[$fileKey]['error'] !== UPLOAD_ERR_OK) {
+        $label = $fileLabels[$fileKey];
+        if (!isset($_FILES[$fileKey])) {
             http_response_code(400);
-            echo json_encode(["status" => "error", "message" => "Falta el archivo: $fileKey"]);
+            echo json_encode(["status" => "error", "message" => "No se recibió el archivo: $label. Por favor selecciónalo y vuelve a intentarlo."]);
+            exit;
+        }
+        $uploadError = $_FILES[$fileKey]['error'];
+        if ($uploadError !== UPLOAD_ERR_OK) {
+            $uploadMessages = [
+                UPLOAD_ERR_INI_SIZE   => "$label supera el límite de tamaño del servidor (máx. 5 MB). Comprime el archivo e intenta de nuevo.",
+                UPLOAD_ERR_FORM_SIZE  => "$label supera el tamaño máximo permitido (5 MB).",
+                UPLOAD_ERR_PARTIAL    => "$label se subió de forma incompleta. Revisa tu conexión e inténtalo de nuevo.",
+                UPLOAD_ERR_NO_FILE    => "No se seleccionó ningún archivo para $label.",
+                UPLOAD_ERR_NO_TMP_DIR => "Error del servidor al procesar $label. Por favor contáctanos.",
+                UPLOAD_ERR_CANT_WRITE => "Error del servidor al guardar $label. Por favor contáctanos.",
+            ];
+            $msg = $uploadMessages[$uploadError] ?? "Error desconocido al subir $label (código: $uploadError). Por favor contáctanos.";
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => $msg]);
             exit;
         }
         if ($_FILES[$fileKey]['size'] > $max_size) {
             http_response_code(400);
-            echo json_encode(["status" => "error", "message" => "El archivo $fileKey supera 5 MB"]);
+            echo json_encode(["status" => "error", "message" => "$label supera el máximo de 5 MB. Comprime el archivo o envíalo en menor resolución."]);
             exit;
         }
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
@@ -54,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         finfo_close($finfo);
         if (!in_array($mime, $allowed)) {
             http_response_code(400);
-            echo json_encode(["status" => "error", "message" => "Formato no permitido en $fileKey. Use PDF, JPG o PNG."]);
+            echo json_encode(["status" => "error", "message" => "El formato de $label no es compatible (se recibió: $mime). Usa PDF, JPG o PNG."]);
             exit;
         }
     }
