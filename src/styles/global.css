@@ -5,6 +5,15 @@
 @import "tailwindcss";
 @import "./theme.css";
 
+@theme {
+  --color-celeste: #7EC5D6;
+  --color-turquesa: #00A6B1;
+  --color-naranja: #F5821F;
+  --color-amarillo: #FDB813;
+  --color-verde: #22C55E;
+  --color-beige: #FFF7E7;
+}
+
 /* ==========================================================================
    Base Styles - Restored
    ========================================================================== */
