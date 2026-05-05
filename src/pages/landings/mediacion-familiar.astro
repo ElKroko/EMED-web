@@ -8,6 +8,8 @@ import claudiaTassara from "../../assets/images/docentes/claudia-tassara.webp";
 import juanPabloLetelier from "../../assets/images/docentes/juan-pablo-letelier.webp";
 import mariaNataliaCastro from "../../assets/images/docentes/maria-natalia-castro.webp";
 import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete.webp";
+import danielBustelo from "../../assets/images/docentes/daniel-bustelo.webp";
+import comunidadAprende from "../../assets/images/landings/comunidad-mediadores.png";
 ---
 
 <!DOCTYPE html>
@@ -43,7 +45,10 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
   <style is:global>
     /* ─── Reset & Base ─── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; overflow: hidden; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+    html, body { height: 100%; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+    @media (min-width: 901px) {
+      html, body { overflow: hidden; }
+    }
 
     /* ─── Color tokens ─── */
     :root {
@@ -489,11 +494,18 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
     .lnd-mode-list li::before { content: '·'; color: var(--celeste); font-weight: 900; flex-shrink: 0; }
 
     /* ─── Video placeholder ─── */
+    .lnd-video-ph-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .lnd-video-ph {
       border-radius: 18px;
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(0,0,0,0.14);
-      aspect-ratio: 16/9;
+      aspect-ratio: 9/16;
+      max-width: 240px;
+      width: 100%;
       background: #f0f4f8;
       display: flex;
       flex-direction: column;
@@ -515,34 +527,55 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
       align-items: center;
       justify-content: center;
       gap: 12px;
-      padding: 32px;
+      padding: 24px 20px;
       text-align: center;
     }
     .lnd-video-play {
-      width: 64px; height: 64px;
+      width: 56px; height: 56px;
       border-radius: 50%;
       background: var(--celeste);
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 8px 24px rgba(0,166,177,0.4);
     }
-    .lnd-video-lbl { font-size: 13px; color: var(--text-muted); font-weight: 600; }
+    .lnd-video-format-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(0,166,177,0.10);
+      border: 1px solid rgba(0,166,177,0.25);
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--celeste);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .lnd-video-lbl { font-size: 12px; color: var(--text-muted); font-weight: 600; }
     .lnd-video-note { font-size: 11px; color: #9ca3af; }
-    .lnd-video-caption { text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 12px; }
+    .lnd-video-caption { text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 10px; }
 
     /* ─── Practice items ─── */
-    .lnd-practice-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .lnd-practice-list { list-style: none; display: flex; flex-direction: column; margin: 0; padding: 0; }
     .lnd-practice-item {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
-      padding: 16px 20px;
-      background: #f8fafb;
-      border-left: 3px solid var(--celeste);
-      border-radius: 0 12px 12px 0;
-      border-top: 1px solid #e5e7eb;
-      border-right: 1px solid #e5e7eb;
+      gap: 16px;
+      padding: 18px 4px;
       border-bottom: 1px solid #e5e7eb;
     }
+    .lnd-practice-item:first-child { border-top: 1px solid #e5e7eb; }
+    .lnd-practice-icon {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      background: #d1fae5;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: #059669;
+    }
+    .lnd-practice-content { display: flex; flex-direction: column; gap: 4px; }
+    .lnd-practice-title { font-size: 14px; font-weight: 700; color: #059669; line-height: 1.3; }
+    .lnd-practice-desc { font-size: 13px; color: var(--text-body); line-height: 1.5; }
 
     /* ─── Campo laboral grid ─── */
     .lnd-campo-grid {
@@ -679,10 +712,11 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
       height: calc(100vh - 80px);
       overflow-y: auto;
       border-radius: 20px;
+      padding: 10px 16px;
+      scrollbar-gutter: stable;
     }
     .lnd-form-wrap .contact-form-container {
-      border-radius: 20px;
-      height: 100%;
+      border-radius: 16px;
     }
 
     /* ─── Slide counter ─── */
@@ -713,31 +747,287 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
     }
     .lnd-callout-text { font-size: 13px; font-weight: 600; color: var(--celeste); }
 
+    /* ─── Mobile Header (visible only on mobile) ─── */
+    .lnd-mobile-header {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 58px;
+      background: var(--celeste);
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      z-index: 300;
+      box-shadow: 0 2px 16px rgba(0,166,177,0.35);
+    }
+    .lnd-mobile-menu-btn {
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.18);
+      border-radius: 9px;
+      color: white;
+      border: none;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .lnd-mobile-logo { display: flex; align-items: center; }
+    .lnd-mobile-logo img {
+      height: 30px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+    .lnd-mobile-wa-mini {
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--wa-green);
+      border-radius: 9px;
+      color: white;
+      text-decoration: none;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(37,211,102,0.4);
+    }
+
+    /* ─── Mobile Sticky Bottom CTA ─── */
+    .lnd-mobile-bottom-cta {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 200;
+      background: white;
+      border-top: 1px solid #e5e7eb;
+      padding: 10px 14px;
+      gap: 10px;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
+    }
+    .lnd-mobile-cta-info {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 12px;
+      background: var(--celeste);
+      color: white;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .lnd-mobile-cta-wa {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 13px 14px;
+      background: var(--wa-green);
+      color: white;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
     /* ─── Responsive ─── */
     @media (max-width: 900px) {
+      /* Natural scroll — disable snap */
+      html { height: auto; overflow: auto; }
+      body { height: auto; overflow: auto; }
+
+      /* Sidebar drawer */
       .lnd-sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
       .lnd-sidebar.open { transform: translateX(0); }
       .lnd-sidebar-overlay.open { display: block; }
-      .lnd-sidebar-toggle { display: flex; }
-      .lnd-slides-wrap { margin-left: 0; width: 100%; }
-      .lnd-slide-inner { padding: 0 24px; }
+
+      /* Old floating toggle hidden — replaced by mobile header */
+      .lnd-sidebar-toggle { display: none !important; }
+      .lnd-mobile-header { display: flex; }
+      .lnd-mobile-bottom-cta { display: flex; }
+
+      /* Slides wrap: no longer scroll container */
+      .lnd-slides-wrap {
+        margin-left: 0;
+        width: 100%;
+        height: auto;
+        overflow-y: visible;
+        scroll-snap-type: none;
+      }
+
+      /* Slides: natural height, no snap */
+      .lnd-slide {
+        height: auto;
+        min-height: 0;
+        scroll-snap-align: none;
+        scroll-snap-stop: normal;
+        display: block;
+        padding: 72px 0 88px;
+        overflow: visible;
+      }
+
+      /* Hero stays visually full-screen */
+      .lnd-slide--hero {
+        display: flex;
+        align-items: center;
+        min-height: 100svh;
+        min-height: 100vh;
+        padding: 80px 0 100px;
+      }
+
+      .lnd-slide-inner { padding: 0 20px; }
+
+      /* Layouts */
       .lnd-cols,
       .lnd-cols--6-4,
-      .lnd-cols--4-6 { grid-template-columns: 1fr; gap: 32px; }
+      .lnd-cols--4-6 { grid-template-columns: 1fr; gap: 28px; }
+      .lnd-img-panel { aspect-ratio: 16/9; }
       .lnd-campo-grid { grid-template-columns: repeat(2, 1fr); }
       .lnd-docentes { grid-template-columns: 1fr; }
       .lnd-cert-badges { flex-direction: column; }
       .lnd-hero-stats { max-width: 100%; }
-      .lnd-slide { align-items: flex-start; padding-top: 80px; padding-bottom: 40px; overflow-y: auto; }
       .lnd-form-wrap { height: auto; overflow-y: visible; }
       .lnd-counter { display: none; }
     }
 
     @media (max-width: 600px) {
-      .lnd-hero-title { font-size: 32px; }
-      .lnd-hero-sub { font-size: 15px; }
+      .lnd-hero-title { font-size: 30px; line-height: 1.1; }
+      .lnd-hero-sub { font-size: 15px; margin-bottom: 24px; }
       .lnd-campo-grid { grid-template-columns: 1fr; }
       .lnd-hero-stats { display: none; }
+      .lnd-slide-inner { padding: 0 16px; }
+      .lnd-ctas { flex-direction: column; }
+      .lnd-ctas .lnd-btn-primary,
+      .lnd-ctas .lnd-btn-ghost { width: 100%; justify-content: center; }
+      .lnd-authority-strip { gap: 8px; }
+      .lnd-authority-badge { font-size: 11px; padding: 6px 10px; }
+      .lnd-title { font-size: clamp(22px, 6vw, 32px); }
+      .lnd-hours-bar { grid-template-columns: 1fr; }
+      .lnd-hours-cell:first-child { border-right: none; border-bottom: 1px solid #e5e7eb; }
+      .lnd-hero-badges { gap: 6px; }
+      .lnd-badge { font-size: 11px; padding: 5px 10px; }
+      .lnd-mode-card-header { flex-wrap: wrap; }
+      .lnd-mode-card-hours { margin-left: 0; width: 100%; }
+      .lnd-testi-grid { grid-template-columns: 1fr; }
+      .lnd-testi-proof { flex-wrap: wrap; gap: 12px; }
+      .lnd-testi-proof-divider { display: none; }
+    }
+
+    /* ─── Slide 7: Testimonios (estilo Reels) ─── */
+    .lnd-testi-header { margin-bottom: 18px; }
+
+    .lnd-testi-stats-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+    .lnd-testi-stats-row strong { color: var(--celeste); font-weight: 700; }
+    .lnd-testi-stat-dot { opacity: 0.35; }
+
+    .lnd-testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .lnd-testi-card {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 6px 28px rgba(0,0,0,0.2);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .lnd-testi-card:hover {
+      transform: translateY(-4px) scale(1.015);
+      box-shadow: 0 14px 44px rgba(0,0,0,0.28);
+    }
+
+    .lnd-video-player {
+      position: relative;
+      aspect-ratio: 9 / 16;
+      background: #0f1923;
+      cursor: pointer;
+      overflow: hidden;
+      display: block;
+    }
+    .lnd-video-poster {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s;
+    }
+    .lnd-video-player:hover .lnd-video-poster { transform: scale(1.04); }
+    .lnd-video-player iframe {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+    /* Overlay tipo Reels: gradiente + texto en la parte baja del video */
+    .lnd-testi-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 60px 16px 18px;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.9)  0%,
+        rgba(0,0,0,0.55) 45%,
+        transparent      100%
+      );
+      color: white;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .lnd-testi-stars {
+      color: #FBBF24;
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+    .lnd-testi-quote {
+      font-size: 12px;
+      line-height: 1.55;
+      font-style: italic;
+      margin-bottom: 10px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .lnd-testi-author { display: flex; flex-direction: column; gap: 2px; }
+    .lnd-testi-name   { font-size: 13px; font-weight: 700; }
+    .lnd-testi-role   { font-size: 11px; opacity: 0.72; }
+
+    /* Botón play con efecto glassmorphism */
+    .lnd-video-play {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px; height: 56px;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,0.45);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.2s, border-color 0.2s;
+      z-index: 4; color: white;
+    }
+    .lnd-video-play:hover {
+      background: rgba(0,166,177,0.85);
+      border-color: var(--celeste);
+      transform: translate(-50%,-50%) scale(1.14);
+    }
+    .lnd-video-play svg { margin-left: 3px; }
+
+    @media (max-width: 900px) {
+      .lnd-testi-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .lnd-testi-grid { grid-template-columns: 1fr; }
+      .lnd-testi-stats-row { font-size: 12px; gap: 6px; }
     }
   </style>
 </head>
@@ -746,12 +1036,28 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
 <!-- GTM noscript -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M7FMVPHG" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- Mobile sidebar toggle -->
-<button class="lnd-sidebar-toggle" id="lndToggle" aria-label="Abrir menú">
-  <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-  </svg>
-</button>
+<!-- Mobile header (visible on mobile only) -->
+<header class="lnd-mobile-header">
+  <button class="lnd-mobile-menu-btn" id="lndToggle" aria-label="Abrir menú">
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+  <a href="/" class="lnd-mobile-logo">
+    <img src="/images/common/emed_logo.svg" alt="EMED">
+  </a>
+  <a
+    href="https://wa.me/56965620939?text=Hola,%20quiero%20información%20sobre%20el%20Diplomado%20en%20Mediación%20Familiar%20de%20EMED"
+    target="_blank"
+    class="lnd-mobile-wa-mini"
+    aria-label="WhatsApp"
+  >
+    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
+</header>
+
+<!-- Old floating toggle (desktop only — hidden on mobile) -->
+<button class="lnd-sidebar-toggle" aria-label="Abrir menú" style="display:none;" tabindex="-1"></button>
 
 <div class="lnd-sidebar-overlay" id="lndOverlay"></div>
 
@@ -789,6 +1095,10 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
     </a>
     <a class="lnd-nav-item" data-idx="6" href="#lnd-slide-7">
       <span class="lnd-nav-dot">7</span>
+      <span class="lnd-nav-label">Testimonios</span>
+    </a>
+    <a class="lnd-nav-item" data-idx="7" href="#lnd-slide-8">
+      <span class="lnd-nav-dot">8</span>
       <span class="lnd-nav-label">Aranceles</span>
     </a>
   </nav>
@@ -826,8 +1136,7 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
       <h1 class="lnd-hero-title">Mediación<br>Familiar</h1>
 
       <p class="lnd-hero-sub">
-        Especialízate en la resolución de conflictos familiares con técnicas específicas para dinámicas complejas y casos de alta sensibilidad emocional.
-        <strong style="color:white;">Certificación oficial del Ministerio de Justicia.</strong>
+        Especialízate en la resolución de conflictos familiares con técnicas específicas para dinámicas complejas y casos de alta sensibilidad emocional. Formación orientada al acceso al Registro Único de Mediadores del Ministerio de Justicia.
       </p>
 
       <div class="lnd-hero-stats">
@@ -840,7 +1149,7 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
           <div class="lnd-stat-lbl">Modalidad</div>
         </div>
         <div class="lnd-stat">
-          <div class="lnd-stat-val" style="color:#7EC5D6;">$725.000</div>
+          <div class="lnd-stat-val" style="color:#7EC5D6;">$765.000</div>
           <div class="lnd-stat-lbl">Desde</div>
         </div>
       </div>
@@ -885,7 +1194,7 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
         <div>
           <div class="lnd-eyebrow">Acceso al programa</div>
           <h2 class="lnd-title">Requisitos de <span class="accent">Ingreso</span></h2>
-          <p class="lnd-body">Programa diseñado para profesionales que quieran especializarse en mediación familiar con certificación oficial del Ministerio de Justicia.</p>
+          <p class="lnd-body">Programa diseñado para profesionales que desean especializarse en mediación familiar y acceder al Registro Único de Mediadores del Ministerio de Justicia.</p>
 
           <ul class="lnd-req-list">
             <li class="lnd-req-item">
@@ -916,13 +1225,12 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
         </div>
 
         <div class="lnd-img-panel">
-          <img src="/images/pages/hero-mediadores.webp" alt="Mediadores profesionales" loading="lazy">
+          <img src={comunidadAprende.src} alt="Comunidad de mediadores EMED" loading="lazy">
           <div class="lnd-img-overlay">
             <div class="lnd-img-tag">
               <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               Inscripciones Abiertas
             </div>
-            <div class="lnd-img-sub">Ingreso continuo · Flujo permanente</div>
           </div>
         </div>
 
@@ -974,7 +1282,7 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
         </div>
 
         <!-- Video placeholder Slide 3 -->
-        <div>
+        <div class="lnd-video-ph-wrap">
           <div class="lnd-video-ph">
             <!--
               Para activar: reemplaza el contenido por:
@@ -986,8 +1294,9 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
               </iframe>
             -->
             <div class="lnd-video-ph-inner">
-              <div class="lnd-video-play">
-                <svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <div class="lnd-video-format-badge">
+                <svg width="10" height="14" viewBox="0 0 10 14" fill="currentColor"><rect x="1" y="0" width="8" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="3.5" y="11" width="3" height="1" rx="0.5"/></svg>
+                9:16
               </div>
               <div class="lnd-video-lbl">Conoce nuestra metodología</div>
               <div class="lnd-video-note">Video próximamente disponible</div>
@@ -1006,7 +1315,7 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
       <div class="lnd-cols lnd-cols--4-6">
 
         <!-- Video placeholder Slide 4 -->
-        <div>
+        <div class="lnd-video-ph-wrap">
           <div class="lnd-video-ph">
             <!--
               Para activar: reemplaza el contenido por:
@@ -1018,8 +1327,9 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
               </iframe>
             -->
             <div class="lnd-video-ph-inner">
-              <div class="lnd-video-play">
-                <svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <div class="lnd-video-format-badge">
+                <svg width="10" height="14" viewBox="0 0 10 14" fill="currentColor"><rect x="1" y="0" width="8" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="3.5" y="11" width="3" height="1" rx="0.5"/></svg>
+                9:16
               </div>
               <div class="lnd-video-lbl">Sesión de práctica real</div>
               <div class="lnd-video-note">Video próximamente disponible</div>
@@ -1031,27 +1341,47 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
         <div>
           <div class="lnd-eyebrow">Experiencia práctica</div>
           <h2 class="lnd-title">Pasantía y <span class="accent">Práctica</span> Profesional</h2>
-          <p class="lnd-body">La pasantía presencial es el núcleo diferenciador. Trabajarás con casos reales del sistema judicial chileno bajo supervisión directa de mediadores certificados.</p>
+          <p class="lnd-body">La pasantía presencial es el corazón de nuestra formación. Vivirás mediaciones basadas en casos reales del sistema chileno, con supervisión directa de mediadores expertos.</p>
 
           <ul class="lnd-practice-list">
             <li class="lnd-practice-item">
-              <span class="lnd-req-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></span>
-              <span class="lnd-req-text"><strong>Pasantía Fase I:</strong> Técnicas de Mediación III — metodología avanzada</span>
+              <span class="lnd-practice-icon">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </span>
+              <span class="lnd-practice-content">
+                <span class="lnd-practice-title">Jornada 1</span>
+                <span class="lnd-practice-desc">Practicando las técnicas de mediación con herramientas específicas.</span>
+              </span>
             </li>
             <li class="lnd-practice-item">
-              <span class="lnd-req-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></span>
-              <span class="lnd-req-text"><strong>Pasantía Fase II:</strong> Simulaciones con pauta ECAME y evaluación formativa</span>
+              <span class="lnd-practice-icon">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+              </span>
+              <span class="lnd-practice-content">
+                <span class="lnd-practice-title">Pasantía Fase I</span>
+                <span class="lnd-practice-desc">Aprendiendo a elaborar mi discurso inicial y conociendo la posición en el conflicto.</span>
+              </span>
             </li>
             <li class="lnd-practice-item">
-              <span class="lnd-req-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></span>
-              <span class="lnd-req-text"><strong>Pasantía Fase III:</strong> Casos reales supervisados en el centro EMED</span>
+              <span class="lnd-practice-icon">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+              </span>
+              <span class="lnd-practice-content">
+                <span class="lnd-practice-title">Pasantía Fase II</span>
+                <span class="lnd-practice-desc">Descubriendo los intereses y necesidades que subyacen a la posición.</span>
+              </span>
+            </li>
+            <li class="lnd-practice-item">
+              <span class="lnd-practice-icon">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+              </span>
+              <span class="lnd-practice-content">
+                <span class="lnd-practice-title">Pasantía Fase III</span>
+                <span class="lnd-practice-desc">Elaborando un acuerdo y aprendiendo cómo se sube al sistema.</span>
+              </span>
             </li>
           </ul>
 
-          <div class="lnd-callout">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--celeste);flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-            <span class="lnd-callout-text">Casos reales del sistema judicial chileno · Circular 3511 (2025)</span>
-          </div>
         </div>
 
       </div>
@@ -1194,6 +1524,13 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
                 <div class="lnd-docente-role">Abogada · Mediadora</div>
               </div>
             </div>
+            <div class="lnd-docente-card">
+              <img class="lnd-docente-avatar" src={danielBustelo.src} alt="Daniel Bustelo" loading="lazy">
+              <div>
+                <div class="lnd-docente-name">Daniel Bustelo</div>
+                <div class="lnd-docente-role">Mediador · Formador</div>
+              </div>
+            </div>
           </div>
 
           <div class="lnd-callout" style="margin-top:20px;">
@@ -1206,8 +1543,105 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
     </div>
   </section>
 
-  <!-- ── Slide 7: Aranceles + Formulario ── -->
+  <!-- ── Slide 7: Testimonios (Reels verticales) ── -->
   <section class="lnd-slide" id="lnd-slide-7">
+    <div class="lnd-slide-inner">
+
+      <div class="lnd-testi-header">
+        <div class="lnd-eyebrow">Lo que dicen nuestros egresados</div>
+        <h2 class="lnd-title" style="margin-bottom:0;">Experiencias <span class="accent">reales</span> de nuestros mediadores</h2>
+        <div class="lnd-testi-stats-row">
+          <span><strong>+6.000</strong> egresados formados</span>
+          <span class="lnd-testi-stat-dot">·</span>
+          <span><strong>20 años</strong> de experiencia</span>
+          <span class="lnd-testi-stat-dot">·</span>
+          <span><strong>★ 4.9</strong> valoración promedio</span>
+        </div>
+      </div>
+
+      <div class="lnd-testi-grid">
+
+        <!-- ★ TESTIMONIO 1
+             Reemplaza YOUTUBE_ID_1 con el ID de tu video de YouTube
+             Ejemplo: youtube.com/watch?v=dQw4w9WgXcQ → ID = dQw4w9WgXcQ
+             Para Shorts: youtube.com/shorts/dQw4w9WgXcQ → ID = dQw4w9WgXcQ
+        -->
+        <div class="lnd-testi-card">
+          <div class="lnd-video-player" data-ytid="YOUTUBE_ID_1">
+            <img class="lnd-video-poster"
+                 src="https://img.youtube.com/vi/YOUTUBE_ID_1/mqdefault.jpg"
+                 alt="Testimonio egresada"
+                 loading="lazy">
+            <!-- Overlay con nombre, cita y estrellas sobre el video -->
+            <div class="lnd-testi-overlay">
+              <div class="lnd-testi-stars">★★★★★</div>
+              <p class="lnd-testi-quote">"El diplomado me dio todas las herramientas para trabajar como mediadora. La metodología práctica marca la diferencia."</p>
+              <div class="lnd-testi-author">
+                <span class="lnd-testi-name">María José González</span>
+                <span class="lnd-testi-role">Psicóloga · Egresada 2023</span>
+              </div>
+            </div>
+            <button class="lnd-video-play" aria-label="Reproducir testimonio">
+              <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- ★ TESTIMONIO 2 — Reemplaza YOUTUBE_ID_2 -->
+        <div class="lnd-testi-card">
+          <div class="lnd-video-player" data-ytid="YOUTUBE_ID_2">
+            <img class="lnd-video-poster"
+                 src="https://img.youtube.com/vi/YOUTUBE_ID_2/mqdefault.jpg"
+                 alt="Testimonio egresado"
+                 loading="lazy">
+            <div class="lnd-testi-overlay">
+              <div class="lnd-testi-stars">★★★★★</div>
+              <p class="lnd-testi-quote">"Excelente cuerpo docente con experiencia real. Pude inscribirme en el Registro MINJU al terminar el diplomado."</p>
+              <div class="lnd-testi-author">
+                <span class="lnd-testi-name">Carlos Mendoza</span>
+                <span class="lnd-testi-role">Abogado · Egresado 2024</span>
+              </div>
+            </div>
+            <button class="lnd-video-play" aria-label="Reproducir testimonio">
+              <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- ★ TESTIMONIO 3 — Reemplaza YOUTUBE_ID_3 -->
+        <div class="lnd-testi-card">
+          <div class="lnd-video-player" data-ytid="YOUTUBE_ID_3">
+            <img class="lnd-video-poster"
+                 src="https://img.youtube.com/vi/YOUTUBE_ID_3/mqdefault.jpg"
+                 alt="Testimonio egresada"
+                 loading="lazy">
+            <div class="lnd-testi-overlay">
+              <div class="lnd-testi-stars">★★★★★</div>
+              <p class="lnd-testi-quote">"La modalidad híbrida fue perfecta para equilibrar trabajo y estudio. El material es muy completo y siempre actualizado."</p>
+              <div class="lnd-testi-author">
+                <span class="lnd-testi-name">Ana Martínez</span>
+                <span class="lnd-testi-role">Trabajadora Social · Egresada 2024</span>
+              </div>
+            </div>
+            <button class="lnd-video-play" aria-label="Reproducir testimonio">
+              <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Slide 8: Aranceles + Formulario ── -->
+  <section class="lnd-slide" id="lnd-slide-8">
     <div class="lnd-slide-inner">
       <div class="lnd-cols lnd-cols--4-6">
 
@@ -1218,7 +1652,7 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
 
           <div class="lnd-price-block">
             <div class="lnd-price-from">Inversión desde</div>
-            <div class="lnd-price-main">$725.000</div>
+            <div class="lnd-price-main">$765.000</div>
             <div class="lnd-price-note">Facilidades de pago disponibles · Consultar con asesor</div>
           </div>
 
@@ -1277,40 +1711,57 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
 </div><!-- /lnd-slides-wrap -->
 
 <!-- Slide counter -->
-<div class="lnd-counter" id="lndCounter">1 / 7</div>
+<div class="lnd-counter" id="lndCounter">1 / 8</div>
+
+<!-- Mobile sticky bottom CTA -->
+<div class="lnd-mobile-bottom-cta" id="lndBottomCta">
+  <button class="lnd-mobile-cta-info" id="lndBottomCtaForm">Quiero información</button>
+  <a
+    href="https://wa.me/56965620939?text=Hola,%20quiero%20información%20sobre%20el%20Diplomado%20en%20Mediación%20Familiar%20de%20EMED"
+    target="_blank"
+    class="lnd-mobile-cta-wa"
+  >
+    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    WhatsApp
+  </a>
+</div>
 
 <script>
   (function () {
-    const wrap     = document.getElementById('lndWrap');
-    const slides   = Array.from(document.querySelectorAll('.lnd-slide'));
-    const navItems = Array.from(document.querySelectorAll('.lnd-nav-item'));
-    const counter  = document.getElementById('lndCounter');
-    const sidebar  = document.getElementById('lndSidebar');
-    const overlay  = document.getElementById('lndOverlay');
-    const toggle   = document.getElementById('lndToggle');
-    const heroCta  = document.getElementById('lndHeroCta');
+    const wrap        = document.getElementById('lndWrap');
+    const slides      = Array.from(document.querySelectorAll('.lnd-slide'));
+    const navItems    = Array.from(document.querySelectorAll('.lnd-nav-item'));
+    const counter     = document.getElementById('lndCounter');
+    const sidebar     = document.getElementById('lndSidebar');
+    const overlay     = document.getElementById('lndOverlay');
+    const toggle      = document.getElementById('lndToggle');
+    const heroCta     = document.getElementById('lndHeroCta');
+    const bottomForm  = document.getElementById('lndBottomCtaForm');
 
-    // Scroll hero CTA to slide 7
-    heroCta?.addEventListener('click', () => {
-      slides[6]?.scrollIntoView({ behavior: 'smooth' });
-    });
+    const isMobile = () => window.innerWidth <= 900;
+
+    // Hero CTA & bottom CTA button → scroll to form slide
+    const scrollToForm = () => slides[7]?.scrollIntoView({ behavior: 'smooth' });
+    heroCta?.addEventListener('click', scrollToForm);
+    bottomForm?.addEventListener('click', scrollToForm);
 
     function setActive(idx: number) {
       navItems.forEach((el, i) => el.classList.toggle('active', i === idx));
       if (counter) counter.textContent = `${idx + 1} / ${slides.length}`;
     }
 
-    // IntersectionObserver tracks which slide is visible
+    // On mobile, use viewport as root (body scrolls); on desktop, use wrap (snap container)
+    const obsRoot = isMobile() ? null : wrap;
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
             const idx = slides.indexOf(entry.target as HTMLElement);
             if (idx !== -1) setActive(idx);
           }
         });
       },
-      { root: wrap, threshold: 0.5 }
+      { root: obsRoot, threshold: 0.4 }
     );
     slides.forEach((s) => obs.observe(s));
 
@@ -1319,26 +1770,45 @@ import constanzaNavarrete from "../../assets/images/docentes/constanza-navarrete
       item.addEventListener('click', (e) => {
         e.preventDefault();
         slides[idx]?.scrollIntoView({ behavior: 'smooth' });
-        if (window.innerWidth <= 900) closeSidebar();
+        if (isMobile()) closeSidebar();
       });
     });
 
-    // Mobile sidebar
+    // Mobile sidebar open/close
     function openSidebar() {
       sidebar?.classList.add('open');
       overlay?.classList.add('open');
-      document.body.style.overflow = 'hidden';
+      // Prevent body scroll behind overlay only on desktop-like sizes
+      if (isMobile()) document.documentElement.style.overflow = 'hidden';
     }
     function closeSidebar() {
       sidebar?.classList.remove('open');
       overlay?.classList.remove('open');
-      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
     toggle?.addEventListener('click', () =>
       sidebar?.classList.contains('open') ? closeSidebar() : openSidebar()
     );
     overlay?.addEventListener('click', closeSidebar);
   })();
+
+  // ── Click-to-play para videos de testimonio ──
+  document.querySelectorAll<HTMLElement>('.lnd-video-player').forEach((player) => {
+    const ytid = player.dataset.ytid;
+    if (!ytid || ytid.startsWith('YOUTUBE_ID')) return; // placeholder sin ID real
+    player.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube.com/embed/${ytid}?autoplay=1&rel=0`;
+      iframe.allow = 'autoplay; encrypted-media';
+      iframe.allowFullscreen = true;
+      // Ocultar poster y botón de play
+      const poster = player.querySelector<HTMLElement>('.lnd-video-poster');
+      const btn    = player.querySelector<HTMLElement>('.lnd-video-play');
+      if (poster) poster.style.display = 'none';
+      if (btn)    btn.style.display    = 'none';
+      player.appendChild(iframe);
+    }, { once: true });
+  });
 </script>
 
 </body>

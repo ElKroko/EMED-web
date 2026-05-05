@@ -1288,6 +1288,18 @@ const programaDisplay = {
   }
 </style>
 
+<script is:inline>
+  // Función para scroll suave al formulario
+  function scrollToContactForm() {
+    const contactForm = document.getElementById("contact-form");
+    if (contactForm) {
+      contactForm.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  }
+</script>
+
 <script>
   // Funcionalidad de acordeón para el temario
   class TemarioAccordion {
@@ -1332,13 +1344,6 @@ const programaDisplay = {
         toggle.setAttribute("aria-expanded", "false");
       });
     }
-  }
-
-  // Función para scroll suave al formulario
-  function scrollToContactForm() {
-    document.getElementById("contact-form").scrollIntoView({
-      behavior: "smooth",
-    });
   }
 
   // Inicializar cuando DOM esté listo
